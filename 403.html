@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Błąd 403!</title>
+    <link rel="Shortcut Icon" href="img\logo.png">
+    <link rel="Stylesheet" href="styles.css">
+    <style>
+        main {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        button {
+            position: relative;
+            top: 1%;
+            background-color: #414141;
+            border: none;
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background-color: #393939;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Błąd 403!</h1>
+        <h2>
+            Powróć na stronę główną
+        </h2>
+        <button onclick="location = 'home';">Home</button>
+    </main>
+</body>
+</html>

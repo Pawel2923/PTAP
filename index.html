@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilot Training Arma Project</title>
+    <link rel="Shortcut Icon" href="img\logo.png">
+    <link rel="Stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <a id="home"></a>
+    <header id="navbar">
+        <img class="logo" src="img/logo.png" width="5%" alt="PTAP">
+        <nav>
+            <ul>
+                <li><a class="option" id="home-link" href="#home">Home</a></li>
+                <li class="dropdown">
+                    <a class="option" id="heli-link" href="#heli">Helikoptery</a>
+                    <div class="dropdown-content">
+                        <a class="option" href="#heli">Manewry</a>
+                        <a class="option" href="#autorotation">Autorotacja</a>
+                        <a class="option" href="#guides">Przydatne linki</a>
+                    </div>
+                </li>
+                <li><a class="option" id="contact-link" href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="index-banner" style="background-image: url('img/index-banner.png');">
+            <div class="image-text">
+                <div class="ptap">
+                    <h1>PTAP</h1>
+                    <h2 style="text-transform: capitalize;">Pilot Training Arma Project</h2>
+                </div>
+                <div class="ptap-description">
+                    <p>
+                        PTAP jest to projekt utworzony przez BowiX'a i ArrowX'a w grupie ARHD, którego celem było
+                        zapewnienie odpowiednich warunków szkoleniowych do nauki pilotażu. <br>
+                        Obecnie strona służy do zapoznania z ogólnymi zagadnieniami lotnictwa w Armie 3. Na tej stronie
+                        dowiesz się jak przygotować się do lotu jak i znajdziesz pare bardziej zaawansowanych zagadnień.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="heli" class="instructors">
+            <h2>Manewry</h2>
+            <p>
+                Walka, Lądowania, procesy awaryjne
+            </p>
+        </section>
+        <section id="helicopters">
+            <h4>MH-6/AH-6 Little bird</h4>
+            <div class="film-container">
+                <div id="landings">
+                    <iframe class="film"
+                        src="https://www.youtube.com/embed/videoseries?list=PLsQ6ua1LSZQzGy32OPgFi5Y8jUEXi5Z0Q"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <div id="autorotation" class="autorotation">
+                    <h3>Autorotacja</h3>
+                    <h4>
+                        Zjawisko polegające na samoczynnym obrocie wirnika nośnego, wywołane ruchem powietrza.
+                    </h4>
+                    <br>
+                    <p>
+                        Manewr autorotacji wykorzystywany jest do awarayjnego lądowania kiedy nasz silnik nie jest w
+                        stanie wytworzyć odpowiednich obrotów wirnika nośnego. Dzięki energi pobieranej od powietrza,
+                        łopaty wirnika głównego (nośnego) pobudzane są do ruchu co pozwala na wyhamowanie gwałtownego
+                        opadania w dół i bezpieczne posadzenie śmigłowca na ziemi.
+                    </p>
+                </div>
+                <div class="autorotation">
+                    <figure>
+                        <figcaption>Zdjęcie ukazujące przepływ powietrza przez wirnik nośny podczas lotu normalnego i
+                            autorotacji</figcaption>
+                        <img id="autorotation-image" alt="autorotacja"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Airflow_in_auto.jpg/600px-Airflow_in_auto.jpg">
+                    </figure>
+                    <br>
+                    <h4>
+                        Film ukazujący manewr autorotacji w little birdzie
+                    </h4>
+                    <iframe class="film" src="https://www.youtube.com/embed/v8pn1f3ijLI" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+        <section class="instructors">
+            <h2>Przydatne linki</h2>
+            <p>
+                Poradniki
+            </p>
+        </section>
+        <section id="guides">
+            <div class="film-container">
+                <h3>Poradnik dla modelu podstawowego</h3>
+                <h4>Jeśli latasz na modelu podstawowym oraz używasz myszki i klawiatury, to polecam <a
+                        href="https://www.youtube.com/playlist?list=PLQ97DEex903gLgCD40ptMsZpLgFU25A1t"
+                        title="Przejdź do poradnika" target="_blank">serię 9 filmów</a> objaśniających sposoby lądowań i
+                    innych zagadnień od <a href="https://www.youtube.com/channel/UChYe7v3k-Tep5-_nkkIEMug"
+                        title="Przejdź do kanału" target="_blank">CallMehTOMMEH</a></h4>
+                <iframe class="film"
+                    src="https://www.youtube.com/embed/videoseries?list=PLQ97DEex903gLgCD40ptMsZpLgFU25A1t"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+
+                <h3>Poradnik dla modelu zaawansowanego</h3>
+                <h4>Poradnik jak latać na zaawansowanym modelu, wykonany przez <a
+                        href="https://www.youtube.com/user/MyArmA2Channel" title="Przejdź na kanał twórcy"
+                        target="_blank">ARMA Flyer</a></h4>
+                <iframe class="film"
+                    src="https://www.youtube.com/embed/videoseries?list=PLnj6e-88CbM7PZz6tFZ0pKylyt3RcAq3o"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+
+                <h3>Demonstracje lądowań na modelu zaawansowanym</h3>
+                <h4>Seria filmów wykonana przez <a href="https://www.youtube.com/user/MyArmA2Channel"
+                        title="Przejdź na kanał twórcy" target="_blank">ARMA Flyer'a</a> ukazuje jak lądować różnymi
+                    śmigłowcami na modelu zaawansowanym</h4>
+                <iframe class="film"
+                    src="https://www.youtube.com/embed/videoseries?list=PLnj6e-88CbM6BS0rNop7QhDSQgav75JGV"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </section>
+        <section id="contact" class="instructors">
+            <h2>Kontakt</h2>
+            <p>
+                Instruktor <a href="https://steamcommunity.com/profiles/76561198139072130" target="_blank" title="Przejdź do profilu steam">ArrowX</a>
+            </p>
+        </section>
+    </main>
+    <footer>
+        <p>
+            PTAP 2018-2021 &copy; Created by BowiX
+        </p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
