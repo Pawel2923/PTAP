@@ -1,5 +1,5 @@
 # Redirects from what the browser requests to what we server
-/home index.html
-/helikoptery https://ptap.netlify.app
-/samoloty planes.html
-/kontakt index.html#contact
+/home https://ptap.netlify.app/
+/helikoptery https://ptap.netlify.app/#heli
+/samoloty https://ptap.netlify.app/planes.html
+/kontakt https://ptap.netlify.app/#contact
