@@ -13,7 +13,7 @@ window.onscroll = function () {
 
 $(document).ready(function() {
     if (prevScrollpos < $(window).height()) {
-        if (window.location.href.indexOf("helikoptery") > -1 || window.location.href.indexOf('/#heli')) {
+        if (window.location.href.indexOf("helikoptery") > -1 || window.location.href.indexOf('/#heli') > -1) {
             const element = document.querySelector("#heli");
             element.scrollIntoView();
             $("#heli-link").addClass("option-selected");
