@@ -11,6 +11,8 @@ Deny from all
 # Disable directory browsing 
 Options -Indexes
 
+AllowOverride All
+
 RewriteEngine on
 
 RewriteRule home index.html
