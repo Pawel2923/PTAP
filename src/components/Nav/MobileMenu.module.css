@@ -1,0 +1,54 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #414141;
+    animation: slideIn 0.2s ease-in both;
+}
+
+.overlay i {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2em;
+}
+
+.overlay ul {
+    margin: 0;
+    padding: 0;
+    padding: 0 3rem;
+    list-style-type: none;
+    font-size: 1.2em;
+}
+
+.overlay ul li {
+    padding: 1rem 0;
+}
+
+.overlay ul li:first-child {
+    margin-top: 1rem;
+}
+
+.overlay footer {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
