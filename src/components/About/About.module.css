@@ -1,0 +1,21 @@
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80vh;
+    background-image: url("../../img/index-banner.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.about > div {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    line-height: 1.5;
+}
+
+.about h1 {
+    letter-spacing: 1.3px;
+}
