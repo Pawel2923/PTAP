@@ -4,7 +4,7 @@
     justify-content: center;
     width: 100%;
     height: 80vh;
-    background-image: url("../../img/index-banner.png");
+    background-image: url("../../../img/index-banner.png");
     background-position: center;
     background-size: cover;
 }
