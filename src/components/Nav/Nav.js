@@ -23,11 +23,23 @@ const Nav = () => {
     setShowMobileMenu(false);
   };
 
-  let imageTitle = <h1>PTAP</h1>;
+  let imageTitle = width > 480 ? "Pilot Training Arma Project" : "PTAP";
 
-  if (width > 480) {
-    imageTitle = <h1>Pilot Training Arma Project</h1>;
-  }
+  let navContent =
+    width > 480 ? (
+      <ul>
+        <li>HOME</li>
+        <li>ŚMIGŁOWCE</li>
+        <li>SAMOLOTY</li>
+        <li>KONTAKT</li>
+      </ul>
+    ) : (
+      <i
+        className="fa-solid fa-bars"
+        style={{ fontSize: "1.5em" }}
+        onClick={menuClickHandler}
+      ></i>
+    );
 
   return (
     <nav className={classes.nav}>
@@ -37,22 +49,9 @@ const Nav = () => {
           alt="logo"
           style={{ display: "block" }}
         />
-        {imageTitle}
+        <h1>{imageTitle}</h1>
       </div>
-      {width > 480 ? (
-        <ul>
-          <li>HOME</li>
-          <li>HELIKOPTERY</li>
-          <li>SAMOLOTY</li>
-          <li>KONTAKT</li>
-        </ul>
-      ) : (
-        <i
-          className="fa-solid fa-bars"
-          style={{ fontSize: "1.5em" }}
-          onClick={menuClickHandler}
-        ></i>
-      )}
+      {navContent}
       {showMobileMenu && <MobileMenu onClose={menuCloseHandler} />}
     </nav>
   );
