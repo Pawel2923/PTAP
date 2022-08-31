@@ -23,13 +23,22 @@ const Nav = () => {
     setShowMobileMenu(false);
   };
 
+  let imageTitle = <h1>PTAP</h1>;
+
+  if (width > 480) {
+    imageTitle = <h1>Pilot Training Arma Project</h1>;
+  }
+
   return (
     <nav className={classes.nav}>
-      <img
-        src={require("../../img/logo.png")}
-        alt="logo"
-        style={{ display: "block" }}
-      />
+      <div>
+        <img
+          src={require("../../img/logo.png")}
+          alt="logo"
+          style={{ display: "block" }}
+        />
+        {imageTitle}
+      </div>
       {width > 480 ? (
         <ul>
           <li>HOME</li>
