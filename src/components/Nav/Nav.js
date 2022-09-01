@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import MobileMenu from "./MobileMenu";
 import classes from "./Nav.module.css";
@@ -6,35 +6,14 @@ import classes from "./Nav.module.css";
 const Nav = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const nav = useRef();
 
   useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
-    
-    let prevScrollPos = window.scrollY;
-    const handleWindowScroll = () => {
-      let currScrollPos = window.scrollY;
-
-      if (currScrollPos < nav.current.clientHeight) {
-        nav.current.style.transform = "translateY(0)";
-        return;
-      }
-
-      if (prevScrollPos > currScrollPos) {
-        nav.current.style.transform = "translateY(0)";
-      } else {
-        nav.current.style.transform = "translateY(-100%)";
-      }
-
-      prevScrollPos = currScrollPos;
-    };
 
     window.addEventListener("resize", handleWindowResize);
-    window.addEventListener("scroll", handleWindowScroll);
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
-      window.removeEventListener("scroll", handleWindowScroll);
     };
   }, []);
 
@@ -65,7 +44,7 @@ const Nav = () => {
     );
 
   return (
-    <nav className={classes.nav} ref={nav}>
+    <nav className={classes.nav}>
       <div>
         <img
           src={require("../../img/logo.png")}
