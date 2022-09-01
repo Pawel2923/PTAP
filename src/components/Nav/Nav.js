@@ -15,7 +15,7 @@ const Nav = () => {
     const handleWindowScroll = () => {
       let currScrollPos = window.scrollY;
 
-      if (currScrollPos === 0) {
+      if (currScrollPos < nav.current.clientHeight) {
         nav.current.style.transform = "translateY(0)";
         return;
       }
