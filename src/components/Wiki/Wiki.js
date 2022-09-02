@@ -24,9 +24,28 @@ const Wiki = () => {
                 pilotów.
               </p>
               <figure>
-                <img src={require("../../img/mh6lb.webp")} alt="Hughes MH-6 Little Bird" />
+                <img
+                  src={require("../../img/mh6lb.webp")}
+                  alt="Hughes MH-6 Little Bird"
+                />
                 <figcaption>
-                  Hughes MH-6 Little Bird - amerykański lekki śmigłowiec wielozadaniowy
+                  Hughes MH-6 Little Bird - amerykański lekki śmigłowiec
+                  wielozadaniowy
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <p>Śmigłowce średnie</p>
+              <p>
+                Śmigłowce te pozwalają na transport piechoty, amunicji,
+                medykamentów. Do śmigłowców średnich zaliczają się również
+                śmigłowce szturmowe. Średnie śmigłowce wykorzystywane są także
+                do wsparcia.
+              </p>
+              <figure>
+                <img src={require("../../img/uh1y.webp")} alt="UH-1Y Venom"/>
+                <figcaption>
+                  Bell UH-1Y Venom - amerykański średni śmigłowiec wielozadaniowy
                 </figcaption>
               </figure>
             </li>
