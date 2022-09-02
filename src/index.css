@@ -10,3 +10,7 @@ body {
   background-color: #333333;
   color: #ffffff;
 }
+
+ol, ul {
+  padding: 0;
+}

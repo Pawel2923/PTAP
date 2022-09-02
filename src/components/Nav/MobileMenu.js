@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 
 import classes from "./MobileMenu.module.css";
 
@@ -20,9 +21,9 @@ const MobileMenu = (props) => {
     <div className={classes.overlay} ref={overlay}>
       <i className="fa-solid fa-xmark" onClick={closeClickHandler}></i>
       <ul>
-        <li>HOME</li>
-        <li>WIKI</li>
-        <li>ZAPISZ SIĘ</li>
+        <li><Link to="/">HOME</Link></li>
+        <li><Link to="/wiki">WIKI</Link></li>
+        <li><Link to="/sign-in">ZAPISZ SIĘ</Link></li>
       </ul>
       <footer>Wszelkie prawa zastrzeżone</footer>
     </div>
