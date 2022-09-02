@@ -21,9 +21,8 @@ const MobileMenu = (props) => {
       <i className="fa-solid fa-xmark" onClick={closeClickHandler}></i>
       <ul>
         <li>HOME</li>
-        <li>ŚMIGŁOWCE</li>
-        <li>SAMOLOTY</li>
-        <li>KONTAKT</li>
+        <li>WIKI</li>
+        <li>ZAPISZ SIĘ</li>
       </ul>
       <footer>Wszelkie prawa zastrzeżone</footer>
     </div>

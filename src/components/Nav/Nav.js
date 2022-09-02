@@ -31,9 +31,8 @@ const Nav = () => {
     width > 480 ? (
       <ul>
         <li>HOME</li>
-        <li>ŚMIGŁOWCE</li>
-        <li>SAMOLOTY</li>
-        <li>KONTAKT</li>
+        <li>WIKI</li>
+        <li>ZAPISZ SIĘ</li>
       </ul>
     ) : (
       <i
@@ -51,7 +50,7 @@ const Nav = () => {
           alt="logo"
           style={{ display: "block" }}
         />
-        <h1>{imageTitle}</h1>
+        <h2>{imageTitle}</h2>
       </div>
       {navContent}
       {showMobileMenu && <MobileMenu onClose={menuCloseHandler} />}

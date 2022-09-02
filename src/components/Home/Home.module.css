@@ -2,11 +2,7 @@
   text-align: center;
 }
 
-.helicopters {
-  background-color: #115ab2;
-}
-
-.helicopters header {
+header {
     background-color: #115ab2;
     padding: 2rem;
 }
