@@ -11,6 +11,13 @@ body {
   color: #ffffff;
 }
 
-ol, ul {
-  padding: 0;
+a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 50ms ease-in;
+}
+
+a:hover,
+a:active {
+  color: #3B9ADD;
 }

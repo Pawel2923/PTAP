@@ -1,24 +1,64 @@
 .main {
-    padding: 2rem;
+    padding: 1rem 0;
+}
+
+.main h2 {
+    text-decoration: underline #3B9ADD;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.5rem;
+}
+
+.main h2:first-child,
+.main h3:first-child {
+    margin-top: 0;
 }
 
 .main h2,
 .main h3 {
-    margin: 0.8rem 0;
+    margin: 1.5rem 0;
 }
 
 .main p {
-    margin: 0.3rem 0;
+    margin: 0.5rem 0;
 }
 
 .section {
-    width: 70%;
+    /* width: 80%; */
     padding: 1rem 2rem;
     margin-left: auto;
     margin-right: auto;
-    background-color: #414141;
+    /* background-color: #414141; */
+    overflow: hidden;
+}
+
+.section img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.section ol {
+    padding: 0 1rem;
+}
+
+.section figcaption {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.content li {
+    margin: 1rem 0;
 }
 
 .content p {
     text-align: justify;
+}
+
+.content figure {
+    margin: 1rem 0;
 }

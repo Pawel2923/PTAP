@@ -23,6 +23,12 @@ const Wiki = () => {
                 Lekkie śmigłowce będą świetnym rozwiązaniem dla początkujących
                 pilotów.
               </p>
+              <figure>
+                <img src={require("../../img/mh6lb.webp")} alt="Hughes MH-6 Little Bird" />
+                <figcaption>
+                  Hughes MH-6 Little Bird - amerykański lekki śmigłowiec wielozadaniowy
+                </figcaption>
+              </figure>
             </li>
           </ol>
         </div>

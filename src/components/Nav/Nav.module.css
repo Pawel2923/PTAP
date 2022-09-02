@@ -48,14 +48,3 @@
     height: 100px;
   }
 }
-
-.nav a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 50ms ease-in;
-}
-
-.nav a:hover,
-.nav a:active {
-  color: #3B9ADD;
-}

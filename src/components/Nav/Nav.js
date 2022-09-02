@@ -62,7 +62,7 @@ const Nav = () => {
         onClick={logoClickHandler}
       >
         <img
-          src={require("../../img/logo.png")}
+          src={require("../../img/logo.webp")}
           alt="logo"
           style={{ display: "block" }}
         />
