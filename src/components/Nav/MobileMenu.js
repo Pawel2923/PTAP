@@ -1,56 +1,60 @@
-import React, { useRef } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import classes from "./MobileMenu.module.css";
 
 const targetContainer = document.getElementById("overlays");
 
-const MobileMenu = (props) => {
-  const overlay = useRef();
-  const backdrop = useRef();
+const linksList = [
+  {
+    name: "Home",
+    path: "/",
+    icon: "icon-icon_house",
+  },
+  {
+    name: "Wiki",
+    path: "/wiki",
+    icon: "icon-icon_globe",
+  },
+  {
+    name: "Zapisz się",
+    path: "/sign-up",
+    icon: "icon-icon_signup",
+  },
+];
 
-  const closeClickHandler = () => {
-    backdrop.current.style.animationName = classes.fadeOut;
-    overlay.current.style.animationName = classes.slideOut;
+const MobileMenu = () => {
+  const location = useLocation();
+  const [currentLocation, setCurrentLocation] = useState("");
 
-    setTimeout(() => {
-      props.onClose();
-    }, 200);
-  };
+  useEffect(() => {
+    setCurrentLocation(location.pathname);
+  }, [location]);
 
-  const children = (
-    <React.Fragment>
-      <div
-        className={classes.backdrop}
-        ref={backdrop}
-        onClick={closeClickHandler}
-      ></div>
-      <div className={classes.overlay} ref={overlay}>
-        <i className="fa-solid fa-xmark" onClick={closeClickHandler}></i>
-        <ul>
-          <li>
-            <Link to="/" onClick={closeClickHandler}>
-              HOME
+  const nav = (
+    <nav className={classes.menu}>
+      <ul>
+        {linksList.map((link) => (
+          <li key={link.name}>
+            <Link
+              to={link.path}
+              className={currentLocation === link.path ? classes.highlight : ""}
+            >
+              {currentLocation === link.path ? (
+                <i className={`${link.icon}_solid`}></i>
+              ) : (
+                <i className={link.icon}></i>
+              )}
+              {link.name}
             </Link>
           </li>
-          <li>
-            <Link to="/wiki" onClick={closeClickHandler}>
-              WIKI
-            </Link>
-          </li>
-          <li>
-            <Link to="/sign-in" onClick={closeClickHandler}>
-              ZAPISZ SIĘ
-            </Link>
-          </li>
-        </ul>
-        <footer>Wszelkie prawa zastrzeżone</footer>
-      </div>
-    </React.Fragment>
+        ))}
+      </ul>
+    </nav>
   );
 
-  return ReactDOM.createPortal(children, targetContainer);
+  return ReactDOM.createPortal(nav, targetContainer);
 };
 
 export default MobileMenu;

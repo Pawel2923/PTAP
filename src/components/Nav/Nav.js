@@ -1,31 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import MobileMenu from "./MobileMenu";
+import WidthContext from "../../store/width-context";
 import classes from "./Nav.module.css";
 
 const Nav = () => {
   const navigate = useNavigate();
-  const [width, setWidth] = useState(window.innerWidth);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-
-  useEffect(() => {
-    const handleWindowResize = () => setWidth(window.innerWidth);
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
-
-  const menuClickHandler = () => {
-    setShowMobileMenu(true);
-  };
-
-  const menuCloseHandler = () => {
-    setShowMobileMenu(false);
-  };
+  const { width } = useContext(WidthContext);
 
   const logoClickHandler = () => {
     navigate("/");
@@ -33,29 +15,8 @@ const Nav = () => {
 
   let imageTitle = width > 720 ? "Pilot Training Arma Project" : "PTAP";
 
-  let navContent =
-    width > 480 ? (
-      <ul>
-        <li>
-          <Link to="/">HOME</Link>
-        </li>
-        <li>
-          <Link to="/wiki">WIKI</Link>
-        </li>
-        <li>
-          <Link to="/sign-in">ZAPISZ SIĘ</Link>
-        </li>
-      </ul>
-    ) : (
-      <i
-        className="fa-solid fa-bars"
-        style={{ fontSize: "1.5em" }}
-        onClick={menuClickHandler}
-      ></i>
-    );
-
-  return (
-    <nav className={classes.nav}>
+  let navContent = (
+    <React.Fragment>
       <div
         style={{ cursor: "pointer" }}
         title="Przejdź na stronę główną"
@@ -68,9 +29,28 @@ const Nav = () => {
         />
         <h2>{imageTitle}</h2>
       </div>
-      {navContent}
-      {showMobileMenu && <MobileMenu onClose={menuCloseHandler} />}
-    </nav>
+      <ul>
+        <li>
+          <Link to="/">HOME</Link>
+        </li>
+        <li>
+          <Link to="/wiki">WIKI</Link>
+        </li>
+        <li>
+          <Link to="/sign-up">ZAPISZ SIĘ</Link>
+        </li>
+      </ul>
+    </React.Fragment>
+  );
+
+  return (
+    <React.Fragment>
+      {width > 480 ? (
+        <nav className={classes.nav}>{navContent}</nav>
+      ) : (
+        <MobileMenu />
+      )}
+    </React.Fragment>
   );
 };
 
