@@ -1,9 +1,20 @@
 .overlay {
     position: fixed;
-    inset: 0;
+    right: 0;
+    top: 0;
+    width: 70%;
+    height: 100%;
     background-color: #414141;
     animation: slideIn 0.2s ease-in both;
     z-index: 3;
+}
+
+.backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.2s ease-in both;
 }
 
 .overlay i {
@@ -16,7 +27,7 @@
 .overlay ul {
     margin: 0;
     padding: 0;
-    padding: 0 3rem;
+    padding: 0 2rem;
     list-style-type: none;
     font-size: 1.2em;
 }
@@ -51,5 +62,23 @@
     }
     to {
         transform: translateX(100%);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
