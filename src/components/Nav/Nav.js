@@ -31,7 +31,7 @@ const Nav = () => {
     navigate("/");
   };
 
-  let imageTitle = width > 480 ? "Pilot Training Arma Project" : "PTAP";
+  let imageTitle = width > 720 ? "Pilot Training Arma Project" : "PTAP";
 
   let navContent =
     width > 480 ? (
