@@ -20,8 +20,7 @@ const Wiki = () => {
                 Są to śmigłowce, które służą do zwiadu lub transportu piechoty.
                 Na zawiesiu mogą unieść bardzo lekki ładunek. Mała waga pozwala
                 na łatwe manewrowanie maszyny w trudno dostępnych miejscach.
-                Lekkie śmigłowce będą świetnym rozwiązaniem dla początkujących
-                pilotów.
+                Lekkie śmigłowce są świetne w szkoleniu początkujących pilotów.
               </p>
               <figure>
                 <img
@@ -43,9 +42,27 @@ const Wiki = () => {
                 do wsparcia.
               </p>
               <figure>
-                <img src={require("../../img/uh1y.webp")} alt="UH-1Y Venom"/>
+                <img src={require("../../img/uh1y.webp")} alt="UH-1Y Venom" />
                 <figcaption>
-                  Bell UH-1Y Venom - amerykański średni śmigłowiec wielozadaniowy
+                  Bell UH-1Y Venom - amerykański średni śmigłowiec
+                  wielozadaniowy
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <p>Śmigłowce ciężkie</p>
+              <p>
+                Ciężkie śmigłowce cechują się dużym udźwigiem. Pozwalają na
+                wsparcie logistyczne na polu walki. Śmigłowce te także służą do
+                transportu piechoty. Ich duże gabaryty uniemożliwiają szybsze
+                manewrowanie takie jak w lekkich śmigłowcach. Szczególnie należy
+                zwrócić szczególną uwagę przy lądowaniu na terenach zabudowanych
+                i zalesionych.
+              </p>
+              <figure>
+                <img src={require("../../img/mi6.webp")} alt="Mi-6 Hook" />
+                <figcaption>
+                  Mil Mi-6 Hook - radziecki ciężki śmigłowiec transportowy
                 </figcaption>
               </figure>
             </li>
