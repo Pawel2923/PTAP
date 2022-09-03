@@ -11,6 +11,37 @@ body {
   color: #ffffff;
 }
 
+main h2 {
+  width: fit-content;
+  position: relative;
+}
+
+main h2::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: -3px;
+  background-color: #3B9ADD;
+  animation: slideIn 0.2s ease-in both;
+}
+
+main h2:first-child,
+main h3:first-child {
+  margin-top: 0;
+}
+
+main h2,
+main h3 {
+  margin: 1.5rem 0;
+}
+
+main p {
+  margin: 0.5rem 0;
+}
+
+/* Link styles */
+
 a {
   color: #ffffff;
   text-decoration: none;
@@ -19,7 +50,82 @@ a {
   outline: none !important;
 }
 
-a:hover,
 a:active {
   color: #3B9ADD;
+}
+
+@media screen and (min-width: 30em) {
+  a:hover {
+    color: #3B9ADD;
+  }
+}
+
+/* Button styles */
+
+/* Reset button styles */
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  text-align: inherit;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent !important;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+/* Remove excess padding and border in Firefox 4+ */
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+button:focus:not(:-moz-focusring) {
+  outline: none;
+}
+
+button {
+  background-color: #3b9add;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 50ms ease-in, background-color 50ms ease-in;
+}
+
+button:active {
+  background-color: #115ab2;
+  transform: scale3d(0.9, 0.9, 0.9);
+}
+
+@media screen and (min-width: 30em) {
+  button:hover {
+    background-color: #115ab2;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }

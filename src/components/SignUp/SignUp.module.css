@@ -1,0 +1,27 @@
+.main {
+  padding: 1rem 2rem;
+}
+
+.main input,
+.main label {
+  display: block;
+  width: fit-content;
+}
+
+.input-block {
+  margin-bottom: 1rem;
+}
+
+.invalid {
+  border: 1px solid #e10e0e;
+  background-color: #fddddd;
+}
+
+.invalid:focus {
+  border-color: #ff5500;
+  background-color: #fbe8d2;
+}
+
+.error-text {
+  color: #e10e0e;
+}

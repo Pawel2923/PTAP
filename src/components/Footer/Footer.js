@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 
+import useFooterPos from "../../hooks/use-footerpos";
 import classes from "./Footer.module.css";
 import WidthContext from "../../store/width-context";
 
-const Footer = () => {
+const Footer = (props) => {
   const [navHeight, setNavHeight] = useState(0);
   const { width } = useContext(WidthContext);
+  const footerPosAbsolute = useFooterPos();
 
   useEffect(() => {
     if (document.querySelector("nav") && width <= 480) {
@@ -17,7 +19,12 @@ const Footer = () => {
 
   return (
     <React.Fragment>
-      <footer className={classes.footer}>
+      <footer
+        className={`${classes.footer} ${
+          footerPosAbsolute ? classes.absolute : ""
+        }`}
+        style={footerPosAbsolute ? { marginBottom: `${navHeight}px` } : {}}
+      >
         <div className={classes.top}>
           <ul>
             <li>Zapisz się do projektu</li>
