@@ -1,9 +1,6 @@
-import useFooterPos from "../../hooks/use-footerpos";
 import classes from "./Wiki.module.css";
 
 const Wiki = () => {
-  useFooterPos(false);
-  
   return (
     <main className={classes.main}>
       <section className={classes.section}>

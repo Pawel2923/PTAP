@@ -1,10 +1,7 @@
 import useForm from "../../hooks/use-form";
-import useFooterPos from "../../hooks/use-footerpos";
 import classes from "./SignUp.module.css";
 
 const SignUp = () => {
-  useFooterPos(true);
-
   const {
     value: name,
     isValid: nameIsValid,

@@ -6,7 +6,6 @@ import Wiki from "./components/Wiki/Wiki";
 import SignUp from "./components/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
 import WidthProvider from "./store/WidthProvider";
-import FooterPosProvider from "./store/FooterPosProvider";
 import "./icons/style.css";
 
 function App() {
@@ -14,16 +13,14 @@ function App() {
 
   return (
     <WidthProvider>
-      <FooterPosProvider>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/wiki" element={<Wiki />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="*" element={error404} />
-        </Routes>
-        <Footer />
-      </FooterPosProvider>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/wiki" element={<Wiki />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="*" element={error404} />
+      </Routes>
+      <Footer />
     </WidthProvider>
   );
 }
