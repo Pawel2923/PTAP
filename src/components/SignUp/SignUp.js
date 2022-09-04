@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import Button from "../UI/Button";
 import useForm from "../../hooks/use-form";
 import classes from "./SignUp.module.css";
 
@@ -155,7 +156,7 @@ const SignUp = () => {
             <p className={classes["error-text"]}>Hasła nie pasują</p>
           )}
         </div>
-        <button type="submit">Zarejestruj się</button>
+        <Button type="submit">Zarejestruj się</Button>
       </form>
     </main>
   );

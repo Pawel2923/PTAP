@@ -102,25 +102,6 @@ button:focus:not(:-moz-focusring) {
   outline: none;
 }
 
-button {
-  background-color: #3b9add;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: transform 50ms ease-in, background-color 50ms ease-in;
-}
-
-button:active {
-  background-color: #115ab2;
-  transform: scale3d(0.9, 0.9, 0.9);
-}
-
-@media screen and (min-width: 30em) {
-  button:hover {
-    background-color: #115ab2;
-  }
-}
-
 /* Input styles */
 
 input {
@@ -133,6 +114,15 @@ input {
 
 input:focus-visible {
   border-color: #3B9ADD;
+}
+
+/* Remove clean search input */
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
 }
 
 @keyframes slideIn {
