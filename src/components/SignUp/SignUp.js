@@ -44,8 +44,7 @@ const SignUp = () => {
   useEffect(() => {
     const footer = document.querySelector("footer");
 
-    footer.style.position = "absolute";
-    footer.style.bottom = 0;
+    footer.style.position = "static";
   }, []);
 
   let formIsValid = false;

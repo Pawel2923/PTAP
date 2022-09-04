@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 
 import Search from "../Search/Search";
 import classes from "./Wiki.module.css";
+import WidthContext from "../../store/width-context";
 
 const Wiki = () => {
+  const { width } = useContext(WidthContext);
+
   useEffect(() => {
     const footer = document.querySelector("footer");
 
@@ -13,10 +16,10 @@ const Wiki = () => {
 
   return (
     <main className={classes.main}>
-      <Search />
+      {width <= 480 && <Search />}
       <section className={classes.section}>
         <header>
-          <h2>Śmigłowce</h2>
+          <h2 id="heli">Śmigłowce</h2>
         </header>
         <div className={classes.content}>
           <h3>Typy śmigłowców</h3>

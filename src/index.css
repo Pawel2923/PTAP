@@ -43,7 +43,7 @@ main p {
 /* Link styles */
 
 a {
-  color: #ffffff;
+  color: #3B9ADD;
   text-decoration: none;
   transition: color 50ms ease-in;
   -webkit-tap-highlight-color: transparent !important;
@@ -51,12 +51,12 @@ a {
 }
 
 a:active {
-  color: #3B9ADD;
+  color: #fff;
 }
 
 @media screen and (min-width: 30em) {
   a:hover {
-    color: #3B9ADD;
+    color: #fff;
   }
 }
 
@@ -105,7 +105,7 @@ button:focus:not(:-moz-focusring) {
 /* Input styles */
 
 input {
-  border: 2px solid lightgray;
+  border: 2px solid gray;
   outline: none;
   border-radius: 25px;
   padding: 0.5rem;
@@ -127,9 +127,9 @@ input[type="search"]::-webkit-search-results-decoration {
 
 @keyframes slideIn {
   from {
-    width: 0;
+    transform: translateX(-100%);
   }
   to {
-    width: 100%;
+    transform: translateX(0);
   }
 }
