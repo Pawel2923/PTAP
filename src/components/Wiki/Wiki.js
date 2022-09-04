@@ -1,6 +1,15 @@
+import { useEffect } from "react";
+
 import classes from "./Wiki.module.css";
 
 const Wiki = () => {
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+
+    footer.style.position = "static";
+    footer.style.bottom = "initial";
+  }, []);
+
   return (
     <main className={classes.main}>
       <section className={classes.section}>

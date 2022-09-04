@@ -1,6 +1,15 @@
+import { useEffect } from "react";
+
 import classes from "./Home.module.css";
 
 const Main = () => {
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+
+    footer.style.position = "absolute";
+    footer.style.bottom = 0;
+  }, []);
+
   return (
     <main className={classes.main}>
       <header>
