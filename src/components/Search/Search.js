@@ -1,32 +1,35 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import classes from "./Search.module.css";
 
+const searchList = [
+  {
+    name: "Śmigłowce",
+  },
+  {
+    name: "Samoloty",
+  },
+];
+
 const Search = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const searchInput = useRef();
-  const [searchValue, setSearchValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [showPlaceholder, setShowPlaceholder] = useState(true);
-  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
-    if (searchValue.trim() !== "") {
+    if (searchQuery.trim() !== "") {
       setShowPlaceholder(false);
     } else {
       setShowPlaceholder(true);
     }
-  }, [searchValue]);
+  }, [searchQuery]);
 
   useEffect(() => {
-    if (!showSearch) {
-      document.querySelector(`.${classes.search}`).style.gridTemplateColumns =
-        "1fr";
-    } else {
-      document.querySelector(`.${classes.search}`).style.gridTemplateColumns =
-        "min-content 1fr";
-    }
-  }, [showSearch]);
+    searchInput.current.focus();
+  }, []);
 
   useEffect(() => {
     const hash = location.hash.replace("#", "");
@@ -42,32 +45,16 @@ const Search = () => {
     }
   }, [location.hash]);
 
-  if (showSearch) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "initial";
-  }
-
   const placeholderClickHandler = () => {
     searchInput.current.focus();
   };
 
   const searchChangeHandler = (ev) => {
-    setSearchValue(ev.target.value);
-  };
-
-  const searchFocusHandler = () => {
-    setShowSearch(true);
+    setSearchQuery(ev.target.value);
   };
 
   const backClickHandler = () => {
-    document.querySelector(`.${classes.overlay}`).style.animationName =
-      classes.slideOut;
-
-    setTimeout(() => {
-      setSearchValue("");
-      setShowSearch(false);
-    }, 200);
+    navigate(-1);
   };
 
   const linkClickHandler = (ev) => {
@@ -87,23 +74,20 @@ const Search = () => {
   };
 
   const formResetHandler = () => {
-    setSearchValue("");
+    setSearchQuery("");
   };
 
   return (
     <div className={classes.search}>
-      {showSearch && (
-        <div className={classes.back} onClick={backClickHandler}>
-          <i className="fa-solid fa-arrow-left"></i>
-        </div>
-      )}
+      <div className={classes.back} onClick={backClickHandler}>
+        <i className="fa-solid fa-arrow-left"></i>
+      </div>
       <form onReset={formResetHandler}>
         <input
           type="search"
           ref={searchInput}
-          value={searchValue}
+          value={searchQuery}
           onChange={searchChangeHandler}
-          onFocus={searchFocusHandler}
         />
         {showPlaceholder && (
           <div
@@ -119,31 +103,11 @@ const Search = () => {
           </button>
         )}
       </form>
-      {showSearch && (
-        <div className={classes.overlay}>
-          <div>
-            <ol>
-              <li>
-                <p>
-                  <Link to="#heli" onClick={linkClickHandler}>
-                    Śmigłowce
-                  </Link>
-                </p>
-                <ul>
-                  <li>
-                    <p>Typy śmigłowców:</p>
-                    <ul>
-                      <li>Lekkie</li>
-                      <li>Średnie</li>
-                      <li>Ciężkie</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ol>
-          </div>
-        </div>
-      )}
+      <div className={classes.content}>
+        {searchList.map((item, index) => (
+          <p key={index}>{item.name}</p>
+        ))}
+      </div>
     </div>
   );
 };

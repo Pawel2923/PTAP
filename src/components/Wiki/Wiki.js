@@ -1,10 +1,12 @@
 import { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Search from "../Search/Search";
 import classes from "./Wiki.module.css";
 import WidthContext from "../../store/width-context";
+import SearchInput from "../Search/SearchInput";
 
 const Wiki = () => {
+  const navigate = useNavigate();
   const { width } = useContext(WidthContext);
 
   useEffect(() => {
@@ -14,9 +16,13 @@ const Wiki = () => {
     footer.style.bottom = "initial";
   }, []);
 
+  const searchInputClickHandler = () => {
+    navigate('/search');
+  };
+
   return (
     <main className={classes.main}>
-      {width <= 480 && <Search />}
+      {width <= 480 && <SearchInput onClick={searchInputClickHandler} />}
       <section className={classes.section}>
         <header>
           <h2 id="heli">Śmigłowce</h2>

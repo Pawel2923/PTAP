@@ -7,11 +7,11 @@
   height: 50px;
   padding: 0 5%;
   display: grid;
+  grid-template-columns: min-content 1fr;
   column-gap: 5%;
   align-items: center;
   z-index: 3;
   background-color: #414141;
-  transition: grid-template-columns 0.2s ease-in;
 }
 
 .search::before {
@@ -55,58 +55,18 @@
   right: 1rem;
 }
 
-.overlay {
+.content {
   position: fixed;
   inset: 0;
   z-index: -2;
-  animation: slideIn 0.2s ease-in both;
   background-color: #414141;
   padding: 50px 5%;
-}
-
-.overlay ol p,
-.overlay ul p {
-  margin: 0;
-  font-size: 1.3em;
-}
-
-.overlay ol p {
-  font-weight: 600;
-}
-
-.overlay ul p {
-  font-size: 1em;
-}
-
-.overlay ol {
-  padding: 0;
-  list-style: none;
-}
-
-.overlay ul {
-  padding: 0 1rem;
-  font-weight: normal;
-  list-style: none;
 }
 
 .back {
   font-size: 1.4em;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-100%);
-  }
+.search a {
+  color: #fff;
 }

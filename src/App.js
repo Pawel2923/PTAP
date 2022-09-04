@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import Wiki from "./components/Wiki/Wiki";
 import SignUp from "./components/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
+import Search from "./components/Search/Search";
 import WidthProvider from "./store/WidthProvider";
 import "./icons/style.css";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/wiki" element={<Wiki />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/search" element={<Search />} />
         <Route path="*" element={error404} />
       </Routes>
       <Footer />
