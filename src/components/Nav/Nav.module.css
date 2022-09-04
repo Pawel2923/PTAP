@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  padding-right: 1rem;
   max-height: 100px;
   overflow: hidden;
   border-bottom-left-radius: 10px;
@@ -33,11 +34,6 @@
   display: flex;
 }
 
-.nav ul li {
-  margin-right: 1rem;
-  padding: 1rem 0;
-}
-
 .nav ul li:last-child {
   margin-right: 0;
 }
@@ -55,6 +51,7 @@
 
 .nav a {
   color: #fff;
+  padding: 1rem;
 }
 
 .nav a:hover {
