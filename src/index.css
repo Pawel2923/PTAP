@@ -11,6 +11,12 @@ body {
   color: #ffffff;
 }
 
+main header {
+  width: fit-content;
+  height: fit-content;
+  overflow: hidden;
+}
+
 main h2 {
   width: fit-content;
   position: relative;
