@@ -121,6 +121,20 @@ button:active {
   }
 }
 
+/* Input styles */
+
+input {
+  border: 2px solid lightgray;
+  outline: none;
+  border-radius: 25px;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+input:focus-visible {
+  border-color: #3B9ADD;
+}
+
 @keyframes slideIn {
   from {
     width: 0;
