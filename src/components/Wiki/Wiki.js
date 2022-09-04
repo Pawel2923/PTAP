@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import Search from "../Search/Search";
 import classes from "./Wiki.module.css";
 
 const Wiki = () => {
@@ -12,6 +13,7 @@ const Wiki = () => {
 
   return (
     <main className={classes.main}>
+      <Search />
       <section className={classes.section}>
         <header>
           <h2>Śmigłowce</h2>

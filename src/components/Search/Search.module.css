@@ -1,0 +1,38 @@
+.search {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 3;
+    background-color: #414141;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search input {
+    width: 90%;
+    padding: 0.5rem 1rem;
+    background-color: #333333;
+    color: #fff;
+    border-color: #616161;
+}
+
+.placeholder {
+    color: #bbb;
+    position: absolute;
+    left: 5%;
+    transform: translateX(calc(1rem + 3px));
+}
+
+.reset {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    transition: none;
+    position: absolute;
+    right: 5%;
+    transform: translateX(-1rem);
+}
