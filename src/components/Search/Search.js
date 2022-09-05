@@ -59,22 +59,6 @@ const Search = () => {
     navigate(-1);
   };
 
-  const linkClickHandler = (ev) => {
-    const hash = ev.target.hash.replace("#", "");
-    const target = document.getElementById(hash);
-
-    if (target) {
-      const posY = target.clientTop;
-
-      window.scrollTo({
-        top: posY,
-        left: 0,
-      });
-
-      backClickHandler();
-    }
-  };
-
   const formResetHandler = () => {
     setSearchQuery("");
   };
