@@ -6,12 +6,11 @@ import Wiki from "./components/Wiki/Wiki";
 import SignUp from "./components/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
+import Error404 from "./components/Error/Error404";
 import WidthProvider from "./store/WidthProvider";
 import "./icons/style.css";
 
 function App() {
-  const error404 = <h1>Błąd 404</h1>;
-
   return (
     <WidthProvider>
       <Nav />
@@ -21,7 +20,7 @@ function App() {
         <Route path="/wiki/:contentId" element={<Wiki />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/search" element={<Search />} />
-        <Route path="*" element={error404} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </WidthProvider>
