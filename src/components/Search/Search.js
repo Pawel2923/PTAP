@@ -6,9 +6,11 @@ import classes from "./Search.module.css";
 const searchList = [
   {
     name: "Śmigłowce",
+    address: "/wiki/heli-light",
   },
   {
     name: "Samoloty",
+    address: "/planes",
   },
 ];
 
@@ -105,7 +107,7 @@ const Search = () => {
       </form>
       <div className={classes.content}>
         {searchList.map((item, index) => (
-          <p key={index}>{item.name}</p>
+          <Link key={index} to={item.address}>{item.name}</Link>
         ))}
       </div>
     </div>

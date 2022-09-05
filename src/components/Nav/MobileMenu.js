@@ -6,6 +6,18 @@ import classes from "./MobileMenu.module.css";
 
 const targetContainer = document.getElementById("overlays");
 
+const verifyLink = (currentLocation, linkAddress) => {
+  let highlightCondition = currentLocation === linkAddress;
+
+  if (currentLocation !== "/") {
+    currentLocation = currentLocation.split("/");
+
+    highlightCondition = linkAddress.includes(currentLocation[1]);
+  }
+
+  return highlightCondition;
+};
+
 const linksList = [
   {
     name: "Home",
@@ -39,9 +51,11 @@ const MobileMenu = () => {
           <li key={link.name}>
             <Link
               to={link.path}
-              className={currentLocation === link.path ? classes.highlight : ""}
+              className={
+                verifyLink(currentLocation, link.path) ? classes.highlight : ""
+              }
             >
-              {currentLocation === link.path ? (
+              {verifyLink(currentLocation, link.path) ? (
                 <i className={`${link.icon}_solid`}></i>
               ) : (
                 <i className={link.icon}></i>

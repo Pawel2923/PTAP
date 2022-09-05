@@ -17,7 +17,8 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/wiki" element={<Wiki />} />
+        <Route path="/wiki" exact element={<Wiki />} />
+        <Route path="/wiki/:contentId" element={<Wiki />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/search" element={<Search />} />
         <Route path="*" element={error404} />

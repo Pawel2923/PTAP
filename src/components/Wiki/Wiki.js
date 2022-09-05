@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import classes from "./Wiki.module.css";
 import WidthContext from "../../store/width-context";
@@ -7,7 +7,23 @@ import SearchInput from "../Search/SearchInput";
 
 const Wiki = () => {
   const navigate = useNavigate();
+  const params = useParams();
   const { width } = useContext(WidthContext);
+
+  useEffect(() => {
+    if (params.contentId) {
+      const block = document.getElementById(params.contentId);
+
+      if (!block) {
+        console.error("Nieprawidłowy parametr. Nie wykryto elementu");
+        return;
+      }
+
+      const blockPosY = block.offsetTop - 50;
+
+        window.scrollTo({ top: blockPosY });
+    }
+  }, [params]);
 
   useEffect(() => {
     const footer = document.querySelector("footer");
@@ -17,7 +33,7 @@ const Wiki = () => {
   }, []);
 
   const searchInputClickHandler = () => {
-    navigate('/search');
+    navigate("/search");
   };
 
   return (
@@ -35,7 +51,7 @@ const Wiki = () => {
           </p>
           <ol>
             <li>
-              <p>Śmigłowce lekkie</p>
+              <p id="heli-light">Śmigłowce lekkie</p>
               <p>
                 Są to śmigłowce, które służą do zwiadu lub transportu piechoty.
                 Na zawiesiu mogą unieść bardzo lekki ładunek. Mała waga pozwala
@@ -54,7 +70,7 @@ const Wiki = () => {
               </figure>
             </li>
             <li>
-              <p>Śmigłowce średnie</p>
+              <p id="heli-medium">Śmigłowce średnie</p>
               <p>
                 Śmigłowce te pozwalają na transport piechoty, amunicji,
                 medykamentów. Do śmigłowców średnich zaliczają się również
@@ -70,7 +86,7 @@ const Wiki = () => {
               </figure>
             </li>
             <li>
-              <p>Śmigłowce ciężkie</p>
+              <p id="heli-heavy">Śmigłowce ciężkie</p>
               <p>
                 Ciężkie śmigłowce cechują się dużym udźwigiem. Pozwalają na
                 wsparcie logistyczne na polu walki. Śmigłowce te także służą do
