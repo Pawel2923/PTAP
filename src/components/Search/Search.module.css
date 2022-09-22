@@ -11,12 +11,13 @@
   column-gap: 5%;
   align-items: center;
   z-index: 3;
-  background-color: #414141;
 }
 
 .search::before {
   content: "";
-  background-color: #414141;
+  background-color: #414141cb;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   position: absolute;
   z-index: -1;
   top: 0;
