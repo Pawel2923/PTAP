@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Video from "../UI/Video.js";
@@ -6,6 +5,8 @@ import Button from "../UI/Button.js";
 import classes from "./Home.module.css";
 
 const Main = () => {
+  const navigate = useNavigate();
+
   const wikiButtonClickHandler = () => {
     navigate("/wiki");
   };
