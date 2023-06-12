@@ -12,7 +12,7 @@ const Main = () => {
   };
 
   return (
-    <main className={classes.main}>
+    <main>
       <section className={`${classes.section} ${classes["index-banner"]}`}>
         <header>
           <h1>PTAP</h1>
@@ -29,9 +29,8 @@ const Main = () => {
       </section>
       <section className={classes.section}>
         <h2>Wiki</h2>
-        <h3>Nasza wiki odpowie na ws;zystkie twoje pytania</h3>
-        <span>Naciśnij przycisk aby przejść do wiki</span>
-        <Button onClick={wikiButtonClickHandler}>Przejdź</Button>
+        <h3>Nasza wiki odpowie na wszystkie twoje pytania</h3>
+        <Button onClick={wikiButtonClickHandler}>Przejdź do wiki</Button>
       </section>
       <section className={classes.section}>
         <h2>Autorotacja</h2>
