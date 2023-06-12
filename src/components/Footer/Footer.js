@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import classes from "./Footer.module.css";
 import WidthContext from "../../store/width-context";
@@ -23,13 +24,13 @@ const Footer = () => {
       >
         <div className={classes.top}>
           <ul>
-            <li>Zapisz się do projektu</li>
-            <li>Skontaktuj się z nami</li>
-            <li>Wykryłeś błąd na stronie? Skontaktuj się z naszym zespołem</li>
+            <li><Link to="/sign-up">Zapisz się do projektu</Link></li>
+            <li><Link to="/contact">Skontaktuj się z nami</Link></li>
+            <li>Wykryłeś błąd na stronie? <Link to ="/feedback">Skontaktuj się z naszym zespołem</Link></li>
           </ul>
         </div>
         <div className={classes.bottom}>
-          <p>PTAP 2018-2022 &copy; Wszelkie prawa zastrzeżone</p>
+          <p>PTAP 2018-2023 &copy; Wszelkie prawa zastrzeżone</p>
         </div>
       </footer>
     </React.Fragment>

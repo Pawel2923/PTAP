@@ -1,21 +1,71 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
+import Video from "../UI/Video.js";
+import Button from "../UI/Button.js";
 import classes from "./Home.module.css";
 
 const Main = () => {
-  useEffect(() => {
-    const footer = document.querySelector("footer");
-
-    footer.style.position = "absolute";
-    footer.style.bottom = 0;
-  }, []);
+  const wikiButtonClickHandler = () => {
+    navigate("/wiki");
+  };
 
   return (
     <main className={classes.main}>
-      <header>
-        <h1>Śmigłowce</h1>
-        <p>Typy śmigłowców</p>
-      </header>
+      <section className={`${classes.section} ${classes["index-banner"]}`}>
+        <header>
+          <h1>PTAP</h1>
+          <h2>Pilot Training Arma Project</h2>
+          <p>
+            PTAP jest to projekt utworzony przez BowiX'a i ArrowX'a w grupie
+            ARHD, którego celem było zapewnienie odpowiednich warunków
+            szkoleniowych do nauki pilotażu. Obecnie strona służy do zapoznania
+            z ogólnymi zagadnieniami lotnictwa w Armie 3. Na tej stronie dowiesz
+            się jak przygotować się do lotu jak i znajdziesz pare bardziej
+            zaawansowanych zagadnień.
+          </p>
+        </header>
+      </section>
+      <section className={classes.section}>
+        <h2>Wiki</h2>
+        <h3>Nasza wiki odpowie na ws;zystkie twoje pytania</h3>
+        <span>Naciśnij przycisk aby przejść do wiki</span>
+        <Button onClick={wikiButtonClickHandler}>Przejdź</Button>
+      </section>
+      <section className={classes.section}>
+        <h2>Autorotacja</h2>
+        <p>
+          Jest to zjawisko polegające na samoczynnym obrocie wirnika nośnego,
+          wywołane ruchem powietrza. Manewr autorotacji wykorzystywany jest do
+          awarayjnego lądowania kiedy nasz silnik nie jest w stanie wytworzyć
+          odpowiednich obrotów wirnika nośnego. Dzięki energi pobieranej od
+          powietrza, łopaty wirnika głównego (nośnego) pobudzane są do ruchu co
+          pozwala na wyhamowanie gwałtownego opadania w dół i bezpieczne
+          posadzenie śmigłowca na ziemi.
+        </p>
+        <figure>
+          <img
+            src={require("../../img/autorot.webp")}
+            alt="Zdjęcie ukazujące przepływ powietrza podczas autorotacji"
+          />
+          <figcaption>
+            Zdjęcie pokazuje jak przepływa powietrze przez wirnik nośny podczas
+            lotu normalnego i autorotacji
+          </figcaption>
+        </figure>
+      </section>
+      <section className={classes.section}>
+        <Video
+          src="https://www.youtube.com/embed/v8pn1f3ijLI"
+          className={classes.video}
+          header="Manewry Little Birdem - autorotacja"
+        ></Video>
+        <Video
+          src="https://www.youtube.com/embed/videoseries?list=PLsQ6ua1LSZQwRoOCiVa-0d1eL9wk0aVGj"
+          className={classes.video}
+          header="MH-6/AH-6 Little Bird - lądowania"
+        ></Video>
+      </section>
     </main>
   );
 };
