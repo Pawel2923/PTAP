@@ -49,10 +49,17 @@
   }
 
   .index-banner {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
     padding: 4rem;
   }
 
   .section {
     padding: 2rem 8rem;
+  }
+
+  .video {
+    width: 80%;
   }
 }
