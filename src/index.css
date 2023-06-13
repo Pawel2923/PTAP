@@ -82,6 +82,7 @@ button {
   -moz-osx-font-smoothing: inherit;
 
   /* Corrects inability to style clickable `input` types in iOS */
+  appearance: none;
   -webkit-appearance: none;
 }
 
