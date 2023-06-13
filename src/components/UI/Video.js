@@ -5,7 +5,7 @@ const Video = (props) => {
     <React.Fragment>
       <h2>{props.header ? props.header : ""}</h2>
       <iframe
-        className={props.classes ? props.classes : ""}
+        className={props.className ? props.className : ""}
         width={props.width ? props.width : "560"}
         height={props.height ? props.height : "315"}
         src={props.src ? props.src : ""}

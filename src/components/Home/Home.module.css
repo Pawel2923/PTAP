@@ -1,5 +1,5 @@
 .section {
-  padding: 2rem 8rem;
+  padding: 2rem 4rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -16,22 +16,43 @@
   text-align: justify;
 }
 
+.section figure img {
+  max-width: 100%;
+}
+
 .index-banner {
   width: 100%;
   background-image: url("../../img/index-banner.webp");
   background-position: center;
   background-size: cover;
   text-align: center;
-  padding: 4rem;
+  padding: 2rem;
 }
 
 .index-banner > header {
   background-color: rgba(51, 51, 51, 0.7);
-  padding: 2rem 4rem;
+  padding: 2rem;
 }
 
 .video {
   width: 100%;
+  width: -webkit-fill-available;
   height: auto;
   border: 0;
+  aspect-ratio: 16/9;
+}
+
+@media screen and (min-width: 30em)
+{
+  .index-banner > header {
+    padding: 2rem 4rem;
+  }
+
+  .index-banner {
+    padding: 4rem;
+  }
+
+  .section {
+    padding: 2rem 8rem;
+  }
 }
