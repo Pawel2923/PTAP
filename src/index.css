@@ -17,13 +17,6 @@ main header {
   overflow: hidden;
 }
 
-main h2 {
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-color: #3B9ADD;
-  text-decoration-thickness: 3px;
-}
-
 main h2:first-child,
 main h3:first-child {
   margin-top: 0;

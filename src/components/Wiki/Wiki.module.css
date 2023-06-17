@@ -19,9 +19,6 @@
 }
 
 .section figcaption {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 0.3rem;
     text-align: center;
 }
@@ -36,4 +33,10 @@
 
 .content figure {
     margin: 1rem 0;
+}
+
+@media screen and (min-width: 30em) {
+    .section img {
+        max-width: 80%;
+    }
 }
