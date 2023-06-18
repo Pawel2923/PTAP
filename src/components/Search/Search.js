@@ -1,18 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import searchList from "./SearchList.json";
 import classes from "./Search.module.css";
-
-const searchList = [
-  {
-    name: "Śmigłowce",
-    address: "/wiki/heli-light",
-  },
-  {
-    name: "Samoloty",
-    address: "/planes",
-  },
-];
 
 const Search = () => {
   const navigate = useNavigate();
@@ -90,8 +80,8 @@ const Search = () => {
         )}
       </form>
       <div className={classes.content}>
-        {searchList.map((item, index) => (
-          <Link key={index} to={item.address}>{item.name}</Link>
+        {searchList.map((item, key) => (
+          <Link key={key} to={item.address}>{item.name}</Link>
         ))}
       </div>
     </div>
