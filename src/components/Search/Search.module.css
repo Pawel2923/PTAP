@@ -7,8 +7,10 @@
   height: 50px;
   padding: 0 5%;
   display: grid;
+  grid-template-columns: -webkit-min-content 1fr;
   grid-template-columns: min-content 1fr;
-  column-gap: 5%;
+  -moz-column-gap: 5%;
+       column-gap: 5%;
   align-items: center;
   z-index: 3;
 }
