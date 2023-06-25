@@ -27,6 +27,7 @@
   background-size: cover;
   text-align: center;
   padding: 2rem;
+  margin-bottom: 2rem;
 }
 
 .index-banner > header {
@@ -34,12 +35,20 @@
   padding: 2rem;
 }
 
-.video {
+.iframe {
   width: 100%;
   width: -webkit-fill-available;
   height: auto;
   border: 0;
   aspect-ratio: 16/9;
+}
+
+.video {
+  padding: 2rem 0;
+}
+
+.video:first-child {
+  padding-top: 0;
 }
 
 @media screen and (min-width: 30em)
@@ -59,7 +68,7 @@
     padding: 2rem 8rem;
   }
 
-  .video {
+  .iframe {
     max-width: 80%;
   }
 }

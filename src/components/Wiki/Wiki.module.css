@@ -1,5 +1,5 @@
 .section {
-  padding: 1rem 2rem;
+  padding: 2rem;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
@@ -24,7 +24,7 @@
 }
 
 .content li {
-  margin: 2rem 0;
+  padding: 2rem 0;
 }
 
 .content p {

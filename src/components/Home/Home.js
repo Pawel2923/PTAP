@@ -56,13 +56,15 @@ const Main = () => {
       </section>
       <section className={classes.section}>
         <Video
+          video={classes.video}
           src="https://www.youtube.com/embed/v8pn1f3ijLI"
-          className={classes.video}
+          className={classes.iframe}
           header="Manewry Little Birdem - autorotacja"
         ></Video>
         <Video
+          video={classes.video}
           src="https://www.youtube.com/embed/videoseries?list=PLsQ6ua1LSZQwRoOCiVa-0d1eL9wk0aVGj"
-          className={classes.video}
+          className={classes.iframe}
           header="MH-6/AH-6 Little Bird - lądowania"
         ></Video>
       </section>

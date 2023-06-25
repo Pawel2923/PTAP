@@ -1,8 +1,6 @@
-import React from "react";
-
 const Video = (props) => {
   return (
-    <React.Fragment>
+    <div className={props.video}>
       <h2>{props.header ? props.header : ""}</h2>
       <iframe
         className={props.className ? props.className : ""}
@@ -17,7 +15,7 @@ const Video = (props) => {
         }
         allowFullScreen
       ></iframe>
-    </React.Fragment>
+    </div>
   );
 };
 
