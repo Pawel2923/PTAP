@@ -31,7 +31,7 @@ const linksList = [
   },
   {
     name: "Zapisz się",
-    path: "/sign-up",
+    path: "/rejestracja",
     icon: "icon-icon_signup",
   },
 ];

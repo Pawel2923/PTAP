@@ -37,7 +37,7 @@ const Nav = () => {
           <Link to="/wiki">WIKI</Link>
         </li>
         <li>
-          <Link to="/sign-up">ZAPISZ SIĘ</Link>
+          <Link to="/rejestracja">ZAPISZ SIĘ</Link>
         </li>
       </ul>
     </React.Fragment>
