@@ -13,7 +13,7 @@ const Main = () => {
 
   return (
     <main>
-      <section className={`${classes.section} ${classes["index-banner"]}`}>
+      <section className={`section ${classes["index-banner"]}`}>
         <header>
           <h1>PTAP</h1>
           <h2>Pilot Training Arma Project</h2>
@@ -27,34 +27,27 @@ const Main = () => {
           </p>
         </header>
       </section>
-      <section className={classes.section}>
+      <section className="section">
         <h2>Wiki</h2>
-        <h3>Nasza wiki odpowie na wszystkie twoje pytania</h3>
+        <h3>Nasze wiki odpowie na wszystkie twoje pytania</h3>
         <Button onClick={wikiButtonClickHandler}>Przejdź do wiki</Button>
       </section>
-      <section className={classes.section}>
+      <section className="section">
         <h2>Autorotacja</h2>
         <p>
-          Jest to zjawisko polegające na samoczynnym obrocie wirnika nośnego,
-          wywołane ruchem powietrza. Manewr autorotacji wykorzystywany jest do
-          awarayjnego lądowania kiedy nasz silnik nie jest w stanie wytworzyć
-          odpowiednich obrotów wirnika nośnego. Dzięki energi pobieranej od
-          powietrza, łopaty wirnika głównego (nośnego) pobudzane są do ruchu co
-          pozwala na wyhamowanie gwałtownego opadania w dół i bezpieczne
-          posadzenie śmigłowca na ziemi.
+          Manewr wykorzystywany do awaryjnego lądowania
         </p>
         <figure>
           <img
-            src={require("../../img/autorot.webp")}
+            src={require("../../img/autorotacja.webp")}
             alt="Zdjęcie ukazujące przepływ powietrza podczas autorotacji"
           />
           <figcaption>
-            Zdjęcie pokazuje jak przepływa powietrze przez wirnik nośny podczas
-            lotu normalnego i autorotacji
+            Przepływ powietrza podczas autorotacji
           </figcaption>
         </figure>
       </section>
-      <section className={classes.section}>
+      <section className="section">
         <Video
           video={classes.video}
           src="https://www.youtube.com/embed/v8pn1f3ijLI"

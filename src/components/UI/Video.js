@@ -1,7 +1,7 @@
 const Video = (props) => {
   return (
     <div className={props.video}>
-      <h2>{props.header ? props.header : ""}</h2>
+      <h5>{props.header ? props.header : ""}</h5>
       <iframe
         className={props.className ? props.className : ""}
         width={props.width ? props.width : "560"}
