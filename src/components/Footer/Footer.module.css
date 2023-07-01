@@ -4,6 +4,15 @@
   padding: 1rem 0;
   font-weight: 200;
   font-size: 0.9em;
+  color: #bbbbbb;
+}
+
+.footer ul {
+  list-style-type: none;
+}
+
+.footer a {
+  color: #bbbbbb;
 }
 
 .bottom {
