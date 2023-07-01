@@ -1,7 +1,6 @@
 import { useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import classes from "./Wiki.module.css";
 import WidthContext from "../../store/width-context";
 import SearchInput from "../Search/SearchInput";
 import Article from "./Article";
