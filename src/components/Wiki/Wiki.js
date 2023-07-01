@@ -1,28 +1,12 @@
 import { useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import WidthContext from "../../store/width-context";
 import SearchInput from "../Search/SearchInput";
 
 const Wiki = () => {
   const navigate = useNavigate();
-  const params = useParams();
   const { width } = useContext(WidthContext);
-
-  useEffect(() => {
-    if (params.contentId) {
-      const block = document.getElementById(params.contentId);
-
-      if (!block) {
-        console.error("Nieprawidłowy parametr. Nie wykryto elementu");
-        return;
-      }
-
-      const blockPosY = block.offsetTop - 50;
-
-        window.scrollTo({ top: blockPosY });
-    }
-  }, [params]);
 
   useEffect(() => {
     const footer = document.querySelector("footer");
@@ -38,6 +22,7 @@ const Wiki = () => {
   return (
     <main>
       {width <= 480 && <SearchInput onClick={searchInputClickHandler} />}
+      <Outlet />
     </main>
   );
 };

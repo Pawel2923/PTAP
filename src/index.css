@@ -3,6 +3,7 @@
 * {
   margin: 0;
   font-family: "Open Sans", sans-serif;
+  font-display: fallback;
   box-sizing: border-box;
 }
 
@@ -35,8 +36,6 @@ main p {
   margin: 0.5rem 0;
 }
 
-/* Link styles */
-
 a {
   color: #3b9add;
   text-decoration: none;
@@ -55,8 +54,6 @@ a:active {
   }
 }
 
-/* Reset button styles */
-
 button {
   border: none;
   margin: 0;
@@ -66,25 +63,16 @@ button {
   text-align: inherit;
   background: transparent;
   -webkit-tap-highlight-color: transparent !important;
-
-  /* inherit font & color from ancestor */
   color: inherit;
   font: inherit;
-
-  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
   line-height: normal;
-
-  /* Corrects font smoothing for webkit */
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
-
-  /* Corrects inability to style clickable `input` types in iOS */
   -moz-appearance: none;
   appearance: none;
   -webkit-appearance: none;
 }
 
-/* Remove excess padding and border in Firefox 4+ */
 button::-moz-focus-inner {
   border: 0;
   padding: 0;
@@ -96,8 +84,6 @@ button:focus:not(:focus-visible) {
 button:focus:not(:-moz-focusring) {
   outline: none;
 }
-
-/* Input styles */
 
 input {
   border: 2px solid gray;
@@ -111,8 +97,6 @@ input:focus-visible {
   border-color: #3b9add;
 }
 
-/* Remove clean search input */
-
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
@@ -125,6 +109,10 @@ input[type="search"]::-webkit-search-results-decoration {
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
+}
+
+.section:first-of-type {
+  padding-top: 2rem;
 }
 
 .section h2 {

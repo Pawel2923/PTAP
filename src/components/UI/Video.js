@@ -1,9 +1,15 @@
+import lazyframe from "lazyframe";
+
 const Video = (props) => {
+  const onTouchStart = () => {};
+  document.addEventListener('touchstart', onTouchStart, {passive: true});
+  lazyframe(".lazyframe");
+
   return (
     <div className={props.video}>
-      <h5>{props.header ? props.header : ""}</h5>
+      <p>{props.header ? props.header : ""}</p>
       <iframe
-        className={props.className ? props.className : ""}
+        className={`${props.className ? props.className : ""} lazyframe`}
         width={props.width ? props.width : "560"}
         height={props.height ? props.height : "315"}
         src={props.src ? props.src : ""}

@@ -11,6 +11,18 @@
   list-style-type: none;
 }
 
+.footer ul li:first-child {
+  margin-top: 0;
+}
+
+.footer ul li:last-child {
+  margin-bottom: 0;
+}
+
+.footer ul li {
+  margin: 0.3rem 0;
+}
+
 .footer a {
   color: #bbbbbb;
 }

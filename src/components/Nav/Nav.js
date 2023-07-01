@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import MobileMenu from "./MobileMenu";
 import WidthContext from "../../store/width-context";
@@ -31,13 +31,13 @@ const Nav = () => {
       </div>
       <ul>
         <li>
-          <Link to="/">HOME</Link>
+          <NavLink to="/">HOME</NavLink>
         </li>
         <li>
-          <Link to="/wiki">WIKI</Link>
+          <NavLink to="/wiki">WIKI</NavLink>
         </li>
         <li>
-          <Link to="/rejestracja">ZAPISZ SIĘ</Link>
+          <NavLink to="/rejestracja">ZAPISZ SIĘ</NavLink>
         </li>
       </ul>
     </React.Fragment>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import classes from "./MobileMenu.module.css";
 
@@ -49,7 +49,7 @@ const MobileMenu = () => {
       <ul>
         {linksList.map((link) => (
           <li key={link.name}>
-            <Link
+            <NavLink
               to={link.path}
               className={
                 verifyLink(currentLocation, link.path) ? classes.highlight : ""
@@ -61,7 +61,7 @@ const MobileMenu = () => {
                 <i className={link.icon}></i>
               )}
               {link.name}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>

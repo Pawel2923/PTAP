@@ -24,7 +24,7 @@ const Error404 = () => {
         <h2>Błąd 404</h2>
       </header>
       <div>
-        <p>Nie znaleziono strony. Wróć na stronę główną: </p>
+        <p>Nie znaleziono strony.</p>
         <Button onClick={buttonClickHandler}>Strona główna</Button>
       </div>
     </main>
