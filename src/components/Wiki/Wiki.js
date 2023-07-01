@@ -32,7 +32,7 @@ const Wiki = () => {
   }, []);
 
   const searchInputClickHandler = () => {
-    navigate("/search");
+    navigate("/szukaj");
   };
 
   return (
