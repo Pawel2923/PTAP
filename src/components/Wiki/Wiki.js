@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import WidthContext from "../../store/width-context";
 import SearchInput from "../Search/SearchInput";
-import Article from "./Article";
 
 const Wiki = () => {
   const navigate = useNavigate();
@@ -39,7 +38,6 @@ const Wiki = () => {
   return (
     <main>
       {width <= 480 && <SearchInput onClick={searchInputClickHandler} />}
-      <Article />
     </main>
   );
 };

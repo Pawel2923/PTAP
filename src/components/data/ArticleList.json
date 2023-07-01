@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Modele lotu w Armie 3",
+    "element": "Flight",
+    "address": "/wiki/modele-lotu"
+  },
+  {
+    "name": "Sterowanie w Armie 3 - sprzęt",
+    "element": "Gear",
+    "address": "/wiki/sprzet"
+  },
+  {
+    "name": "Sterowanie w Armie 3 - ustawienia w grze",
+    "element": "Settings",
+    "address": "/wiki/ustawienia-gry"
+  },
+  {
+    "name": "Kokpit - instrumenty",
+    "element": "Instruments",
+    "address": "/wiki/przyrzady"
+  },
+  {
+    "name": "Podstawy lotu",
+    "element": "Basics",
+    "address": "/wiki/podstawy-lotu"
+  },
+  {
+    "name": "Podstawy komunikacji",
+    "element": "Comms",
+    "address": "/wiki/podstawy-komunikacji"
+  },
+  {
+    "name": "Śmigłowce ze względu na przeznaczenie",
+    "element": "HeliPurpose",
+    "address": "/wiki/heli-przeznaczenie"
+  },
+  {
+    "name": "Śmigłowce ze względu na rozmiar",
+    "element": "HeliSize",
+    "address": "/wiki/heli-rozmiar"
+  },
+  {
+    "name": "Śmigłowce - manewrowanie",
+    "element": "HeliManevouers",
+    "address": "/wiki/heli-manewry"
+  },
+  {
+    "name": "Samoloty ze względu na przeznaczenie",
+    "element": "PlanesPurpose",
+    "address": "/wiki/samoloty-przeznaczenie"
+  }
+]

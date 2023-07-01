@@ -6,6 +6,8 @@ import Wiki from "./components/Wiki/Wiki";
 import SignUp from "./components/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
+import articleList from "./components/data/ArticleList.json";
+import Flight from "./components/Wiki/Articles/Flight";
 import Error404 from "./components/Error/Error404";
 import WidthProvider from "./store/WidthProvider";
 import "./icons/style.css";
@@ -17,9 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/wiki" exact element={<Wiki />} />
-        <Route path="/wiki/:contentId" element={<Wiki />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/search" element={<Search />} />
+        {articleList.map((item, key) => <Route key={key} path={item.address} exact element={item.element} />)}
+        <Route path="/rejestracja" element={<SignUp />} />
+        <Route path="/szukaj" element={<Search />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
