@@ -37,6 +37,10 @@
 }
 
 @media screen and (min-width: 30em) {
+  .section {
+    padding: 2rem 8rem;
+  }
+
   .section img {
     max-width: 80%;
   }
