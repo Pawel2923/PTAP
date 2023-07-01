@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Video from "../UI/Video.js";
 import Button from "../UI/Button.js";
 import classes from "./Home.module.css";
+import WidthContext from "../../store/width-context.js";
 
 const Main = () => {
   const navigate = useNavigate();
+  const { width } = useContext(WidthContext);
 
   const wikiButtonClickHandler = () => {
     navigate("/wiki");
@@ -15,6 +18,16 @@ const Main = () => {
     <main>
       <section className={`section ${classes["index-banner"]}`}>
         <header>
+          {width <= 480 ? (
+            <img
+              src={require("../../img/logo.webp")}
+              alt="Logo"
+              width="50"
+              height="50"
+            />
+          ) : (
+            ""
+          )}
           <h1>PTAP</h1>
           <h2>Pilot Training Arma Project</h2>
           <p>
@@ -35,16 +48,18 @@ const Main = () => {
       <section className="section">
         <h2>Autorotacja</h2>
         <p>
-          Manewr wykorzystywany do awaryjnego lądowania
+          Manewr wykorzystywany do awaryjnego lądowania. Dzięki energii z
+          powietrza, łopaty wirnika głównego pobudzane są do ruchu co pozwala na
+          opanowanie maszyny i bezpieczne posadzenie jej na ziemię.
         </p>
         <figure>
           <img
             src={require("../../img/autorotacja.webp")}
             alt="Zdjęcie ukazujące przepływ powietrza podczas autorotacji"
+            width="332"
+            height="187"
           />
-          <figcaption>
-            Przepływ powietrza podczas autorotacji
-          </figcaption>
+          <figcaption>Przepływ powietrza podczas autorotacji</figcaption>
         </figure>
       </section>
       <section className="section">

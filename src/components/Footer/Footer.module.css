@@ -9,25 +9,38 @@
 
 .footer ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer ul li:first-child,
+.footer ul li:last-child {
+  margin: 0.5rem 1rem;
 }
 
 .footer ul li:first-child {
   margin-top: 0;
 }
 
-.footer ul li:last-child {
-  margin-bottom: 0;
-}
-
 .footer ul li {
-  margin: 0.3rem 0;
+  margin: 1rem;
 }
 
 .footer a {
   color: #bbbbbb;
+  padding: 0.5rem 0;
 }
 
 .bottom {
   margin-top: 1rem;
   text-align: center;
+}
+
+@media screen and (min-width: 30em) {
+  .footer ul li,
+  .footer ul li:first-child,
+  .footer ul li:last-child {
+    margin-left: 9rem;
+    margin-right: 9rem;
+  }
 }
