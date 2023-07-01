@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,600&display=swap");
 
 * {
   margin: 0;
@@ -38,7 +38,7 @@ main p {
 /* Link styles */
 
 a {
-  color: #3B9ADD;
+  color: #3b9add;
   text-decoration: none;
   transition: color 50ms ease-in;
   -webkit-tap-highlight-color: transparent !important;
@@ -80,7 +80,7 @@ button {
 
   /* Corrects inability to style clickable `input` types in iOS */
   -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   -webkit-appearance: none;
 }
 
@@ -108,7 +108,7 @@ input {
 }
 
 input:focus-visible {
-  border-color: #3B9ADD;
+  border-color: #3b9add;
 }
 
 /* Remove clean search input */
@@ -117,5 +117,69 @@ input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
-  -webkit-appearance:none;
+  -webkit-appearance: none;
+}
+
+.section {
+  padding: 1rem 0;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.section h2 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.section h3 {
+  margin-top: 0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.section button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.section p {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.section figure {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section figure img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.section figcaption {
+  margin-top: 0.3rem;
+  align-self: flex-start;
+}
+
+@media screen and (min-width: 30em) {
+  .section {
+    padding: 2rem 8rem;
+  }
+
+  .section img {
+    max-width: 80%;
+  }
+
+  .section ol {
+    padding: 0 1rem;
+  }
 }
