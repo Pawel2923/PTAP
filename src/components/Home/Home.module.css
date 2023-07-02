@@ -20,6 +20,10 @@
   max-width: 100px;
 }
 
+.index-banner p {
+  text-align: left;
+}
+
 .iframe {
   width: 100%;
   width: -webkit-fill-available;
@@ -29,11 +33,17 @@
 }
 
 .video {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   padding: 1rem 0;
 }
 
 .video:first-child {
   padding-top: 0;
+}
+
+.video:last-child {
+  padding-bottom: 0;
 }
 
 .video p {

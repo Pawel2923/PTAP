@@ -49,39 +49,42 @@ const Search = () => {
     navigate(-1);
   };
 
-  const formResetHandler = () => {
+  const formResetHandler = (ev) => {
     setSearchQuery("");
+    ev.target.firstElementChild.focus();
   };
 
   return (
     <div className={classes.search}>
-      <div className={classes.back} onClick={backClickHandler}>
-        <i className="fa-solid fa-arrow-left"></i>
-      </div>
-      <form onReset={formResetHandler}>
-        <input
-          type="search"
-          ref={searchInput}
-          value={searchQuery}
-          onChange={searchChangeHandler}
-        />
-        {showPlaceholder && (
-          <div
-            className={classes.placeholder}
-            onClick={placeholderClickHandler}
-          >
-            <i className="fa-solid fa-magnifying-glass"></i> Przeszukaj wiki
-          </div>
-        )}
-        {!showPlaceholder && (
-          <button type="reset" className={classes.reset}>
-            <i className="fa-solid fa-circle-xmark"></i>
-          </button>
-        )}
-      </form>
+        <div className={classes.back} onClick={backClickHandler}>
+          <i className="fa-solid fa-arrow-left"></i>
+        </div>
+        <form onReset={formResetHandler}>
+          <input
+            type="search"
+            ref={searchInput}
+            value={searchQuery}
+            onChange={searchChangeHandler}
+          />
+          {showPlaceholder && (
+            <div
+              className={classes.placeholder}
+              onClick={placeholderClickHandler}
+            >
+              <i className="fa-solid fa-magnifying-glass"></i> Przeszukaj wiki
+            </div>
+          )}
+          {!showPlaceholder && (
+            <button type="reset" className={classes.reset}>
+              <i className="fa-solid fa-circle-xmark"></i>
+            </button>
+          )}
+        </form>
       <div className={classes.content}>
         {articleList.map((item, key) => (
-          <Link key={key} to={item.address}>{item.name}</Link>
+          <Link key={key} to={item.address}>
+            {item.name}
+          </Link>
         ))}
       </div>
     </div>

@@ -33,17 +33,14 @@ const Main = () => {
           <p>
             PTAP jest to projekt utworzony przez BowiX'a i ArrowX'a w grupie
             ARHD, którego celem było zapewnienie odpowiednich warunków
-            szkoleniowych do nauki pilotażu. Obecnie strona służy do zapoznania
-            z ogólnymi zagadnieniami lotnictwa w Armie 3. Na tej stronie dowiesz
-            się jak przygotować się do lotu jak i znajdziesz pare bardziej
-            zaawansowanych zagadnień.
+            szkoleniowych do nauki pilotażu.
+          </p>
+          <p>
+            Obecnie strona służy do zapoznania z ogólnymi zagadnieniami
+            lotnictwa w Armie 3. Na tej stronie dowiesz się jak przygotować się
+            do lotu jak i znajdziesz pare bardziej zaawansowanych zagadnień.
           </p>
         </header>
-      </section>
-      <section className="section">
-        <h2>Wiki</h2>
-        <h3>Nasze wiki odpowie na wszystkie twoje pytania</h3>
-        <Button onClick={wikiButtonClickHandler}>Przejdź do wiki</Button>
       </section>
       <section className="section">
         <h2>Autorotacja</h2>
@@ -75,6 +72,11 @@ const Main = () => {
           className={classes.iframe}
           header="MH-6/AH-6 Little Bird - lądowania"
         ></Video>
+      </section>
+      <section className="section">
+        <h2>Wiki</h2>
+        <h3>Zobacz więcej artykułów na wiki</h3>
+        <Button onClick={wikiButtonClickHandler}>Przejdź do wiki</Button>
       </section>
     </main>
   );

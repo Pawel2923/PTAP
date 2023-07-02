@@ -31,13 +31,13 @@ const Nav = () => {
       </div>
       <ul>
         <li>
-          <NavLink to="/">HOME</NavLink>
+          <NavLink to="/">Strona główna</NavLink>
         </li>
         <li>
-          <NavLink to="/wiki">WIKI</NavLink>
+          <NavLink to="/wiki">Wiki</NavLink>
         </li>
         <li>
-          <NavLink to="/rejestracja">ZAPISZ SIĘ</NavLink>
+          <NavLink to="/rejestracja">Zapisz się</NavLink>
         </li>
       </ul>
     </React.Fragment>

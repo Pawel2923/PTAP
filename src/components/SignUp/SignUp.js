@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import Button from "../UI/Button";
 import useForm from "../../hooks/use-form";
 import classes from "./SignUp.module.css";
@@ -40,11 +38,6 @@ const SignUp = () => {
     blurHandler: passwordConfirmBlurHandler,
     resetInput: passwordConfirmResetInput,
   } = useForm((value) => value.trim() !== "");
-
-  useEffect(() => {
-    document.querySelector("footer").style.position = "absolute";
-    document.querySelector("footer").style.bottom = "0";
-  }, []);
 
   let formIsValid = false;
   let passwordsMatch = false;

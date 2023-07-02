@@ -10,6 +10,7 @@ const Video = (props) => {
       <p>{props.header ? props.header : ""}</p>
       <iframe
         className={`${props.className ? props.className : ""} lazyframe`}
+        data-vendor="youtube"
         width={props.width ? props.width : "560"}
         height={props.height ? props.height : "315"}
         src={props.src ? props.src : ""}
