@@ -2,7 +2,7 @@
   background-color: #242424;
   width: 100%;
   padding: 1rem 0;
-  margin-top: 1rem;
+  margin-top: auto;
   font-weight: 200;
   font-size: 0.9em;
   color: #bbbbbb;
@@ -38,10 +38,6 @@
 }
 
 @media screen and (min-width: 30em) {
-  .footer {
-    margin-top: 2rem;
-  }
-
   .footer ul li,
   .footer ul li:first-child,
   .footer ul li:last-child {
