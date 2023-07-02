@@ -20,9 +20,14 @@ const verifyLink = (currentLocation, linkAddress) => {
 
 const linksList = [
   {
-    name: "Home",
+    name: "Główna",
     path: "/",
     icon: "icon-icon_house",
+  },
+  {
+    name: "Szukaj",
+    path: "/szukaj",
+    icon: "icon-icon_magnifying_glass"
   },
   {
     name: "Wiki",
