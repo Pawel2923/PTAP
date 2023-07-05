@@ -2,11 +2,26 @@
   font-size: 1.4em;
   margin-left: 1rem;
   margin-top: 1rem;
+  width: fit-content;
 }
 
 @media screen and (min-width: 30em) {
   .back {
-    margin-left: 8rem;
+    margin-left: 9rem;
     margin-top: 2rem;
+    cursor: pointer;
+  }
+
+  .back > *:nth-child(2) {
+    margin-left: 0.5rem;
+  }
+
+  .back > * {
+    transition: color 50ms ease-in;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .back:hover > * {
+    color: #3B9ADD;
   }
 }

@@ -145,6 +145,10 @@ input[type="search"]::-webkit-search-results-decoration {
     margin: 4rem 8rem;
   }
 
+  .section:first-of-type {
+    margin-top: 2rem;
+  }
+
   .section figure img {
     align-self: flex-start;
   }

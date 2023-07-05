@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import WidthContext from "../../store/width-context";
 import classes from "./BackArrow.module.css";
 
 const BackArrow = (props) => {
   const navigate = useNavigate();
+  const { width } = useContext(WidthContext);
 
   const backClickHandler = () => {
     navigate(-1);
@@ -17,6 +20,7 @@ const BackArrow = (props) => {
       onClick={backClickHandler}
     >
       <i className="fa-solid fa-arrow-left"></i>
+      {width > 480 ? <span>Wróć</span> : ""}
     </div>
   );
 };
