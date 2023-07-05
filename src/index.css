@@ -121,10 +121,6 @@ input[type="search"]::-webkit-search-results-decoration {
   overflow: hidden;
 }
 
-.section:first-of-type {
-  padding-top: 2rem;
-}
-
 .section > * {
   margin-left: 1rem;
   margin-right: 1rem;

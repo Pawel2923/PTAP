@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+import BackArrow from "../UI/BackArrow";
 import articleList from "../data/ArticleList.json";
 import classes from "./Search.module.css";
 
 const Search = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
   const searchInput = useRef();
   const [searchQuery, setSearchQuery] = useState("");
   const [showPlaceholder, setShowPlaceholder] = useState(true);
@@ -23,30 +22,12 @@ const Search = () => {
     searchInput.current.focus();
   }, []);
 
-  useEffect(() => {
-    const hash = location.hash.replace("#", "");
-    const target = document.getElementById(hash);
-
-    if (target) {
-      const posY = target.clientTop;
-
-      window.scrollTo({
-        top: posY,
-        left: 0,
-      });
-    }
-  }, [location.hash]);
-
   const placeholderClickHandler = () => {
     searchInput.current.focus();
   };
 
   const searchChangeHandler = (ev) => {
     setSearchQuery(ev.target.value);
-  };
-
-  const backClickHandler = () => {
-    navigate(-1);
   };
 
   const formResetHandler = (ev) => {
@@ -56,9 +37,7 @@ const Search = () => {
 
   return (
     <div className={classes.search}>
-        <div className={classes.back} onClick={backClickHandler}>
-          <i className="fa-solid fa-arrow-left"></i>
-        </div>
+        <BackArrow className={classes.back} />
         <form onReset={formResetHandler}>
           <input
             type="search"

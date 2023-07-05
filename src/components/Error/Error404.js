@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+import BackArrow from "../UI/BackArrow";
 import Button from "../UI/Button";
 
 const Error404 = () => {
@@ -11,6 +12,7 @@ const Error404 = () => {
 
   return (
     <main>
+      <BackArrow />
       <section className="section">
         <header>
           <h2>Błąd 404</h2>

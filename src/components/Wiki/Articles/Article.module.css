@@ -1,3 +1,11 @@
 .content li {
   padding: 1rem 0;
 }
+
+.content h4 {
+  margin-top: 1rem;
+}
+
+.content h4:first-child {
+  margin-top: 0;
+}
