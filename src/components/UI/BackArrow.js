@@ -12,6 +12,8 @@ const BackArrow = (props) => {
     navigate(-1);
   };
 
+  let enableText = props.enableText ? props.enableText : "true";
+
   return (
     <div
       className={
@@ -20,7 +22,7 @@ const BackArrow = (props) => {
       onClick={backClickHandler}
     >
       <i className="fa-solid fa-arrow-left"></i>
-      {width > 480 ? <span>Wróć</span> : ""}
+      {(width > 480 && enableText==="true") ? <span>Wróć</span> : ""}
     </div>
   );
 };

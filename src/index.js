@@ -32,7 +32,6 @@ const router = createBrowserRouter(
         <Route path="szukaj" element={<Search />} />
         <Route path="*" element={<Error404 />} />
       </Route>
-      <Route path="*" element={<Error404 />} />
     </React.Fragment>
   )
 );

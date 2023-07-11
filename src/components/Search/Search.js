@@ -37,7 +37,7 @@ const Search = () => {
 
   return (
     <div className={classes.search}>
-        <BackArrow className={classes.back} />
+        <BackArrow className={classes.back} enableText="false" />
         <form onReset={formResetHandler}>
           <input
             type="search"
