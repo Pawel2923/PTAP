@@ -37,7 +37,7 @@
   text-align: center;
 }
 
-@media screen and (min-width: 30em) {
+@media screen and (min-width: 46.25em) {
   .footer ul li,
   .footer ul li:first-child,
   .footer ul li:last-child {
