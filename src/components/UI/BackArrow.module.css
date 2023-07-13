@@ -1,11 +1,13 @@
 .back {
+  color: #fff;
   font-size: 1.4em;
   margin-left: 1rem;
   margin-top: 1rem;
-  width: fit-content;
+  display: flex;
+  align-items: center;
 }
 
-@media screen and (min-width: 30em) {
+@media screen and (min-width: 46.25em) {
   .back {
     margin-left: 9rem;
     margin-top: 2rem;
@@ -18,10 +20,10 @@
 
   .back > * {
     transition: color 50ms ease-in;
-    -webkit-tap-highlight-color: transparent !important;
   }
 
-  .back:hover > * {
-    color: #3B9ADD;
+  .back:hover > *,
+  .back:active > * {
+    color: #3b9add;
   }
 }

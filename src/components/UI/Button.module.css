@@ -1,18 +1,29 @@
-.button {
+.button, .button-link {
   background-color: #2B74A9;
   padding: 0.5rem 1rem;
   border-radius: 25px;
+  outline: none;
   cursor: pointer;
   transition: transform 50ms ease-in, background-color 50ms ease-in;
 }
 
-.button:active {
+.button:active, .button-link:active {
   background-color: #115ab2;
   transform: scale3d(0.9, 0.9, 0.9);
 }
 
-@media screen and (min-width: 30em) {
-  .button:hover {
+.button:focus-visible {
+  background-color: #115ab2;
+}
+
+.button-link {
+  display: block;
+  width: fit-content;
+  color: #fff;
+}
+
+@media screen and (min-width: 46.25em) {
+  .button:hover, .button-link:hover {
     background-color: #115ab2;
   }
 }

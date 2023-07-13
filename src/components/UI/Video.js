@@ -1,8 +1,9 @@
+import { useCallback } from "react";
 import lazyframe from "lazyframe";
 
 const Video = (props) => {
-  const onTouchStart = () => {};
-  document.addEventListener('touchstart', onTouchStart, {passive: true});
+  const onTouchStart = useCallback(() => {}, []);
+  document.addEventListener("touchstart", onTouchStart, { passive: true });
   lazyframe(".lazyframe");
 
   return (
