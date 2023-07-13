@@ -1,22 +1,49 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useEffect, useContext, useCallback } from "react";
+import ReactDOM from "react-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import BackArrow from "../UI/BackArrow";
 import articleList from "../data/ArticleList.json";
+import SearchContext from "../../store/search-context";
 import classes from "./Search.module.css";
+import PageContext from "../../store/page-context";
 
-const Search = () => {
+export const Search = () => {
+  const location = useLocation();
   const searchInput = useRef();
-  const [searchQuery, setSearchQuery] = useState("");
+  const searchHeader = useRef();
+  const [searchTerm, setSearchTerm] = useState("");
   const [showPlaceholder, setShowPlaceholder] = useState(true);
+  const [articles, setArticles] = useState(articleList);
+  const { setIsShown } = useContext(SearchContext);
+  const { setCurrentPage } = useContext(PageContext);
+
+  const filterArticles = useCallback(() => {
+    return articleList.filter((user) => {
+      let isFound = false;
+      Object.values(user).forEach((value) => {
+        if (!isFound) {
+          value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+            ? (isFound = true)
+            : (isFound = false);
+        }
+      });
+  
+      return isFound;
+    });
+  }, [searchTerm]);
 
   useEffect(() => {
-    if (searchQuery.trim() !== "") {
+    if (searchTerm.trim() !== "") {
       setShowPlaceholder(false);
+      searchHeader.current.innerText = "Pasujące artykuły"
     } else {
+      searchHeader.current.innerText = "Wszystkie artykuły"
       setShowPlaceholder(true);
     }
-  }, [searchQuery]);
+
+    setArticles(filterArticles());
+  }, [searchTerm, filterArticles]);
 
   useEffect(() => {
     searchInput.current.focus();
@@ -26,24 +53,46 @@ const Search = () => {
     searchInput.current.focus();
   };
 
-  const searchChangeHandler = (ev) => {
-    setSearchQuery(ev.target.value);
+  const searchInputHandler = (ev) => {
+    setSearchTerm(ev.target.value);
   };
 
   const formResetHandler = (ev) => {
-    setSearchQuery("");
+    setSearchTerm("");
     ev.target.firstElementChild.focus();
   };
 
-  return (
-    <div className={classes.search}>
-        <BackArrow className={classes.back} enableText="false" />
-        <form onReset={formResetHandler}>
+  const formSubmitHandler = (ev) => {
+    ev.preventDefault();
+  };
+
+  const backArrowClickHandler = () => {
+    setSearchTerm("");
+    setIsShown(false);
+    setCurrentPage(location.pathname);
+  };
+
+  const linkClickHandler = (ev) => {
+    setIsShown(false);
+    setCurrentPage(ev.currentTarget.getAttribute("href"));
+  };
+
+  const search = (
+    <nav className={classes.search}>
+      <div className={classes["search-container"]}>
+        <BackArrow
+          className={classes.back}
+          enableText="false"
+          notLink="true"
+          onClick={backArrowClickHandler}
+        />
+        <form onReset={formResetHandler} onSubmit={formSubmitHandler}>
           <input
             type="search"
             ref={searchInput}
-            value={searchQuery}
-            onChange={searchChangeHandler}
+            id="search"
+            value={searchTerm}
+            onInput={searchInputHandler}
           />
           {showPlaceholder && (
             <div
@@ -59,15 +108,39 @@ const Search = () => {
             </button>
           )}
         </form>
-      <div className={classes.content}>
-        {articleList.map((item, key) => (
-          <Link key={key} to={item.address}>
-            {item.name}
-          </Link>
-        ))}
+        <div className={classes.content}>
+          <h2 ref={searchHeader}>Wszystkie artykuły</h2>
+          {articles.map((item, key) => (
+            <Link key={key} to={item.address} onClick={linkClickHandler}>
+              {item.name}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </nav>
   );
+
+  return ReactDOM.createPortal(search, document.getElementById("overlays"));
 };
 
-export default Search;
+export const SearchPlaceholder = React.memo(() => {
+  const { setIsShown } = useContext(SearchContext);
+  const { setCurrentPage } = useContext(PageContext);
+
+  const clickHandler = () => {
+    setIsShown(true);
+    setCurrentPage("/szukaj")
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={clickHandler}
+      className={classes["search-placeholder"]}
+    >
+      <div className={classes.placeholder}>
+        <i className="fa-solid fa-magnifying-glass"></i> Przeszukaj wiki
+      </div>
+    </button>
+  );
+});
