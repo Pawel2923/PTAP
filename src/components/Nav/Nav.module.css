@@ -14,12 +14,12 @@
   transition: transform 0.2s ease-in;
 }
 
-.nav > div {
+.nav > a {
   display: flex;
   align-items: center;
 }
 
-.nav > div > *:first-child {
+.nav > a > *:first-child {
   margin-right: 1rem;
 }
 
@@ -39,7 +39,7 @@
   margin-right: 0;
 }
 
-@media screen and (min-width: 30em) {
+@media screen and (min-width: 46.25em) {
   .nav {
     z-index: 2;
   }
@@ -53,8 +53,25 @@
 .nav a {
   color: #fff;
   padding: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav a:hover {
-  color: #3B9ADD;
+  color: #3b9add;
 }
+
+.nav a.active {
+  color: #3b9add;
+}
+
+.nav > a {
+  padding: 0;
+}
+
+.nav > a:hover {
+  color: #fff;
+}
+

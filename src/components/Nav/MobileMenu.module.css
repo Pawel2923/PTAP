@@ -11,7 +11,7 @@
 }
 
 .menu ul {
-  margin: 0 3rem;
+  margin: 0 2rem;
   padding: 0;
   list-style-type: none;
   display: grid;
@@ -25,7 +25,7 @@
   text-align: center;
 }
 
-.menu a {
+.menu a, .menu div {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@
   transition: transform 50ms ease-in;
 }
 
-.menu a:active {
+.menu a:active, .menu div:active {
   transform: scale3d(0.9, 0.9, 0.9);
 }
 
