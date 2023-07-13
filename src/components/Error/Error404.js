@@ -1,14 +1,7 @@
-import { useNavigate } from "react-router-dom";
-
 import BackArrow from "../UI/BackArrow";
-import Button from "../UI/Button";
+import { ButtonLink } from "../UI/Button";
 
 const Error404 = () => {
-  const navigate = useNavigate();
-
-  const buttonClickHandler = () => {
-    navigate("/");
-  };
 
   return (
     <main>
@@ -19,7 +12,7 @@ const Error404 = () => {
         </header>
         <div>
           <p>Nie znaleziono strony.</p>
-          <Button onClick={buttonClickHandler}>Strona główna</Button>
+          <ButtonLink to="/">Strona główna</ButtonLink>
         </div>
       </section>
     </main>

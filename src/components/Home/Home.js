@@ -1,24 +1,18 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 
 import Video from "../UI/Video.js";
-import Button from "../UI/Button.js";
+import { ButtonLink } from "../UI/Button.js";
 import classes from "./Home.module.css";
-import WidthContext from "../../store/width-context.js";
+import PageContext from "../../store/page-context.js";
 
 const Main = () => {
-  const navigate = useNavigate();
-  const { width } = useContext(WidthContext);
-
-  const wikiButtonClickHandler = () => {
-    navigate("/wiki");
-  };
+  const { width } = useContext(PageContext);
 
   return (
     <main>
       <section className={`section ${classes["index-banner"]}`}>
         <header>
-          {width <= 480 ? (
+          {width <= 740 ? (
             <img
               src={require("../../img/logo.webp")}
               alt="Logo"
@@ -76,7 +70,7 @@ const Main = () => {
       <section className="section">
         <h2>Wiki</h2>
         <h3>Zobacz więcej artykułów na wiki</h3>
-        <Button onClick={wikiButtonClickHandler}>Przejdź do wiki</Button>
+        <ButtonLink to="/wiki">Przejdź do wiki</ButtonLink>
       </section>
     </main>
   );
