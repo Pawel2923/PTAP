@@ -13,33 +13,32 @@ import Wiki from "./components/Wiki/Wiki";
 import Intro from "./components/Wiki/Articles/Intro";
 import SignUp from "./components/SignUp/SignUp";
 import Flight from "./components/Wiki/Articles/Flight";
-import Search from "./components/Search/Search";
 import Error404 from "./components/Error/Error404";
-import WidthProvider from "./store/WidthProvider";
+import PageProvider from "./store/PageProvider";
+import SearchProvider from "./store/SearchProvider";
 import "./icons/style.css";
 import "./index.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <React.Fragment>
-      <Route path="/" element={<App />}>
-        <Route index element={<Home />} />
-        <Route path="wiki" element={<Wiki />}>
-          <Route index element={<Intro />} />
-          <Route path="modele-lotu" element={<Flight />} />
-        </Route>
-        <Route path="rejestracja" element={<SignUp />} />
-        <Route path="szukaj" element={<Search />} />
-        <Route path="*" element={<Error404 />} />
+    <Route path="/" element={<App />}>
+      <Route index element={<Home />} />
+      <Route path="wiki" element={<Wiki />}>
+        <Route index element={<Intro />} />
+        <Route path="modele-lotu" element={<Flight />} />
       </Route>
-    </React.Fragment>
+      <Route path="rejestracja" element={<SignUp />} />
+      <Route path="*" element={<Error404 />} />
+    </Route>
   )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <WidthProvider>
-      <RouterProvider router={router} />
-    </WidthProvider>
+    <PageProvider>
+      <SearchProvider>
+        <RouterProvider router={router} />
+      </SearchProvider>
+    </PageProvider>
   </React.StrictMode>
 );
