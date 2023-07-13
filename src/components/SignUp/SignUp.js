@@ -1,4 +1,4 @@
-import Button from "../UI/Button";
+import { Button } from "../UI/Button";
 import useForm from "../../hooks/use-form";
 import classes from "./SignUp.module.css";
 
@@ -89,66 +89,70 @@ const SignUp = () => {
 
   return (
     <main className={classes.main}>
-      <header>
-        <h2>Zapisz się</h2>
-      </header>
-      <form onSubmit={formSubmitHandler}>
-        <div className={classes["input-block"]}>
-          <label htmlFor="name">Nazwa</label>
-          <input
-            type="text"
-            id="name"
-            className={nameInputClasses}
-            value={name}
-            onChange={nameChangeHandler}
-            onBlur={nameBlurHandler}
-          />
-          {nameIsInvalid && errorText}
-        </div>
-        <div className={classes["input-block"]}>
-          <label htmlFor="email">E-mail</label>
-          <input
-            type="email"
-            id="email"
-            className={emailInputClasses}
-            value={email}
-            onChange={emailChangeHandler}
-            onBlur={emailBlurHandler}
-          />
-          {emailIsInvalid && errorText}
-        </div>
-        <div className={classes["input-block"]}>
-          <label htmlFor="password">Hasło</label>
-          <input
-            type="password"
-            id="password"
-            className={passwordInputClasses}
-            value={password}
-            onChange={passwordChangeHandler}
-            onBlur={passwordBlurHandler}
-          />
-          {passwordIsInvalid && errorText}
-          {!passwordsMatch && passwordIsValid && (
-            <p className={classes["error-text"]}>Hasła nie pasują</p>
-          )}
-        </div>
-        <div className={classes["input-block"]}>
-          <label htmlFor="passsword-confirm">Powtórz hasło</label>
-          <input
-            type="password"
-            id="password-confirm"
-            className={passwordConfirmInputClasses}
-            value={passwordConfirm}
-            onChange={passwordConfirmChangeHandler}
-            onBlur={passwordConfirmBlurHandler}
-          />
-          {passwordConfirmIsInvalid && errorText}
-          {!passwordsMatch && passwordConfirmIsValid && (
-            <p className={classes["error-text"]}>Hasła nie pasują</p>
-          )}
-        </div>
-        <Button type="submit">Zarejestruj się</Button>
-      </form>
+      <section className="section">
+        <header>
+          <h2>Zapisz się</h2>
+        </header>
+        <form onSubmit={formSubmitHandler}>
+          <div className={classes["input-block"]}>
+            <label htmlFor="name">Nazwa</label>
+            <input
+              type="text"
+              id="name"
+              className={nameInputClasses}
+              value={name}
+              autoComplete="username"
+              onChange={nameChangeHandler}
+              onBlur={nameBlurHandler}
+            />
+            {nameIsInvalid && errorText}
+          </div>
+          <div className={classes["input-block"]}>
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              className={emailInputClasses}
+              value={email}
+              autoComplete="email"
+              onChange={emailChangeHandler}
+              onBlur={emailBlurHandler}
+            />
+            {emailIsInvalid && errorText}
+          </div>
+          <div className={classes["input-block"]}>
+            <label htmlFor="password">Hasło</label>
+            <input
+              type="password"
+              id="password"
+              className={passwordInputClasses}
+              value={password}
+              onChange={passwordChangeHandler}
+              onBlur={passwordBlurHandler}
+            />
+            {passwordIsInvalid && errorText}
+            {!passwordsMatch && passwordIsValid && (
+              <p className={classes["error-text"]}>Hasła nie pasują</p>
+            )}
+          </div>
+          <div className={classes["input-block"]}>
+            <label htmlFor="password-confirm">Powtórz hasło</label>
+            <input
+              type="password"
+              id="password-confirm"
+              className={passwordConfirmInputClasses}
+              value={passwordConfirm}
+              onChange={passwordConfirmChangeHandler}
+              onBlur={passwordConfirmBlurHandler}
+            />
+            {passwordConfirmIsInvalid && errorText}
+            {!passwordsMatch && passwordConfirmIsValid && (
+              <p className={classes["error-text"]}>Hasła nie pasują</p>
+            )}
+          </div>
+          <Button type="submit">Zarejestruj się</Button>
+        </form>
+      </section>
     </main>
   );
 };
