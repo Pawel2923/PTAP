@@ -7,22 +7,66 @@
   {
     "name": "Modele lotu w Armie 3",
     "element": "Flight",
-    "address": "/wiki/modele-lotu"
+    "address": "/wiki/modele-lotu",
+    "keywords": 
+    [
+      "Arma 3",
+      "standardowy",
+      "zaawansowany"
+    ]
   },
   {
-    "name": "Sterowanie w Armie 3 - sprzęt",
+    "name": "Sterowanie - sprzęt",
     "element": "Gear",
-    "address": "/wiki/sprzet"
+    "address": "/wiki/sprzet",
+    "keywords": 
+    [
+      "joystick",
+      "pedały",
+      "kalibracja",
+      "ustawienia",
+      "sterowniki",
+      "akcesoria",
+      "trackir",
+      "facetrack"
+    ]
   },
   {
-    "name": "Sterowanie w Armie 3 - ustawienia w grze",
+    "name": "Sterowanie - ustawienia w grze",
     "element": "Settings",
-    "address": "/wiki/ustawienia-gry"
+    "address": "/wiki/ustawienia-gry",
+    "keywords":
+    [
+      "Arma 3",
+      "gra",
+      "czułość",
+      "martwa strefa",
+      "martwej strefy",
+      "przypisanie",
+      "controls"
+    ]
   },
   {
     "name": "Kokpit - instrumenty",
     "element": "Instruments",
-    "address": "/wiki/przyrzady"
+    "address": "/wiki/przyrzady",
+    "keywords": 
+    [
+      "prędkościomierz",
+      "wariometr",
+      "wysokoścomierz",
+      "sztuczny horyzont",
+      "żyrokompas",
+      "zakrętomierze i chyłomierze",
+      "akcelerometry",
+      "zegary",
+      "cabir air gauges",
+      "wskażnik temperatury zewnętrznej OAT",
+      "Flap Position Indicators",
+      "Kąt natarcia - AoA",
+      "Coupled Devices",
+      "akcesoria"
+    ]
   },
   {
     "name": "Podstawy lotu",
