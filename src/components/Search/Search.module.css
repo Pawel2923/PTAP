@@ -118,7 +118,8 @@
 
   .search-container {
     position: fixed;
-    column-gap: 2rem;
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
     height: calc(2rem + 50px);
     padding: 0.5rem 8rem;
   }
