@@ -16,8 +16,8 @@ const Main = () => {
             <img
               src={require("../../img/logo.webp")}
               alt="Logo"
-              width="50"
-              height="50"
+              width="100"
+              height="100"
             />
           ) : (
             ""

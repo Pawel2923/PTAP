@@ -8,10 +8,9 @@
 }
 
 .index-banner img {
-  width: auto;
-  height: auto;
+  height: 100px;
+  width: 100px;
   aspect-ratio: 1 / 1;
-  max-width: 100px;
 }
 
 .index-banner p {
