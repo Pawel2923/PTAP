@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import { useContext, memo } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { SearchPlaceholder } from "../Search/Search";
 import MobileMenu from "./MobileMenu";
 import PageContext from "../../store/page-context";
+import ptapLogo from "../../img/logo.webp";
 import classes from "./Nav.module.css";
 
-const Nav = () => {
+const Nav = memo(() => {
   const { width, setCurrentPage } = useContext(PageContext);
 
   const linkClickHandler = (ev) => {
@@ -16,10 +17,10 @@ const Nav = () => {
   let imageTitle = width >= 1000 ? "Pilot Training Arma Project" : "PTAP";
 
   let navContent = (
-    <React.Fragment>
+    <>
       <Link to="/" title="Przejdź na stronę główną" onClick={linkClickHandler}>
         <img
-          src={require("../../img/logo.webp")}
+          src={ptapLogo}
           alt="logo"
           style={{ display: "block" }}
         />
@@ -45,18 +46,20 @@ const Nav = () => {
           <SearchPlaceholder />
         </li>
       </ul>
-    </React.Fragment>
+    </>
   );
 
   return (
-    <React.Fragment>
+    <>
       {width > 740 ? (
         <nav className={classes.nav}>{navContent}</nav>
       ) : (
         <MobileMenu />
       )}
-    </React.Fragment>
+    </>
   );
-};
+});
 
-export default React.memo(Nav);
+Nav.displayName = "Nav";
+
+export default Nav;

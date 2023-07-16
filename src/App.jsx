@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 
 import Nav from "./components/Nav/Nav";
@@ -11,12 +11,12 @@ function App() {
   const { isShown } = useContext(SearchContext);
 
   return (
-    <React.Fragment>
+    <>
       {isShown ? <Search /> : ""}
       <Nav />
       <Outlet />
       <Footer />
-    </React.Fragment>
+    </>
   );
 }
 

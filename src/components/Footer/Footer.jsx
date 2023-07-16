@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, memo } from "react";
 import { Link } from "react-router-dom";
 
 import classes from "./Footer.module.css";
 import PageContext from "../../store/page-context";
 
-const Footer = () => {
+const Footer = memo(() => {
   const [navHeight, setNavHeight] = useState(0);
   const { width } = useContext(PageContext);
 
@@ -39,6 +39,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
 
-export default React.memo(Footer);
+Footer.displayName = "Fotter";
+
+export default Footer;

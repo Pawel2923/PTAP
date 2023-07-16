@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext, useCallback } from "react";
+import { useState, useRef, useEffect, useContext, useCallback, memo } from "react";
 import ReactDOM from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 
@@ -82,8 +82,8 @@ export const Search = () => {
       <div className={classes["search-container"]}>
         <BackArrow
           className={classes.back}
-          enableText="false"
-          notLink="true"
+          enableText={false}
+          notLink={true}
           onClick={backArrowClickHandler}
         />
         <form onReset={formResetHandler} onSubmit={formSubmitHandler}>
@@ -99,12 +99,12 @@ export const Search = () => {
               className={classes.placeholder}
               onClick={placeholderClickHandler}
             >
-              <i className="fa-solid fa-magnifying-glass"></i> Przeszukaj wiki
+              <i className="icon-icon_magnifying_glass"></i> Przeszukaj wiki
             </div>
           )}
           {!showPlaceholder && (
             <button type="reset" className={classes.reset}>
-              <i className="fa-solid fa-circle-xmark"></i>
+              <i className="icon-icon_circle_xmark"></i>
             </button>
           )}
         </form>
@@ -123,7 +123,7 @@ export const Search = () => {
   return ReactDOM.createPortal(search, document.getElementById("overlays"));
 };
 
-export const SearchPlaceholder = React.memo(() => {
+export const SearchPlaceholder = memo(() => {
   const { setIsShown } = useContext(SearchContext);
   const { setCurrentPage } = useContext(PageContext);
 
@@ -139,8 +139,10 @@ export const SearchPlaceholder = React.memo(() => {
       className={classes["search-placeholder"]}
     >
       <div className={classes.placeholder}>
-        <i className="fa-solid fa-magnifying-glass"></i> Przeszukaj wiki
+        <i className="icon-icon_magnifying_glass"></i> Przeszukaj wiki
       </div>
     </button>
   );
 });
+
+SearchPlaceholder.displayName = "SearchPlaceholder";

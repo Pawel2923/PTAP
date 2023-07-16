@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 const SearchContext = createContext({
-    isShown: "false",
+    isShown: false,
     setIsShown: () => {}
 });
 

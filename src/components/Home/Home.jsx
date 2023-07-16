@@ -1,9 +1,11 @@
 import { useContext } from "react";
 
-import Video from "../UI/Video.js";
-import { ButtonLink } from "../UI/Button.js";
+import Video from "../UI/Video";
+import { ButtonLink } from "../UI/Button";
 import classes from "./Home.module.css";
-import PageContext from "../../store/page-context.js";
+import PageContext from "../../store/page-context";
+import ptapLogo from "../../img/logo.webp";
+import autorot from "../../img/autorotacja.webp";
 
 const Main = () => {
   const { width } = useContext(PageContext);
@@ -14,7 +16,7 @@ const Main = () => {
         <header>
           {width <= 740 ? (
             <img
-              src={require("../../img/logo.webp")}
+              src={ptapLogo}
               alt="Logo"
               width="100"
               height="100"
@@ -25,7 +27,7 @@ const Main = () => {
           <h1>PTAP</h1>
           <h2>Pilot Training Arma Project</h2>
           <p>
-            PTAP jest to projekt utworzony przez BowiX'a i ArrowX'a w grupie
+            PTAP jest to projekt utworzony przez BowiX&apos;a i ArrowX&apos;a w grupie
             ARHD, którego celem było zapewnienie odpowiednich warunków
             szkoleniowych do nauki pilotażu.
           </p>
@@ -45,7 +47,7 @@ const Main = () => {
         </p>
         <figure>
           <img
-            src={require("../../img/autorotacja.webp")}
+            src={autorot}
             alt="Zdjęcie ukazujące przepływ powietrza podczas autorotacji"
             width="332"
             height="187"

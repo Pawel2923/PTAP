@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext, memo } from "react";
 import ReactDOM from "react-dom";
 import { NavLink } from "react-router-dom";
 
@@ -45,7 +45,7 @@ const menuList = [
   },
 ];
 
-const MobileMenu = () => {
+const MobileMenu = memo(() => {
   const { setIsShown } = useContext(SearchContext);
   const { currentPage, setCurrentPage } = useContext(PageContext);
 
@@ -104,6 +104,8 @@ const MobileMenu = () => {
   );
 
   return ReactDOM.createPortal(nav, document.getElementById("overlays"));
-};
+});
 
-export default React.memo(MobileMenu);
+MobileMenu.displayName = "MobileMenu";
+
+export default MobileMenu;

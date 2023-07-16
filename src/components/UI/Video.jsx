@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import lazyframe from "lazyframe";
+import PropTypes from "prop-types";
 
 const Video = (props) => {
   const onTouchStart = useCallback(() => {}, []);
@@ -25,6 +26,17 @@ const Video = (props) => {
       ></iframe>
     </div>
   );
+};
+
+Video.propTypes = {
+  video: PropTypes.string.isRequired,
+  header: PropTypes.string,
+  className: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  src: PropTypes.string,
+  title: PropTypes.string,
+  allow: PropTypes.bool
 };
 
 export default Video;
