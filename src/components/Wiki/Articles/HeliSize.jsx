@@ -1,3 +1,5 @@
+import classes from "./Article.module.css";
+
 const HeliSize = () => {
   return (
     <section className="section">

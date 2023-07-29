@@ -12,7 +12,9 @@ const Wiki = () => {
     <Fragment>
       {locationCheck ? <BackArrow /> : ""}
       <main>
-        <Outlet />
+        <section className="section">
+          <Outlet />
+        </section>
       </main>
     </Fragment>
   );

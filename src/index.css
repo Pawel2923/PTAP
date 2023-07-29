@@ -138,6 +138,18 @@ input[type="search"]::-webkit-search-results-decoration {
   align-self: flex-start;
 }
 
+.content li {
+  padding: 1rem 0;
+}
+
+.content h4 {
+  margin-top: 1rem;
+}
+
+.content h4:first-child {
+  margin-top: 0;
+}
+
 @media screen and (min-width: 46.25em) {
   .section {
     margin: 4rem 8rem;
