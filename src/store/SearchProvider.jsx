@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import SearchContext from "./search-context";
 
-const WidthProvider = ({ children }) => {
+const SearchProvider = ({ children }) => {
   const [isShown, setIsShown] = useState();
   const value = { isShown, setIsShown };
 
@@ -20,8 +20,8 @@ const WidthProvider = ({ children }) => {
   );
 };
 
-WidthProvider.propTypes = {
+SearchProvider.propTypes = {
   children: PropTypes.any,
 };
 
-export default WidthProvider;
+export default SearchProvider;

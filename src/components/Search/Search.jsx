@@ -73,12 +73,21 @@ export const Search = () => {
   };
 
   const linkClickHandler = (ev) => {
+    setSearchTerm("");
     setIsShown(false);
     setCurrentPage(ev.currentTarget.getAttribute("href"));
   };
 
+  const keyDownHandler = (ev) => {
+    if (ev.keyCode === 27) {
+      setSearchTerm("");
+      setIsShown(false);
+      setCurrentPage(location.pathname);
+    }
+  };
+
   const search = (
-    <nav className={classes.search}>
+    <nav className={classes.search} onKeyDown={keyDownHandler}>
       <div className={classes["search-container"]}>
         <BackArrow
           className={classes.back}
