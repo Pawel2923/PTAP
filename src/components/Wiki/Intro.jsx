@@ -1,7 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import ArticleList from "../../data/ArticleList.json";
+import ArticleList from "../data/ArticleList.json";
 import classes from "./Article.module.css";
-import { Fragment } from "react";
 
 const Intro = () => {
   let length = ArticleList.length;
@@ -14,7 +14,7 @@ const Intro = () => {
     ));
 
   return (
-    <Fragment>
+    <React.Fragment>
       <header>
         <h2>Wiki</h2>
       </header>
@@ -28,7 +28,7 @@ const Intro = () => {
           </div>
         ))}
       </div>
-    </Fragment>
+    </React.Fragment>
   );
 };
 
