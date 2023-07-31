@@ -1,0 +1,7 @@
+.overlay {
+    inset: 0;
+    background: #3f3f3f;
+    position: fixed;
+    display: block;
+    z-index: 3;
+}

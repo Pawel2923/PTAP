@@ -1,0 +1,10 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    max-width: 200px;
+    height: 100vh;
+    padding: 1rem;
+    z-index: 4;
+    background-color: #363636;
+}

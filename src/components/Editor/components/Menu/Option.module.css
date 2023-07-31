@@ -1,0 +1,30 @@
+.option {
+  background-color: #414141cb;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  padding: 0.8rem 1rem;
+  border-radius: 25px;
+  outline: none;
+  cursor: pointer;
+  transition: transform 50ms ease-in, background-color 50ms ease-in;
+  margin-top: 0.5rem;
+}
+
+.option:first-child {
+    margin-top: 0;
+}
+
+.option:active {
+  background-color: #383838cb;
+  transform: scale3d(0.9, 0.9, 0.9);
+}
+
+.option:focus-visible {
+  background-color: #383838cb;
+}
+
+@media screen and (min-width: 46.25em) {
+  .option:hover {
+    background-color: #383838cb;
+  }
+}
