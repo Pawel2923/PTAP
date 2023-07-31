@@ -19,9 +19,9 @@ const Intro = () => {
         <h2>Wiki</h2>
       </header>
       <div className={classes.content}>
-        <h4>Zobacz najnowsze artykuły</h4>
+        <h3>Zobacz najnowsze artykuły</h3>
         {articles}
-        <h4>Lista wszystkich artykułów</h4>
+        <h3>Lista wszystkich artykułów</h3>
         {ArticleList.slice(1, length - 3).map((item, key) => (
           <div key={key}>
             <Link to={item.address}>{item.name}</Link>
