@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 import classes from "./Option.module.css";
 import ConsoleContext from "../../../store/console-context";
 
-const Option = ({ title, onClick, id }) => {
+const Option = ({ children, onClick, id }) => {
   const { currentPage } = useContext(ConsoleContext);
 
   return (
@@ -13,13 +13,13 @@ const Option = ({ title, onClick, id }) => {
       onClick={onClick}
       id={id}
     >
-      {title}
+      {children}
     </button>
   );
 };
 
 Option.propTypes = {
-  title: PropTypes.string,
+  children: PropTypes.any,
   onClick: PropTypes.func,
   id: PropTypes.string,
 };
