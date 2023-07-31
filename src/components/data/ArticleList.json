@@ -25,8 +25,14 @@
       "sterowniki",
       "akcesoria",
       "trackir",
-      "facetrack"
-    ]
+      "facetrack",
+      "vr",
+      "multiple monitors"
+    ],
+    "article":{
+      "header": "Sprzęt do latania",
+      "content": ""
+    }
   },
   {
     "name": "Sterowanie - ustawienia w grze",
