@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./Menu.module.css";
 import Option from "./Option";
-import ConsoleContext from "../../../../store/console-context";
+import ConsoleContext from "../../../store/console-context";
 
 const Menu = () => {
   const navigate = useNavigate();

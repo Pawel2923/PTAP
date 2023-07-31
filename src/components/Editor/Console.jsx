@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import classes from "./Console.module.css";
-import Menu from "./components/Menu/Menu";
+import Menu from "./Menu/Menu";
 import ConsoleProvider from "../../store/ConsoleProvider";
 
 const Console = () => {
