@@ -27,10 +27,10 @@ const Footer = memo(() => {
             <Link to="/sign-up">Zapisz się do projektu</Link>
           </li>
           <li>
-            <Link to="/contact">Skontaktuj się z nami</Link>
+            <Link to="/feedback">Zgłoś błąd na stronie</Link>
           </li>
           <li>
-            <Link to="/feedback">Zgłoś błąd na stronie</Link>
+            <Link to="/console">Konsola administracyjna</Link>
           </li>
         </ul>
       </div>
