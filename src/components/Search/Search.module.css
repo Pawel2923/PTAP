@@ -41,6 +41,12 @@
   color: #bbb;
   position: absolute;
   left: calc(1rem + 4px);
+  display: flex;
+  align-items: center;
+}
+
+.placeholder > *:first-child {
+  margin-right: 0.25em;
 }
 
 .reset {
@@ -50,6 +56,7 @@
   transition: none;
   position: absolute;
   right: 1rem;
+  display: flex;
 }
 
 .content {

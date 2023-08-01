@@ -1,169 +1,178 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,600&display=swap");
 
 * {
-  margin: 0;
-  font-family: "Open Sans", sans-serif;
-  font-display: fallback;
-  box-sizing: border-box;
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    font-display: fallback;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: #333333;
-  color: #ffffff;
+    background-color: #333333;
+    color: #ffffff;
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main header {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  overflow: hidden;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    overflow: hidden;
 }
 
 main h2:first-child,
 main h3:first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 main h2,
 main h3 {
-  margin: 1.5rem 0;
+    margin: 1.5rem 0;
 }
 
 main p {
-  margin: 0.5rem 0;
+    margin: 0.5rem 0;
 }
 
 a {
-  color: #3b9add;
-  text-decoration: none;
-  transition: color 50ms ease-in;
-  -webkit-tap-highlight-color: transparent !important;
-  outline: none !important;
+    color: #3b9add;
+    text-decoration: none;
+    transition: color 50ms ease-in;
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
 }
 
 a:active {
-  color: #fff;
+    color: #fff;
 }
 
 @media screen and (min-width: 46.25em) {
-  a:hover {
-    color: #fff;
-  }
+    a:hover {
+        color: #fff;
+    }
 }
 
 button {
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  overflow: visible;
-  text-align: inherit;
-  background: transparent;
-  -webkit-tap-highlight-color: transparent !important;
-  color: inherit;
-  font: inherit;
-  line-height: normal;
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    text-align: inherit;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent !important;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
+    border: 0;
+    padding: 0;
 }
 
 button:focus:not(:focus-visible) {
-  outline: none;
+    outline: none;
 }
 button:focus:not(:-moz-focusring) {
-  outline: none;
+    outline: none;
 }
 
 input {
-  border: 2px solid gray;
-  outline: none;
-  border-radius: 25px;
-  padding: 0.5rem;
-  width: 100%;
+    border: 2px solid gray;
+    outline: none;
+    border-radius: 25px;
+    padding: 0.5rem;
+    width: 100%;
 }
 
 input:focus-visible {
-  border-color: #3b9add;
+    border-color: #3b9add;
 }
 
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
-  -webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
 .section {
-  margin: 2rem 0;
-  overflow: hidden;
+    margin: 2rem 0;
+    overflow: hidden;
 }
 
 .section > * {
-  margin-left: 1rem;
-  margin-right: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .section figure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section figure img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    display: block;
 }
 
 .section figcaption {
-  margin-top: 0.3rem;
-  align-self: flex-start;
+    margin-top: 0.3rem;
+    align-self: flex-start;
 }
 
 .content li {
-  padding: 1rem 0;
+    padding: 1rem 0;
 }
 
 .content h4 {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .content h4:first-child {
-  margin-top: 0;
+    margin-top: 0;
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
 }
 
 @media screen and (min-width: 46.25em) {
-  .section {
-    margin: 4rem 8rem;
-  }
+    .section {
+        margin: 4rem 8rem;
+    }
 
-  .section:first-of-type {
-    margin-top: 2rem;
-  }
+    .section:first-of-type {
+        margin-top: 2rem;
+    }
 
-  .section figure img {
-    align-self: flex-start;
-  }
+    .section figure img {
+        align-self: flex-start;
+    }
 
-  .section ol {
-    padding: 0 1rem;
-  }
+    .section ol {
+        padding: 0 1rem;
+    }
 }

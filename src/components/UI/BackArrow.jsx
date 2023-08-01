@@ -4,45 +4,54 @@ import PropTypes from "prop-types";
 
 import PageContext from "../../store/page-context";
 import classes from "./BackArrow.module.css";
+import icons from "../../icons/symbol-defs.svg";
 
 const BackArrow = (props) => {
-  const { width } = useContext(PageContext);
+    const { width } = useContext(PageContext);
 
-  let enableText = props.enableText ? props.enableText : true;
+    let enableText = props.enableText ? props.enableText : true;
 
-  if (props.notLink) {
+    if (props.notLink) {
+        return (
+            <button
+                type="button"
+                className={
+                    props.className
+                        ? `${classes.back} ${props.className}`
+                        : classes.back
+                }
+                onClick={props.onClick}
+            >
+                <svg className="icon icon-arrow_left">
+                    <use xlinkHref={`${icons}#icon-arrow_left`}></use>
+                </svg>
+                {width > 740 && enableText ? <span>Wróć</span> : ""}
+            </button>
+        );
+    }
+
     return (
-      <button
-        type="button"
-        className={
-          props.className ? `${classes.back} ${props.className}` : classes.back
-        }
-        onClick={props.onClick}
-      >
-        <i className="icon-icon_arrow_left"></i>
-        {width > 740 && enableText ? <span>Wróć</span> : ""}
-      </button>
+        <Link
+            to={-1}
+            className={
+                props.className
+                    ? `${classes.back} ${props.className}`
+                    : classes.back
+            }
+        >
+            <svg className="icon icon-arrow_left">
+                <use xlinkHref={`${icons}#icon-arrow_left`}></use>
+            </svg>
+            {width > 740 && enableText ? <span>Wróć</span> : ""}
+        </Link>
     );
-  }
-
-  return (
-    <Link
-      to={-1}
-      className={
-        props.className ? `${classes.back} ${props.className}` : classes.back
-      }
-    >
-      <i className="icon-icon_arrow_left"></i>
-      {width > 740 && enableText ? <span>Wróć</span> : ""}
-    </Link>
-  );
 };
 
 BackArrow.propTypes = {
-  enableText: PropTypes.bool,
-  notLink: PropTypes.bool,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
+    enableText: PropTypes.bool,
+    notLink: PropTypes.bool,
+    className: PropTypes.string,
+    onClick: PropTypes.func,
 };
 
 export default BackArrow;
