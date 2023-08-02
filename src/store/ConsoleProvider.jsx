@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import ConsoleContext from "./console-context";
 
 const ConsoleProvider = ({ children }) => {
-  const [currentPage, setCurrentPage] = useState("home");
+  const defaultPage = sessionStorage.getItem("currentPage") ? sessionStorage.getItem("currentPage") : "home";
+  const [currentPage, setCurrentPage] = useState(defaultPage);
   const value = {
     currentPage,
     setCurrentPage,

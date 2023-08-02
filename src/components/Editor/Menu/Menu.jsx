@@ -13,11 +13,13 @@ const Menu = () => {
     const optionClickHandler = (ev) => {
         if (currentPage !== ev.currentTarget.id) {
             setCurrentPage(ev.currentTarget.id);
+            sessionStorage.setItem("currentPage", ev.currentTarget.id);
         }
     };
 
     const exitClickHandler = () => {
         setCurrentPage("home");
+        sessionStorage.setItem("currentPage", "home");
         navigate("/");
     };
 
