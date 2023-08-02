@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./Menu.module.css";
-import Option from "./Option";
+import Option from "./Option/Option";
 import ConsoleContext from "../../../store/console-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";

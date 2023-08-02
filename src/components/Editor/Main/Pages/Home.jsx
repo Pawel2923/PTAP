@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
-import Card from "./Card";
+import Card from "../Card";
 
 const Home = ({ setMainHeader }) => {
     useEffect(() => {

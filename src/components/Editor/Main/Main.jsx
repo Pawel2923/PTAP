@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect } from "react";
 import classes from "./Main.module.css";
 import ConsoleContext from "../../../store/console-context";
-import Home from "./Home";
-import Editor from "./Editor";
+import Home from "./Pages/Home";
+import Editor from "./Pages/Editor";
 
 const Main = () => {
     const { currentPage } = useContext(ConsoleContext);
