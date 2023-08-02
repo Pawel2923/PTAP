@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
+import classes from "./Main.module.css";
 
 const Card = ({ children }) => {
-    return <div className="card">{children}</div>;
+    return <div className={classes.card}>{children}</div>;
 };
 
 Card.propTypes = {
