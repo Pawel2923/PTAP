@@ -19,7 +19,7 @@
   }
 
   .back > * {
-    transition: color 50ms ease-in;
+    transition: color 50ms ease-out;
   }
 
   .back:hover > *,

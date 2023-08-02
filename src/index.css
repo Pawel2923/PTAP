@@ -45,7 +45,7 @@ main p {
 a {
     color: #3b9add;
     text-decoration: none;
-    transition: color 50ms ease-in;
+    transition: color 50ms ease-out;
     -webkit-tap-highlight-color: transparent !important;
     outline: none !important;
 }
