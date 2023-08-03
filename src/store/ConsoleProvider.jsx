@@ -6,9 +6,12 @@ import ConsoleContext from "./console-context";
 const ConsoleProvider = ({ children }) => {
   const defaultPage = sessionStorage.getItem("currentPage") ? sessionStorage.getItem("currentPage") : "home";
   const [currentPage, setCurrentPage] = useState(defaultPage);
+  const [editorContent, setEditorContent] = useState("home");
   const value = {
     currentPage,
+    editorContent,
     setCurrentPage,
+    setEditorContent,
   };
 
   return (
