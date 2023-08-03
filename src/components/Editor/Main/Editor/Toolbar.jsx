@@ -4,6 +4,8 @@ import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 import PropTypes from "prop-types";
 import PageContext from "../../../../store/page-context";
 import classes from "./Editor.module.css";
+import toolbarClasses from "./Toolbar.module.css";
+import { Dropdown, DropdownOption } from "../../../UI/Dropdown";
 
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     const { fullscreen, setFullscreen } = useContext(PageContext);
@@ -30,10 +32,14 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     };
 
     return (
-        <nav className={classes.toolbar} style={toolbarStyles}>
-            <button type="button" className={classes.option}>
-                Plik
-            </button>
+        <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
+            <Dropdown title="Plik" className={classes.option}>
+                <DropdownOption>Nowy</DropdownOption>
+                <DropdownOption>Otwórz</DropdownOption>
+                <DropdownOption>Zapisz</DropdownOption>
+                <DropdownOption>Importuj</DropdownOption>
+                <DropdownOption>Eksportuj</DropdownOption>
+            </Dropdown>
             <button type="button" className={classes.option}>
                 Edytuj
             </button>
@@ -48,7 +54,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
             </button>
             <button
                 type="button"
-                className={`${classes["toolbar-fullscreen"]} ${classes.option}`}
+                className={`${toolbarClasses["toolbar-fullscreen"]} ${classes.option}`}
                 title={!fullscreen ? "Pełny ekran" : "Zamknij pełny ekran"}
                 onClick={fullscreenClickHandler}
             >
