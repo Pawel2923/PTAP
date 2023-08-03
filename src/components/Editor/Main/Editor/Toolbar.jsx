@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import PageContext from "../../../../store/page-context";
 import classes from "./Editor.module.css";
 
-const Toolbar = ({ setEditorStyles }) => {
+const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     const { fullscreen, setFullscreen } = useContext(PageContext);
     const [toolbarStyles, setToolbarStyles] = useState({});
 
@@ -66,6 +66,7 @@ const Toolbar = ({ setEditorStyles }) => {
 
 Toolbar.propTypes = {
     setEditorStyles: PropTypes.func,
+    setEditorContent: PropTypes.func,
 };
 
 export default Toolbar;
