@@ -1,0 +1,19 @@
+.welcome h4 {
+    margin-bottom: 0.5rem;
+}
+
+.welcome > * {
+    margin-bottom: 2rem;
+}
+
+.welcome > *:last-child {
+    margin-bottom: 0;
+}
+.option {
+    display: block;
+}
+
+.recent > ul {
+    list-style-type: none;
+    padding: 0;
+}

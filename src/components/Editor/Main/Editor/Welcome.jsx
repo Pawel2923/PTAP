@@ -1,33 +1,39 @@
+import classes from "./Welcome.module.css";
+
 const Welcome = () => {
     return (
-        <>
-            <h3>Witaj! Zacznij edytować artykuły wybierając jedną z opcji</h3>
-            <button type="button" className="option">
-                Nowy...
-            </button>
-            <button type="button" className="option">
-                Otwórz...
-            </button>
-            <div className="recent">
-                <ul className="recent-list">
+        <div className={classes.welcome}>
+            <div>
+                <h3>Witaj! Zacznij edytować artykuły wybierając jedną z opcji</h3>
+                <h4>Edytuj</h4>
+                <button type="button" className={classes.option}>
+                    Nowy...
+                </button>
+                <button type="button" className={classes.option}>
+                    Otwórz...
+                </button>
+            </div>
+            <div className={classes.recent}>
+                <h4>Najnowsze</h4>
+                <ul>
                     <li>
-                        <button type="button" className="option">
+                        <button type="button" className={classes.option}>
                             Artykuł 1
                         </button>
                     </li>
                     <li>
-                        <button type="button" className="option">
+                        <button type="button" className={classes.option}>
                             Artykuł 2
                         </button>
                     </li>
                     <li>
-                        <button type="button" className="option">
+                        <button type="button" className={classes.option}>
                             Artykuł 3
                         </button>
                     </li>
                 </ul>
             </div>
-        </>
+        </div>
     );
 };
 
