@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 import PropTypes from "prop-types";
@@ -8,29 +8,6 @@ import classes from "./Editor.module.css";
 const Toolbar = ({ setEditorStyles }) => {
     const { fullscreen, setFullscreen } = useContext(PageContext);
     const [toolbarStyles, setToolbarStyles] = useState({});
-
-    useEffect(() => {
-        const exitFullscreen = (ev) => {
-            ev.preventDefault();
-            setFullscreen(false);
-            setToolbarStyles({
-                borderTopLeftRadius: "25px",
-                borderTopRightRadius: "25px",
-            });
-            setEditorStyles({
-                position: "initial",
-                inset: "unset",
-                zIndex: "unset",
-                borderRadius: "25px",
-            });
-        };
-
-        window.addEventListener("keydown", exitFullscreen);
-
-        return () => {
-            window.removeEventListener("keydown", exitFullscreen);
-        };
-    }, [setEditorStyles, setToolbarStyles, setFullscreen]);
 
     const fullscreenClickHandler = () => {
         if (!fullscreen) {
@@ -47,16 +24,8 @@ const Toolbar = ({ setEditorStyles }) => {
             });
         } else {
             setFullscreen(false);
-            setToolbarStyles({
-                borderTopLeftRadius: "25px",
-                borderTopRightRadius: "25px",
-            });
-            setEditorStyles({
-                position: "initial",
-                inset: "unset",
-                zIndex: "unset",
-                borderRadius: "25px",
-            });
+            setToolbarStyles({});
+            setEditorStyles({});
         }
     };
 
