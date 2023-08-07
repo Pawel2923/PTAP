@@ -4,16 +4,15 @@
     background-color: #282828;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: -webkit-min-content;
-    grid-auto-columns: min-content;
+    display: flex;
     align-items: center;
-    -moz-column-gap: 1rem;
-    column-gap: 1rem;
+}
+
+.toolbar > * {
+    margin-right: 1rem;
 }
 
 .toolbar-fullscreen {
     position: absolute;
-    right: 1rem;
+    right: 0;
 }

@@ -29,8 +29,15 @@ export const Dropdown = ({ title, className, children }) => {
     }, []);
 
     const dropdownClickHandler = () => {
-        setShowMenu(true);
-        setDropdownStyle({ backgroundColor: "#343434" });
+        setShowMenu((prevState) => {
+            if (prevState) {
+                setDropdownStyle({});
+                return false;
+            }
+
+            setDropdownStyle({ backgroundColor: "#343434" });
+            return true;
+        });
     };
 
     return (
@@ -52,15 +59,16 @@ Dropdown.propTypes = {
     children: PropTypes.any,
 };
 
-export const DropdownOption = ({ onClick, children }) => {
+export const DropdownOption = ({ id, onClick, children }) => {
     return (
-        <div className={classes.option} onClick={onClick}>
+        <button type="button" className={classes.option} onClick={onClick} id={id}>
             {children}
-        </div>
+        </button>
     );
 };
 
 DropdownOption.propTypes = {
+    id: PropTypes.string,
     onClick: PropTypes.func,
     children: PropTypes.any,
 };

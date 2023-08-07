@@ -18,6 +18,8 @@
 }
 
 .option {
+    display: block;
+    width: 100%;
     padding: 0.5rem 1.25rem;
     transition: background-color 50ms ease-out;
 }
@@ -34,6 +36,7 @@
 
 .option:hover {
     background-color: #343434;
+    cursor: pointer;
 }
 
 .option:active {

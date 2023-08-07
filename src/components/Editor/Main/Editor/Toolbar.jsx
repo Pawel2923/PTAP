@@ -31,14 +31,23 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         }
     };
 
+    const dropdownOptionClickHandler = (ev) => {
+        if (ev.currentTarget.id === "new") {
+            setEditorContent("new");
+        } else if (ev.currentTarget.id === "exit") {
+            setEditorContent("home");
+        }
+    };
+
     return (
         <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
             <Dropdown title="Plik" className={classes.option}>
-                <DropdownOption>Nowy</DropdownOption>
+                <DropdownOption id="new" onClick={dropdownOptionClickHandler}>Nowy</DropdownOption>
                 <DropdownOption>Otwórz</DropdownOption>
                 <DropdownOption>Zapisz</DropdownOption>
                 <DropdownOption>Importuj</DropdownOption>
                 <DropdownOption>Eksportuj</DropdownOption>
+                <DropdownOption id="exit" onClick={dropdownOptionClickHandler}>Wyjdź</DropdownOption>
             </Dropdown>
             <button type="button" className={classes.option}>
                 Edytuj

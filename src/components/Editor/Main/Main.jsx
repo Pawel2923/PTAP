@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import classes from "./Main.module.css";
 import ConsoleContext from "../../../store/console-context";
 import Home from "./Home/Home";
@@ -7,15 +7,13 @@ import Editor from "./Editor/Editor";
 const Main = () => {
     const { currentPage } = useContext(ConsoleContext);
     const [mainHeader, setMainHeader] = useState("");
-    const [pageContent, setPageContent] = useState("");
-
-    useEffect(() => {
-        if (currentPage === "home") {
-            setPageContent(<Home setMainHeader={setMainHeader} />);
-        } else if (currentPage === "editor") {
-            setPageContent(<Editor setMainHeader={setMainHeader} />);
-        }
-    }, [currentPage]);
+                
+    let pageContent = "";
+    if (currentPage === "home") {
+        pageContent = <Home setMainHeader={setMainHeader} />;
+    } else if (currentPage === "editor") {
+        pageContent = <Editor setMainHeader={setMainHeader} />;
+    }
 
     return (
         <div className={classes.container}>
