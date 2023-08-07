@@ -10,6 +10,7 @@ import { Dropdown, DropdownOption } from "../../../UI/Dropdown";
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     const { fullscreen, setFullscreen } = useContext(PageContext);
     const [toolbarStyles, setToolbarStyles] = useState({});
+    const [disabledButtons, setDisabledButtons] = useState({ exit: true });
 
     const fullscreenClickHandler = () => {
         if (!fullscreen) {
@@ -34,20 +35,32 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     const dropdownOptionClickHandler = (ev) => {
         if (ev.currentTarget.id === "new") {
             setEditorContent("new");
-        } else if (ev.currentTarget.id === "exit") {
+            setDisabledButtons({ exit: false });
+        } else {
             setEditorContent("home");
+            setDisabledButtons({ exit: true });
         }
     };
 
     return (
         <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
             <Dropdown title="Plik" className={classes.option}>
-                <DropdownOption id="new" onClick={dropdownOptionClickHandler}>Nowy</DropdownOption>
-                <DropdownOption>Otwórz</DropdownOption>
+                <DropdownOption id="new" onClick={dropdownOptionClickHandler}>
+                    Nowy
+                </DropdownOption>
+                <DropdownOption id="open" onClick={dropdownOptionClickHandler}>
+                    Otwórz
+                </DropdownOption>
                 <DropdownOption>Zapisz</DropdownOption>
                 <DropdownOption>Importuj</DropdownOption>
                 <DropdownOption>Eksportuj</DropdownOption>
-                <DropdownOption id="exit" onClick={dropdownOptionClickHandler}>Wyjdź</DropdownOption>
+                <DropdownOption
+                    id="exit"
+                    onClick={dropdownOptionClickHandler}
+                    disabled={disabledButtons.exit}
+                >
+                    Wyjdź
+                </DropdownOption>
             </Dropdown>
             <button type="button" className={classes.option}>
                 Edytuj

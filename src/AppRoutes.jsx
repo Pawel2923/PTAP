@@ -8,7 +8,7 @@ import App from "./App";
 import Home from "./components/Home/Home";
 import Wiki from "./components/Wiki/Wiki";
 import Intro from "./components/Wiki/Intro";
-import Console from "./components/Editor/Console";
+import Console from "./components/Console/Console";
 import SignUp from "./components/SignUp/SignUp";
 import Error404 from "./components/Error/Error404";
 import { StringToJSX } from "./StringToJSX";
