@@ -59,9 +59,23 @@ Dropdown.propTypes = {
     children: PropTypes.any,
 };
 
-export const DropdownOption = ({ id, onClick, children }) => {
+export const DropdownOption = ({ id, onClick, disabled, children }) => {
+    const buttonRef = useRef(null);
+
+    useEffect(() => {
+        if (disabled) {
+            buttonRef.current.setAttribute("disabled", "");
+        }
+    }, [disabled]);
+
     return (
-        <button type="button" className={classes.option} onClick={onClick} id={id}>
+        <button
+            type="button"
+            ref={buttonRef}
+            className={classes.option}
+            onClick={onClick}
+            id={id}
+        >
             {children}
         </button>
     );
@@ -70,5 +84,6 @@ export const DropdownOption = ({ id, onClick, children }) => {
 DropdownOption.propTypes = {
     id: PropTypes.string,
     onClick: PropTypes.func,
+    disabled: PropTypes.bool,
     children: PropTypes.any,
 };

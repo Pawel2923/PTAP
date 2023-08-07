@@ -43,6 +43,19 @@
     background-color: #444444;
 }
 
+.option:disabled {
+    color: #888888;
+}
+
+.option:disabled:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.option:disabled:active {
+    background-color: transparent;
+}
+
 @-webkit-keyframes slideIn {
     0% {
         opacity: 0;
