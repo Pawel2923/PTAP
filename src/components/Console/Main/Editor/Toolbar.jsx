@@ -33,12 +33,12 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     };
 
     const dropdownOptionClickHandler = (ev) => {
-        if (ev.currentTarget.id === "new") {
-            setEditorContent("new");
-            setDisabledButtons({ exit: false });
-        } else {
+        if (ev.currentTarget.id === "exit") {
             setEditorContent("home");
             setDisabledButtons({ exit: true });
+        } else {
+            setEditorContent(ev.currentTarget.id);
+            setDisabledButtons({ exit: false });
         }
     };
 
@@ -48,7 +48,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
                 <DropdownOption id="new" onClick={dropdownOptionClickHandler}>
                     Nowy
                 </DropdownOption>
-                <DropdownOption id="open" onClick={dropdownOptionClickHandler}>
+                <DropdownOption id="edit" onClick={dropdownOptionClickHandler}>
                     Otwórz
                 </DropdownOption>
                 <DropdownOption>Zapisz</DropdownOption>
