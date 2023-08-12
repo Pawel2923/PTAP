@@ -45,7 +45,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     return (
         <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
             <Dropdown title="Plik" className={classes.option}>
-                <DropdownOption id="new" onClick={dropdownOptionClickHandler}>
+                <DropdownOption id="edit" onClick={dropdownOptionClickHandler}>
                     Nowy
                 </DropdownOption>
                 <DropdownOption id="edit" onClick={dropdownOptionClickHandler}>

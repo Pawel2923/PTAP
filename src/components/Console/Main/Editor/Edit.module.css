@@ -1,4 +1,42 @@
 .edit {
+    display: inline-flex;
     width: 100%;
+    min-height: 100%;
+    gap: 10px;
+    line-height: 20px;
+    border-radius: 2px;
+    padding: 20px 10px;
+}
+
+.line-numbers {
     height: 100%;
+    margin-right: 0.5rem;
+    text-align: right;
+}
+
+.line-numbers span {
+    counter-increment: linenumber;
+}
+
+.line-numbers span::before {
+    content: counter(linenumber);
+    display: block;
+    height: 20px;
+    color: #666;
+}
+
+.edit textarea {
+    line-height: 20px;
+    overflow-y: hidden;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    width: 100%;
+    outline: none;
+    resize: none;
+    font-family: monospace, sans-serif;
+    -moz-tab-size: 2;
+      -o-tab-size: 2;
+         tab-size: 2;
 }

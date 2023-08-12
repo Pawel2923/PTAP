@@ -9,21 +9,10 @@ import Edit from "./Edit";
 const Editor = ({ setMainHeader }) => {
     const { editorContent, setEditorContent } = useContext(ConsoleContext);
     const [editorStyles, setEditorStyles] = useState({});
-    // const [content, setContent] = useState("");
 
     useEffect(() => {
         setMainHeader("Edytor artykułów");
     }, [setMainHeader]);
-
-    // useEffect(() => {
-    //     if (editorContent === "home") {
-    //         setContent(<Welcome />);
-    //     } else if (editorContent === "edit") {
-    //         setContent(<Edit />)
-    //     } else {
-    //         setContent("Wystąpił błąd");
-    //     }
-    // }, [editorContent]);
 
     let content = "";
     if (editorContent === "home") {
