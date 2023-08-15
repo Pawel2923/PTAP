@@ -25,18 +25,40 @@
     color: #666;
 }
 
+.content {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+}
+
 .edit textarea {
-    line-height: 20px;
     overflow-y: hidden;
     padding: 0;
+    margin: 0;
+    border-radius: 0.3em;
     border: 0;
-    background: transparent;
-    color: #fff;
-    width: 100%;
     outline: none;
+    font-size: 1em;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    line-height: 20px;
+    background: transparent;
+    color: transparent;
+    caret-color: #fff;
     resize: none;
-    font-family: monospace, sans-serif;
-    -moz-tab-size: 2;
-      -o-tab-size: 2;
-         tab-size: 2;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    width: 100%;
+    min-height: 100%;
+    z-index: 1;
+}
+
+.edit textarea,
+.edit pre {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
