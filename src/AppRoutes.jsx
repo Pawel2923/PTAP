@@ -34,7 +34,7 @@ const AppRoutes = () => {
         <Route index element={<Home />} />
         <Route path="wiki" element={<Wiki />}>
           <Route index element={<Intro />} />
-          {addRoutes &&
+          {(addRoutes && articles) &&
             articles.map((item, key) => (
               <Route
                 key={key}
