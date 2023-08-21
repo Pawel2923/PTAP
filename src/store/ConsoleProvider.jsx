@@ -7,11 +7,14 @@ const ConsoleProvider = ({ children }) => {
   const defaultPage = sessionStorage.getItem("currentPage") ? sessionStorage.getItem("currentPage") : "home";
   const [currentPage, setCurrentPage] = useState(defaultPage);
   const [editorContent, setEditorContent] = useState("home");
+  const [articleCode, setArticleCode] = useState("");
   const value = {
     currentPage,
     editorContent,
+    articleCode,
     setCurrentPage,
     setEditorContent,
+    setArticleCode,
   };
 
   return (
