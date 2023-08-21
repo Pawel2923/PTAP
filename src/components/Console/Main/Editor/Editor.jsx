@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import classes from "./Editor.module.css";
 import ConsoleContext from "../../../../store/console-context";
 import Toolbar from "./Toolbar";
-import Welcome from "./Welcome";
-import Edit from "./Edit";
+import Welcome from "./Sections/Welcome";
+import Code from "./Sections/Code";
 
 const Editor = ({ setMainHeader }) => {
     const { editorContent, setEditorContent } = useContext(ConsoleContext);
@@ -18,7 +18,7 @@ const Editor = ({ setMainHeader }) => {
     if (editorContent === "home") {
         content = <Welcome />;
     } else if (editorContent === "edit") {
-        content = <Edit />;
+        content = <Code />;
     } else {
         content = "Wystąpił błąd";
     }

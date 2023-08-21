@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ArticleList from "../data/ArticleList.json";
+import ArticleList from "../../data/ArticleList.json";
 import classes from "./Article.module.css";
 
 const Intro = () => {

@@ -1,12 +1,14 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import Prism from "prismjs";
 import "/src/css/prism.css";
-import classes from "./Edit.module.css";
+import classes from "./Code.module.css";
+import ConsoleContext from "/src/store/console-context";
 
 String.prototype.lines = function () { return this.split("\n"); }
 String.prototype.lineCount = function () { return this.lines().length; }
 
-const Edit = () => {
+const Code = () => {
+    const { setArticleCode } = useContext(ConsoleContext);
     const codeRef = useRef(null);
     const [lineNumber, setLineNumber] = useState(1);
 
@@ -19,7 +21,7 @@ const Edit = () => {
         }
 
         codeRef.current.innerHTML = Prism.highlight(text.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "<"), Prism.languages.html, "html");
-        
+        setArticleCode(text);
     };
 
     const textareakeyDownHandler = (ev) => {
@@ -40,7 +42,7 @@ const Edit = () => {
     };
 
     return (
-        <div className={classes.edit}>
+        <div className={classes.code}>
             <div className={classes["line-numbers"]}>
                 {[...Array(lineNumber)].map((item, key) => <span key={key}></span>)}
             </div>
@@ -54,4 +56,4 @@ const Edit = () => {
     );
 };
 
-export default Edit;
+export default Code;

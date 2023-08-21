@@ -10,7 +10,7 @@ import ReactDOM from "react-dom";
 import { Link, useLocation } from "react-router-dom";
 
 import BackArrow from "../UI/BackArrow";
-import articleList from "../data/ArticleList.json";
+import articleList from "../../data/ArticleList.json";
 import SearchContext from "../../store/search-context";
 import classes from "./Search.module.css";
 import PageContext from "../../store/page-context";

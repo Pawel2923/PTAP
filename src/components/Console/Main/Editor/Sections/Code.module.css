@@ -1,4 +1,4 @@
-.edit {
+.code {
     display: inline-flex;
     width: 100%;
     min-height: 100%;
@@ -31,7 +31,7 @@
     min-height: 100%;
 }
 
-.edit textarea {
+.code textarea {
     overflow-y: hidden;
     padding: 0;
     margin: 0;
@@ -56,8 +56,8 @@
     z-index: 1;
 }
 
-.edit textarea,
-.edit pre {
+.code textarea,
+.code pre {
     position: absolute;
     top: 0;
     left: 0;
