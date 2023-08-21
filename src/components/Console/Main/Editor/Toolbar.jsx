@@ -1,14 +1,18 @@
 import { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
+import { useGetData, setData } from "../../../../hooks/use-db";
 import PropTypes from "prop-types";
 import PageContext from "../../../../store/page-context";
 import classes from "./Editor.module.css";
 import toolbarClasses from "./Toolbar.module.css";
 import { Dropdown, DropdownOption } from "../../../UI/Dropdown";
+import ConsoleContext from "../../../../store/console-context";
 
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     const { fullscreen, setFullscreen } = useContext(PageContext);
+    const { data } = useGetData();
+    const { articleCode } = useContext(ConsoleContext);
     const [toolbarStyles, setToolbarStyles] = useState({});
     const [disabledButtons, setDisabledButtons] = useState({ exit: true });
 
@@ -36,6 +40,8 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         if (ev.currentTarget.id === "exit") {
             setEditorContent("home");
             setDisabledButtons({ exit: true });
+        } else if (ev.currentTarget.id === "save") {
+            setData(articleCode, data);
         } else {
             setEditorContent(ev.currentTarget.id);
             setDisabledButtons({ exit: false });
@@ -51,7 +57,9 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
                 <DropdownOption id="edit" onClick={dropdownOptionClickHandler}>
                     Otwórz
                 </DropdownOption>
-                <DropdownOption>Zapisz</DropdownOption>
+                <DropdownOption id="save" onClick={dropdownOptionClickHandler}>
+                    Zapisz
+                </DropdownOption>
                 <DropdownOption>Importuj</DropdownOption>
                 <DropdownOption>Eksportuj</DropdownOption>
                 <DropdownOption
