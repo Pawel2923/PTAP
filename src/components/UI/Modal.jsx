@@ -12,7 +12,7 @@ const Modal = ({ title, setShowModal, children }) => {
             <div className={classes.backdrop} onClick={closeClickHandler}></div>
             <div className={classes.modal}>
                 <h2>{title}</h2>
-                <p>{children}</p>
+                {children}
                 <div className={classes.close} onClick={closeClickHandler}>
                     <svg className="icon icon-circle_xmark">
                         <use xlinkHref={`${icons}#icon-circle_xmark`}></use>
