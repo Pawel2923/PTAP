@@ -3,25 +3,27 @@ import PropTypes from "prop-types";
 
 import ConsoleContext from "./console-context";
 
-const defaultToolbarButtons = {
+const defaultToolbarBtnProperties = {
     file: {
-        main: false,
-        exit: true,
-        new: false,
-        open: false,
-        save: true,
-        import: false,
-        export: true,
-    },
+        main: { disabled: false },
+        exit: { disabled: true },
+        new: { disabled: false },
+        open: { disabled: false },
+        save: { disabled: true },
+        import: { disabled: false },
+        export: { disabled: true },
+    }
 };
 
 const toolbarButtonsReducer = (state, action) => {
     let newButtons = state;
-    if (action.newState !== null && action.mainButton && action.subButton) {
-        action.subButton.forEach(
-            (subButtonName) =>
-                (newButtons[action.mainButton][subButtonName] = action.newState)
-        );
+    if (action.type === "DISABLE") {
+        if (action.newState !== null && action.mainButton && action.subButtons) {
+            action.subButtons.forEach(
+                (subButtonName) =>
+                    (newButtons[action.mainButton][subButtonName].disabled = action.newState)
+            );
+        }
     }
     return newButtons;
 };
@@ -35,7 +37,7 @@ const ConsoleProvider = ({ children }) => {
     const [articleCode, setArticleCode] = useState("");
     const [toolbarButtons, dispatchToolbarButtons] = useReducer(
         toolbarButtonsReducer,
-        defaultToolbarButtons
+        defaultToolbarBtnProperties
     );
     const value = {
         currentPage,

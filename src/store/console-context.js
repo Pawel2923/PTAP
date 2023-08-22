@@ -6,26 +6,26 @@ const ConsoleContext = createContext({
     articleCode: "",
     toolbarButtons: {
         file: {
-            main: false,
-            exit: true,
-            new: false,
-            open: false,
-            save: true,
-            import: false,
-            export: true,
+            main: { disabled: false },
+            exit: { disabled: true },
+            new: { disabled: false },
+            open: { disabled: false },
+            save: { disabled: true },
+            import: { disabled: false },
+            export: { disabled: true },
         },
     },
-    setCurrentPage: () => {},
-    setEditorContent: () => {},
-    setArticleCode: () => {},
+    setCurrentPage: () => { },
+    setEditorContent: () => { },
+    setArticleCode: () => { },
     dispatchToolbarButtons: (
-        state,
         action = {
+            type: "DISABLE",
             mainButton: "Button name",
-            subButton: ["button name", "button name"],
+            subButtons: ["button name", "button name"],
             newState: true,
         }
-    ) => {action},
+    ) => { action },
 });
 
 export default ConsoleContext;

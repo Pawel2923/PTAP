@@ -6,14 +6,20 @@ import ConsoleContext from "../../../store/console-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from "@fortawesome/fontawesome-svg-core/import.macro";
 
+const toolbarButtonsProperties = { type: "DISABLE", mainButton: "file", subButtons: ["exit", "save", "export"], newState: true };
+
 const Menu = () => {
     const navigate = useNavigate();
-    const { currentPage, setCurrentPage } = useContext(ConsoleContext);
+    const { currentPage, setCurrentPage, dispatchToolbarButtons } = useContext(ConsoleContext);
 
     const optionClickHandler = (ev) => {
         if (currentPage !== ev.currentTarget.id) {
             setCurrentPage(ev.currentTarget.id);
             sessionStorage.setItem("currentPage", ev.currentTarget.id);
+        }
+
+        if (currentPage !== "editor") {
+            dispatchToolbarButtons(toolbarButtonsProperties);
         }
     };
 

@@ -43,8 +43,9 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         if (ev.currentTarget.id === "exit") {
             setEditorContent("home");
             dispatchToolbarButtons({
+                type: "DISABLE",
                 mainButton: "file",
-                subButton: ["exit", "save", "export"],
+                subButtons: ["exit", "save", "export"],
                 newState: true,
             });
         } else if (ev.currentTarget.id === "save") {
@@ -52,8 +53,9 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         } else {
             setEditorContent(ev.currentTarget.id);
             dispatchToolbarButtons({
+                type: "DISABLE",
                 mainButton: "file",
-                subButton: ["exit", "save", "export"],
+                subButtons: ["exit", "save", "export"],
                 newState: false,
             });
         }
@@ -86,34 +88,34 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
                     <DropdownOption
                         id="edit"
                         onClick={dropdownOptionClickHandler}
-                        disabled={toolbarButtons.file.new}
+                        disabled={toolbarButtons.file.new.disabled}
                     >
                         Nowy
                     </DropdownOption>
                     <DropdownOption
                         id="edit"
                         onClick={dropdownOptionClickHandler}
-                        disabled={toolbarButtons.file.open}
+                        disabled={toolbarButtons.file.open.disabled}
                     >
                         Otwórz
                     </DropdownOption>
                     <DropdownOption
                         id="save"
                         onClick={dropdownOptionClickHandler}
-                        disabled={toolbarButtons.file.save}
+                        disabled={toolbarButtons.file.save.disabled}
                     >
                         Zapisz
                     </DropdownOption>
-                    <DropdownOption disabled={toolbarButtons.file.import}>
+                    <DropdownOption disabled={toolbarButtons.file.import.disabled}>
                         Importuj
                     </DropdownOption>
-                    <DropdownOption disabled={toolbarButtons.file.export}>
+                    <DropdownOption disabled={toolbarButtons.file.export.disabled}>
                         Eksportuj
                     </DropdownOption>
                     <DropdownOption
                         id="exit"
                         onClick={dropdownOptionClickHandler}
-                        disabled={toolbarButtons.file.exit}
+                        disabled={toolbarButtons.file.exit.disabled}
                     >
                         Wyjdź
                     </DropdownOption>
