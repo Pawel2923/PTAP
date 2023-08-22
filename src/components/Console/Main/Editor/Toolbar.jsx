@@ -44,7 +44,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
             setEditorContent("home");
             dispatchToolbarButtons({
                 mainButton: "file",
-                subButton: "exit",
+                subButton: ["exit", "save", "export"],
                 newState: true,
             });
         } else if (ev.currentTarget.id === "save") {
@@ -53,7 +53,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
             setEditorContent(ev.currentTarget.id);
             dispatchToolbarButtons({
                 mainButton: "file",
-                subButton: "exit",
+                subButton: ["exit", "save", "export"],
                 newState: false,
             });
         }
@@ -86,23 +86,30 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
                     <DropdownOption
                         id="edit"
                         onClick={dropdownOptionClickHandler}
+                        disabled={toolbarButtons.file.new}
                     >
                         Nowy
                     </DropdownOption>
                     <DropdownOption
                         id="edit"
                         onClick={dropdownOptionClickHandler}
+                        disabled={toolbarButtons.file.open}
                     >
                         Otwórz
                     </DropdownOption>
                     <DropdownOption
                         id="save"
                         onClick={dropdownOptionClickHandler}
+                        disabled={toolbarButtons.file.save}
                     >
                         Zapisz
                     </DropdownOption>
-                    <DropdownOption>Importuj</DropdownOption>
-                    <DropdownOption>Eksportuj</DropdownOption>
+                    <DropdownOption disabled={toolbarButtons.file.import}>
+                        Importuj
+                    </DropdownOption>
+                    <DropdownOption disabled={toolbarButtons.file.export}>
+                        Eksportuj
+                    </DropdownOption>
                     <DropdownOption
                         id="exit"
                         onClick={dropdownOptionClickHandler}
