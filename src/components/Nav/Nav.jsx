@@ -22,7 +22,6 @@ const Nav = memo(() => {
         <img
           src={ptapLogo}
           alt="logo"
-          style={{ display: "block" }}
         />
         <h2>{imageTitle}</h2>
       </Link>
