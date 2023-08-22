@@ -1,31 +1,49 @@
-.button, .button-link {
-  background-color: #2B74A9;
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  outline: none;
-  cursor: pointer;
-  transition: transform 50ms ease-out, background-color 50ms ease-out;
+.button,
+.button-link {
+    background: transparent;
+    padding: 0.5rem 1rem;
+    border: 1px solid #115ab2;
+    border-radius: 25px;
+    outline: none;
+    -webkit-transition: background-color 50ms ease-out,
+        -webkit-transform 50ms ease-out;
+    transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+    -o-transition: transform 50ms ease-out, background-color 50ms ease-out;
+    transition: transform 50ms ease-out, background-color 50ms ease-out;
+    transition: transform 50ms ease-out, background-color 50ms ease-out,
+        -webkit-transform 50ms ease-out;
 }
 
-.button:active, .button-link:active {
-  background-color: #115ab2;
-  transform: scale3d(0.9, 0.9, 0.9);
+.highlight {
+    background: #115ab2;
+}
+
+.button:active,
+.button-link:active {
+    background: #2972ca;
+    border-color: #2972ca;
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
 }
 
 .button:focus-visible {
-  background-color: #115ab2;
+    background: #2972ca;
+    border-color: #2972ca;
 }
 
 .button-link {
-  display: block;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  color: #fff;
+    display: block;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    color: #fff;
 }
 
 @media screen and (min-width: 46.25em) {
-  .button:hover, .button-link:hover {
-    background-color: #115ab2;
-  }
+    .button:hover,
+    .button-link:hover {
+        background: #2972ca;
+        cursor: pointer;
+        border-color: #2972ca;
+    }
 }
