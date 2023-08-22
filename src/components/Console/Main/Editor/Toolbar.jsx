@@ -7,14 +7,17 @@ import PageContext from "../../../../store/page-context";
 import classes from "./Editor.module.css";
 import toolbarClasses from "./Toolbar.module.css";
 import { Dropdown, DropdownOption } from "../../../UI/Dropdown";
+import Modal from "../../../UI/Modal";
+import { Button } from "../../../UI/Button";
 import ConsoleContext from "../../../../store/console-context";
 
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     const { fullscreen, setFullscreen } = useContext(PageContext);
     const { data } = useGetData();
-    const { articleCode } = useContext(ConsoleContext);
+    const { articleCode, toolbarButtons, dispatchToolbarButtons } =
+        useContext(ConsoleContext);
+    const [showSave, setShowSave] = useState(false);
     const [toolbarStyles, setToolbarStyles] = useState({});
-    const [disabledButtons, setDisabledButtons] = useState({ exit: true });
 
     const fullscreenClickHandler = () => {
         if (!fullscreen) {
@@ -39,64 +42,103 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     const dropdownOptionClickHandler = (ev) => {
         if (ev.currentTarget.id === "exit") {
             setEditorContent("home");
-            setDisabledButtons({ exit: true });
+            dispatchToolbarButtons({
+                mainButton: "file",
+                subButton: "exit",
+                newState: true,
+            });
         } else if (ev.currentTarget.id === "save") {
-            setData(articleCode, data);
+            setShowSave(true);
         } else {
             setEditorContent(ev.currentTarget.id);
-            setDisabledButtons({ exit: false });
+            dispatchToolbarButtons({
+                mainButton: "file",
+                subButton: "exit",
+                newState: false,
+            });
         }
     };
 
+    const closeModal = () => {
+        setShowSave(false);
+    };
+
+    const saveChanges = () => {
+        setData(articleCode, data);
+        closeModal();
+    };
+
     return (
-        <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
-            <Dropdown title="Plik" className={classes.option}>
-                <DropdownOption id="edit" onClick={dropdownOptionClickHandler}>
-                    Nowy
-                </DropdownOption>
-                <DropdownOption id="edit" onClick={dropdownOptionClickHandler}>
-                    Otwórz
-                </DropdownOption>
-                <DropdownOption id="save" onClick={dropdownOptionClickHandler}>
-                    Zapisz
-                </DropdownOption>
-                <DropdownOption>Importuj</DropdownOption>
-                <DropdownOption>Eksportuj</DropdownOption>
-                <DropdownOption
-                    id="exit"
-                    onClick={dropdownOptionClickHandler}
-                    disabled={disabledButtons.exit}
+        <>
+            {showSave && (
+                <Modal title="Zapisywanie artykułu" setShowModal={setShowSave}>
+                    Zapisz wszystkie zmiany lub anuluj
+                    <div className={toolbarClasses["modal-buttons"]}>
+                        <Button highlighted={false} onClick={closeModal}>
+                            Anuluj
+                        </Button>
+                        <Button onClick={saveChanges}>Zapisz</Button>
+                    </div>
+                </Modal>
+            )}
+            <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
+                <Dropdown title="Plik" className={classes.option}>
+                    <DropdownOption
+                        id="edit"
+                        onClick={dropdownOptionClickHandler}
+                    >
+                        Nowy
+                    </DropdownOption>
+                    <DropdownOption
+                        id="edit"
+                        onClick={dropdownOptionClickHandler}
+                    >
+                        Otwórz
+                    </DropdownOption>
+                    <DropdownOption
+                        id="save"
+                        onClick={dropdownOptionClickHandler}
+                    >
+                        Zapisz
+                    </DropdownOption>
+                    <DropdownOption>Importuj</DropdownOption>
+                    <DropdownOption>Eksportuj</DropdownOption>
+                    <DropdownOption
+                        id="exit"
+                        onClick={dropdownOptionClickHandler}
+                        disabled={toolbarButtons.file.exit}
+                    >
+                        Wyjdź
+                    </DropdownOption>
+                </Dropdown>
+                <button type="button" className={classes.option}>
+                    Edytuj
+                </button>
+                <button type="button" className={classes.option}>
+                    Zaznaczenie
+                </button>
+                <button type="button" className={classes.option}>
+                    Widok
+                </button>
+                <button type="button" className={classes.option}>
+                    Podgląd
+                </button>
+                <button
+                    type="button"
+                    className={`${toolbarClasses["toolbar-fullscreen"]} ${classes.option}`}
+                    title={!fullscreen ? "Pełny ekran" : "Zamknij pełny ekran"}
+                    onClick={fullscreenClickHandler}
                 >
-                    Wyjdź
-                </DropdownOption>
-            </Dropdown>
-            <button type="button" className={classes.option}>
-                Edytuj
-            </button>
-            <button type="button" className={classes.option}>
-                Zaznaczenie
-            </button>
-            <button type="button" className={classes.option}>
-                Widok
-            </button>
-            <button type="button" className={classes.option}>
-                Podgląd
-            </button>
-            <button
-                type="button"
-                className={`${toolbarClasses["toolbar-fullscreen"]} ${classes.option}`}
-                title={!fullscreen ? "Pełny ekran" : "Zamknij pełny ekran"}
-                onClick={fullscreenClickHandler}
-            >
-                <FontAwesomeIcon
-                    icon={
-                        !fullscreen
-                            ? icon({ name: "maximize", style: "solid" })
-                            : icon({ name: "minimize", style: "solid" })
-                    }
-                />
-            </button>
-        </nav>
+                    <FontAwesomeIcon
+                        icon={
+                            !fullscreen
+                                ? icon({ name: "maximize", style: "solid" })
+                                : icon({ name: "minimize", style: "solid" })
+                        }
+                    />
+                </button>
+            </nav>
+        </>
     );
 };
 
