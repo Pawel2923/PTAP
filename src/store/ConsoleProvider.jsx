@@ -9,16 +9,19 @@ const defaultToolbarButtons = {
         exit: true,
         new: false,
         open: false,
-        save: false,
+        save: true,
         import: false,
-        export: false,
+        export: true,
     },
 };
 
 const toolbarButtonsReducer = (state, action) => {
     let newButtons = state;
     if (action.newState !== null && action.mainButton && action.subButton) {
-        newButtons[action.mainButton][action.subButton] = action.newState;
+        action.subButton.forEach(
+            (subButtonName) =>
+                (newButtons[action.mainButton][subButtonName] = action.newState)
+        );
     }
     return newButtons;
 };

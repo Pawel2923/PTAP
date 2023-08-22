@@ -10,9 +10,9 @@ const ConsoleContext = createContext({
             exit: true,
             new: false,
             open: false,
-            save: false,
+            save: true,
             import: false,
-            export: false,
+            export: true,
         },
     },
     setCurrentPage: () => {},
@@ -22,7 +22,7 @@ const ConsoleContext = createContext({
         state,
         action = {
             mainButton: "Button name",
-            subButton: "Button name",
+            subButton: ["button name", "button name"],
             newState: true,
         }
     ) => {action},
