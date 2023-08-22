@@ -150,7 +150,7 @@ const SignUp = () => {
               <p className={classes["error-text"]}>Hasła nie pasują</p>
             )}
           </div>
-          <Button type="submit">Zarejestruj się</Button>
+          <Button type="submit" highlighted={true}>Zarejestruj się</Button>
         </form>
       </section>
     </main>
