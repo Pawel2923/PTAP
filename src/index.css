@@ -62,10 +62,6 @@ a:active {
     color: #fff;
 }
 
-.active {
-    background-color: #444444;
-}
-
 @media screen and (min-width: 46.25em) {
     a:hover {
         color: #fff;
