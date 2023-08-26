@@ -40,17 +40,15 @@ const AppRoutes = () => {
                 key={key}
                 path={item.address}
                 element={
-                  item.article ? (
+                  (item.content && item.name) && (
                     <>
                       <header>
-                        <h2>{item.article.header}</h2>
+                        <h2>{item.name}</h2>
                       </header>
                       <div className="content">
-                        <StringToJSX domString={item.article.content} />
+                        <StringToJSX domString={item.content} />
                       </div>
                     </>
-                  ) : (
-                    item.element
                   )
                 }
               />
