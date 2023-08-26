@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ArticleList from "../../data/ArticleList.json";
+import { useGetData } from "../../hooks/use-db";
 import classes from "./Article.module.css";
 
 const Intro = () => {
+  const ArticleList = useGetData().data;
   let length = ArticleList.length;
   const articles = ArticleList.slice(length - 3, length)
     .reverse()
