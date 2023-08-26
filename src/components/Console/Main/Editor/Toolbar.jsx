@@ -11,6 +11,8 @@ import Modal from "../../../UI/Modal";
 import { Button } from "../../../UI/Button";
 import ConsoleContext from "../../../../store/console-context";
 
+const defaultArticleInfo = { address: null, content: null, name: null, };
+
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     const { fullscreen, setFullscreen } = useContext(PageContext);
     const { data } = useGetData();
@@ -18,6 +20,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         useContext(ConsoleContext);
     const [showSave, setShowSave] = useState(false);
     const [toolbarStyles, setToolbarStyles] = useState({});
+    const [articleInfo, setArticleInfo] = useState(defaultArticleInfo);
 
     const fullscreenClickHandler = () => {
         if (!fullscreen) {
@@ -65,8 +68,20 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         setShowSave(false);
     };
 
+    const inputChangeHandler = (ev) => {
+        if (ev.currentTarget.name) {
+            setArticleInfo(info => {
+                info[ev.currentTarget.name] = ev.currentTarget.value;
+                info.content = articleCode;
+                return info;
+            })
+        }
+    };
+
     const saveChanges = () => {
-        setData(articleCode, data);
+        if (articleInfo) {
+            setData(articleInfo, data);
+        }
         closeModal();
     };
 
@@ -74,7 +89,9 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         <>
             {showSave && (
                 <Modal title="Zapisywanie artykułu" setShowModal={setShowSave}>
-                    Zapisz wszystkie zmiany lub anuluj
+                    <span>Zapisz wszystkie zmiany lub anuluj</span>
+                    <input type="text" name="address" placeholder="address" onChange={inputChangeHandler} />
+                    <input type="text" name="name" placeholder="name" onChange={inputChangeHandler} />
                     <div className={toolbarClasses["modal-buttons"]}>
                         <Button highlighted={false} onClick={closeModal}>
                             Anuluj

@@ -25,21 +25,12 @@ export const useGetData = () => {
     return { data, isSuccess };
 };
 
-export const setData = async (newData, prevData) => {
-    let isSuccess = null;
-
-    console.log(prevData);
-
+export const setData = (newData, prevData) => {
     if (newData) {
-        const newData = [ ...prevData ];
-
-        console.log(newData);
+        let newList = [...prevData].concat(newData);
+        console.log(newList);
 
         const database = getDatabase(app);
-        set(ref(database, "/articles"), newData)
-            .then((isSuccess = true))
-            .catch((isSuccess = false));
+        set(ref(database, "/articles"), newList);
     }
-
-    return isSuccess;
 };
