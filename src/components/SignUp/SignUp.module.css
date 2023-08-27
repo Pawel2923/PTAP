@@ -6,6 +6,21 @@
 
 .main input {
   width: 90%;
+  border: 2px solid gray;
+  outline: none;
+  border-radius: 25px;
+  padding: 0.5rem;
+}
+
+.main input:focus-visible {
+  border-color: #3b9add;
+}
+
+.main input[type="search"]::-webkit-search-decoration,
+.main input[type="search"]::-webkit-search-cancel-button,
+.main input[type="search"]::-webkit-search-results-button,
+.main input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
 }
 
 .input-block {
@@ -14,17 +29,17 @@
   flex-direction: column;
 }
 
-.invalid {
-  border: 2px solid #e10e0e;
+.main .invalid {
+  border-color: #e10e0e;
   background-color: #fddddd;
 }
 
-.invalid:focus {
+.main .invalid:focus {
   border-color: #ff5500;
   background-color: #fbe8d2;
 }
 
-.error-text {
+.main .error-text {
   color: #FB7D7D;
 }
 
