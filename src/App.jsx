@@ -6,28 +6,26 @@ import {
   RouterProvider,
   Outlet,
 } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Wiki from "./components/Wiki/Wiki";
+import Home from "./pages/Home";
+import Wiki from "./pages/Wiki";
 import Intro from "./components/Wiki/Intro";
-import Console from "./components/Console/Console";
-import SignUp from "./components/SignUp/SignUp";
-import Error404 from "./components/Error/Error404";
-import Nav from "./components/Nav/Nav";
-import Footer from "./components/Footer/Footer";
+import Article from "./components/Wiki/Article";
+import Console from "./pages/Console";
+import SignUp from "./pages/Signup";
+import Error404 from "./pages/Error404";
 import SearchContext from "./store/search-context";
 import { Search } from "./components/Search/Search";
-import { StringToJSX } from "./StringToJSX";
 import { useGetData } from "./hooks/use-db";
 
 const DefaultPage = () => {
   const { isShown } = useContext(SearchContext);
 
-  return (<>
-    {isShown && <Search />}
-    <Nav />
-    <Outlet />
-    <Footer />
-  </>);
+  return (
+    <>
+      {isShown && <Search />}
+      <Outlet />
+    </>
+  );
 };
 
 const App = () => {
@@ -54,18 +52,7 @@ const App = () => {
               <Route
                 key={key}
                 path={item.address}
-                element={
-                  (item.content && item.name) && (
-                    <>
-                      <header>
-                        <h2>{item.name}</h2>
-                      </header>
-                      <div className="content">
-                        <StringToJSX domString={item.content} />
-                      </div>
-                    </>
-                  )
-                }
+                element={<Article item={item} />}
               />
             ))}
         </Route>
