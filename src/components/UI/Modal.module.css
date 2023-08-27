@@ -1,11 +1,6 @@
 .modal {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-rows: minmax(20px, 60px) 1fr;
-    grid-template-rows: minmax(20px, 60px) 1fr;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
     position: fixed;
     text-align: center;
     padding: 3rem;
@@ -23,6 +18,14 @@
     z-index: 15;
     border-radius: 25px;
     color: #fff;
+}
+
+.modal > *:first-child {
+    margin-bottom: 0.5rem;
+}
+
+.modal > *:not(:first-child, .close) {
+    margin-top: 1rem;
 }
 
 .backdrop {
