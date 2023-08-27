@@ -12,9 +12,10 @@ import { Link, useLocation } from "react-router-dom";
 import BackArrow from "../UI/BackArrow";
 import articleList from "../../data/ArticleList.json";
 import SearchContext from "../../store/search-context";
-import classes from "./Search.module.css";
 import PageContext from "../../store/page-context";
 import icons from "../../icons/symbol-defs.svg";
+import classes from "./Search.module.css";
+import inputClasses from "../UI/Input.module.css";
 
 export const Search = () => {
     const location = useLocation();
@@ -110,6 +111,7 @@ export const Search = () => {
                     <input
                         type="search"
                         ref={searchInput}
+                        className={inputClasses.input}
                         id="search"
                         value={searchTerm}
                         onInput={searchInputHandler}
