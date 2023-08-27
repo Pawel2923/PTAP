@@ -28,8 +28,6 @@ export const useGetData = () => {
 export const setData = (newData, prevData) => {
     if (newData) {
         let newList = [...prevData].concat(newData);
-        console.log(newList);
-
         const database = getDatabase(app);
         set(ref(database, "/articles"), newList);
     }
