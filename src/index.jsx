@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import AppRoutes from "./AppRoutes";
+import App from "./App";
 import PageProvider from "./store/PageProvider";
 import SearchProvider from "./store/SearchProvider";
 import "svgxuse";
@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <PageProvider>
       <SearchProvider>
-        <AppRoutes />
+        <App />
       </SearchProvider>
     </PageProvider>
   </React.StrictMode>
