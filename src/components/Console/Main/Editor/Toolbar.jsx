@@ -9,6 +9,7 @@ import toolbarClasses from "./Toolbar.module.css";
 import { Dropdown, DropdownOption } from "../../../UI/Dropdown";
 import Modal from "../../../UI/Modal";
 import { Button } from "../../../UI/Button";
+import Input from "../../../UI/Input";
 import ConsoleContext from "../../../../store/console-context";
 
 const defaultArticleInfo = { address: null, content: null, name: null, };
@@ -78,7 +79,9 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         }
     };
 
-    const saveChanges = () => {
+    const saveChanges = (ev) => {
+        ev.preventDefault();
+
         if (articleInfo) {
             setData(articleInfo, data);
         }
@@ -90,14 +93,16 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
             {showSave && (
                 <Modal title="Zapisywanie artykułu" setShowModal={setShowSave}>
                     <span>Zapisz wszystkie zmiany lub anuluj</span>
-                    <input type="text" name="address" placeholder="address" onChange={inputChangeHandler} />
-                    <input type="text" name="name" placeholder="name" onChange={inputChangeHandler} />
-                    <div className={toolbarClasses["modal-buttons"]}>
-                        <Button highlighted={false} onClick={closeModal}>
-                            Anuluj
-                        </Button>
-                        <Button onClick={saveChanges}>Zapisz</Button>
-                    </div>
+                    <form onSubmit={saveChanges} onReset={closeModal} className={toolbarClasses.form}>
+                        <Input type="text" name="address" placeholder="Adres do artykułu" onChange={inputChangeHandler} required={true}/>
+                        <Input type="text" name="name" placeholder="Nazwa artykułu" onChange={inputChangeHandler} required={true} />
+                        <div className={toolbarClasses["modal-buttons"]}>
+                            <Button type="submit" >Zapisz</Button>
+                            <Button type="reset" highlighted={false}>
+                                Anuluj
+                            </Button>
+                        </div>
+                    </form>
                 </Modal>
             )}
             <nav className={toolbarClasses.toolbar} style={toolbarStyles}>

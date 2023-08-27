@@ -17,11 +17,12 @@
     right: 0;
 }
 
+.form input:not(:first-child) {
+    margin-top: 0.5rem;
+}
+
 .modal-buttons {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    transform: translate(-1rem, -1rem);
+    margin-top: 1rem;
     display: flex;
     gap: 0.5rem;
 }
