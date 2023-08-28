@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Card from "../Card";
 
-const Home = ({ setMainHeader }) => {
+const Welcome = ({ setMainHeader }) => {
     useEffect(() => {
         setMainHeader("Przydatne narzędzia");
     }, [setMainHeader]);
@@ -28,8 +28,8 @@ const Home = ({ setMainHeader }) => {
     );
 };
 
-Home.propTypes = {
+Welcome.propTypes = {
     setMainHeader: PropTypes.func,
 };
 
-export default Home;
+export default Welcome;
