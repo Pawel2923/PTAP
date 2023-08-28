@@ -6,11 +6,13 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    width: 100%;
+    width: fit-content;
     height: 100vh;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     padding: 0.5rem;
-    z-index: 1;
+    z-index: 5;
 }
 
 .menu::before {
@@ -25,8 +27,36 @@
     z-index: -1;
 }
 
+.shrink-menu {
+    width: fit-content;
+}
+
+.shrink {
+    width: fit-content;
+    place-self: center;
+}
+
+.shrink *:first-child {
+    margin-right: 0 !important;
+}
+
+.bars {
+    width: fit-content;
+}
+
+.center-bars {
+    place-self: center;
+}
+
+.bars *:first-child {
+    margin: 0 !important;
+}
+
 @media screen and (min-width: 46.25em) {
     .menu {
         padding: 1rem;
+        position: relative;
+        width: 100%;
+        z-index: 1;
     }
 }

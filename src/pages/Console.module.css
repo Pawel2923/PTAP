@@ -19,4 +19,8 @@
   .console h2 {
     margin-bottom: 1.4rem;
   }
+
+  .shrink-menu {
+    grid-template-columns: min-content 1fr !important;
+  }
 }
