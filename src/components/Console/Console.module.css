@@ -1,6 +1,0 @@
-.container {
-  background: #3f3f3f;
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  max-height: 100vh;
-}

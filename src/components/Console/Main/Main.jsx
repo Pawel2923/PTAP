@@ -16,12 +16,12 @@ const Main = () => {
     }
 
     return (
-        <div className={classes.container}>
+        <main className={classes.main}>
             <header>
                 <h2>{mainHeader}</h2>
             </header>
-            <main className={classes.main}>{pageContent}</main>
-        </div>
+            <section>{pageContent}</section>
+        </main>
     );
 };
 

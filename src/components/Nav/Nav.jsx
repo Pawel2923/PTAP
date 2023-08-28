@@ -14,7 +14,7 @@ const Nav = memo(() => {
     setCurrentPage(ev.currentTarget.getAttribute("href"));
   };
 
-  let imageTitle = width >= 1000 ? "Pilot Training Arma Project" : "PTAP";
+  let imageTitle = width >= 1020 ? "Pilot Training Arma Project" : "PTAP";
 
   let navContent = (
     <>

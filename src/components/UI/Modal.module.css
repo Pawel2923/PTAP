@@ -25,6 +25,7 @@
   height: 100%;
   z-index: 14;
   background-color: #414141cb;
+  border-radius: 25px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }

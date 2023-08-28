@@ -72,6 +72,7 @@
     height: 100%;
     z-index: -1;
     background-color: #41414199;
+    border-radius: 10xp;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }

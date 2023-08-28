@@ -1,7 +1,22 @@
-.container {
-  position: relative;
-  background: #3f3f3f;
+.console {
   display: grid;
-  grid-template-columns: minmax(80px, 200px) 1fr;
+  grid-template-columns: min-content 1fr;
+  background: #3f3f3f;
+  position: relative;
+  max-width: 100vw;
   max-height: 100vh;
+}
+
+.console h2 {
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 46.25em) {
+  .console {
+    grid-template-columns: minmax(80px, 200px) 1fr;
+  }
+
+  .console h2 {
+    margin-bottom: 1.4rem;
+  }
 }
