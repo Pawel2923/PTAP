@@ -5,7 +5,7 @@ import classes from "./Dropdown.module.css";
 export const Dropdown = ({ title, className, children }) => {
     const dropdownRef = useRef(null);
     const [showMenu, setShowMenu] = useState(false);
-    const [dropdownStyle, setDropdownStyle] = useState({});
+    const [dropdownClasses, setDropdownClasses] = useState(classes.dropdown);
 
     useEffect(() => {
         /**
@@ -17,7 +17,7 @@ export const Dropdown = ({ title, className, children }) => {
                 !dropdownRef.current.contains(event.target)
             ) {
                 setShowMenu(false);
-                setDropdownStyle({});
+                setDropdownClasses(classes.dropdown);
             }
         }
         // Bind the event listener
@@ -31,19 +31,18 @@ export const Dropdown = ({ title, className, children }) => {
     const dropdownClickHandler = () => {
         setShowMenu((prevState) => {
             if (prevState) {
-                setDropdownStyle({});
+                setDropdownClasses(classes.dropdown);
                 return false;
             }
 
-            setDropdownStyle({ backgroundColor: "#343434" });
+            setDropdownClasses(`${classes.dropdown} ${classes.active}`);
             return true;
         });
     };
 
     return (
         <div
-            className={`${classes.dropdown} ${className}`}
-            style={dropdownStyle}
+            className={`${dropdownClasses} ${className}`}
             onClick={dropdownClickHandler}
             ref={dropdownRef}
         >
@@ -54,7 +53,7 @@ export const Dropdown = ({ title, className, children }) => {
 };
 
 Dropdown.propTypes = {
-    title: PropTypes.string,
+    title: PropTypes.any,
     className: PropTypes.string,
     children: PropTypes.any,
 };
@@ -72,9 +71,9 @@ export const DropdownOption = ({ id, onClick, disabled, children }) => {
         <button
             type="button"
             ref={buttonRef}
+            id={id}
             className={classes.option}
             onClick={onClick}
-            id={id}
         >
             {children}
         </button>
@@ -83,6 +82,7 @@ export const DropdownOption = ({ id, onClick, disabled, children }) => {
 
 DropdownOption.propTypes = {
     id: PropTypes.string,
+    orientation: PropTypes.string,
     onClick: PropTypes.func,
     disabled: PropTypes.bool,
     children: PropTypes.any,
