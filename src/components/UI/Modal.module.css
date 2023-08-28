@@ -30,6 +30,10 @@
   -webkit-backdrop-filter: blur(20px);
 }
 
+.modal > * {
+    z-index: inherit;
+}
+
 .modal > *:first-child {
     margin-bottom: 0.5rem;
 }
