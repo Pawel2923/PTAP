@@ -1,5 +1,5 @@
-import React, { useEffect, useState, forwardRef } from "react";
-import PropTypes, { string } from "prop-types";
+import { useEffect, useState, forwardRef } from "react";
+import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 
 const Input = forwardRef(({ type, placeholder, value, disabled, required, className, style, id, onInput }, ref) => {
@@ -7,7 +7,7 @@ const Input = forwardRef(({ type, placeholder, value, disabled, required, classN
 
     useEffect(() => {
         setInputValue(value);
-    }, []);
+    }, [value]);
 
     const changeHandler = (ev) => {
         ev.target.classList.remove(classes.invalid);
@@ -43,6 +43,8 @@ const Input = forwardRef(({ type, placeholder, value, disabled, required, classN
         onInput={onInput ? onInput : () => { }}
     />;
 });
+
+Input.displayName = Input;
 
 Input.propTypes = {
     type: PropTypes.string,
