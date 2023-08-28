@@ -6,7 +6,7 @@ import classes from "./Console.module.css";
 const Console = () => {
     return (
         <ConsoleProvider>
-            <div className={classes.overlay}>
+            <div className={classes.container}>
                 <Menu />
                 <Main />
             </div>

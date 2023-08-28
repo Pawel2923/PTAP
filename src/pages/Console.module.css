@@ -1,9 +1,7 @@
-.overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 3;
+.container {
+  position: relative;
   background: #3f3f3f;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: minmax(80px, 200px) 1fr;
   max-height: 100vh;
 }

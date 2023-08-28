@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import classes from "./Main.module.css";
 import ConsoleContext from "../../../store/console-context";
-import Home from "./Home/Home";
+import Welcome from "./Welcome/Welcome";
 import Editor from "./Editor/Editor";
 
 const Main = () => {
@@ -10,7 +10,7 @@ const Main = () => {
                 
     let pageContent = "";
     if (currentPage === "home") {
-        pageContent = <Home setMainHeader={setMainHeader} />;
+        pageContent = <Welcome setMainHeader={setMainHeader} />;
     } else if (currentPage === "editor") {
         pageContent = <Editor setMainHeader={setMainHeader} />;
     }

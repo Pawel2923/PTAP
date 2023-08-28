@@ -1,13 +1,22 @@
 .search {
-  background-color: #414141cb;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   position: fixed;
   z-index: 2;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.search::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #414141cb;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .search-container {
