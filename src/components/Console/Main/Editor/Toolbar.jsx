@@ -10,6 +10,7 @@ import { Button } from "../../../UI/Button";
 import Input from "../../../UI/Input";
 import PageContext from "../../../../store/page-context";
 import ConsoleContext from "../../../../store/console-context";
+import DropdownProvider from "../../../../store/DropdownProvider";
 import classes from "./Editor.module.css";
 
 const defaultArticleInfo = { address: null, content: null, name: null };
@@ -178,57 +179,59 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         {width > 800 ? (
           buttonList
         ) : (
-          <Dropdown
-            title={
-              <FontAwesomeIcon
-                icon={solid("bars")}
-                className={classes.option}
-              />
-            }
-          >
-            <DropdownNested
+          <DropdownProvider>
+            <Dropdown
               title={
-                <>
-                  Plik <FontAwesomeIcon icon={solid("arrow-right")} />
-                </>
+                <FontAwesomeIcon
+                  icon={solid("bars")}
+                  className={classes.option}
+                />
               }
             >
-              <DropdownOption
-                id="edit"
-                onClick={dropdownOptionClickHandler}
-                disabled={toolbarButtons.file.new.disabled}
+              <DropdownNested
+                title={
+                  <>
+                    Plik <FontAwesomeIcon icon={solid("arrow-right")} />
+                  </>
+                }
               >
-                Nowy
-              </DropdownOption>
-              <DropdownOption
-                id="edit"
-                onClick={dropdownOptionClickHandler}
-                disabled={toolbarButtons.file.open.disabled}
-              >
-                Otwórz
-              </DropdownOption>
-              <DropdownOption
-                id="save"
-                onClick={dropdownOptionClickHandler}
-                disabled={toolbarButtons.file.save.disabled}
-              >
-                Zapisz
-              </DropdownOption>
-              <DropdownOption disabled={toolbarButtons.file.import.disabled}>
-                Importuj
-              </DropdownOption>
-              <DropdownOption disabled={toolbarButtons.file.export.disabled}>
-                Eksportuj
-              </DropdownOption>
-              <DropdownOption
-                id="exit"
-                onClick={dropdownOptionClickHandler}
-                disabled={toolbarButtons.file.exit.disabled}
-              >
-                Wyjdź
-              </DropdownOption>
-            </DropdownNested>
-          </Dropdown>
+                <DropdownOption
+                  id="edit"
+                  onClick={dropdownOptionClickHandler}
+                  disabled={toolbarButtons.file.new.disabled}
+                >
+                  Nowy
+                </DropdownOption>
+                <DropdownOption
+                  id="edit"
+                  onClick={dropdownOptionClickHandler}
+                  disabled={toolbarButtons.file.open.disabled}
+                >
+                  Otwórz
+                </DropdownOption>
+                <DropdownOption
+                  id="save"
+                  onClick={dropdownOptionClickHandler}
+                  disabled={toolbarButtons.file.save.disabled}
+                >
+                  Zapisz
+                </DropdownOption>
+                <DropdownOption disabled={toolbarButtons.file.import.disabled}>
+                  Importuj
+                </DropdownOption>
+                <DropdownOption disabled={toolbarButtons.file.export.disabled}>
+                  Eksportuj
+                </DropdownOption>
+                <DropdownOption
+                  id="exit"
+                  onClick={dropdownOptionClickHandler}
+                  disabled={toolbarButtons.file.exit.disabled}
+                >
+                  Wyjdź
+                </DropdownOption>
+              </DropdownNested>
+            </Dropdown>
+          </DropdownProvider>
         )}
         <button
           type="button"

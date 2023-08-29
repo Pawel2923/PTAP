@@ -4,10 +4,8 @@
     -webkit-tap-highlight-color: transparent !important;
 }
 
-.menu {
+.menu, .menu-horizontal {
     position: absolute;
-    top: 100%;
-    left: 0;
     background-color: #282828;
     width: -webkit-fit-content;
     width: -moz-fit-content;
@@ -15,8 +13,20 @@
     height: auto;
     border: 1px solid #3f3f3f;
     border-radius: 15px;
+}
+
+.menu {
+    top: 100%;
+    left: 0;
     -webkit-animation: slideFromTop 0.3s ease-out forwards;
     animation: slideFromTop 0.3s ease-out forwards;
+}
+
+.menu-horizontal {
+    top: 0;
+    left: 100%;
+    -webkit-animation: slideFromLeft 0.3s ease-out forwards;
+    animation: slideFromLeft 0.3s ease-out forwards;
 }
 
 .active svg {
@@ -58,8 +68,35 @@
     cursor: default;
 }
 
+.option-horizontral:active {
+    background-color: #343434;
+}
+
 .option:disabled:active {
     background-color: transparent;
+}
+
+.option-horizontral span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.option-disabled {
+    color: #888888;
+}
+
+.option-disabled:hover,
+.option-disabled:active {
+    background-color: transparent;
+    cursor: default;
+}
+
+@media screen and (min-width: 50em) {
+    .active {
+        background-color: #343434;
+    }
 }
 
 @-webkit-keyframes slideFromTop {
@@ -84,8 +121,24 @@
     }
 }
 
-@media screen and (min-width: 50em) {
-    .active {
-        background-color: #343434;
+@-webkit-keyframes slideFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-15%);
+    }
+    100% {
+        opacity: 1;
+        transition: translateX(0);
+    }
+}
+
+@keyframes slideFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-15%);
+    }
+    100% {
+        opacity: 1;
+        transition: translateX(0);
     }
 }
