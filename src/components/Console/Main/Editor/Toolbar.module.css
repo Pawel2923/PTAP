@@ -4,8 +4,12 @@
     background-color: #282828;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .toolbar > * {
@@ -23,6 +27,8 @@
 
 .modal-buttons {
     margin-top: 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     gap: 0.5rem;
 }

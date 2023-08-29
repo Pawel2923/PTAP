@@ -9,7 +9,9 @@
         -webkit-transform 50ms ease-out;
     transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
     -o-transition: transform 50ms ease-out, background-color 50ms ease-out;
+    -webkit-transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
     transition: transform 50ms ease-out, background-color 50ms ease-out;
+    transition: transform 50ms ease-out, background-color 50ms ease-out, -webkit-transform 50ms ease-out;
     transition: transform 50ms ease-out, background-color 50ms ease-out,
         -webkit-transform 50ms ease-out;
 }

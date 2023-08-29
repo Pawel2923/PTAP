@@ -1,5 +1,9 @@
 .console {
+  display: -ms-grid;
   display: grid;
+  -ms-grid-columns: -webkit-min-content 1fr;
+  -ms-grid-columns: min-content 1fr;
+  grid-template-columns: -webkit-min-content 1fr;
   grid-template-columns: min-content 1fr;
   background: #3f3f3f;
   position: relative;
@@ -13,6 +17,7 @@
 
 @media screen and (min-width: 46.25em) {
   .console {
+    -ms-grid-columns: minmax(80px, 200px) 1fr;
     grid-template-columns: minmax(80px, 200px) 1fr;
   }
 
@@ -21,6 +26,9 @@
   }
 
   .shrink-menu {
+    -ms-grid-columns: -webkit-min-content 1fr !important;
+    -ms-grid-columns: min-content 1fr !important;
+    grid-template-columns: -webkit-min-content 1fr !important;
     grid-template-columns: min-content 1fr !important;
   }
 }

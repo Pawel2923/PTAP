@@ -92,7 +92,11 @@
     -ms-flex-pack: center;
     justify-content: center;
     border-radius: 25px;
+    -webkit-transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+    transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+    -o-transition: background-color 50ms ease-out, transform 50ms ease-out;
     transition: background-color 50ms ease-out, transform 50ms ease-out;
+    transition: background-color 50ms ease-out, transform 50ms ease-out, -webkit-transform 50ms ease-out;
 }
 
 .nav a:hover {
@@ -101,7 +105,8 @@
 
 .nav a:active {
     background-color: #444444;
-    transform: scale3d(0.9, 0.9, 0.9);
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+            transform: scale3d(0.9, 0.9, 0.9);
 }
 
 .nav > a {

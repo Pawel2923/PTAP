@@ -1,4 +1,6 @@
 .code {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   min-height: 100%;

@@ -3,8 +3,12 @@
   font-size: 1.4em;
   margin-left: 1rem;
   margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media screen and (min-width: 46.25em) {
@@ -19,6 +23,8 @@
   }
 
   .back > * {
+    -webkit-transition: color 50ms ease-out;
+    -o-transition: color 50ms ease-out;
     transition: color 50ms ease-out;
   }
 

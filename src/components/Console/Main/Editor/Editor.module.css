@@ -4,8 +4,13 @@
     height: 100%;
     background-color: #363636;
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 
 .option {
@@ -16,7 +21,11 @@
     border-radius: 25px;
     outline: none;
     cursor: pointer;
+    -webkit-transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+    transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+    -o-transition: transform 50ms ease-out, background-color 50ms ease-out;
     transition: transform 50ms ease-out, background-color 50ms ease-out;
+    transition: transform 50ms ease-out, background-color 50ms ease-out, -webkit-transform 50ms ease-out;
 }
 
 .option:first-child {
@@ -28,7 +37,8 @@
 }
 
 .toolbar-fullscreen:active {
-    transform: scale3d(0.9, 0.9, 0.9);
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+            transform: scale3d(0.9, 0.9, 0.9);
 }
 
 .option:focus-visible {

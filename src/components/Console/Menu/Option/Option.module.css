@@ -6,13 +6,20 @@
   margin-top: 0.5rem;
   position: relative;
   background: transparent;
+  -webkit-transition: -webkit-transform 50ms ease-out;
+  transition: -webkit-transform 50ms ease-out;
+  -o-transition: transform 50ms ease-out;
   transition: transform 50ms ease-out;
+  transition: transform 50ms ease-out, -webkit-transform 50ms ease-out;
+  -ms-grid-row-align: center;
+  -ms-grid-column-align: center;
   place-self: center;
   width: 100%;
 }
 
 .option:active {
-  transform: scale3d(0.9, 0.9, 0.9);
+  -webkit-transform: scale3d(0.9, 0.9, 0.9);
+          transform: scale3d(0.9, 0.9, 0.9);
 }
 
 .option:first-child {
@@ -35,12 +42,17 @@
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   z-index: -1;
+  -webkit-transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+  transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+  -o-transition: transform 50ms ease-out, background-color 50ms ease-out;
   transition: transform 50ms ease-out, background-color 50ms ease-out;
+  transition: transform 50ms ease-out, background-color 50ms ease-out, -webkit-transform 50ms ease-out;
 }
 
 .option:active::before {
   background-color: #777;
-  transform: scale3d(0.9, 0.9, 0.9);
+  -webkit-transform: scale3d(0.9, 0.9, 0.9);
+          transform: scale3d(0.9, 0.9, 0.9);
 }
 
 .option:focus-visible::before {
