@@ -31,24 +31,7 @@
     width: fit-content;
 }
 
-.shrink {
-    width: fit-content;
-    place-self: center;
-}
-
-.shrink *:first-child {
-    margin-right: 0 !important;
-}
-
-.bars {
-    width: fit-content;
-}
-
-.center-bars {
-    place-self: center;
-}
-
-.bars *:first-child {
+.shrink * {
     margin: 0 !important;
 }
 

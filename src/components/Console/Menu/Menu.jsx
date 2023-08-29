@@ -65,11 +65,12 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
   return (
     <nav className={`${classes.menu} ${!expandMenu ? classes["shrink-menu"] : ""}`} ref={menuRef}>
       <Option
-        className={`${optionClasses} ${classes.bars} ${!expandMenu ? classes["center-bars"] : ""}`}
+        className={`${optionClasses}`}
         title={barsTitle}
         onClick={barsClickHandler}
       >
         <FontAwesomeIcon icon={solid("bars")} />
+        {expandMenu && <span> Menu</span>}
       </Option>
       <Option
         id="home"
