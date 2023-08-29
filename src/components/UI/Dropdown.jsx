@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import DropdownContext from "../../store/dropdown-context-";
 import classes from "./Dropdown.module.css";
 
-export const Dropdown = ({ title, className, orientation, children }) => {
+export const Dropdown = ({ title, className, children }) => {
   const { isMenuShown, setIsMenuShown } = useContext(DropdownContext);
   const dropdownRef = useRef(null);
   const [dropdownClasses, setDropdownClasses] = useState(classes.dropdown);
@@ -36,9 +36,7 @@ export const Dropdown = ({ title, className, orientation, children }) => {
 
   return (
     <div
-      className={`${dropdownClasses} ${className ? className : ""} ${
-        orientation === "horizontal" ? classes["d"] : ""
-      }`}
+      className={`${dropdownClasses} ${className ? className : ""}`}
       ref={dropdownRef}
     >
       <span onClick={dropdownClickHandler}>{title}</span>
@@ -50,7 +48,6 @@ export const Dropdown = ({ title, className, orientation, children }) => {
 Dropdown.propTypes = {
   title: PropTypes.any,
   className: PropTypes.string,
-  orientation: PropTypes.string,
   children: PropTypes.any,
 };
 
@@ -107,8 +104,18 @@ export const DropdownOption = ({ id, onClick, disabled, children }) => {
     }
   }, [disabled]);
 
-  const optionClickHandler = () => {
+  const optionMouseUpHandler = (ev) => {
     setIsMenuShown(false);
+    if (onClick) {
+        onClick(ev);
+    }
+  };
+
+  const optionTouchEndHandler = (ev) => {
+    setIsMenuShown(false);
+    if (onClick) {
+        onClick(ev);
+    }
   };
 
   return (
@@ -117,10 +124,8 @@ export const DropdownOption = ({ id, onClick, disabled, children }) => {
       ref={buttonRef}
       id={id}
       className={classes.option}
-      onClick={(ev) => {
-        optionClickHandler();
-        onClick(ev);
-      }}
+      onMouseUp={optionMouseUpHandler}
+      onTouchEnd={optionTouchEndHandler}
     >
       {children}
     </button>

@@ -89,56 +89,42 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     closeModal();
   };
 
-  const buttonList = (
+  const fileButtonList = (
     <>
-      <Dropdown title="Plik" className={classes.option}>
-        <DropdownOption
-          id="edit"
-          onClick={dropdownOptionClickHandler}
-          disabled={toolbarButtons.file.new.disabled}
-        >
-          Nowy
-        </DropdownOption>
-        <DropdownOption
-          id="edit"
-          onClick={dropdownOptionClickHandler}
-          disabled={toolbarButtons.file.open.disabled}
-        >
-          Otwórz
-        </DropdownOption>
-        <DropdownOption
-          id="save"
-          onClick={dropdownOptionClickHandler}
-          disabled={toolbarButtons.file.save.disabled}
-        >
-          Zapisz
-        </DropdownOption>
-        <DropdownOption disabled={toolbarButtons.file.import.disabled}>
-          Importuj
-        </DropdownOption>
-        <DropdownOption disabled={toolbarButtons.file.export.disabled}>
-          Eksportuj
-        </DropdownOption>
-        <DropdownOption
-          id="exit"
-          onClick={dropdownOptionClickHandler}
-          disabled={toolbarButtons.file.exit.disabled}
-        >
-          Wyjdź
-        </DropdownOption>
-      </Dropdown>
-      <button type="button" className={classes.option}>
-        Edytuj
-      </button>
-      <button type="button" className={classes.option}>
-        Zaznaczenie
-      </button>
-      <button type="button" className={classes.option}>
-        Widok
-      </button>
-      <button type="button" className={classes.option}>
-        Podgląd
-      </button>
+      <DropdownOption
+        id="edit"
+        onClick={dropdownOptionClickHandler}
+        disabled={toolbarButtons.file.new.disabled}
+      >
+        Nowy
+      </DropdownOption>
+      <DropdownOption
+        id="edit"
+        onClick={dropdownOptionClickHandler}
+        disabled={toolbarButtons.file.open.disabled}
+      >
+        Otwórz
+      </DropdownOption>
+      <DropdownOption
+        id="save"
+        onClick={dropdownOptionClickHandler}
+        disabled={toolbarButtons.file.save.disabled}
+      >
+        Zapisz
+      </DropdownOption>
+      <DropdownOption disabled={toolbarButtons.file.import.disabled}>
+        Importuj
+      </DropdownOption>
+      <DropdownOption disabled={toolbarButtons.file.export.disabled}>
+        Eksportuj
+      </DropdownOption>
+      <DropdownOption
+        id="exit"
+        onClick={dropdownOptionClickHandler}
+        disabled={toolbarButtons.file.exit.disabled}
+      >
+        Wyjdź
+      </DropdownOption>
     </>
   );
 
@@ -175,11 +161,27 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
           </form>
         </Modal>
       )}
-      <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
-        {width > 800 ? (
-          buttonList
-        ) : (
-          <DropdownProvider>
+      <DropdownProvider>
+        <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
+          {width > 800 ? (
+            <>
+              <Dropdown title="Plik" className={classes.option}>
+                {fileButtonList}
+              </Dropdown>
+              <button type="button" className={classes.option}>
+                Edytuj
+              </button>
+              <button type="button" className={classes.option}>
+                Zaznaczenie
+              </button>
+              <button type="button" className={classes.option}>
+                Widok
+              </button>
+              <button type="button" className={classes.option}>
+                Podgląd
+              </button>
+            </>
+          ) : (
             <Dropdown
               title={
                 <FontAwesomeIcon
@@ -195,55 +197,34 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
                   </>
                 }
               >
-                <DropdownOption
-                  id="edit"
-                  onClick={dropdownOptionClickHandler}
-                  disabled={toolbarButtons.file.new.disabled}
-                >
-                  Nowy
-                </DropdownOption>
-                <DropdownOption
-                  id="edit"
-                  onClick={dropdownOptionClickHandler}
-                  disabled={toolbarButtons.file.open.disabled}
-                >
-                  Otwórz
-                </DropdownOption>
-                <DropdownOption
-                  id="save"
-                  onClick={dropdownOptionClickHandler}
-                  disabled={toolbarButtons.file.save.disabled}
-                >
-                  Zapisz
-                </DropdownOption>
-                <DropdownOption disabled={toolbarButtons.file.import.disabled}>
-                  Importuj
-                </DropdownOption>
-                <DropdownOption disabled={toolbarButtons.file.export.disabled}>
-                  Eksportuj
-                </DropdownOption>
-                <DropdownOption
-                  id="exit"
-                  onClick={dropdownOptionClickHandler}
-                  disabled={toolbarButtons.file.exit.disabled}
-                >
-                  Wyjdź
-                </DropdownOption>
+                {fileButtonList}
               </DropdownNested>
+              <DropdownOption>
+                Edytuj
+              </DropdownOption>
+              <DropdownOption>
+                Zaznaczenie
+              </DropdownOption>
+              <DropdownOption>
+                Widok
+              </DropdownOption>
+              <DropdownOption>
+                Podgląd
+              </DropdownOption>
             </Dropdown>
-          </DropdownProvider>
-        )}
-        <button
-          type="button"
-          className={`${toolbarClasses["toolbar-fullscreen"]} ${classes.option}`}
-          title={!fullscreen ? "Pełny ekran" : "Zamknij pełny ekran"}
-          onClick={fullscreenClickHandler}
-        >
-          <FontAwesomeIcon
-            icon={!fullscreen ? solid("maximize") : solid("minimize")}
-          />
-        </button>
-      </nav>
+          )}
+          <button
+            type="button"
+            className={`${toolbarClasses["toolbar-fullscreen"]} ${classes.option}`}
+            title={!fullscreen ? "Pełny ekran" : "Zamknij pełny ekran"}
+            onClick={fullscreenClickHandler}
+          >
+            <FontAwesomeIcon
+              icon={!fullscreen ? solid("maximize") : solid("minimize")}
+            />
+          </button>
+        </nav>
+      </DropdownProvider>
     </>
   );
 };
