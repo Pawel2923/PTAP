@@ -84,10 +84,9 @@ export const Search = () => {
         setCurrentPage(location.pathname);
     };
 
-    const linkClickHandler = (ev) => {
+    const linkClickHandler = () => {
         setSearchTerm("");
         setIsShown(false);
-        setCurrentPage(ev.currentTarget.getAttribute("href"));
     };
 
     const keyDownHandler = (ev) => {

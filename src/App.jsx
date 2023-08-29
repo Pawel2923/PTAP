@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
   Outlet,
+  useLocation,
 } from "react-router-dom";
+import Nav from "./components/Nav/Nav";
 import Home from "./pages/Home";
 import Wiki from "./pages/Wiki";
 import Intro from "./components/Wiki/Intro";
@@ -16,12 +18,22 @@ import Error404 from "./pages/Error404";
 import SearchContext from "./store/search-context";
 import { Search } from "./components/Search/Search";
 import { useGetData } from "./hooks/use-db";
+import PageContext from "./store/page-context";
 
 const DefaultPage = () => {
+  const location = useLocation();
+  const { currentPage, setCurrentPage } = useContext(PageContext);
   const { isShown } = useContext(SearchContext);
+
+  useEffect(() => {
+    if (currentPage !== location.pathname && !isShown) {
+      setCurrentPage(location.pathname);
+    }
+  }, [location, currentPage, isShown, setCurrentPage]);
 
   return (
     <>
+      {currentPage !== "/console" && <Nav />}
       {isShown && <Search />}
       <Outlet />
     </>

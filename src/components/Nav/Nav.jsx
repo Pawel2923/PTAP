@@ -8,17 +8,13 @@ import ptapLogo from "../../img/logo.webp";
 import classes from "./Nav.module.css";
 
 const Nav = memo(() => {
-  const { width, setCurrentPage } = useContext(PageContext);
-
-  const linkClickHandler = (ev) => {
-    setCurrentPage(ev.currentTarget.getAttribute("href"));
-  };
+  const { width } = useContext(PageContext);
 
   let imageTitle = width >= 1020 ? "Pilot Training Arma Project" : "PTAP";
 
   let navContent = (
     <>
-      <Link to="/" title="Przejdź na stronę główną" onClick={linkClickHandler}>
+      <Link to="/" title="Przejdź na stronę główną">
         <img
           src={ptapLogo}
           alt="logo"
@@ -27,17 +23,17 @@ const Nav = memo(() => {
       </Link>
       <ul>
         <li>
-          <NavLink to="/" onClick={linkClickHandler}>
+          <NavLink to="/">
             Strona główna
           </NavLink>
         </li>
         <li>
-          <NavLink to="/wiki" onClick={linkClickHandler}>
+          <NavLink to="/wiki">
             Wiki
           </NavLink>
         </li>
         <li>
-          <NavLink to="/rejestracja" onClick={linkClickHandler}>
+          <NavLink to="/rejestracja">
             Zapisz się
           </NavLink>
         </li>

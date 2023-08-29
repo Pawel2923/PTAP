@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
 
-import Nav from "../components/Nav/Nav";
 import Footer from "../components/Footer/Footer"
 import BackArrow from "../components/UI/BackArrow";
 
@@ -11,7 +10,6 @@ const Wiki = () => {
 
     return (
         <>
-            <Nav />
             {locationCheck ? <BackArrow /> : ""}
             <main>
                 <section className="section">

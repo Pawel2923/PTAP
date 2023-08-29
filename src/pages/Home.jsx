@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import Nav from "../components/Nav/Nav";
 import Footer from "../components/Footer/Footer";
 import Video from "../components/UI/Video";
 import { ButtonLink } from "../components/UI/Button";
@@ -13,7 +12,6 @@ const Main = () => {
 
     return (
         <>
-            <Nav />
             <main>
                 <section className={`section ${classes["index-banner"]}`}>
                     <header>
