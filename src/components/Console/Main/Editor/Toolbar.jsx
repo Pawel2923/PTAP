@@ -34,7 +34,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
       setEditorStyles({
         position: "fixed",
         inset: 0,
-        zIndex: 5,
+        zIndex: 50,
         borderRadius: "unset",
       });
     } else {
