@@ -21,7 +21,7 @@
     height: 100%;
     position: absolute;
     inset: 0;
-    background-color: #363636cb;
+    background-color: #36363685;
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     z-index: -1;

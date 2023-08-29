@@ -38,6 +38,11 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
   };
 
   const optionClickHandler = (ev) => {
+    if (width <= 740) {
+      setExpandMenu(false);
+      setIsMenuExpanded(false);
+    }
+
     if (currentPage !== ev.currentTarget.id) {
       setCurrentPage(ev.currentTarget.id);
       sessionStorage.setItem("currentPage", ev.currentTarget.id);
