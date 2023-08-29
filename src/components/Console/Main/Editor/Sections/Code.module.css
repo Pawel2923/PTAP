@@ -1,64 +1,69 @@
 .code {
-    display: inline-flex;
-    width: 100%;
-    min-height: 100%;
-    gap: 10px;
-    line-height: 20px;
-    border-radius: 2px;
-    padding: 20px 10px;
+  display: inline-flex;
+  width: 100%;
+  min-height: 100%;
+  gap: 10px;
+  line-height: 20px;
+  border-radius: 2px;
+  padding: 20px 10px;
 }
 
 .line-numbers {
-    height: 100%;
-    margin-right: 0.5rem;
-    text-align: right;
+  height: 100%;
+  margin-right: 0.5rem;
+  text-align: right;
 }
 
 .line-numbers span {
-    counter-increment: linenumber;
+  counter-increment: linenumber;
 }
 
 .line-numbers span::before {
-    content: counter(linenumber);
-    display: block;
-    height: 20px;
-    color: #666;
+  content: counter(linenumber);
+  display: block;
+  height: 20px;
+  color: #666;
 }
 
 .content {
-    position: relative;
-    width: 100%;
-    min-height: 100%;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
 }
 
 .code textarea {
-    overflow-y: hidden;
-    padding: 0;
-    margin: 0;
-    border-radius: 0.3em;
-    border: 0;
-    outline: none;
-    font-size: 1em;
-    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-    line-height: 20px;
-    background: transparent;
-    color: transparent;
-    caret-color: #fff;
-    resize: none;
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-    -webkit-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
-    width: 100%;
-    min-height: 100%;
-    z-index: 1;
+  overflow-y: hidden;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: #fff;
+  resize: none;
+  width: 100%;
+  min-height: 100%;
+  z-index: 1;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 20px;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0.3em;
 }
 
 .code textarea,
 .code pre {
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

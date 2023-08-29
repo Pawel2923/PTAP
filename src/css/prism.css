@@ -20,6 +20,7 @@ pre[class*="language-"] {
     -ms-hyphens: none;
     hyphens: none;
     z-index: 0;
+    display: block;
 }
 pre[class*="language-"] {
     padding: 0;
