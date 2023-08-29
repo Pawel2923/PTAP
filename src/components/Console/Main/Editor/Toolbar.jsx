@@ -4,7 +4,7 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useGetData, setData } from "../../../../hooks/use-db";
 import PropTypes from "prop-types";
 import toolbarClasses from "./Toolbar.module.css";
-import { Dropdown, DropdownOption } from "../../../UI/Dropdown";
+import { Dropdown, DropdownOption, DropdownNested } from "../../../UI/Dropdown";
 import Modal from "../../../UI/Modal";
 import { Button } from "../../../UI/Button";
 import Input from "../../../UI/Input";
@@ -186,14 +186,48 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
               />
             }
           >
-            <DropdownOption
-              id="edit"
-              orientation="horizontal"
-              onClick={dropdownOptionClickHandler}
-              disabled={toolbarButtons.file.open.disabled}
+            <DropdownNested
+              title={
+                <>
+                  Plik <FontAwesomeIcon icon={solid("arrow-right")} />
+                </>
+              }
             >
-              Otwórz
-            </DropdownOption>
+              <DropdownOption
+                id="edit"
+                onClick={dropdownOptionClickHandler}
+                disabled={toolbarButtons.file.new.disabled}
+              >
+                Nowy
+              </DropdownOption>
+              <DropdownOption
+                id="edit"
+                onClick={dropdownOptionClickHandler}
+                disabled={toolbarButtons.file.open.disabled}
+              >
+                Otwórz
+              </DropdownOption>
+              <DropdownOption
+                id="save"
+                onClick={dropdownOptionClickHandler}
+                disabled={toolbarButtons.file.save.disabled}
+              >
+                Zapisz
+              </DropdownOption>
+              <DropdownOption disabled={toolbarButtons.file.import.disabled}>
+                Importuj
+              </DropdownOption>
+              <DropdownOption disabled={toolbarButtons.file.export.disabled}>
+                Eksportuj
+              </DropdownOption>
+              <DropdownOption
+                id="exit"
+                onClick={dropdownOptionClickHandler}
+                disabled={toolbarButtons.file.exit.disabled}
+              >
+                Wyjdź
+              </DropdownOption>
+            </DropdownNested>
           </Dropdown>
         )}
         <button

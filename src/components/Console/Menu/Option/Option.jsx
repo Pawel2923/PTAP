@@ -9,7 +9,7 @@ const Option = ({ className, onClick, id, title, children }) => {
   return (
     <button
       type="button"
-      className={`${className && className} ${classes.option} ${currentPage === id && classes.highlight}`}
+      className={`${className ? className : ""} ${classes.option} ${currentPage === id ? classes.highlight : ""}`}
       onClick={onClick}
       id={id}
       title={title ? title : ""}

@@ -21,7 +21,7 @@ const Console = () => {
   return (
     <ConsoleProvider>
       <div
-        className={`${!isMenuExpanded && classes["shrink-menu"]} ${
+        className={`${!isMenuExpanded ? classes["shrink-menu"] : ""} ${
           classes.console
         }`}
       >

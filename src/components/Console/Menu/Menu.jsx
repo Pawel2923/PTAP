@@ -63,9 +63,9 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
   const barsTitle = expandMenu ? "Zmniejsz menu" : "Poszerz menu";
 
   return (
-    <nav className={`${classes.menu} ${!expandMenu && classes["shrink-menu"]}`} ref={menuRef}>
+    <nav className={`${classes.menu} ${!expandMenu ? classes["shrink-menu"] : ""}`} ref={menuRef}>
       <Option
-        className={`${optionClasses} ${classes.bars} ${!expandMenu && classes["center-bars"]}`}
+        className={`${optionClasses} ${classes.bars} ${!expandMenu ? classes["center-bars"] : ""}`}
         title={barsTitle}
         onClick={barsClickHandler}
       >
