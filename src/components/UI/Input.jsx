@@ -2,7 +2,7 @@ import { useEffect, useState, forwardRef } from "react";
 import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 
-const Input = forwardRef(({ type, placeholder, value, disabled, required, className, style, id, onInput }, ref) => {
+const Input = forwardRef(({ type, placeholder, value, disabled, required, className, style, id, onInput, onChange }, ref) => {
     const [inputValue, setInputValue] = useState(value);
 
     useEffect(() => {
@@ -12,6 +12,7 @@ const Input = forwardRef(({ type, placeholder, value, disabled, required, classN
     const changeHandler = (ev) => {
         ev.target.classList.remove(classes.invalid);
         setInputValue(value);
+        onChange && onChange(ev);
     };
 
     const invalidHandler = (ev) => {
@@ -56,6 +57,7 @@ Input.propTypes = {
     style: PropTypes.any,
     id: PropTypes.string,
     onInput: PropTypes.func,
+    onChange: PropTypes.func,
 };
 
 export default Input;
