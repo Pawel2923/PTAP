@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useEffect, useReducer } from "react";
 import PropTypes from "prop-types";
 
 import ConsoleContext from "./console-context";
@@ -32,9 +32,15 @@ const ConsoleProvider = ({ children }) => {
     const defaultPage = sessionStorage.getItem("currentPage")
         ? sessionStorage.getItem("currentPage")
         : "home";
+    const defaultEditorContent = sessionStorage.getItem("editorContent")
+        ? sessionStorage.getItem("editorContent")
+        : "home";
+    const defaultArticleCode = sessionStorage.getItem("articleCode")
+        ? sessionStorage.getItem("articleCode")
+        : "";
     const [currentPage, setCurrentPage] = useState(defaultPage);
-    const [editorContent, setEditorContent] = useState("home");
-    const [articleCode, setArticleCode] = useState("");
+    const [editorContent, setEditorContent] = useState(defaultEditorContent);
+    const [articleCode, setArticleCode] = useState(defaultArticleCode);
     const [toolbarButtons, dispatchToolbarButtons] = useReducer(
         toolbarButtonsReducer,
         defaultToolbarBtnProperties
@@ -49,6 +55,26 @@ const ConsoleProvider = ({ children }) => {
         setArticleCode,
         dispatchToolbarButtons,
     };
+
+    useEffect(() => {
+        sessionStorage.setItem("currentPage", currentPage);
+    }, [currentPage]);
+
+    useEffect(() => {
+        if (currentPage === "editor") {
+            sessionStorage.setItem("editorContent", editorContent);
+        } else {
+            sessionStorage.removeItem("editorContent");
+        }
+    }, [editorContent, currentPage]);
+
+    useEffect(() => {
+        if (currentPage === "editor" && editorContent === "edit") {
+            sessionStorage.setItem("articleCode", articleCode);
+        } else {
+            sessionStorage.removeItem("articleCode");
+        }
+    }, [articleCode, currentPage, editorContent]);
 
     return (
         <ConsoleContext.Provider value={value}>

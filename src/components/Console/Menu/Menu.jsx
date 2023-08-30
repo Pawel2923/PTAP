@@ -45,7 +45,6 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
 
     if (currentPage !== ev.currentTarget.id) {
       setCurrentPage(ev.currentTarget.id);
-      sessionStorage.setItem("currentPage", ev.currentTarget.id);
     }
 
     if (currentPage !== "editor") {
@@ -55,7 +54,6 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
 
   const exitClickHandler = () => {
     setCurrentPage("home");
-    sessionStorage.setItem("currentPage", "home");
     navigate("/");
   };
 
