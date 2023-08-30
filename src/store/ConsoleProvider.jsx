@@ -45,6 +45,33 @@ const ConsoleProvider = ({ children }) => {
         toolbarButtonsReducer,
         defaultToolbarBtnProperties
     );
+    
+    const disableToolbarButtons = (mainButton, subButtons) => {
+        const newState = true;
+
+        dispatchToolbarButtons({
+            type: "DISABLE",
+            mainButton,
+            subButtons,
+            newState,
+        });
+
+        return newState;
+      };
+    
+      const enableToolbarButtons = (mainButton, subButtons) => {
+        const newState = false;
+
+        dispatchToolbarButtons({
+            type: "DISABLE",
+            mainButton,
+            subButtons,
+            newState,
+        });
+
+        return newState;
+      };
+
     const value = {
         currentPage,
         editorContent,
@@ -54,6 +81,8 @@ const ConsoleProvider = ({ children }) => {
         setEditorContent,
         setArticleCode,
         dispatchToolbarButtons,
+        disableToolbarButtons,
+        enableToolbarButtons,
     };
 
     useEffect(() => {
@@ -63,8 +92,13 @@ const ConsoleProvider = ({ children }) => {
     useEffect(() => {
         if (currentPage === "editor") {
             sessionStorage.setItem("editorContent", editorContent);
+            
+            if (editorContent !== "home") {
+                enableToolbarButtons("file", ["exit", "save", "export"]);
+            }
         } else {
             sessionStorage.removeItem("editorContent");
+            setEditorContent("home");
         }
     }, [editorContent, currentPage]);
 
@@ -73,6 +107,7 @@ const ConsoleProvider = ({ children }) => {
             sessionStorage.setItem("articleCode", articleCode);
         } else {
             sessionStorage.removeItem("articleCode");
+            setArticleCode("");
         }
     }, [articleCode, currentPage, editorContent]);
 

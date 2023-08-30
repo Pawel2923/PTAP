@@ -13,7 +13,7 @@ import classes from "./Editor.module.css";
 
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
   const { width, fullscreen, setFullscreen } = useContext(PageContext);
-  const { toolbarButtons, dispatchToolbarButtons } = useContext(ConsoleContext);
+  const { toolbarButtons, setArticleCode, enableToolbarButtons, disableToolbarButtons } = useContext(ConsoleContext);
   const [showSave, setShowSave] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
   const [toolbarStyles, setToolbarStyles] = useState({});
@@ -41,24 +41,18 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
   const dropdownOptionClickHandler = (ev) => {
     if (ev.currentTarget.id === "exit") {
       setEditorContent("home");
-      dispatchToolbarButtons({
-        type: "DISABLE",
-        mainButton: "file",
-        subButtons: ["exit", "save", "export"],
-        newState: true,
-      });
+      disableToolbarButtons("file", ["exit", "save", "export"]);
+    } else if (ev.currentTarget.id === "edit") {
+      setArticleCode("");
+      setEditorContent("edit");
+      enableToolbarButtons("file", ["exit", "save", "export"]);
     } else if (ev.currentTarget.id === "save") {
       setShowSave(true);
     } else if (ev.currentTarget.id === "open") {
       setShowOpen(true);
     } else {
       setEditorContent(ev.currentTarget.id);
-      dispatchToolbarButtons({
-        type: "DISABLE",
-        mainButton: "file",
-        subButtons: ["exit", "save", "export"],
-        newState: false,
-      });
+      enableToolbarButtons("file", ["exit", "save", "export"]);
     }
   };
 
