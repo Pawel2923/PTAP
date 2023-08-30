@@ -1,28 +1,20 @@
 import { useContext, useState } from "react";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { useGetData, setData } from "../../../../hooks/use-db";
-import PropTypes from "prop-types";
 import toolbarClasses from "./Toolbar.module.css";
 import { Dropdown, DropdownOption, DropdownNested } from "../../../UI/Dropdown";
-import Modal from "../../../UI/Modal";
-import { Button } from "../../../UI/Button";
-import Input from "../../../UI/Input";
+import Save from "./Save";
 import PageContext from "../../../../store/page-context";
 import ConsoleContext from "../../../../store/console-context";
 import DropdownProvider from "../../../../store/DropdownProvider";
 import classes from "./Editor.module.css";
 
-const defaultArticleInfo = { address: null, content: null, name: null };
-
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
   const { width, fullscreen, setFullscreen } = useContext(PageContext);
-  const { data } = useGetData();
-  const { articleCode, toolbarButtons, dispatchToolbarButtons } =
-    useContext(ConsoleContext);
+  const { toolbarButtons, dispatchToolbarButtons } = useContext(ConsoleContext);
   const [showSave, setShowSave] = useState(false);
   const [toolbarStyles, setToolbarStyles] = useState({});
-  const [articleInfo, setArticleInfo] = useState(defaultArticleInfo);
 
   const fullscreenClickHandler = () => {
     if (!fullscreen) {
@@ -66,29 +58,6 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     }
   };
 
-  const closeModal = () => {
-    setShowSave(false);
-  };
-
-  const inputChangeHandler = (ev) => {
-    if (ev.currentTarget.name) {
-      setArticleInfo((info) => {
-        info[ev.currentTarget.name] = ev.currentTarget.value;
-        info.content = articleCode;
-        return info;
-      });
-    }
-  };
-
-  const saveChanges = (ev) => {
-    ev.preventDefault();
-
-    if (articleInfo) {
-      setData(articleInfo, data);
-    }
-    closeModal();
-  };
-
   const fileButtonList = (
     <>
       <DropdownOption
@@ -130,37 +99,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 
   return (
     <>
-      {showSave && (
-        <Modal title="Zapisywanie artykułu" setShowModal={setShowSave}>
-          <span>Zapisz wszystkie zmiany lub anuluj</span>
-          <form
-            onSubmit={saveChanges}
-            onReset={closeModal}
-            className={toolbarClasses.form}
-          >
-            <Input
-              type="text"
-              name="address"
-              placeholder="Adres do artykułu"
-              onChange={inputChangeHandler}
-              required={true}
-            />
-            <Input
-              type="text"
-              name="name"
-              placeholder="Nazwa artykułu"
-              onChange={inputChangeHandler}
-              required={true}
-            />
-            <div className={toolbarClasses["modal-buttons"]}>
-              <Button type="submit">Zapisz</Button>
-              <Button type="reset" highlighted={false}>
-                Anuluj
-              </Button>
-            </div>
-          </form>
-        </Modal>
-      )}
+      {showSave && <Save setShowSave={setShowSave} />}
       <DropdownProvider>
         <nav className={toolbarClasses.toolbar} style={toolbarStyles}>
           {width > 800 ? (
