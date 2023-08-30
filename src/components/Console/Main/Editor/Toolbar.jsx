@@ -5,6 +5,7 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import toolbarClasses from "./Toolbar.module.css";
 import { Dropdown, DropdownOption, DropdownNested } from "../../../UI/Dropdown";
 import Save from "./Save";
+import Open from "./Open";
 import PageContext from "../../../../store/page-context";
 import ConsoleContext from "../../../../store/console-context";
 import DropdownProvider from "../../../../store/DropdownProvider";
@@ -14,6 +15,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
   const { width, fullscreen, setFullscreen } = useContext(PageContext);
   const { toolbarButtons, dispatchToolbarButtons } = useContext(ConsoleContext);
   const [showSave, setShowSave] = useState(false);
+  const [showOpen, setShowOpen] = useState(false);
   const [toolbarStyles, setToolbarStyles] = useState({});
 
   const fullscreenClickHandler = () => {
@@ -47,6 +49,8 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
       });
     } else if (ev.currentTarget.id === "save") {
       setShowSave(true);
+    } else if (ev.currentTarget.id === "open") {
+      setShowOpen(true);
     } else {
       setEditorContent(ev.currentTarget.id);
       dispatchToolbarButtons({
@@ -68,7 +72,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         Nowy
       </DropdownOption>
       <DropdownOption
-        id="edit"
+        id="open"
         onClick={dropdownOptionClickHandler}
         disabled={toolbarButtons.file.open.disabled}
       >
@@ -99,6 +103,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 
   return (
     <>
+      {showOpen && <Open setShowOpen={setShowOpen} />}
       {showSave && <Save setShowSave={setShowSave} />}
       <DropdownProvider>
         <nav className={toolbarClasses.toolbar} style={toolbarStyles}>

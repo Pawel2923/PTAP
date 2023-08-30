@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Prism from "prismjs";
 import "/src/css/prism.css";
 import classes from "./Code.module.css";
@@ -8,12 +8,11 @@ String.prototype.lines = function () { return this.split("\n"); }
 String.prototype.lineCount = function () { return this.lines().length; }
 
 const Code = () => {
-    const { setArticleCode } = useContext(ConsoleContext);
+    const { articleCode, setArticleCode } = useContext(ConsoleContext);
     const codeRef = useRef(null);
     const [lineNumber, setLineNumber] = useState(1);
 
-    const textareaInputHandler = (ev) => {
-        let text = ev.target.value;
+    const updatePreCode = (text) => {
         setLineNumber(text.lineCount());
 
         if (text[text.length - 1] == "\n") { // If the last character is a newline character
@@ -21,6 +20,15 @@ const Code = () => {
         }
 
         codeRef.current.innerHTML = Prism.highlight(text.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "<"), Prism.languages.html, "html");
+    };
+
+    useEffect(() => {
+        updatePreCode(articleCode);
+    }, [articleCode])
+
+    const textareaInputHandler = (ev) => {
+        let text = ev.target.value;
+        updatePreCode(text);
         setArticleCode(text);
     };
 
@@ -47,7 +55,7 @@ const Code = () => {
                 {[...Array(lineNumber)].map((item, key) => <span key={key}></span>)}
             </div>
             <div className={classes.content}>
-                <textarea onInput={textareaInputHandler} onKeyDown={textareakeyDownHandler} spellCheck={false}></textarea>
+                <textarea onInput={textareaInputHandler} onKeyDown={textareakeyDownHandler} spellCheck={false} value={articleCode}></textarea>
                 <pre>
                     <code className="language-html" ref={codeRef}></code>
                 </pre>
