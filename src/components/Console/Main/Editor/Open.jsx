@@ -10,7 +10,7 @@ import toolbarClasses from "./Toolbar.module.css";
 const Open = ({ setShowOpen }) => {
 	const { data, isSuccess } = useGetData();
     const [targetAddress, setTargetAddress] = useState(null);
-	const { setArticleCode } = useContext(ConsoleContext);
+	const { editorContent, setArticleCode, setEditorContent } = useContext(ConsoleContext);
 
 	const closeModal = () => {
 		setShowOpen(false);
@@ -30,6 +30,9 @@ const Open = ({ setShowOpen }) => {
         }
 		
 		closeModal();
+        if (editorContent !== "edit") {
+            setEditorContent("edit");
+        }
 	};
 
     const inputChangeHandler = (ev) => {
