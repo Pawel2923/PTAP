@@ -1,17 +1,13 @@
-import { useEffect, useState, forwardRef } from "react";
+import { useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 
 const Input = forwardRef(({ type, placeholder, value, disabled, required, className, style, id, onInput, onChange }, ref) => {
-    const [inputValue, setInputValue] = useState(value);
-
-    useEffect(() => {
-        setInputValue(value);
-    }, [value]);
+    const inputRef = useRef(ref);
 
     const changeHandler = (ev) => {
         ev.target.classList.remove(classes.invalid);
-        setInputValue(value);
+        value = inputRef.current.value;
         onChange && onChange(ev);
     };
 
@@ -29,10 +25,10 @@ const Input = forwardRef(({ type, placeholder, value, disabled, required, classN
 
     return <input
         type={type ? type : "text"}
-        ref={ref}
+        ref={inputRef}
         id={id}
         placeholder={placeholder}
-        value={inputValue}
+        value={value}
         disabled={disabled}
         required={required}
         className={`${classes.input} ${className ? className : ""}`}
