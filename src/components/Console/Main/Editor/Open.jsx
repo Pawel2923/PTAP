@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useGetData } from "../../../../hooks/use-db";
 import Modal from "../../../UI/Modal";
 import { Button } from "../../../UI/Button";
-import Input from "../../../UI/Input";
 import ConsoleContext from "../../../../store/console-context";
 import toolbarClasses from "./Toolbar.module.css";
 
@@ -35,9 +34,9 @@ const Open = ({ setShowOpen }) => {
         }
 	};
 
-    const inputChangeHandler = (ev) => {
-        setTargetAddress(ev.target.value);
-    };
+	const selectChangeHandler = (ev) => {
+		setTargetAddress(ev.target.value);
+	};
 
 	return (
 		<Modal title="Otwórz artykuł" setShowModal={setShowOpen}>
@@ -47,13 +46,27 @@ const Open = ({ setShowOpen }) => {
 				onReset={closeModal}
 				className={toolbarClasses.form}
 			>
-                <Input
-                    type="text"
-                    name="address"
-                    placeholder="Adres do artykułu"
-                    onChange={inputChangeHandler}
-                    required={true}
-                />
+				<select
+					className={toolbarClasses.select}
+					name="address"
+					onChange={selectChangeHandler}
+					required={true}
+					defaultValue=""
+				>
+					<option
+						value=""
+						aria-selected={true}
+						aria-disabled={true}
+						disabled={true}
+					>
+						Wybierz artykuł
+					</option>
+					{data.map((article, key) => (
+						<option key={key} value={article.address}>
+							{article.name}
+						</option>
+					))}
+				</select>
 				<div className={toolbarClasses["modal-buttons"]}>
 					<Button type="submit">Otwórz</Button>
 					<Button type="reset" highlighted={false}>
