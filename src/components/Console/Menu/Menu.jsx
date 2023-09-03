@@ -52,8 +52,8 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
     }
   };
 
-  const exitClickHandler = () => {
-    setCurrentPage("home");
+  const exitClickHandler = async () => {
+    await setCurrentPage("");
     navigate("/");
   };
 
