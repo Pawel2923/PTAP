@@ -41,18 +41,18 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
   const dropdownOptionClickHandler = (ev) => {
     if (ev.currentTarget.id === "exit") {
       setEditorContent("home");
-      disableToolbarButtons("file", ["exit", "save", "export"]);
+      disableToolbarButtons("file", ["exit", "save"]);
     } else if (ev.currentTarget.id === "edit") {
       setArticleCode("");
       setEditorContent("edit");
-      enableToolbarButtons("file", ["exit", "save", "export"]);
+      enableToolbarButtons("file", ["exit", "save"]);
     } else if (ev.currentTarget.id === "save") {
       setShowSave(true);
     } else if (ev.currentTarget.id === "open") {
       setShowOpen(true);
     } else {
       setEditorContent(ev.currentTarget.id);
-      enableToolbarButtons("file", ["exit", "save", "export"]);
+      enableToolbarButtons("file", ["exit", "save"]);
     }
   };
 
@@ -78,12 +78,6 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
         disabled={toolbarButtons.file.save.disabled}
       >
         Zapisz
-      </DropdownOption>
-      <DropdownOption disabled={toolbarButtons.file.import.disabled}>
-        Importuj
-      </DropdownOption>
-      <DropdownOption disabled={toolbarButtons.file.export.disabled}>
-        Eksportuj
       </DropdownOption>
       <DropdownOption
         id="exit"
