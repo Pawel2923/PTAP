@@ -11,9 +11,28 @@ import ConsoleContext from "../../../../store/console-context";
 import DropdownProvider from "../../../../store/DropdownProvider";
 import classes from "./Editor.module.css";
 
+const copyToClipboard = (text) => {
+  // Check for browser support
+  if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      return;
+  }
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+
+  textArea.focus();
+  textArea.select();
+
+  document.execCommand('copy');
+
+  document.body.removeChild(textArea);
+}
+
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
   const { width, fullscreen, setFullscreen } = useContext(PageContext);
-  const { toolbarButtons, resetArticleInfo, enableToolbarButtons, disableToolbarButtons } = useContext(ConsoleContext);
+  const { toolbarButtons, articleCode, resetArticleInfo, enableToolbarButtons, disableToolbarButtons } = useContext(ConsoleContext);
   const [showSave, setShowSave] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
   const [toolbarStyles, setToolbarStyles] = useState({});
@@ -56,6 +75,10 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     }
   };
 
+  const onCopy = () => {
+    copyToClipboard(articleCode);
+  };
+
   const fileButtonList = (
     <>
       <DropdownOption
@@ -89,6 +112,18 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
     </>
   );
 
+  const editButtonList = (
+    <>
+      <DropdownOption
+        id="copy"
+        onClick={onCopy}
+        disabled={toolbarButtons.edit.copy.disabled}
+      >
+        Skopiuj kod
+      </DropdownOption>
+    </>
+  );
+
   return (
     <>
       {showOpen && <Open setShowOpen={setShowOpen} />}
@@ -100,9 +135,9 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
               <Dropdown title="Plik" className={classes.option}>
                 {fileButtonList}
               </Dropdown>
-              <button type="button" className={classes.option}>
-                Edytuj
-              </button>
+              <Dropdown title="Edytuj" className={classes.option}>
+                {editButtonList}
+              </Dropdown>
               <button type="button" className={classes.option}>
                 Zaznaczenie
               </button>
@@ -128,9 +163,15 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
               >
                 {fileButtonList}
               </DropdownNested>
-              <DropdownOption>
-                Edytuj
-              </DropdownOption>
+              <DropdownNested
+                title={
+                  <>
+                    Edytuj <FontAwesomeIcon icon={solid("arrow-right")} />
+                  </>
+                }
+              >
+                {editButtonList}
+              </DropdownNested>
               <DropdownOption>
                 Zaznaczenie
               </DropdownOption>

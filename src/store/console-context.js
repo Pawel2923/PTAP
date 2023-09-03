@@ -16,6 +16,9 @@ const ConsoleContext = createContext({
 			import: { disabled: false },
 			export: { disabled: true },
 		},
+		edit: {
+			copy: { disabled: false },
+		},
 	},
 	setCurrentPage: () => {},
 	setEditorContent: () => {},

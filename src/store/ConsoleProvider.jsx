@@ -12,7 +12,10 @@ const defaultToolbarBtnProperties = {
         save: { disabled: true },
         import: { disabled: false },
         export: { disabled: true },
-    }
+    },
+    edit: {
+        copy: { disabled: false },
+    },
 };
 
 const toolbarButtonsReducer = (state, action) => {
