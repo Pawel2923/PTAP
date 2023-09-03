@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import DropdownContext from "../../store/dropdown-context-";
 import classes from "./Dropdown.module.css";
 
 export const Dropdown = ({ title, className, children }) => {
-  const { isMenuShown, setIsMenuShown } = useContext(DropdownContext);
+  const [isMenuShown, setIsMenuShown] = useState(false);
   const dropdownRef = useRef(null);
   const [dropdownClasses, setDropdownClasses] = useState(classes.dropdown);
 
@@ -34,13 +33,20 @@ export const Dropdown = ({ title, className, children }) => {
     setIsMenuShown(true);
   };
 
+  const renderChildren = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { isMenuShown, setIsMenuShown });
+    }
+    return child;
+  });
+
   return (
     <div
       className={`${dropdownClasses} ${className ? className : ""}`}
       ref={dropdownRef}
     >
       <span onClick={dropdownClickHandler}>{title}</span>
-      {isMenuShown && <div className={classes.menu}>{children}</div>}
+      {isMenuShown && <div className={classes.menu}>{renderChildren}</div>}
     </div>
   );
 };
@@ -51,7 +57,7 @@ Dropdown.propTypes = {
   children: PropTypes.any,
 };
 
-export const DropdownNested = ({ title, id, disabled, children }) => {
+export const DropdownNested = ({ title, id, disabled, isMenuShown, setIsMenuShown, children }) => {
   const [isDropdownShown, setIsDropdownShown] = useState(false);
 
   const showDropdown = () => {
@@ -66,6 +72,13 @@ export const DropdownNested = ({ title, id, disabled, children }) => {
     setIsDropdownShown((prevState) => !prevState);
   };
 
+  const renderChildren = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { isMenuShown, setIsMenuShown });
+    }
+    return child;
+  });
+
   return (
     <div
       id={id}
@@ -79,7 +92,7 @@ export const DropdownNested = ({ title, id, disabled, children }) => {
       <span>{title}</span>
       {isDropdownShown && (
         <div className={`${classes.menu} ${classes["menu-horizontal"]}`}>
-          {children}
+          {renderChildren}
         </div>
       )}
     </div>
@@ -89,14 +102,14 @@ export const DropdownNested = ({ title, id, disabled, children }) => {
 DropdownNested.propTypes = {
   title: PropTypes.any,
   id: PropTypes.string,
-  orientation: PropTypes.string,
+  isMenuShown: PropTypes.bool,
+  setIsMenuShown: PropTypes.func,
   disabled: PropTypes.bool,
   children: PropTypes.any,
 };
 
-export const DropdownOption = ({ id, onClick, disabled, children }) => {
+export const DropdownOption = ({ id, onClick, disabled, setIsMenuShown, children }) => {
   const buttonRef = useRef(null);
-  const { setIsMenuShown } = useContext(DropdownContext);
 
   useEffect(() => {
     if (disabled) {
@@ -134,7 +147,7 @@ export const DropdownOption = ({ id, onClick, disabled, children }) => {
 
 DropdownOption.propTypes = {
   id: PropTypes.string,
-  orientation: PropTypes.string,
+  setIsMenuShown: PropTypes.func,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   children: PropTypes.any,
