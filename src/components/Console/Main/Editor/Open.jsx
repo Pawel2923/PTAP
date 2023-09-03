@@ -9,7 +9,7 @@ import toolbarClasses from "./Toolbar.module.css";
 const Open = ({ setShowOpen }) => {
 	const { data, isSuccess } = useGetData();
     const [targetAddress, setTargetAddress] = useState(null);
-	const { editorContent, setArticleCode, setEditorContent } = useContext(ConsoleContext);
+	const { editorContent, setArticleCode, setArticleAddress, setArticleName, setEditorContent } = useContext(ConsoleContext);
 
 	const closeModal = () => {
 		setShowOpen(false);
@@ -22,6 +22,8 @@ const Open = ({ setShowOpen }) => {
             data.forEach(article => {
                 if (article.address === targetAddress) {
                     setArticleCode(article.content);
+					setArticleAddress(article.address);
+					setArticleName(article.name);
                 }
             })
         } else {

@@ -11,8 +11,10 @@ const defaultArticleInfo = { address: null, content: null, name: null };
 
 const Save = ({ setShowSave }) => {
 	const { data } = useGetData();
-	const { articleCode } = useContext(ConsoleContext);
+	const { articleCode, articleAddress, articleName } = useContext(ConsoleContext);
 	const [articleInfo, setArticleInfo] = useState(defaultArticleInfo);
+	const [address, setAddress] = useState(articleAddress ? articleAddress : "");
+	const [name, setName] = useState(articleName ?articleName : "");
 
 	const closeModal = () => {
 		setShowSave(false);
@@ -26,6 +28,16 @@ const Save = ({ setShowSave }) => {
 				return info;
 			});
 		}
+	};
+
+	const addressChangeHandler = (ev) => {
+		setAddress(ev.target.value);
+		inputChangeHandler(ev);
+	};
+
+	const nameChangeHandler = (ev) => {
+		setName(ev.target.value);
+		inputChangeHandler(ev);
 	};
 
 	const saveChanges = ev => {
@@ -49,14 +61,16 @@ const Save = ({ setShowSave }) => {
 					type="text"
 					name="address"
 					placeholder="Adres do artykułu"
-					onChange={inputChangeHandler}
+					value={address}
+					onChange={addressChangeHandler}
 					required={true}
 				/>
 				<Input
 					type="text"
 					name="name"
 					placeholder="Nazwa artykułu"
-					onChange={inputChangeHandler}
+					value={name}
+					onChange={nameChangeHandler}
 					required={true}
 				/>
 				<div className={toolbarClasses["modal-buttons"]}>

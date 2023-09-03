@@ -13,7 +13,7 @@ import classes from "./Editor.module.css";
 
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
   const { width, fullscreen, setFullscreen } = useContext(PageContext);
-  const { toolbarButtons, setArticleCode, enableToolbarButtons, disableToolbarButtons } = useContext(ConsoleContext);
+  const { toolbarButtons, resetArticleInfo, enableToolbarButtons, disableToolbarButtons } = useContext(ConsoleContext);
   const [showSave, setShowSave] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
   const [toolbarStyles, setToolbarStyles] = useState({});
@@ -43,7 +43,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
       setEditorContent("home");
       disableToolbarButtons("file", ["exit", "save"]);
     } else if (ev.currentTarget.id === "edit") {
-      setArticleCode("");
+      resetArticleInfo();
       setEditorContent("edit");
       enableToolbarButtons("file", ["exit", "save"]);
     } else if (ev.currentTarget.id === "save") {
@@ -109,9 +109,6 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
               <button type="button" className={classes.option}>
                 Widok
               </button>
-              <button type="button" className={classes.option}>
-                Podgląd
-              </button>
             </>
           ) : (
             <Dropdown
@@ -139,9 +136,6 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
               </DropdownOption>
               <DropdownOption>
                 Widok
-              </DropdownOption>
-              <DropdownOption>
-                Podgląd
               </DropdownOption>
             </Dropdown>
           )}
