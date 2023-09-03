@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import classes from "./Editor.module.css";
 import ConsoleContext from "../../../../store/console-context";
 import Toolbar from "./Toolbar";
 import Welcome from "./Sections/Welcome";
 import Code from "./Sections/Code";
+import classes from "./Editor.module.css";
 
 const Editor = ({ setMainHeader }) => {
     const { editorContent, setEditorContent } = useContext(ConsoleContext);

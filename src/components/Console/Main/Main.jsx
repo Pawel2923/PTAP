@@ -1,11 +1,13 @@
 import { useState, useContext } from "react";
-import classes from "./Main.module.css";
 import ConsoleContext from "../../../store/console-context";
 import Welcome from "./Welcome/Welcome";
 import Editor from "./Editor/Editor";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+import classes from "./Main.module.css";
 
 const Main = () => {
-    const { currentPage } = useContext(ConsoleContext);
+    const { currentPage, articleName } = useContext(ConsoleContext);
     const [mainHeader, setMainHeader] = useState("");
                 
     let pageContent = "";
@@ -18,7 +20,13 @@ const Main = () => {
     return (
         <main className={classes.main}>
             <header>
-                <h2>{mainHeader}</h2>
+                <h2>
+                    {mainHeader}
+                    {articleName && " "}
+                    {articleName && <FontAwesomeIcon icon={solid("angle-right")} />}
+                    {articleName && " "}
+                    {articleName && articleName}
+                </h2>
             </header>
             <section>{pageContent}</section>
         </main>
