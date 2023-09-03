@@ -38,9 +38,17 @@ const ConsoleProvider = ({ children }) => {
     const defaultArticleCode = sessionStorage.getItem("articleCode")
         ? sessionStorage.getItem("articleCode")
         : "";
+    const defaultArticleAddress = sessionStorage.getItem("articleAddress")
+        ? sessionStorage.getItem("articleAddress")
+        : "";
+    const defaultArticleName = sessionStorage.getItem("articleName")
+    ? sessionStorage.getItem("articleName")
+    : "";
     const [currentPage, setCurrentPage] = useState(defaultPage);
     const [editorContent, setEditorContent] = useState(defaultEditorContent);
     const [articleCode, setArticleCode] = useState(defaultArticleCode);
+    const [articleAddress, setArticleAddress] = useState(defaultArticleAddress);
+    const [articleName, setArticleName] = useState(defaultArticleName);
     const [toolbarButtons, dispatchToolbarButtons] = useReducer(
         toolbarButtonsReducer,
         defaultToolbarBtnProperties
@@ -72,21 +80,36 @@ const ConsoleProvider = ({ children }) => {
         return newState;
       };
 
+    const resetArticleInfo = () => {
+        setArticleCode("");
+        setArticleAddress("");
+        setArticleName("");
+    };
+
     const value = {
         currentPage,
         editorContent,
         articleCode,
+        articleAddress,
+        articleName,
         toolbarButtons,
         setCurrentPage,
         setEditorContent,
         setArticleCode,
+        setArticleAddress,
+        setArticleName,
+        resetArticleInfo,
         dispatchToolbarButtons,
         disableToolbarButtons,
         enableToolbarButtons,
     };
 
     useEffect(() => {
-        sessionStorage.setItem("currentPage", currentPage);
+        if (currentPage.length > 0) {
+            sessionStorage.setItem("currentPage", currentPage);
+        } else {
+            sessionStorage.removeItem("currentPage");
+        }
     }, [currentPage]);
 
     useEffect(() => {
@@ -94,7 +117,7 @@ const ConsoleProvider = ({ children }) => {
             sessionStorage.setItem("editorContent", editorContent);
             
             if (editorContent !== "home") {
-                enableToolbarButtons("file", ["exit", "save", "export"]);
+                enableToolbarButtons("file", ["exit", "save"]);
             }
         } else {
             sessionStorage.removeItem("editorContent");
@@ -105,11 +128,17 @@ const ConsoleProvider = ({ children }) => {
     useEffect(() => {
         if (currentPage === "editor" && editorContent === "edit") {
             sessionStorage.setItem("articleCode", articleCode);
+            sessionStorage.setItem("articleAddress", articleAddress);
+            sessionStorage.setItem("articleName", articleName);
         } else {
             sessionStorage.removeItem("articleCode");
             setArticleCode("");
+            sessionStorage.removeItem("articleAddress");
+            setArticleAddress("");
+            sessionStorage.removeItem("articleName");
+            setArticleName("");
         }
-    }, [articleCode, currentPage, editorContent]);
+    }, [articleCode, articleAddress, articleName, currentPage, editorContent]);
 
     return (
         <ConsoleContext.Provider value={value}>

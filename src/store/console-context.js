@@ -4,6 +4,8 @@ const ConsoleContext = createContext({
 	currentPage: "home",
 	editorContent: "home",
 	articleCode: "",
+	articleAddress: "",
+	articleName: "",
 	toolbarButtons: {
 		file: {
 			main: { disabled: false },
@@ -18,6 +20,9 @@ const ConsoleContext = createContext({
 	setCurrentPage: () => {},
 	setEditorContent: () => {},
 	setArticleCode: () => {},
+	setArticleAddress: () => {},
+	setArticleName: () => {},
+	resetArticleInfo: () => {},
 	dispatchToolbarButtons: (
 		action = {
 			type: "DISABLE",
