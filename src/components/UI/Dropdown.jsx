@@ -29,7 +29,7 @@ export const Dropdown = ({ title, className, children }) => {
     };
   }, [setIsMenuShown]);
 
-  const dropdownClickHandler = () => {
+  const openMenu = () => {
     setIsMenuShown(true);
   };
 
@@ -43,9 +43,10 @@ export const Dropdown = ({ title, className, children }) => {
   return (
     <div
       className={`${dropdownClasses} ${className ? className : ""}`}
+      onClick={openMenu}
       ref={dropdownRef}
     >
-      <span onClick={dropdownClickHandler}>{title}</span>
+      <div>{title}</div>
       {isMenuShown && <div className={classes.menu}>{renderChildren}</div>}
     </div>
   );
@@ -89,7 +90,7 @@ export const DropdownNested = ({ title, id, disabled, isMenuShown, setIsMenuShow
       onMouseOver={showDropdown}
       onMouseOut={hideDropdown}
     >
-      <span>{title}</span>
+      <div>{title}</div>
       {isDropdownShown && (
         <div className={`${classes.menu} ${classes["menu-horizontal"]}`}>
           {renderChildren}
