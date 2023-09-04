@@ -8,18 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Menu.module.css";
 
-const toolbarButtonsProperties = {
-  type: "DISABLE",
-  mainButton: "file",
-  subButtons: ["exit", "save", "export"],
-  newState: true,
-};
-
 const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
   const navigate = useNavigate();
   const { width } = useContext(PageContext);
-  const { currentPage, setCurrentPage, dispatchToolbarButtons } =
-    useContext(ConsoleContext);
+  const { currentPage, setCurrentPage, disableToolbarButtons } = useContext(ConsoleContext);
   const [expandMenu, setExpandMenu] = useState(false);
 
   useEffect(() => {
@@ -48,7 +40,7 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
     }
 
     if (currentPage !== "editor") {
-      dispatchToolbarButtons(toolbarButtonsProperties);
+      disableToolbarButtons("file", "save", "exit");
     }
   };
 
