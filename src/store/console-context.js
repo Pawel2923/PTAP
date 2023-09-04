@@ -24,16 +24,6 @@ const ConsoleContext = createContext({
 	setArticleAddress: () => {},
 	setArticleName: () => {},
 	resetArticleInfo: () => {},
-	dispatchToolbarButtons: (
-		action = {
-			type: "DISABLE",
-			mainButton: "Button name",
-			subButtons: ["button name", "button name"],
-			newState: true,
-		}
-	) => {
-		action;
-	},
 	disableToolbarButtons: (mainButton, subButtons) => {
 		const newState = true;
 		mainButton, subButtons;

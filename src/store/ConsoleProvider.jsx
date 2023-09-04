@@ -100,7 +100,6 @@ const ConsoleProvider = ({ children }) => {
         setArticleAddress,
         setArticleName,
         resetArticleInfo,
-        dispatchToolbarButtons,
         disableToolbarButtons,
         enableToolbarButtons,
     };
