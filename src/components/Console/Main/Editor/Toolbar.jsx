@@ -153,12 +153,6 @@ const editButtonList = [
 						<Dropdown title="Edytuj" className={classes.option}>
 							{editButtons}
 						</Dropdown>
-						<button type="button" className={classes.option}>
-							Zaznaczenie
-						</button>
-						<button type="button" className={classes.option}>
-							Widok
-						</button>
 					</>
 				) : (
 					<Dropdown
@@ -193,8 +187,6 @@ const editButtonList = [
 						>
 							{editButtons}
 						</DropdownNested>
-						<DropdownOption>Zaznaczenie</DropdownOption>
-						<DropdownOption>Widok</DropdownOption>
 					</Dropdown>
 				)}
 				<button

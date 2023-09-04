@@ -10,8 +10,6 @@ const defaultToolbarBtnProperties = {
         new: { disabled: false },
         open: { disabled: false },
         save: { disabled: true },
-        import: { disabled: false },
-        export: { disabled: true },
     },
     edit: {
         copy: { disabled: true },
