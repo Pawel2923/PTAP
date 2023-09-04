@@ -14,7 +14,7 @@ const defaultToolbarBtnProperties = {
         export: { disabled: true },
     },
     edit: {
-        copy: { disabled: false },
+        copy: { disabled: true },
     },
 };
 

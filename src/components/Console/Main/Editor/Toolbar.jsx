@@ -66,10 +66,12 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 		if (ev.currentTarget.id === "exit") {
 			setEditorContent("home");
 			disableToolbarButtons("file", ["exit", "save"]);
+			disableToolbarButtons("edit", ["copy"]);
 		} else if (ev.currentTarget.id === "edit") {
 			resetArticleInfo();
 			setEditorContent("edit");
 			enableToolbarButtons("file", ["exit", "save"]);
+			enableToolbarButtons("edit", ["copy"]);
 		} else if (ev.currentTarget.id === "save") {
 			setShowSave(true);
 		} else if (ev.currentTarget.id === "open") {
@@ -77,6 +79,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 		} else {
 			setEditorContent(ev.currentTarget.id);
 			enableToolbarButtons("file", ["exit", "save"]);
+			enableToolbarButtons("edit", ["copy"]);
 		}
 	};
 
