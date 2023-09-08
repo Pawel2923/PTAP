@@ -154,13 +154,15 @@ const Signup = () => {
 						<Button type="submit">Wyślij</Button>
 					</form>
 				</section>
-				{/* {isLoading && <span>Loading{loadingDots}</span>} */}
 				{modalState.show && (
 					<Modal
 						title={modalState.title}
 						setShowModal={modalCloseHandler}
 					>
-						{modalState.message}
+						<p>
+							{modalState.message}
+						</p>
+						<Button className={classes["modal-button"]} onClick={modalCloseHandler}>Ok</Button>
 					</Modal>
 				)}
 			</main>

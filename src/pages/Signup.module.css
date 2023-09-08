@@ -27,3 +27,12 @@
     width: -moz-fit-content;
     width: fit-content;
 }
+
+.modal-button {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    -ms-grid-row-align: end;
+    -ms-grid-column-align: end;
+    place-self: end;
+}
