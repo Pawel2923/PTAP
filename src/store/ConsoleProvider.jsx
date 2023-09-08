@@ -19,7 +19,7 @@ const defaultToolbarBtnProperties = {
 const toolbarButtonsReducer = (state, action) => {
     let newButtons = state;
     if (action.type === "DISABLE") {
-        if (action.newState !== null && action.mainButton && action.subButtons) {
+        if (action.newState !== null && action.mainButton && Array.isArray(action.subButtons)) {
             action.subButtons.forEach(
                 (subButtonName) =>
                     (newButtons[action.mainButton][subButtonName].disabled = action.newState)
