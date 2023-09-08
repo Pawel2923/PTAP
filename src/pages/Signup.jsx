@@ -18,29 +18,6 @@ const Signup = () => {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [isInputValid, setIsInputValid] = useState(new Array(4).fill(false));
 	const [modalState, setModalState] = useState(defaultModalState);
-	// const [isLoading, setIsLoading] = useState(true);
-	// const [loadingDots, setLoadingDots] = useState("");
-
-	// useEffect(() => {
-	// 	let interval;
-	// 	let timeout;
-		
-	// 	if (isLoading === true) {
-	// 		interval = setInterval(() => {
-	// 			setLoadingDots((prevDots) => {
-	// 				return (prevDots += ".");
-	// 			});
-	// 		}, 1000);
-	// 		timeout = setTimeout(() => {
-	// 			setIsLoading(false);
-	// 		}, 4000);
-	// 	}
-
-	// 	return () => {
-	// 		clearInterval(interval);
-	// 		clearTimeout(timeout);
-	// 	};
-	// }, [isLoading]);
 
 	const inputChangeHandler = (ev, inputId) => {
 		if (inputId === "name") {
