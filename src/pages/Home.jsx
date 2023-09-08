@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Footer from "../components/Footer/Footer";
 import Video from "../components/UI/Video";
 import { ButtonLink } from "../components/UI/Button";
@@ -6,12 +6,15 @@ import PageContext from "../store/page-context";
 import ptapLogo from "../img/logo.webp";
 import autorot from "../img/autorotacja.webp";
 import classes from "./Home.module.css";
+import LoadingScreen from "../components/LoadingScreen";
 
 const Main = () => {
     const { width } = useContext(PageContext);
+    const [isLoading, setIsLoading] = useState(true);
 
     return (
         <>
+            {isLoading && <LoadingScreen isLoading={isLoading} setIsLoading={setIsLoading} />}
             <main>
                 <section className={`section ${classes["index-banner"]}`}>
                     <header>

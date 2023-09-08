@@ -3,6 +3,7 @@ import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input";
 import Modal from "../components/UI/Modal";
 import { Button } from "../components/UI/Button";
+import LoadingScreen from "../components/LoadingScreen";
 import classes from "./Signup.module.css";
 
 const defaultModalState = {
@@ -18,6 +19,7 @@ const Signup = () => {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [isInputValid, setIsInputValid] = useState(new Array(4).fill(false));
 	const [modalState, setModalState] = useState(defaultModalState);
+    const [isLoading, setIsLoading] = useState(true);
 
 	const inputChangeHandler = (ev, inputId) => {
 		if (inputId === "name") {
@@ -74,6 +76,7 @@ const Signup = () => {
 
 	return (
 		<>
+			{isLoading && <LoadingScreen isLoading={isLoading} setIsLoading={setIsLoading} />}
 			<main className={classes.signup}>
 				<section className="section">
 					<h1>Zarejestruj się</h1>
