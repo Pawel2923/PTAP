@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input";
 import Modal from "../components/UI/Modal";
 import { Button } from "../components/UI/Button";
+import classes from "./Signup.module.css";
 
 const defaultModalState = {
 	show: false,
-	error: false,
 	title: "",
 	message: "",
 };
@@ -16,8 +16,31 @@ const Signup = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [isInputValid, setIsInputValid] = useState(new Array.fill(4, false));
+	const [isInputValid, setIsInputValid] = useState(new Array(4).fill(false));
 	const [modalState, setModalState] = useState(defaultModalState);
+	// const [isLoading, setIsLoading] = useState(true);
+	// const [loadingDots, setLoadingDots] = useState("");
+
+	// useEffect(() => {
+	// 	let interval;
+	// 	let timeout;
+		
+	// 	if (isLoading === true) {
+	// 		interval = setInterval(() => {
+	// 			setLoadingDots((prevDots) => {
+	// 				return (prevDots += ".");
+	// 			});
+	// 		}, 1000);
+	// 		timeout = setTimeout(() => {
+	// 			setIsLoading(false);
+	// 		}, 4000);
+	// 	}
+
+	// 	return () => {
+	// 		clearInterval(interval);
+	// 		clearTimeout(timeout);
+	// 	};
+	// }, [isLoading]);
 
 	const inputChangeHandler = (ev, inputId) => {
 		if (inputId === "name") {
@@ -40,14 +63,11 @@ const Signup = () => {
 			isValid = true;
 		}
 
-		if (isValid) {
-		} else {
+		if (!isValid) {
 			setModalState({
 				show: true,
-				error: true,
-				title: `Wypełnij formularz`,
-				message:
-					"Sprawdź czy poprawnie wypełniłeś wszystkie pola formularza.",
+				title: "Wypełnij formularz",
+				message: "Sprawdź czy poprawnie wypełniłeś wszystkie pola formularza.",
 			});
 			return;
 		}
@@ -77,14 +97,14 @@ const Signup = () => {
 
 	return (
 		<>
-			<main>
-				<section className={classes.signup}>
+			<main className={classes.signup}>
+				<section className="section">
 					<h1>Zarejestruj się</h1>
 					<h2>
 						<span>Wypełnij formularz rejestracyjny</span>
 					</h2>
-					<form onSubmit={submitHandler}>
-						<label className={classes.name}>
+					<form onSubmit={submitHandler} className={classes.form}>
+						<label>
 							<p>
 								Nazwa{" "}
 								<span className={classes.asterisk}>*</span>
@@ -101,7 +121,7 @@ const Signup = () => {
 								onValidate={inputValidateHandler}
 							/>
 						</label>
-						<label className={classes.email}>
+						<label>
 							<p>
 								E-mail{" "}
 								<span className={classes.asterisk}>*</span>
@@ -117,7 +137,7 @@ const Signup = () => {
 								onValidate={inputValidateHandler}
 							/>
 						</label>
-						<label className={classes.name}>
+						<label>
 							<p>
 								Hasło{" "}
 								<span className={classes.asterisk}>*</span>
@@ -134,7 +154,7 @@ const Signup = () => {
 								onValidate={inputValidateHandler}
 							/>
 						</label>
-						<label className={classes["confirm-password"]}>
+						<label>
 							<p>
 								Powtórz Hasło{" "}
 								<span className={classes.asterisk}>*</span>
@@ -154,9 +174,14 @@ const Signup = () => {
 						<Button type="submit">Wyślij</Button>
 					</form>
 				</section>
-				{isLoading && <Loading />}
+				{/* {isLoading && <span>Loading{loadingDots}</span>} */}
 				{modalState.show && (
-					<Modal modalInfo={modalState} onClose={modalCloseHandler} />
+					<Modal
+						title={modalState.title}
+						setShowModal={modalCloseHandler}
+					>
+						{modalState.message}
+					</Modal>
 				)}
 			</main>
 			<Footer />
