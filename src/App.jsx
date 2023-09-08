@@ -13,12 +13,13 @@ import Wiki from "./pages/Wiki";
 import Intro from "./components/Wiki/Intro";
 import Article from "./components/Wiki/Article";
 import Console from "./pages/Console";
-import SignUp from "./pages/Signup";
 import Error404 from "./pages/Error404";
 import SearchContext from "./store/search-context";
 import { Search } from "./components/Search/Search";
 import { useGetData } from "./hooks/use-db";
 import PageContext from "./store/page-context";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const DefaultPage = () => {
   const location = useLocation();
@@ -69,7 +70,8 @@ const App = () => {
             ))}
         </Route>
         <Route path="console" element={<Console />} />
-        <Route path="rejestracja" element={<SignUp />} />
+        <Route path="rejestracja" element={<Signup />} />
+        <Route path="logowanie" element={<Login />} />
         <Route path="*" element={<Error404 />} />
       </Route>
     )
