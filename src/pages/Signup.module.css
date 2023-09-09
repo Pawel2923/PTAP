@@ -14,12 +14,16 @@
             flex-direction: column;
 }
 
+.form label {
+    width: 70%;
+}
+
 .form label p {
     margin-bottom: 0.3rem;
 }
 
 .form input {
-    width: 70%;
+    width: 100%;
 }
 
 .form label:last-of-type input {
