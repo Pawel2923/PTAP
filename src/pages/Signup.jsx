@@ -17,10 +17,34 @@ const isEmpty = (value) => value.trim() !== "" && value.trim().length >= 3;
 const hasAt = (value) => value.includes("@") && value.trim().length >= 3;
 
 const Signup = () => {
-	const { value: name, isInvalid: nameIsInvalid, changeHandler: nameChangeHandler, resetInput: nameClear, blurHandler: nameBlurHandler } = useForm(isEmpty);
-	const { value: email, isInvalid: emailIsInvalid, changeHandler: emailChangeHandler, resetInput: emailClear, blurHandler: emailBlurHandler } = useForm(hasAt);
-	const { value: password, isInvalid: passwordIsInvalid, changeHandler: passwordChangeHandler, resetInput: passwordClear, blurHandler: passwordBlurHandler } = useForm(isEmpty);
-	const { value: confirmPassword, isInvalid: confirmPasswordIsInvalid, changeHandler: confirmPasswordChangeHandler, resetInput: confirmPasswordClear, blurHandler: confirmPasswordBlurHandler } = useForm(isEmpty);
+	const {
+		value: name,
+		isInvalid: nameIsInvalid,
+		changeHandler: nameChangeHandler,
+		resetInput: nameClear,
+		blurHandler: nameBlurHandler,
+	} = useForm(isEmpty);
+	const {
+		value: email,
+		isInvalid: emailIsInvalid,
+		changeHandler: emailChangeHandler,
+		resetInput: emailClear,
+		blurHandler: emailBlurHandler,
+	} = useForm(hasAt);
+	const {
+		value: password,
+		isInvalid: passwordIsInvalid,
+		changeHandler: passwordChangeHandler,
+		resetInput: passwordClear,
+		blurHandler: passwordBlurHandler,
+	} = useForm(isEmpty);
+	const {
+		value: confirmPassword,
+		isInvalid: confirmPasswordIsInvalid,
+		changeHandler: confirmPasswordChangeHandler,
+		resetInput: confirmPasswordClear,
+		blurHandler: confirmPasswordBlurHandler,
+	} = useForm(isEmpty);
 	const [modalState, setModalState] = useState(defaultModalState);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -28,8 +52,20 @@ const Signup = () => {
 		ev.preventDefault();
 		let isValid = false;
 
-		const isInputValid = [nameIsInvalid, emailIsInvalid, passwordIsInvalid, confirmPasswordIsInvalid];
-		const isInputInvalidFound = isInputValid.findIndex((val) => val === false);
+		nameBlurHandler();
+		emailBlurHandler();
+		passwordBlurHandler();
+		confirmPasswordBlurHandler();
+
+		const isInputValid = [
+			nameIsInvalid,
+			emailIsInvalid,
+			passwordIsInvalid,
+			confirmPasswordIsInvalid,
+		];
+		const isInputInvalidFound = isInputValid.findIndex(
+			(isInvalid) => isInvalid === true
+		);
 
 		if (isInputInvalidFound === -1) {
 			isValid = true;
@@ -39,7 +75,8 @@ const Signup = () => {
 			setModalState({
 				show: true,
 				title: "Wypełnij formularz",
-				message: "Sprawdź czy poprawnie wypełniłeś wszystkie pola formularza.",
+				message:
+					"Sprawdź czy poprawnie wypełniłeś wszystkie pola formularza.",
 			});
 			return;
 		}
