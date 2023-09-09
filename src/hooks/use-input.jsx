@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const useForm = (validateFnc) => {
+const useInput = (validateFnc) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [isTouched, setIsTouched] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
 
-  const isValid = validateFnc(enteredValue);
-  const isInvalid = !isValid && isTouched;
+  useEffect(() => {
+    const isValid = validateFnc(enteredValue);
+    setIsInvalid(!isValid && isTouched);
+  }, [enteredValue, isTouched, validateFnc])
+  
 
   const resetInput = () => {
     setEnteredValue("");
@@ -22,7 +26,7 @@ const useForm = (validateFnc) => {
 
   return {
     value: enteredValue,
-    isValid,
+    setValue: setEnteredValue,
     isInvalid,
     changeHandler,
     blurHandler,
@@ -30,4 +34,4 @@ const useForm = (validateFnc) => {
   };
 };
 
-export default useForm;
+export default useInput;
