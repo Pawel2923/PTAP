@@ -2,7 +2,7 @@ import { useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 
-const Input = forwardRef(({ type, placeholder, value, isInvalid, disabled, required, className, style, id, maxLength, onInput, onBlur, onChange }, ref) => {
+const Input = forwardRef(({ type, placeholder, value, isInvalid, disabled, required, className, style, id, minLength, onInput, onBlur, onChange }, ref) => {
     const inputRef = useRef(ref);
 
     const changeHandler = (ev) => {
@@ -34,7 +34,7 @@ const Input = forwardRef(({ type, placeholder, value, isInvalid, disabled, requi
         required={required}
         className={`${classes.input} ${className ? className : ""} ${isInvalid ? classes.invalid : ""}`}
         style={style ? style : {}}
-        maxLength={maxLength ? maxLength : ""}
+        minLength={minLength ? minLength : ""}
         onChange={changeHandler}
         onInvalid={invalidHandler}
         onFocus={focusHandler}
@@ -55,7 +55,7 @@ Input.propTypes = {
     className: PropTypes.string,
     style: PropTypes.any,
     id: PropTypes.string,
-    maxLength: PropTypes.number,
+    minLength: PropTypes.number,
     onInput: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
