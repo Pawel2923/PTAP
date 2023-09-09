@@ -14,7 +14,7 @@ const Save = ({ setShowSave }) => {
 	const { articleCode, articleAddress, articleName } = useContext(ConsoleContext);
 	const [articleInfo, setArticleInfo] = useState(defaultArticleInfo);
 	const [address, setAddress] = useState(articleAddress ? articleAddress : "");
-	const [name, setName] = useState(articleName ?articleName : "");
+	const [name, setName] = useState(articleName ? articleName : "");
 
 	const closeModal = () => {
 		setShowSave(false);

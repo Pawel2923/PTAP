@@ -2,7 +2,7 @@ import { useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 
-const Input = forwardRef(({ type, placeholder, value, disabled, required, className, style, id, onInput, onChange }, ref) => {
+const Input = forwardRef(({ type, placeholder, value, isInvalid, disabled, required, className, style, id, maxLength, onInput, onBlur, onChange }, ref) => {
     const inputRef = useRef(ref);
 
     const changeHandler = (ev) => {
@@ -21,6 +21,7 @@ const Input = forwardRef(({ type, placeholder, value, disabled, required, classN
 
     const blurHandler = (ev) => {
         ev.target.classList.remove(classes.focus);
+        onBlur && onBlur(ev);
     };
 
     return <input
@@ -31,8 +32,9 @@ const Input = forwardRef(({ type, placeholder, value, disabled, required, classN
         value={value}
         disabled={disabled}
         required={required}
-        className={`${classes.input} ${className ? className : ""}`}
+        className={`${classes.input} ${className ? className : ""} ${isInvalid ? classes.invalid : ""}`}
         style={style ? style : {}}
+        maxLength={maxLength ? maxLength : ""}
         onChange={changeHandler}
         onInvalid={invalidHandler}
         onFocus={focusHandler}
@@ -47,12 +49,15 @@ Input.propTypes = {
     type: PropTypes.string,
     placeholder: PropTypes.string,
     value: PropTypes.string,
+    isInvalid: PropTypes.bool,
     disabled: PropTypes.bool,
     required: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.any,
     id: PropTypes.string,
+    maxLength: PropTypes.number,
     onInput: PropTypes.func,
+    onBlur: PropTypes.func,
     onChange: PropTypes.func,
 };
 
