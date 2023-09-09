@@ -81,7 +81,7 @@ const Signup = () => {
 				<section className="section">
 					<h1>Zarejestruj się</h1>
 					<h2>
-						<span>Wypełnij formularz rejestracyjny</span>
+						Wypełnij formularz rejestracyjny
 					</h2>
 					<form onSubmit={submitHandler} className={classes.form}>
 						<label>

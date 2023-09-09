@@ -14,6 +14,10 @@
             flex-direction: column;
 }
 
+.form label p {
+    margin-bottom: 0.3rem;
+}
+
 .form input {
     width: 70%;
 }
