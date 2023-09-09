@@ -167,7 +167,7 @@ const Signup = () => {
 								required
 							/>
 						</label>
-						<Button type="submit">Wyślij</Button>
+						<Button type="submit">Zapisz się</Button>
 					</form>
 				</section>
 				{modalState.show && (
