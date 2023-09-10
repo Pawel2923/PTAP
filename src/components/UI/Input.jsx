@@ -1,9 +1,23 @@
-import { useRef, forwardRef } from "react";
+import { useState, useEffect, useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 import classes from "./Input.module.css";
 
-const Input = forwardRef(({ type, placeholder, value, isInvalid, disabled, required, className, style, id, minLength, onInput, onBlur, onChange }, ref) => {
+const Input = forwardRef(({ type, placeholder, value, isInvalid: invalidProp, disabled, required, className, style, id, minLength, onInput, onBlur, onFocus, onChange, validateInput, setIsFormInvalid }, ref) => {
+    const [isTouched, setIsTouched] = useState(false);
+    const [isInvalid, setIsInvalid] = useState(invalidProp !== null ? invalidProp : true);
     const inputRef = useRef(ref);
+
+    useEffect(() => {
+        const isValid = validateInput(value);
+        setIsInvalid(!isValid && isTouched);
+    }, [validateInput, value, isTouched]);
+
+    useEffect(() => {
+        if (isInvalid) {
+            return;
+        } 
+        setIsFormInvalid(false);
+    }, [isInvalid, setIsFormInvalid]);
 
     const changeHandler = (ev) => {
         ev.target.classList.remove(classes.invalid);
@@ -13,14 +27,17 @@ const Input = forwardRef(({ type, placeholder, value, isInvalid, disabled, requi
 
     const invalidHandler = (ev) => {
         ev.target.classList.add(classes.invalid);
+        setIsInvalid(true);
     };
 
     const focusHandler = (ev) => {
         ev.target.classList.add(classes.focus);
+        onFocus && onFocus(ev);
     };
 
     const blurHandler = (ev) => {
         ev.target.classList.remove(classes.focus);
+        setIsTouched(true);
         onBlur && onBlur(ev);
     };
 
@@ -57,8 +74,11 @@ Input.propTypes = {
     id: PropTypes.string,
     minLength: PropTypes.number,
     onInput: PropTypes.func,
+    onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    validateInput: PropTypes.func,
+    setIsFormInvalid: PropTypes.func,
 };
 
 export default Input;
