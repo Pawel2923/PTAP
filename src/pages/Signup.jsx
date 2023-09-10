@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input";
 import Modal from "../components/UI/Modal";
 import { Button } from "../components/UI/Button";
 import LoadingScreen from "../components/LoadingScreen";
-import useForm from "../hooks/use-input";
 import classes from "./Signup.module.css";
 
 const defaultModalState = {
@@ -13,65 +13,68 @@ const defaultModalState = {
 	message: "",
 };
 
+const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 const isEmpty = (value) => value.trim() !== "" && value.trim().length >= 3;
-const hasAt = (value) => value.includes("@") && value.trim().length >= 3;
+const isEmail = (value) => emailRegex.test(value) && value.trim().length >= 3;
 
 const Signup = () => {
-	const {
-		value: name,
-		isInvalid: nameIsInvalid,
-		changeHandler: nameChangeHandler,
-		resetInput: nameClear,
-		blurHandler: nameBlurHandler,
-	} = useForm(isEmpty);
-	const {
-		value: email,
-		isInvalid: emailIsInvalid,
-		changeHandler: emailChangeHandler,
-		resetInput: emailClear,
-		blurHandler: emailBlurHandler,
-	} = useForm(hasAt);
-	const {
-		value: password,
-		isInvalid: passwordIsInvalid,
-		changeHandler: passwordChangeHandler,
-		resetInput: passwordClear,
-		blurHandler: passwordBlurHandler,
-	} = useForm(isEmpty);
-	const {
-		value: confirmPassword,
-		isInvalid: confirmPasswordIsInvalid,
-		changeHandler: confirmPasswordChangeHandler,
-		resetInput: confirmPasswordClear,
-		blurHandler: confirmPasswordBlurHandler,
-	} = useForm(isEmpty);
+	const navigate = useNavigate();
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 	const [modalState, setModalState] = useState(defaultModalState);
 	const [isLoading, setIsLoading] = useState(true);
+	const [passwordsMatch, setPasswordsMatch] = useState(false);
+	const [isFormInvalid, setIsFormInvalid] = useState(true);
+
+	useEffect(() => {
+		if (password === confirmPassword) {
+			setPasswordsMatch(true);
+			return;
+		} 
+		
+		setPasswordsMatch(false);
+	}, [password, confirmPassword]);
+
+	useEffect(() => {
+		if (!passwordsMatch) {
+			setIsFormInvalid(true);
+			return;
+		}
+
+		setIsFormInvalid(false);
+	}, [passwordsMatch]);
+
+	const nameInputHandler = (ev) => {
+		setName(ev.target.value);
+	};
+
+	const emailInputHandler = (ev) => {
+		setEmail(ev.target.value);
+	};
+
+	const passwordInputHandler = (ev) => {
+		setPassword(ev.target.value);
+	};
+
+	const confirmPasswordInputHandler = (ev) => {
+		setConfirmPassword(ev.target.value);
+	};
+
+	const resetForm = () => {
+		setName("");
+		setEmail("");
+		setPassword("");
+		setConfirmPassword("");
+		setIsFormInvalid(true);
+		setPasswordsMatch(false);
+	};
 
 	const submitHandler = (ev) => {
 		ev.preventDefault();
-		let isValid = false;
 
-		nameBlurHandler();
-		emailBlurHandler();
-		passwordBlurHandler();
-		confirmPasswordBlurHandler();
-
-		const isInputValid = [
-			nameIsInvalid,
-			emailIsInvalid,
-			passwordIsInvalid,
-			confirmPasswordIsInvalid,
-		];
-		const isInputInvalidFound = isInputValid.findIndex(
-			(isInvalid) => isInvalid === true
-		);
-
-		if (isInputInvalidFound === -1) {
-			isValid = true;
-		}
-
-		if (!isValid) {
+		if (isFormInvalid) {
 			setModalState({
 				show: true,
 				title: "Wypełnij formularz",
@@ -81,10 +84,15 @@ const Signup = () => {
 			return;
 		}
 
-		nameClear();
-		emailClear();
-		passwordClear();
-		confirmPasswordClear();
+		setModalState({
+			show: true,
+			title: "Wszystko ok",
+			message: "Za chwilę nastąpi przejście do logowania.",
+		});
+		resetForm();
+		setTimeout(() => {
+			navigate("/logowanie", { replace: true });
+		}, 3000);
 	};
 
 	const modalCloseHandler = () => {
@@ -99,7 +107,7 @@ const Signup = () => {
 					setIsLoading={setIsLoading}
 				/>
 			)}
-			<main className={classes.signup}>
+			<main className={classes.container}>
 				<section className="section">
 					<h1>Zarejestruj się</h1>
 					<h2>Wypełnij formularz rejestracyjny</h2>
@@ -113,10 +121,10 @@ const Signup = () => {
 								type="text"
 								id="name"
 								value={name}
-								isInvalid={nameIsInvalid}
 								minLength={3}
-								onChange={nameChangeHandler}
-								onBlur={nameBlurHandler}
+								onInput={nameInputHandler}
+								validateInput={isEmpty}
+								setIsFormInvalid={setIsFormInvalid}
 								required
 							/>
 						</label>
@@ -129,9 +137,10 @@ const Signup = () => {
 								type="email"
 								id="email"
 								value={email}
-								isInvalid={emailIsInvalid}
-								onChange={emailChangeHandler}
-								onBlur={emailBlurHandler}
+								minLength={3}
+								onInput={emailInputHandler}
+								validateInput={isEmail}
+								setIsFormInvalid={setIsFormInvalid}
 								required
 							/>
 						</label>
@@ -144,10 +153,10 @@ const Signup = () => {
 								type="password"
 								id="password"
 								value={password}
-								isInvalid={passwordIsInvalid}
 								minLength={3}
-								onChange={passwordChangeHandler}
-								onBlur={passwordBlurHandler}
+								onInput={passwordInputHandler}
+								validateInput={(value) => isEmpty(value) && passwordsMatch}
+								setIsFormInvalid={setIsFormInvalid}
 								required
 							/>
 						</label>
@@ -160,10 +169,10 @@ const Signup = () => {
 								type="password"
 								id="confirmPassword"
 								value={confirmPassword}
-								isInvalid={confirmPasswordIsInvalid}
 								minLength={3}
-								onChange={confirmPasswordChangeHandler}
-								onBlur={confirmPasswordBlurHandler}
+								onInput={confirmPasswordInputHandler}
+								validateInput={(value) => isEmpty(value) && passwordsMatch}
+								setIsFormInvalid={setIsFormInvalid}
 								required
 							/>
 						</label>
