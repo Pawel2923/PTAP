@@ -1,4 +1,4 @@
-import { Link, useNavigate as navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import classes from "./Button.module.css";
@@ -36,8 +36,9 @@ export const Button = ({
     onClick,
     children,
 }) => {
+    const navigate = useNavigate();
     const clickHandler = () => {
-        navigate(to);
+        navigate(to, { replace: true });
     };
 
     if (highlighted == null) {
