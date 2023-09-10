@@ -46,7 +46,7 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
 
   const exitClickHandler = async () => {
     await setCurrentPage("");
-    navigate("/");
+    navigate("/", { replace: true, });
   };
 
   const optionClasses = !expandMenu ? classes.shrink : "";
