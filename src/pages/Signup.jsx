@@ -5,6 +5,7 @@ import Input from "../components/UI/Input";
 import Modal from "../components/UI/Modal";
 import { Button } from "../components/UI/Button";
 import LoadingScreen from "../components/LoadingScreen";
+import useAuth from "../hooks/use-auth";
 import classes from "./Signup.module.css";
 
 const defaultModalState = {
@@ -18,6 +19,7 @@ const isEmpty = (value) => value.trim() !== "" && value.trim().length >= 3;
 const isEmail = (value) => emailRegex.test(value) && value.trim().length >= 3;
 
 const Signup = () => {
+	const { createUser } = useAuth();
 	const navigate = useNavigate();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -90,6 +92,9 @@ const Signup = () => {
 			message: "Za chwilę nastąpi przejście do logowania.",
 		});
 		resetForm();
+		createUser(email, password).then((response) => {
+			console.log(response.user, response.isLogged);
+		}).catch(error => console.log(error.message));
 		setTimeout(() => {
 			navigate("/logowanie", { replace: true });
 		}, 3000);
@@ -153,7 +158,7 @@ const Signup = () => {
 								type="password"
 								id="password"
 								value={password}
-								minLength={3}
+								minLength={6}
 								onInput={passwordInputHandler}
 								validateInput={(value) => isEmpty(value) && passwordsMatch}
 								setIsFormInvalid={setIsFormInvalid}
@@ -169,7 +174,7 @@ const Signup = () => {
 								type="password"
 								id="confirmPassword"
 								value={confirmPassword}
-								minLength={3}
+								minLength={6}
 								onInput={confirmPasswordInputHandler}
 								validateInput={(value) => isEmpty(value) && passwordsMatch}
 								setIsFormInvalid={setIsFormInvalid}
