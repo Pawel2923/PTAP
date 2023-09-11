@@ -77,8 +77,8 @@ const Login = () => {
 			)}
 			<main className={classes.container}>
 				<section className="section">
-					<h1>Zarejestruj się</h1>
-					<h2>Wypełnij formularz rejestracyjny</h2>
+					<h1>Zaloguj się</h1>
+					<h2>Wypełnij formularz logowania</h2>
 					<form onSubmit={submitHandler} className={classes.form}>
 						<label>
 							<p>
@@ -112,7 +112,7 @@ const Login = () => {
 								required
 							/>
 						</label>
-						<Button type="submit">Zapisz się</Button>
+						<Button type="submit">Zaloguj się</Button>
 					</form>
 				</section>
 				{modalState.show && (
