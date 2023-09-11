@@ -44,3 +44,9 @@
     -ms-grid-column-align: end;
     place-self: end;
 }
+
+@media screen and (min-width: 46.25em) {
+    .form label {
+        max-width: 40%;
+    }
+}
