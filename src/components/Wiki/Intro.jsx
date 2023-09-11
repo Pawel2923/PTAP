@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../hooks/use-auth";
 import { useGetData } from "../../hooks/use-db";
 import classes from "./Article.module.css";
 
 const Intro = () => {
-	const { uid } = useAuth();
-	const ArticleList = useGetData(uid).data;
+	const ArticleList = useGetData().data;
 	const [latest, setLatest] = useState("");
 	const [articles, setArticles] = useState("");
 
