@@ -83,11 +83,7 @@ const App = () => {
 							/>
 						))}
 				</Route>
-				{isLoggedIn ? (
-					<Route path="console" element={<Console />} />
-				) : (
-					<Route path="console" element={<Error403 />} />
-				)}
+				<Route path="console" element={isLoggedIn ? <Console /> : <Error403 />} />
 				<Route path="rejestracja" element={<Signup />} />
 				<Route path="logowanie" element={<Login />} />
 				<Route path="wylogowanie" element={<Logout />} />
