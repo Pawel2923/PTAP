@@ -18,8 +18,6 @@ const Console = () => {
 	const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  console.log(uid);
-
   useEffect(() => {
     if (uid === null) {
       setIsLoggedIn(false);
