@@ -26,7 +26,6 @@ const useAuth = () => {
 				setUid(user.uid);
 			} else {
 				setUid(null);
-				console.log("user is logged out");
 			}
 		});
 	}, [auth]);
@@ -83,7 +82,7 @@ const useAuth = () => {
 	const logout = async () => {
 		signOut(auth)
 			.then(() => {
-				console.log("Signed out successfully");
+				return "Nastąpiło wylogowanie";
 			})
 			.catch((error) => {
                 throw new Error(error);
