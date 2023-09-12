@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input";
 import Modal from "../components/UI/Modal";
@@ -116,6 +116,7 @@ const Login = () => {
 							/>
 						</label>
 						<Button type="submit">Zaloguj się</Button>
+						<p>Nie masz jeszcze konta? <Link to="/rejestracja">Zapisz się</Link></p>
 					</form>
 				</section>
 				{modalState.show && (
