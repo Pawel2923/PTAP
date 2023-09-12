@@ -20,6 +20,7 @@ import { useGetData } from "./hooks/use-db";
 import PageContext from "./store/page-context";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Logout from "./pages/Logout";
 
 const DefaultPage = () => {
   const location = useLocation();
@@ -72,6 +73,7 @@ const App = () => {
         <Route path="console" element={<Console />} />
         <Route path="rejestracja" element={<Signup />} />
         <Route path="logowanie" element={<Login />} />
+        <Route path="wylogowanie" element={<Logout />} />
         <Route path="*" element={<Error404 />} />
       </Route>
     )
