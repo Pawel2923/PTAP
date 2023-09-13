@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -7,38 +7,41 @@ import classes from "./LoadingScreen.module.css";
 const LoadingScreen = ({ isLoading, setIsLoading }) => {
 	const [loadingDots, setLoadingDots] = useState("");
 
-	useLayoutEffect(() => {
-		let addDotInterval;
-		let removeDotsInterval;
-
+	useEffect(() => {
 		const onPageLoad = () => {
 			setIsLoading(false);
 		};
 
+		if (document.readyState === "complete") {
+			onPageLoad();
+		} else {
+			window.addEventListener("load", onPageLoad);
+			return () => window.removeEventListener("load", onPageLoad);
+		}
+	}, []);
+
+	useLayoutEffect(() => {
+		let addDotInterval;
+		let removeDotsInterval;
+
 		if (isLoading === true) {
 			addDotInterval = setInterval(() => {
 				setLoadingDots((prevDots) => {
-					return (prevDots += ".");
+					let newDots = prevDots;
+					newDots += ".";
+					return newDots;
 				});
-			}, 1000);
+			}, 800);
 			removeDotsInterval = setInterval(() => {
 				setLoadingDots("");
-			}, 4000);
-			if (document.readyState === "complete") {
-				onPageLoad();
-			} else {
-				window.addEventListener("load", onPageLoad);
-				clearInterval(addDotInterval);
-				clearInterval(removeDotsInterval);
-				return () => window.removeEventListener("load", onPageLoad);
-			}
+			}, 3200);
 		}
 
 		return () => {
 			clearInterval(addDotInterval);
 			clearInterval(removeDotsInterval);
 		};
-	}, [isLoading, setIsLoading]);
+	}, [isLoading]);
 
 	return (
 		<div className={classes.loading}>
