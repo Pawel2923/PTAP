@@ -17,7 +17,7 @@ import Error404 from "./pages/Error404";
 import Error403 from "./pages/Error403";
 import SearchContext from "./store/search-context";
 import { Search } from "./components/Search/Search";
-import { useGetData } from "./hooks/use-db";
+import useDatabase from "./hooks/use-db";
 import useAuth from "./hooks/use-auth";
 import PageContext from "./store/page-context";
 import Login from "./pages/Login";
@@ -46,18 +46,22 @@ const DefaultPage = () => {
 
 const App = () => {
 	const { uid } = useAuth();
-	const { data, isSuccess } = useGetData();
+	const { data, response } = useDatabase();
 	const [addRoutes, setAddRoutes] = useState(false);
 	const [articles, setArticles] = useState([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(uid ? true : false);
 
 	useEffect(() => {
-		setAddRoutes(isSuccess);
-	}, [isSuccess]);
+		if (response.isSuccess) {
+			setAddRoutes(data.length > 0);
+		}
+	}, [data, response]);
 
 	useEffect(() => {
-		setArticles(data);
-	}, [data]);
+		if (response.isSuccess) {
+			setArticles(data);
+		}
+	}, [data, response]);
 
 	useEffect(() => {
 		if (!uid) {
@@ -83,7 +87,10 @@ const App = () => {
 							/>
 						))}
 				</Route>
-				<Route path="console" element={isLoggedIn ? <Console /> : <Error403 />} />
+				<Route
+					path="console"
+					element={isLoggedIn ? <Console /> : <Error403 />}
+				/>
 				<Route path="rejestracja" element={<Signup />} />
 				<Route path="logowanie" element={<Login />} />
 				<Route path="wylogowanie" element={<Logout />} />

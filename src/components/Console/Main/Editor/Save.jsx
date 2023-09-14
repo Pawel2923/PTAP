@@ -1,28 +1,38 @@
 import { useContext, useState } from "react";
 import PropTypes from "prop-types";
-import { useGetData, setData } from "../../../../hooks/use-db";
+import useDatabase from "../../../../hooks/use-db";
+import useAuth from "../../../../hooks/use-auth";
 import Modal from "../../../UI/Modal";
 import { Button } from "../../../UI/Button";
 import Input from "../../../UI/Input";
 import ConsoleContext from "../../../../store/console-context";
 import toolbarClasses from "./Toolbar.module.css";
 
-const defaultArticleInfo = { address: null, content: null, name: null };
+const defaultArticleInfo = {
+	address: null,
+	content: null,
+	name: null,
+	author: null,
+};
 
 const Save = ({ setShowSave }) => {
-	const { data } = useGetData();
-	const { articleCode, articleAddress, articleName } = useContext(ConsoleContext);
+	const { currentUser } = useAuth();
+	const { pushData } = useDatabase();
+	const { articleCode, articleAddress, articleName } =
+		useContext(ConsoleContext);
 	const [articleInfo, setArticleInfo] = useState(defaultArticleInfo);
-	const [address, setAddress] = useState(articleAddress ? articleAddress : "");
+	const [address, setAddress] = useState(
+		articleAddress ? articleAddress : ""
+	);
 	const [name, setName] = useState(articleName ? articleName : "");
 
 	const closeModal = () => {
 		setShowSave(false);
 	};
 
-	const inputChangeHandler = ev => {
+	const inputChangeHandler = (ev) => {
 		if (ev.currentTarget.name) {
-			setArticleInfo(info => {
+			setArticleInfo((info) => {
 				info[ev.currentTarget.name] = ev.currentTarget.value;
 				info.content = articleCode;
 				return info;
@@ -40,11 +50,20 @@ const Save = ({ setShowSave }) => {
 		inputChangeHandler(ev);
 	};
 
-	const saveChanges = ev => {
+	const saveChanges = (ev) => {
 		ev.preventDefault();
 
+		if (currentUser.displayName) {
+			setArticleInfo((articleInfo) => {
+				articleInfo.author = currentUser.displayName;
+				return articleInfo;
+			});
+		}
+
 		if (articleInfo) {
-			setData(articleInfo, data);
+			pushData(articleInfo)
+				.then((response) => console.log(response.message))
+				.catch((error) => console.error(error));
 		}
 		closeModal();
 	};

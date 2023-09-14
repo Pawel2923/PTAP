@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGetData } from "../../hooks/use-db";
+import useDatabase from "../../hooks/use-db";
 import classes from "./Article.module.css";
 
 const Intro = () => {
-	const ArticleList = useGetData().data;
+	const { data, response } = useDatabase();
 	const [latest, setLatest] = useState("");
 	const [articles, setArticles] = useState("");
 
 	useEffect(() => {
-		if (!ArticleList) {
+		if (!response.isSuccess || !data) {
 			return;
 		}
 
-		let length = ArticleList.length;
+		let length = data.length;
 		setLatest(
-			ArticleList.slice(length - 3, length)
+			data.slice(length - 3, length)
 				.reverse()
 				.map((item, key) => (
 					<div key={key}>
@@ -25,13 +25,13 @@ const Intro = () => {
 		);
 
 		setArticles(
-			ArticleList.slice(1, length - 3).map((item, key) => (
+			data.slice(1, length - 3).map((item, key) => (
 				<div key={key}>
 					<Link to={item.address}>{item.name}</Link>
 				</div>
 			))
 		);
-	}, [ArticleList]);
+	}, [data, response]);
 
 	return (
 		<React.Fragment>
