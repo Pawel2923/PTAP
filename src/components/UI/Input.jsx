@@ -49,7 +49,9 @@ const Input = forwardRef(
 				return;
 			}
 			inputRef.current.setCustomValidity("");
-			setIsFormInvalid(false);
+			if (setIsFormInvalid) {
+				setIsFormInvalid(false);
+			}
 		}, [isInvalid, setIsFormInvalid]);
 
 		const changeHandler = (ev) => {
