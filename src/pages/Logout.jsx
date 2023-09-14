@@ -12,19 +12,21 @@ const Logout = () => {
 		navigate("/", { replace: true });
 	}, [logout, navigate]);
 
-	return <>
-    <main>
-      <section className="section">
-        <header>
-          <h2>Błąd 404</h2>
-        </header>
-        <div>
-          <p>Nie znaleziono strony.</p>
-        </div>
-      </section>
-    </main>
-    <Footer />
-  </>;
+	return (
+		<>
+			<main>
+				<section className="section">
+					<header>
+						<h2>Błąd 404</h2>
+					</header>
+					<div>
+						<p>Nie znaleziono strony.</p>
+					</div>
+				</section>
+			</main>
+			<Footer />
+		</>
+	);
 };
 
 export default Logout;
