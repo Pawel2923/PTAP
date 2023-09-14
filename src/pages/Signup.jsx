@@ -90,7 +90,7 @@ const Signup = () => {
 		}
 
 		resetForm();
-		createUser(email, password)
+		createUser(email, password, name)
 			.then(() => {
 				setModalState({
 					show: true,
