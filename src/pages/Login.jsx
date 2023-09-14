@@ -65,13 +65,22 @@ const Login = () => {
 				});
 			})
 			.catch((error) => {
-				setModalState({
+				let modalInfo = {
 					show: true,
 					title: "Wystąpił błąd",
-					message:
-						"Serwis w tej chwili jest niedostępny. Spróbuj ponownie później",
-				});
-				console.log(error.message);
+					message: "Serwis w tej chwili jest niedostępny. Spróbuj ponownie później",
+				};
+
+				if (error.message === "auth/user-not-found") {
+					modalInfo.message = "Nie znaleziono takiego użytkownika";
+				}
+
+				if (error.message === "auth/wrong-password") {
+					modalInfo.message = "Podano błędne hasło";
+				}
+
+				setModalState(modalInfo);
+				console.log(error);
 			});
 	};
 

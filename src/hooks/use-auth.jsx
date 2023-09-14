@@ -38,7 +38,7 @@ const useAuth = () => {
                 response.user = userCredential.user;
 			})
 			.catch((error) => {
-                throw new Error(error);
+                throw new Error(error.code);
             });
 
 		return response;
@@ -52,7 +52,7 @@ const useAuth = () => {
                 response.user = userCredential.user;
 			})
 			.catch((error) => {
-                throw new Error(error);
+                throw new Error(error.code);
             });
 		return response;
 	};
@@ -73,7 +73,7 @@ const useAuth = () => {
                 response.user = userCredential.user;
 			})
 			.catch((error) => {
-                throw new Error(error);
+                throw new Error(error.code);
             });
 
 		return response;
@@ -85,7 +85,7 @@ const useAuth = () => {
 				return "Nastąpiło wylogowanie";
 			})
 			.catch((error) => {
-                throw new Error(error);
+                throw new Error(error.code);
             });
 	};
 
