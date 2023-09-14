@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import classes from "./Button.module.css";
 
-export const ButtonLink = ({ to, highlighted, onClick, children }) => {
+export const ButtonLink = ({ to, className, highlighted, onClick, children }) => {
     if (highlighted == null) {
         highlighted = true;
     }
@@ -11,7 +11,7 @@ export const ButtonLink = ({ to, highlighted, onClick, children }) => {
     return (
         <Link
             to={to}
-            className={`${classes["button-link"]} ${
+            className={`${classes["button-link"]} ${className ? className : ""} ${
                 highlighted ? classes.highlight : ""
             }`}
             onClick={onClick ? onClick : () => {}}
@@ -23,6 +23,7 @@ export const ButtonLink = ({ to, highlighted, onClick, children }) => {
 
 ButtonLink.propTypes = {
     to: PropTypes.string.isRequired,
+    className: PropTypes.string,
     highlighted: PropTypes.bool,
     onClick: PropTypes.func,
     children: PropTypes.any,
