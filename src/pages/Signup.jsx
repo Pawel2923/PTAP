@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input";
 import Modal from "../components/UI/Modal";
-import { Button } from "../components/UI/Button";
+import { Button, ButtonLink } from "../components/UI/Button";
 import LoadingScreen from "../components/LoadingScreen";
 import useAuth from "../hooks/use-auth";
 import classes from "./Signup.module.css";
@@ -14,9 +14,11 @@ const defaultModalState = {
 	message: "",
 };
 
-const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i;
 const isEmpty = (value) => value.trim() !== "" && value.trim().length >= 3;
-const isEmail = (value) => emailRegex.test(value) && value.trim().length >= 3;
+const isEmail = (value) =>
+	emailRegex.test(value.toLowerCase()) &&
+	value.toLowerCase().trim().length >= 3;
 
 const Signup = () => {
 	const { createUser } = useAuth();
@@ -34,19 +36,10 @@ const Signup = () => {
 		if (password === confirmPassword) {
 			setPasswordsMatch(true);
 			return;
-		} 
-		
-		setPasswordsMatch(false);
-	}, [password, confirmPassword]);
-
-	useEffect(() => {
-		if (!passwordsMatch) {
-			setIsFormInvalid(true);
-			return;
 		}
 
-		setIsFormInvalid(false);
-	}, [passwordsMatch]);
+		setPasswordsMatch(false);
+	}, [password, confirmPassword]);
 
 	const nameInputHandler = (ev) => {
 		setName(ev.target.value);
@@ -69,12 +62,22 @@ const Signup = () => {
 		setEmail("");
 		setPassword("");
 		setConfirmPassword("");
-		setIsFormInvalid(true);
-		setPasswordsMatch(false);
+		setIsFormInvalid(false);
+		setPasswordsMatch(true);
 	};
 
 	const submitHandler = (ev) => {
 		ev.preventDefault();
+
+		if (!passwordsMatch) {
+			setModalState({
+				show: true,
+				title: "Hasła się nie zgadzają",
+				message:
+					"Hasła powinny być takie same w obu polach i powinny mieć co najmniej 6 znaków.",
+			});
+			return;
+		}
 
 		if (isFormInvalid) {
 			setModalState({
@@ -86,18 +89,38 @@ const Signup = () => {
 			return;
 		}
 
-		setModalState({
-			show: true,
-			title: "Wszystko ok",
-			message: "Za chwilę nastąpi przejście do logowania.",
-		});
 		resetForm();
-		createUser(email, password).then((response) => {
-			console.log(response.user, response.isLogged);
-		}).catch(error => console.log(error.message));
-		setTimeout(() => {
-			navigate("/logowanie", { replace: true });
-		}, 3000);
+		createUser(email, password)
+			.then(() => {
+				setModalState({
+					show: true,
+					title: "Zarejestrowano",
+					message: "Za chwilę nastąpi przejście do strony głównej.",
+					redirect: "/",
+				});
+				setTimeout(() => {
+					navigate("/", { replace: true });
+				}, 5000);
+			})
+			.catch((error) => {
+				let modalInfo = {
+					show: true,
+					title: "Wystąpił błąd",
+					message:
+						"Serwis jest niedostępny. Spróbuj ponownie później",
+				};
+
+				if (error.message === "auth/email-already-in-use") {
+					modalInfo.message = "Podany e-mail jest już zajęty";
+				}
+
+				if (error.message === "auth/weak-password") {
+					modalInfo.message = "Podane hasło jest za słabe. Hasło powinno mieć co najmniej 6 znaków.";
+				}
+
+				setModalState(modalInfo);
+				console.log(error);
+			});
 	};
 
 	const modalCloseHandler = () => {
@@ -160,7 +183,7 @@ const Signup = () => {
 								value={password}
 								minLength={6}
 								onInput={passwordInputHandler}
-								validateInput={(value) => isEmpty(value) && passwordsMatch}
+								validateInput={isEmpty}
 								setIsFormInvalid={setIsFormInvalid}
 								required
 							/>
@@ -176,13 +199,16 @@ const Signup = () => {
 								value={confirmPassword}
 								minLength={6}
 								onInput={confirmPasswordInputHandler}
-								validateInput={(value) => isEmpty(value) && passwordsMatch}
+								validateInput={isEmpty}
 								setIsFormInvalid={setIsFormInvalid}
 								required
 							/>
 						</label>
 						<Button type="submit">Zapisz się</Button>
-						<p>Masz już konto? <Link to="/logowanie">Zaloguj się</Link></p>
+						<p>
+							Masz już konto?{" "}
+							<Link to="/logowanie">Zaloguj się</Link>
+						</p>
 					</form>
 				</section>
 				{modalState.show && (
@@ -191,12 +217,22 @@ const Signup = () => {
 						setShowModal={modalCloseHandler}
 					>
 						<p>{modalState.message}</p>
-						<Button
-							className={classes["modal-button"]}
-							onClick={modalCloseHandler}
-						>
-							Ok
-						</Button>
+						{modalState.redirect ? (
+							<ButtonLink
+								to={modalState.redirect}
+								className={classes["modal-button"]}
+								onClick={modalCloseHandler}
+							>
+								Ok
+							</ButtonLink>
+						) : (
+							<Button
+								className={classes["modal-button"]}
+								onClick={modalCloseHandler}
+							>
+								Ok
+							</Button>
+						)}
 					</Modal>
 				)}
 			</main>
