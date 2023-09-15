@@ -3,7 +3,7 @@ import { createContext } from "react";
 const ConsoleContext = createContext({
 	currentPage: "home",
 	editorContent: "home",
-	articleCode: "",
+	articleContent: "",
 	articleAddress: "",
 	articleName: "",
 	toolbarButtons: {
@@ -20,7 +20,7 @@ const ConsoleContext = createContext({
 	},
 	setCurrentPage: () => {},
 	setEditorContent: () => {},
-	setArticleCode: () => {},
+	setArticleContent: () => {},
 	setArticleAddress: () => {},
 	setArticleName: () => {},
 	resetArticleInfo: () => {},

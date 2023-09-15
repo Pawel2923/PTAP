@@ -36,8 +36,8 @@ const ConsoleProvider = ({ children }) => {
     const defaultEditorContent = sessionStorage.getItem("editorContent")
         ? sessionStorage.getItem("editorContent")
         : "home";
-    const defaultArticleCode = sessionStorage.getItem("articleCode")
-        ? sessionStorage.getItem("articleCode")
+    const defaultArticleContent = sessionStorage.getItem("articleContent")
+        ? sessionStorage.getItem("articleContent")
         : "";
     const defaultArticleAddress = sessionStorage.getItem("articleAddress")
         ? sessionStorage.getItem("articleAddress")
@@ -47,7 +47,7 @@ const ConsoleProvider = ({ children }) => {
     : "";
     const [currentPage, setCurrentPage] = useState(defaultPage);
     const [editorContent, setEditorContent] = useState(defaultEditorContent);
-    const [articleCode, setArticleCode] = useState(defaultArticleCode);
+    const [articleContent, setArticleContent] = useState(defaultArticleContent);
     const [articleAddress, setArticleAddress] = useState(defaultArticleAddress);
     const [articleName, setArticleName] = useState(defaultArticleName);
     const [toolbarButtons, dispatchToolbarButtons] = useReducer(
@@ -82,7 +82,7 @@ const ConsoleProvider = ({ children }) => {
       };
 
     const resetArticleInfo = () => {
-        setArticleCode("");
+        setArticleContent("");
         setArticleAddress("");
         setArticleName("");
     };
@@ -90,13 +90,13 @@ const ConsoleProvider = ({ children }) => {
     const value = {
         currentPage,
         editorContent,
-        articleCode,
+        articleContent,
         articleAddress,
         articleName,
         toolbarButtons,
         setCurrentPage,
         setEditorContent,
-        setArticleCode,
+        setArticleContent,
         setArticleAddress,
         setArticleName,
         resetArticleInfo,
@@ -127,18 +127,18 @@ const ConsoleProvider = ({ children }) => {
 
     useEffect(() => {
         if (currentPage === "editor" && editorContent === "edit") {
-            sessionStorage.setItem("articleCode", articleCode);
+            sessionStorage.setItem("articleContent", articleContent);
             sessionStorage.setItem("articleAddress", articleAddress);
             sessionStorage.setItem("articleName", articleName);
         } else {
-            sessionStorage.removeItem("articleCode");
-            setArticleCode("");
+            sessionStorage.removeItem("articleContent");
+            setArticleContent("");
             sessionStorage.removeItem("articleAddress");
             setArticleAddress("");
             sessionStorage.removeItem("articleName");
             setArticleName("");
         }
-    }, [articleCode, articleAddress, articleName, currentPage, editorContent]);
+    }, [articleContent, articleAddress, articleName, currentPage, editorContent]);
 
     return (
         <ConsoleContext.Provider value={value}>
