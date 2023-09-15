@@ -2,15 +2,12 @@ import { useEffect, useState } from "react";
 import { app } from "../data/firebase";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 
-const defaultResponse = {
-	isSuccess: false,
-	error: { code: "", message: "" },
-	message: "",
-};
-
 const useDatabase = () => {
 	const [data, setData] = useState(null);
-	const [response, setResponse] = useState(defaultResponse);
+	const [response, setResponse] = useState({
+		isSuccess: false,
+		message: "",
+	});
 
 	useEffect(() => {
 		const database = getDatabase(app);
@@ -28,40 +25,34 @@ const useDatabase = () => {
 				});
 			},
 			(error) => {
-				console.error(error);
-				setResponse((response) => {
-					response.isSuccess = false;
-					return response;
-				});
 				throw new Error(error.code);
 			}
 		);
 	}, []);
 
 	const pushData = async (newData) => {
-		let pushResponse = defaultResponse;
+		let pushResponse = { isSuccess: false, message: "" };
 
-		if (newData) {
-			let newList = [...data].concat(newData);
-			const database = getDatabase(app);
-			await set(ref(database, "/articles"), newList)
-				.then(() => {
-					pushResponse.isSuccess = true;
-					pushResponse.message = "Zapisano artykuł do bazy.";
-				})
-				.catch((error) => {
-					pushResponse.isSuccess = false;
-					throw new Error(error.code);
-				});
-		} else {
-			pushResponse.isSuccess = false;
-			throw new Error(
-				"Invalid newData passed to the function. Passed newData: ",
-				newData
-			);
-		}
-
-		return pushResponse;
+		return new Promise((resolve, reject) => {
+			if (newData) {
+				let newList = [...data].concat(newData);
+				const database = getDatabase(app);
+				set(ref(database, "/articles"), newList)
+					.then(() => {
+						pushResponse.isSuccess = true;
+						pushResponse.message = "Zapisano zmiany w artykule.";
+						resolve(pushResponse);
+					})
+					.catch((error) => {
+						reject(error.code);
+					});
+			} else {
+				reject(
+					"Invalid newData passed to the function. Passed newData: ",
+					newData
+				);
+			}
+		});
 	};
 
 	return { data, response, pushData };
