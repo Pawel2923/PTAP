@@ -11,7 +11,7 @@ const Open = ({ setShowOpen }) => {
 	const [targetAddress, setTargetAddress] = useState(null);
 	const {
 		editorContent,
-		setArticleCode,
+		setArticleContent,
 		setArticleAddress,
 		setArticleName,
 		setEditorContent,
@@ -27,7 +27,7 @@ const Open = ({ setShowOpen }) => {
 		if (response.isSuccess) {
 			data.forEach((article) => {
 				if (article.address === targetAddress) {
-					setArticleCode(article.content);
+					setArticleContent(article.content);
 					setArticleAddress(article.address);
 					setArticleName(article.name);
 				}

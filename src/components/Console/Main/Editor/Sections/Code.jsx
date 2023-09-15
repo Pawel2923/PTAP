@@ -8,7 +8,7 @@ String.prototype.lines = function () { return this.split("\n"); }
 String.prototype.lineCount = function () { return this.lines().length; }
 
 const Code = () => {
-    const { articleCode, setArticleCode } = useContext(ConsoleContext);
+    const { articleContent, setArticleContent } = useContext(ConsoleContext);
     const codeRef = useRef(null);
     const [lineNumber, setLineNumber] = useState(1);
 
@@ -23,13 +23,13 @@ const Code = () => {
     };
 
     useEffect(() => {
-        updatePreCode(articleCode);
-    }, [articleCode])
+        updatePreCode(articleContent);
+    }, [articleContent])
 
     const textareaInputHandler = (ev) => {
         let text = ev.target.value;
         updatePreCode(text);
-        setArticleCode(text);
+        setArticleContent(text);
     };
 
     const textareakeyDownHandler = (ev) => {
@@ -55,7 +55,7 @@ const Code = () => {
                 {[...Array(lineNumber)].map((item, key) => <span key={key}></span>)}
             </div>
             <div className={classes.content}>
-                <textarea onInput={textareaInputHandler} onKeyDown={textareakeyDownHandler} spellCheck={false} value={articleCode}></textarea>
+                <textarea onInput={textareaInputHandler} onKeyDown={textareakeyDownHandler} spellCheck={false} value={articleContent}></textarea>
                 <pre>
                     <code className="language-html" ref={codeRef}></code>
                 </pre>
