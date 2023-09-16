@@ -4,7 +4,6 @@ import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input";
 import Modal from "../components/UI/Modal";
 import { Button, ButtonLink } from "../components/UI/Button";
-import LoadingScreen from "../components/LoadingScreen";
 import useAuth from "../hooks/use-auth";
 import classes from "./Signup.module.css";
 
@@ -28,7 +27,6 @@ const Signup = () => {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [modalState, setModalState] = useState(defaultModalState);
-	const [isLoading, setIsLoading] = useState(true);
 	const [passwordsMatch, setPasswordsMatch] = useState(false);
 	const [isFormInvalid, setIsFormInvalid] = useState(true);
 
@@ -115,7 +113,8 @@ const Signup = () => {
 				}
 
 				if (error.message === "auth/weak-password") {
-					modalInfo.message = "Podane hasło jest za słabe. Hasło powinno mieć co najmniej 6 znaków.";
+					modalInfo.message =
+						"Podane hasło jest za słabe. Hasło powinno mieć co najmniej 6 znaków.";
 				}
 
 				setModalState(modalInfo);
@@ -129,12 +128,6 @@ const Signup = () => {
 
 	return (
 		<>
-			{isLoading && (
-				<LoadingScreen
-					isLoading={isLoading}
-					setIsLoading={setIsLoading}
-				/>
-			)}
 			<main className={classes.container}>
 				<section className="section">
 					<h1>Zarejestruj się</h1>

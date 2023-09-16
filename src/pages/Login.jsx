@@ -4,7 +4,6 @@ import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input";
 import Modal from "../components/UI/Modal";
 import { Button, ButtonLink } from "../components/UI/Button";
-import LoadingScreen from "../components/LoadingScreen";
 import useAuth from "../hooks/use-auth";
 import classes from "./Signup.module.css";
 
@@ -25,7 +24,6 @@ const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [modalState, setModalState] = useState(defaultModalState);
-	const [isLoading, setIsLoading] = useState(true);
 	const [isFormInvalid, setIsFormInvalid] = useState(true);
 
 	const emailInputHandler = (ev) => {
@@ -68,7 +66,8 @@ const Login = () => {
 				let modalInfo = {
 					show: true,
 					title: "Wystąpił błąd",
-					message: "Serwis w tej chwili jest niedostępny. Spróbuj ponownie później",
+					message:
+						"Serwis w tej chwili jest niedostępny. Spróbuj ponownie później",
 				};
 
 				if (error.message === "auth/user-not-found") {
@@ -135,12 +134,6 @@ const Login = () => {
 
 	return (
 		<>
-			{isLoading && (
-				<LoadingScreen
-					isLoading={isLoading}
-					setIsLoading={setIsLoading}
-				/>
-			)}
 			<main className={classes.container}>
 				<section className="section">
 					<h1>{header}</h1>
