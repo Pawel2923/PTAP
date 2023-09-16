@@ -5,12 +5,14 @@ import { SearchPlaceholder } from "../Search/Search";
 import MobileMenu from "./MobileMenu";
 import PageContext from "../../store/page-context";
 import ptapLogo from "../../img/logo.webp";
+import useAuth from "../../hooks/use-auth";
 import classes from "./Nav.module.css";
 
 const Nav = memo(() => {
+  const { uid } = useAuth();
   const { width } = useContext(PageContext);
 
-  let imageTitle = width >= 1020 ? "Pilot Training Arma Project" : "PTAP";
+  let imageTitle = width >= 1130 ? "Pilot Training Arma Project" : "PTAP";
 
   let navContent = (
     <>
@@ -32,10 +34,23 @@ const Nav = memo(() => {
             Wiki
           </NavLink>
         </li>
+        {uid && (
+          <li>
+            <NavLink to={"/console"}>
+              Konsola
+            </NavLink>
+          </li>
+        )}
         <li>
-          <NavLink to="/rejestracja">
-            Zapisz się
-          </NavLink>
+          {uid ? (
+            <NavLink to="/wylogowanie">
+              Wyloguj się
+            </NavLink>
+          ) : (
+            <NavLink to="/rejestracja">
+              Zapisz się
+            </NavLink>
+          )}
         </li>
         <li>
           <SearchPlaceholder />
@@ -46,7 +61,7 @@ const Nav = memo(() => {
 
   return (
     <>
-      {width > 740 ? (
+      {width > 875 ? (
         <nav className={classes.nav}>{navContent}</nav>
       ) : (
         <MobileMenu />

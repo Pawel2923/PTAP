@@ -87,3 +87,9 @@
     max-width: 80%;
   }
 }
+
+@media screen and (max-width: 62.5em) {
+  .iframe {
+    max-width: none;
+  }
+}

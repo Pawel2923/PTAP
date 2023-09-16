@@ -3,7 +3,6 @@ import BackArrow from "../components/UI/BackArrow";
 import { ButtonLink } from "../components/UI/Button";
 
 const Error404 = () => {
-
   return (
     <>
       <main>

@@ -33,7 +33,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 	const { width, fullscreen, setFullscreen } = useContext(PageContext);
 	const {
 		toolbarButtons,
-		articleCode,
+		articleContent,
 		resetArticleInfo,
 		enableToolbarButtons,
 		disableToolbarButtons,
@@ -84,7 +84,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 	};
 
 	const onCopy = () => {
-		copyToClipboard(articleCode);
+		copyToClipboard(articleContent);
 	};
 
   const getButtons = (buttonsList) => {

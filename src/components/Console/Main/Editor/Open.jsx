@@ -1,15 +1,21 @@
 import { useContext, useState } from "react";
 import PropTypes from "prop-types";
-import { useGetData } from "../../../../hooks/use-db";
+import useDatabase from "../../../../hooks/use-db";
 import Modal from "../../../UI/Modal";
 import { Button } from "../../../UI/Button";
 import ConsoleContext from "../../../../store/console-context";
 import toolbarClasses from "./Toolbar.module.css";
 
 const Open = ({ setShowOpen }) => {
-	const { data, isSuccess } = useGetData();
-    const [targetAddress, setTargetAddress] = useState(null);
-	const { editorContent, setArticleCode, setArticleAddress, setArticleName, setEditorContent } = useContext(ConsoleContext);
+	const { data, response } = useDatabase();
+	const [targetAddress, setTargetAddress] = useState(null);
+	const {
+		editorContent,
+		setArticleContent,
+		setArticleAddress,
+		setArticleName,
+		setEditorContent,
+	} = useContext(ConsoleContext);
 
 	const closeModal = () => {
 		setShowOpen(false);
@@ -18,22 +24,22 @@ const Open = ({ setShowOpen }) => {
 	const openArticle = (ev) => {
 		ev.preventDefault();
 
-        if (isSuccess) {
-            data.forEach(article => {
-                if (article.address === targetAddress) {
-                    setArticleCode(article.content);
+		if (response.isSuccess) {
+			data.forEach((article) => {
+				if (article.address === targetAddress) {
+					setArticleContent(article.content);
 					setArticleAddress(article.address);
 					setArticleName(article.name);
-                }
-            })
-        } else {
-            console.error("Can't fetch article data from the database.");
-        }
-		
+				}
+			});
+		} else {
+			console.error("Can't fetch article data from the database.");
+		}
+
 		closeModal();
-        if (editorContent !== "edit") {
-            setEditorContent("edit");
-        }
+		if (editorContent !== "edit") {
+			setEditorContent("edit");
+		}
 	};
 
 	const selectChangeHandler = (ev) => {
@@ -63,11 +69,12 @@ const Open = ({ setShowOpen }) => {
 					>
 						Wybierz artykuł
 					</option>
-					{data.map((article, key) => (
-						<option key={key} value={article.address}>
-							{article.name}
-						</option>
-					))}
+					{data &&
+						data.map((article, key) => (
+							<option key={key} value={article.address}>
+								{article.name}
+							</option>
+						))}
 				</select>
 				<div className={toolbarClasses["modal-buttons"]}>
 					<Button type="submit">Otwórz</Button>

@@ -6,6 +6,7 @@ import classes from "./MobileMenu.module.css";
 import SearchContext from "../../store/search-context";
 import PageContext from "../../store/page-context";
 import icons from "../../icons/symbol-defs.svg";
+import useAuth from "../../hooks/use-auth";
 
 const verifyLink = (currentLocation, linkAddress) => {
   let highlightCondition = currentLocation === linkAddress;
@@ -19,36 +20,37 @@ const verifyLink = (currentLocation, linkAddress) => {
   return highlightCondition;
 };
 
-const menuList = [
-  {
-    name: "Główna",
-    path: "/",
-    icon: "icon-house",
-    type: "link",
-  },
-  {
-    name: "Szukaj",
-    path: "/szukaj",
-    icon: "icon-magnifying_glass",
-    type: "button",
-  },
-  {
-    name: "Wiki",
-    path: "/wiki",
-    icon: "icon-globe",
-    type: "link",
-  },
-  {
-    name: "Zapisz się",
-    path: "/rejestracja",
-    icon: "icon-signup",
-    type: "link",
-  },
-];
-
 const MobileMenu = memo(() => {
+  const { uid } = useAuth();
   const { setIsShown } = useContext(SearchContext);
   const { currentPage, setCurrentPage } = useContext(PageContext);
+
+  const menuList = [
+    {
+      name: "Główna",
+      path: "/",
+      icon: "icon-house",
+      type: "link",
+    },
+    {
+      name: "Szukaj",
+      path: "/szukaj",
+      icon: "icon-magnifying_glass",
+      type: "button",
+    },
+    {
+      name: "Wiki",
+      path: "/wiki",
+      icon: "icon-globe",
+      type: "link",
+    },
+    {
+      name: uid ? "Wyloguj się" : "Zapisz się",
+      path: uid ? "/wylogowanie" : "/rejestracja",
+      icon: uid ? "icon-signout" : "icon-signup",
+      type: "link",
+    },
+  ];
 
   const linkClickHandler = () => {
     setIsShown(false);

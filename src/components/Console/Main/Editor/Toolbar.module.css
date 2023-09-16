@@ -33,6 +33,10 @@
     gap: 0.5rem;
 }
 
+.modal-button {
+    place-self: end;
+}
+
 .select {
     border: 2px solid gray;
     outline: none;
