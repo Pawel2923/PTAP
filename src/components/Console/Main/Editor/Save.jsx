@@ -8,30 +8,6 @@ import Input from "../../../UI/Input";
 import ConsoleContext from "../../../../store/console-context";
 import toolbarClasses from "./Toolbar.module.css";
 
-const checkObject = (object, requiredProperties = []) => {
-	if (typeof object !== "object") {
-		console.error("Object nie jest obiektem! Wartość object ", object);
-		return false;
-	}
-
-	if (requiredProperties.length > 0) {
-		requiredProperties.forEach((property) => {
-			if (!Object.hasOwn(object, property)) {
-				console.error("Obiekt nie ma właściwości ", property);
-				return false;
-			}
-		});
-	}
-
-	for (let key in object) {
-		if (object[key] == null) {
-			console.error("Niepoprawna wartość!", object[key], "w", key);
-			return false;
-		}
-	}
-	return true;
-};
-
 const isAddress = (value) =>
 	/\/wiki\/+[\w-]{2,}/i.test(value.trim().toLowerCase());
 const lengthCheck = (value) => value.trim().length >= 3;
@@ -51,7 +27,7 @@ const defaultResponseModalInfo = {
 
 const Save = ({ setShowSave }) => {
 	const { currentUser } = useAuth();
-	const { pushData } = useDatabase();
+	const { pushData, checkObject } = useDatabase();
 	const { articleContent, articleAddress, articleName } =
 		useContext(ConsoleContext);
 	const [address, setAddress] = useState(
