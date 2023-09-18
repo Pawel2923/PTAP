@@ -1,12 +1,10 @@
 import Footer from "../components/Footer/Footer";
-import Nav from "../components/Nav/Nav";
 import BackArrow from "../components/UI/BackArrow";
 import { ButtonLink } from "../components/UI/Button";
 
 const Error403 = () => {
 	return (
 		<>
-			<Nav />
 			<main>
 				<BackArrow />
 				<section className="section">

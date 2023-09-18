@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useMemo } from "react";
 import {
 	Route,
 	createBrowserRouter,
@@ -6,6 +6,7 @@ import {
 	RouterProvider,
 	Outlet,
 	useLocation,
+	Navigate,
 } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Home from "./pages/Home";
@@ -49,7 +50,11 @@ const App = () => {
 	const { data, response } = useDatabase();
 	const [addRoutes, setAddRoutes] = useState(false);
 	const [articles, setArticles] = useState([]);
-	const [isLoggedIn, setIsLoggedIn] = useState(uid ? true : false);
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
+	const checkLoggedIn = useMemo(
+		() => (uid ? true : sessionStorage.getItem("uid") ? true : false),
+		[uid]
+	);
 
 	useEffect(() => {
 		if (response.isSuccess) {
@@ -64,12 +69,12 @@ const App = () => {
 	}, [data, response]);
 
 	useEffect(() => {
-		if (!uid) {
-			setIsLoggedIn(false);
+		if (checkLoggedIn) {
+			setIsLoggedIn(true);
 			return;
 		}
-		setIsLoggedIn(true);
-	}, [uid]);
+		setIsLoggedIn(false);
+	}, [checkLoggedIn]);
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
@@ -89,11 +94,18 @@ const App = () => {
 				</Route>
 				<Route
 					path="console"
-					element={isLoggedIn ? <Console /> : <Error403 />}
+					element={
+						isLoggedIn ? (
+							<Console />
+						) : (
+							<Navigate to="/zabroniony" replace={true} />
+						)
+					}
 				/>
 				<Route path="rejestracja" element={<Signup />} />
 				<Route path="logowanie" element={<Login />} />
 				<Route path="wylogowanie" element={<Logout />} />
+				<Route path="zabroniony" element={<Error403 />} />
 				<Route path="*" element={<Error404 />} />
 			</Route>
 		)
