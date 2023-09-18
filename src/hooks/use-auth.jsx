@@ -27,9 +27,11 @@ const useAuth = () => {
 			if (user) {
 				setCurrentUser(user);
 				setUid(user.uid);
+				sessionStorage.setItem("uid", user.uid);
 			} else {
 				setCurrentUser(null);
 				setUid(null);
+				sessionStorage.removeItem("uid");
 			}
 		});
 	}, [auth]);
