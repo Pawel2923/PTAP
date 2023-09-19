@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import useDatabase from "../../../../hooks/use-db";
-import useAuth from "../../../../hooks/use-auth";
-import Modal from "../../../UI/Modal";
-import { Button } from "../../../UI/Button";
-import Input from "../../../UI/Input";
-import ConsoleContext from "../../../../store/console-context";
-import toolbarClasses from "./Toolbar.module.css";
+import useDatabase from "/src/hooks/use-db";
+import useAuth from "/src/hooks/use-auth";
+import Modal from "/src/components/UI/Modal";
+import { Button } from "/src/components/UI/Button";
+import Input from "/src/components/UI/Input";
+import ConsoleContext from "/src/store/console-context";
+import classes from "./Toolbar.module.css";
 
 const isAddress = (value) =>
 	/\/wiki\/+[\w-]{2,}/i.test(value.trim().toLowerCase());
@@ -140,7 +140,7 @@ const Save = ({ setShowSave }) => {
 					<form
 						onSubmit={onSubmit}
 						onReset={closeSaveModal}
-						className={toolbarClasses.form}
+						className={classes.form}
 					>
 						<Input
 							type="text"
@@ -162,7 +162,7 @@ const Save = ({ setShowSave }) => {
 							validateInput={lengthCheck}
 							required={true}
 						/>
-						<div className={toolbarClasses["modal-buttons"]}>
+						<div className={classes["modal-buttons"]}>
 							<Button type="submit">Zapisz</Button>
 							<Button type="reset" highlighted={false}>
 								Anuluj
@@ -178,7 +178,7 @@ const Save = ({ setShowSave }) => {
 				>
 					<span>{responseModalInfo.message}</span>
 					<Button
-						className={toolbarClasses["modal-button"]}
+						className={classes["modal-button"]}
 						onClick={changeShowResponseModal.bind(this, false)}
 					>
 						Ok

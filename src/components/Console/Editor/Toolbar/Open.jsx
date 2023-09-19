@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import PropTypes from "prop-types";
-import useDatabase from "../../../../hooks/use-db";
+import useDatabase from "/src/hooks/use-db";
 import Modal from "../../../UI/Modal";
 import { Button } from "../../../UI/Button";
-import ConsoleContext from "../../../../store/console-context";
-import toolbarClasses from "./Toolbar.module.css";
+import ConsoleContext from "/src/store/console-context";
+import classes from "./Toolbar.module.css";
 
 const Open = ({ setShowOpen }) => {
 	const { data, response } = useDatabase();
@@ -52,10 +52,10 @@ const Open = ({ setShowOpen }) => {
 			<form
 				onSubmit={openArticle}
 				onReset={closeModal}
-				className={toolbarClasses.form}
+				className={classes.form}
 			>
 				<select
-					className={toolbarClasses.select}
+					className={classes.select}
 					name="address"
 					onChange={selectChangeHandler}
 					required={true}
@@ -76,7 +76,7 @@ const Open = ({ setShowOpen }) => {
 							</option>
 						))}
 				</select>
-				<div className={toolbarClasses["modal-buttons"]}>
+				<div className={classes["modal-buttons"]}>
 					<Button type="submit">Otwórz</Button>
 					<Button type="reset" highlighted={false}>
 						Anuluj

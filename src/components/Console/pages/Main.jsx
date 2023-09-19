@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
-import ConsoleContext from "../../../store/console-context";
-import Welcome from "./Welcome/Welcome";
-import Editor from "./Editor/Editor";
+import ConsoleContext from "/src/store/console-context";
+import Welcome from "./Welcome";
+import Editor from "./Editor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Main.module.css";

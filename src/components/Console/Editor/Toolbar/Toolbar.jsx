@@ -2,13 +2,12 @@ import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { Dropdown, DropdownOption, DropdownNested } from "../../../UI/Dropdown";
+import { Dropdown, DropdownOption, DropdownNested } from "/src/components/UI/Dropdown";
 import Save from "./Save";
 import Open from "./Open";
-import PageContext from "../../../../store/page-context";
-import ConsoleContext from "../../../../store/console-context";
-import toolbarClasses from "./Toolbar.module.css";
-import classes from "./Editor.module.css";
+import PageContext from "/src/store/page-context";
+import ConsoleContext from "/src/store/console-context";
+import classes from "./Toolbar.module.css";
 
 const copyToClipboard = (text) => {
 	// Check for browser support
@@ -144,7 +143,7 @@ const editButtonList = [
 		<>
 			{showOpen && <Open setShowOpen={setShowOpen} />}
 			{showSave && <Save setShowSave={setShowSave} />}
-			<nav className={toolbarClasses.toolbar} style={toolbarStyles}>
+			<nav className={classes.toolbar} style={toolbarStyles}>
 				{width > 800 ? (
 					<>
 						<Dropdown title="Plik" className={classes.option}>
@@ -191,7 +190,7 @@ const editButtonList = [
 				)}
 				<button
 					type="button"
-					className={`${toolbarClasses["toolbar-fullscreen"]} ${classes.option}`}
+					className={`${classes["toolbar-fullscreen"]} ${classes.option}`}
 					title={!fullscreen ? "Pełny ekran" : "Zamknij pełny ekran"}
 					onClick={fullscreenClickHandler}
 				>

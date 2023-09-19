@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Card from "../Card";
-import classes from "../Main.module.css";
+import classes from "./Main.module.css";
 
 const Welcome = ({ setMainHeader }) => {
     useEffect(() => {

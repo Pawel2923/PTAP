@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { PropTypes } from "prop-types";
 import classes from "./Option.module.css";
-import ConsoleContext from "../../../../store/console-context";
+import ConsoleContext from "/src/store/console-context";
 
 const Option = ({ className, onClick, id, title, children }) => {
   const { currentPage } = useContext(ConsoleContext);

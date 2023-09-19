@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ConsoleContext from "../../../../store/console-context";
-import Toolbar from "./Toolbar";
-import Welcome from "./Sections/Welcome";
-import Code from "./Sections/Code";
+import ConsoleContext from "/src/store/console-context";
+import Toolbar from "../Editor/Toolbar/Toolbar";
+import Welcome from "../Editor/content/Welcome";
+import Code from "../Editor/content/Code";
 import classes from "./Editor.module.css";
 
 const Editor = ({ setMainHeader }) => {

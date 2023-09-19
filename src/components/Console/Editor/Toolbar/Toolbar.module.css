@@ -59,3 +59,45 @@
 .select[type="search"]::-webkit-search-results-decoration {
     -webkit-appearance: none;
 }
+
+.option {
+    background-color: transparent;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding: 0.3rem 1rem;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+    transition: background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+    -o-transition: transform 50ms ease-out, background-color 50ms ease-out;
+    transition: transform 50ms ease-out, background-color 50ms ease-out;
+    transition: transform 50ms ease-out, background-color 50ms ease-out, -webkit-transform 50ms ease-out;
+}
+
+.option:first-child {
+    margin-left: 1rem;
+}
+
+.option:active {
+    background-color: #343434;
+}
+
+.toolbar-fullscreen:active {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+            transform: scale3d(0.9, 0.9, 0.9);
+}
+
+.option:focus-visible {
+    background-color: #343434;
+}
+
+.highlight {
+    background-color: #3f3f3f;
+}
+
+@media screen and (min-width: 46.25em) {
+    .option:hover {
+        background-color: #343434;
+    }
+}
