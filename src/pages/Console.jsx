@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect, useRef } from "react";
 import Menu from "../components/Console/Menu/Menu";
-import Main from "../components/Console/pages/Main";
+import Main from "../components/Console/Main";
 import ConsoleProvider from "../store/ConsoleProvider";
 import PageContext from "../store/page-context";
 import classes from "./Console.module.css";

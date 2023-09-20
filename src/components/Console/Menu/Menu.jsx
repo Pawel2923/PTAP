@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState, forwardRef } from "react";
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Option from "./Option/Option";
 import ConsoleContext from "/src/store/console-context";
@@ -9,9 +8,8 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Menu.module.css";
 
 const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
-  const navigate = useNavigate();
   const { width } = useContext(PageContext);
-  const { currentPage, setCurrentPage, disableToolbarButtons } = useContext(ConsoleContext);
+  const { disableToolbarButtons } = useContext(ConsoleContext);
   const [expandMenu, setExpandMenu] = useState(false);
 
   useEffect(() => {
@@ -29,24 +27,15 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
     setIsMenuExpanded((prevState) => !prevState);
   };
 
-  const optionClickHandler = (ev) => {
+  const optionClickHandler = () => {
     if (width <= 740) {
       setExpandMenu(false);
       setIsMenuExpanded(false);
     }
 
-    if (currentPage !== ev.currentTarget.id) {
-      setCurrentPage(ev.currentTarget.id);
-    }
-
-    if (currentPage !== "editor") {
+    if (!location.pathname.includes("/editor")) {
       disableToolbarButtons("file", "save", "exit");
     }
-  };
-
-  const exitClickHandler = async () => {
-    await setCurrentPage("");
-    navigate("/", { replace: true, });
   };
 
   const optionClasses = !expandMenu ? classes.shrink : "";
@@ -63,7 +52,7 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
         {expandMenu && <span> Menu</span>}
       </Option>
       <Option
-        id="home"
+        to="home"
         className={optionClasses}
         title="Główna"
         onClick={optionClickHandler}
@@ -72,7 +61,7 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
         {expandMenu && <span> Główna</span>}
       </Option>
       <Option
-        id="editor"
+        to="editor"
         className={optionClasses}
         title="Edytor"
         onClick={optionClickHandler}
@@ -81,10 +70,11 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
         {expandMenu && <span> Edytor</span>}
       </Option>
       <Option
-        id="exit"
+        to="/"
+        replace={true}
         className={optionClasses}
         title="Wyjdź"
-        onClick={exitClickHandler}
+        onClick={optionClickHandler}
       >
         <FontAwesomeIcon icon={solid("right-from-bracket")} />
         {expandMenu && <span> Wyjdź</span>}

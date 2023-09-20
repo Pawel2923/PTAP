@@ -1,21 +1,16 @@
 import { useState, useContext } from "react";
+import { Route, Routes } from "react-router-dom";
 import ConsoleContext from "/src/store/console-context";
-import Welcome from "./Welcome";
-import Editor from "./Editor";
+import Welcome from "./pages/Welcome";
+import New from "./pages/New";
+import Editor from "./pages/Editor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Main.module.css";
 
 const Main = () => {
-    const { currentPage, articleName } = useContext(ConsoleContext);
+    const { articleName } = useContext(ConsoleContext);
     const [mainHeader, setMainHeader] = useState("");
-                
-    let pageContent = "";
-    if (currentPage === "home") {
-        pageContent = <Welcome setMainHeader={setMainHeader} />;
-    } else if (currentPage === "editor") {
-        pageContent = <Editor setMainHeader={setMainHeader} />;
-    }
 
     return (
         <main className={classes.main}>
@@ -28,7 +23,14 @@ const Main = () => {
                     {articleName && articleName}
                 </h2>
             </header>
-            <section>{pageContent}</section>
+            <section>
+                <Routes>
+                    <Route path="/home" element={<Welcome setMainHeader={setMainHeader} />} />
+                    <Route path="/new" element={<New setMainHeader={setMainHeader} />} />
+                    <Route path="/editor" element={<Editor setMainHeader={setMainHeader} />} />
+                    <Route path="*" element={<Welcome setMainHeader={setMainHeader} />} />
+                </Routes>
+            </section>
         </main>
     );
 };

@@ -1,7 +1,6 @@
 import { createContext } from "react";
 
 const ConsoleContext = createContext({
-	currentPage: "home",
 	editorContent: "home",
 	articleContent: "",
 	articleAddress: "",
@@ -18,7 +17,6 @@ const ConsoleContext = createContext({
 			copy: { disabled: true },
 		},
 	},
-	setCurrentPage: () => {},
 	setEditorContent: () => {},
 	setArticleContent: () => {},
 	setArticleAddress: () => {},

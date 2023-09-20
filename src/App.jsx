@@ -38,7 +38,7 @@ const DefaultPage = () => {
 
 	return (
 		<>
-			{currentPage !== "/console" && <Nav />}
+			{!currentPage.includes("/console") && <Nav />}
 			{isShown && <Search />}
 			<Outlet />
 		</>
@@ -93,7 +93,7 @@ const App = () => {
 						))}
 				</Route>
 				<Route
-					path="console"
+					path="console/*"
 					element={
 						isLoggedIn ? (
 							<Console />

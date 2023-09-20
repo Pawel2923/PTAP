@@ -6,7 +6,7 @@ const Error403 = () => {
 	return (
 		<>
 			<main>
-				<BackArrow />
+				<BackArrow to={"/"} text="Wróć na stronę główną" />
 				<section className="section">
 					<header>
 						<h2>Błąd 403</h2>

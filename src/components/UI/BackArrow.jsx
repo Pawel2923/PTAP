@@ -25,14 +25,14 @@ const BackArrow = (props) => {
                 <svg className="icon icon-arrow_left">
                     <use xlinkHref={`${icons}#icon-arrow_left`}></use>
                 </svg>
-                {width > 740 && enableText ? <span>Wróć</span> : ""}
+                {width > 740 && enableText ? <span>{props.text ? props.text : "Wróć"}</span> : ""}
             </button>
         );
     }
 
     return (
         <Link
-            to={-1}
+            to={props.to ? props.to : -1}
             className={
                 props.className
                     ? `${classes.back} ${props.className}`
@@ -42,12 +42,14 @@ const BackArrow = (props) => {
             <svg className="icon icon-arrow_left">
                 <use xlinkHref={`${icons}#icon-arrow_left`}></use>
             </svg>
-            {width > 740 && enableText ? <span>Wróć</span> : ""}
+            {width > 740 && enableText ? <span>{props.text ? props.text : "Wróć"}</span> : ""}
         </Link>
     );
 };
 
 BackArrow.propTypes = {
+    to: PropTypes.string,
+    text: PropTypes.string,
     enableText: PropTypes.bool,
     notLink: PropTypes.bool,
     className: PropTypes.string,

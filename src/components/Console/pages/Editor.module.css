@@ -45,11 +45,11 @@
 }
 
 .workspace-container::-webkit-scrollbar-button:vertical:start:decrement {
-    background-image: url("../../../../icons/caret-up-solid.svg");
+    background-image: url("/src/icons/caret-up-solid.svg");
 }
 
 .workspace-container::-webkit-scrollbar-button:vertical:end:increment {
-    background-image: url("../../../../icons/caret-down-solid.svg");
+    background-image: url("/src/icons/caret-down-solid.svg");
 }
 
 .workspace-container::-webkit-scrollbar-button:vertical:start:increment,
