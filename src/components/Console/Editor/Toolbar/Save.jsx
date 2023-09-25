@@ -38,24 +38,14 @@ const Save = ({ setShowSave }) => {
 		defaultResponseModalInfo
 	);
 	const [saveChanges, setSaveChanges] = useState(false);
+	const [articleExists, setArticleExists] = useState(false);
+	const changeResponseModalInfo = (info) => {
+		setResponseModalInfo({ ...defaultResponseModalInfo, ...info });
+	};
 
 	useEffect(() => {
-		const changeResponseModalInfo = (newInfo) => {
-			setResponseModalInfo((modalInfo) => {
-				if (newInfo.show) {
-					modalInfo.show = newInfo.show;
-				}
-				if (newInfo.title) {
-					modalInfo.title = newInfo.title;
-				}
-				if (newInfo.message) {
-					modalInfo.message = newInfo.message;
-				}
-				return modalInfo;
-			});
-		};
-
-		const executePush = async () => {
+		const executePush = async (articleExists = false) => {
+			console.log("wywolanie executePush");
 			let articleInfo = defaultArticleInfo;
 			articleInfo.address = address;
 			articleInfo.name = name;
@@ -68,20 +58,33 @@ const Save = ({ setShowSave }) => {
 
 			if (checkObject(articleInfo)) {
 				try {
-					const pushResponse = await pushData(articleInfo);
-					if (typeof pushResponse !== "object") {
+					let pushResponse = await pushData(
+						articleInfo,
+						articleExists
+					);
+					if (!checkObject(pushResponse)) {
 						throw new Error("Wystąpił niespodziewany błąd.");
 					}
 
-					if (!pushResponse.isSuccess) {
-						throw new Error(pushResponse.message);
-					}
+					if (pushResponse.found) {
+						changeResponseModalInfo({
+							show: true,
+							cancel: true,
+							title: "Potwierdź nadpisanie",
+							message:
+								"Artykuł pod tym adresem już istnieje. Czy na pewno chcesz zapisać zmiany?",
+						});
+					} else {
+						if (!pushResponse.isSuccess) {
+							throw new Error(pushResponse.message);
+						}
 
-					changeResponseModalInfo({
-						show: true,
-						title: "Zapisano zmiany",
-						message: pushResponse.message,
-					});
+						changeResponseModalInfo({
+							show: true,
+							title: "Zapisano zmiany",
+							message: pushResponse.message,
+						});
+					}
 				} catch (error) {
 					console.error(error.message);
 					changeResponseModalInfo({
@@ -95,10 +98,10 @@ const Save = ({ setShowSave }) => {
 		};
 
 		if (saveChanges) {
-			executePush();
+			executePush(articleExists);
 		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [saveChanges]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [saveChanges, articleExists]);
 
 	const addressChangeHandler = (ev) => {
 		if (ev.target.value.length < 7) {
@@ -113,18 +116,15 @@ const Save = ({ setShowSave }) => {
 	};
 
 	const closeSaveModal = () => {
+		changeResponseModalInfo({show: false})
 		setShowSave(false);
 	};
 
-	const changeShowResponseModal = (state) => {
-		setResponseModalInfo((info) => {
-			info.show = state;
-			return info;
-		});
-
-		if (state === false) {
-			closeSaveModal();
-		}
+	const confirmSave = () => {
+		changeResponseModalInfo({show: false})
+		setShowSave(false);
+		setSaveChanges(true);
+		setArticleExists(true);
 	};
 
 	const onSubmit = (ev) => {
@@ -174,15 +174,26 @@ const Save = ({ setShowSave }) => {
 			{responseModalInfo.show && (
 				<Modal
 					title={responseModalInfo.title}
-					setShowModal={changeShowResponseModal}
+					setShowModal={closeSaveModal}
 				>
 					<span>{responseModalInfo.message}</span>
-					<Button
-						className={classes["modal-button"]}
-						onClick={changeShowResponseModal.bind(this, false)}
-					>
-						Ok
-					</Button>
+					<div className={classes["modal-buttons"]}>
+						<Button
+							className={classes["modal-button"]}
+							onClick={confirmSave}
+						>
+							{responseModalInfo.cancel ? "Zapisz" : "Ok"}
+						</Button>
+						{responseModalInfo.cancel && (
+							<Button
+								className={classes["modal-button"]}
+								highlighted={false}
+								onClick={closeSaveModal}
+							>
+								Anuluj
+							</Button>
+						)}
+					</div>
 				</Modal>
 			)}
 		</>

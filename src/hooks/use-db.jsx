@@ -54,24 +54,34 @@ const useDatabase = () => {
 		);
 	}, []);
 
-	const pushData = async (newData) => {
+	const pushData = async (newData, articleExists) => {
 		let pushResponse = { isSuccess: false, message: "" };
+		console.log("wywolanie pushData");
 
 		return new Promise((resolve, reject) => {
 			if (checkObject(newData)) {
 				const database = getDatabase(app);
-				// Check if article exists in database
 				let foundArticle = { found: false, article: {}, key: -1 };
-				data.forEach((article, key) => {
-					if (article.address === newData.address) {
-						foundArticle.article = article;
-						foundArticle.key = key;
-						foundArticle.found = true;
-						return;
+				console.log("Artykuł istnieje?: ", articleExists);
+				if (!articleExists) {
+					// Check if article exists in database
+					data.forEach((article, key) => {
+						if (article.address === newData.address) {
+							foundArticle.article = article;
+							foundArticle.key = key;
+							foundArticle.found = true;
+							return;
+						}
+					});
+
+					if (foundArticle.found) {
+						console.log({ ...pushResponse, ...foundArticle });
+						return resolve({ ...pushResponse, ...foundArticle });
 					}
-				});
+				}
+
 				// If article exists update it
-				if (foundArticle.found) {
+				if (articleExists) {
 					// Check if it's the same author
 					if (foundArticle.article.author !== newData.author) {
 						// Add author to newData if not
