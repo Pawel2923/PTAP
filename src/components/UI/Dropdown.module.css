@@ -7,9 +7,9 @@
 .menu, .menu-horizontal {
     position: absolute;
     background-color: #282828;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
     height: auto;
     border: 1px solid #3f3f3f;
     border-radius: 15px;

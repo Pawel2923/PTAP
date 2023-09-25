@@ -14,7 +14,9 @@ const ConsoleContext = createContext({
 			save: { disabled: true },
 		},
 		edit: {
+			newLine: { disabled: true },
 			copy: { disabled: true },
+			cleanCode: { disabled: true },
 		},
 	},
 	setEditorContent: () => {},
