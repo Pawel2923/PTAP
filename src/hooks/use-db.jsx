@@ -56,26 +56,23 @@ const useDatabase = () => {
 
 	const pushData = async (newData, articleExists) => {
 		let pushResponse = { isSuccess: false, message: "" };
-		console.log("wywolanie pushData");
 
 		return new Promise((resolve, reject) => {
 			if (checkObject(newData)) {
 				const database = getDatabase(app);
 				let foundArticle = { found: false, article: {}, key: -1 };
-				console.log("Artykuł istnieje?: ", articleExists);
-				if (!articleExists) {
-					// Check if article exists in database
-					data.forEach((article, key) => {
-						if (article.address === newData.address) {
-							foundArticle.article = article;
-							foundArticle.key = key;
-							foundArticle.found = true;
-							return;
-						}
-					});
+				// Check if article exists in database
+				data.forEach((article, key) => {
+					if (article.address === newData.address) {
+						foundArticle.article = article;
+						foundArticle.key = key;
+						foundArticle.found = true;
+						return;
+					}
+				});
 
+				if (!articleExists) {
 					if (foundArticle.found) {
-						console.log({ ...pushResponse, ...foundArticle });
 						return resolve({ ...pushResponse, ...foundArticle });
 					}
 				}

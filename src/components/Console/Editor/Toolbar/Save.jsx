@@ -45,7 +45,6 @@ const Save = ({ setShowSave }) => {
 
 	useEffect(() => {
 		const executePush = async (articleExists = false) => {
-			console.log("wywolanie executePush");
 			let articleInfo = defaultArticleInfo;
 			articleInfo.address = address;
 			articleInfo.name = name;
@@ -120,11 +119,14 @@ const Save = ({ setShowSave }) => {
 		setShowSave(false);
 	};
 
-	const confirmSave = () => {
-		changeResponseModalInfo({show: false})
-		setShowSave(false);
-		setSaveChanges(true);
-		setArticleExists(true);
+	const confirmSave = (showConfirm) => {
+		if (showConfirm) {
+			setArticleExists(true);
+			setSaveChanges(true);
+		} else {
+			changeResponseModalInfo({show: false})
+			setShowSave(false);
+		}
 	};
 
 	const onSubmit = (ev) => {
@@ -180,7 +182,7 @@ const Save = ({ setShowSave }) => {
 					<div className={classes["modal-buttons"]}>
 						<Button
 							className={classes["modal-button"]}
-							onClick={confirmSave}
+							onClick={confirmSave.bind(this, responseModalInfo.cancel ? true : false)}
 						>
 							{responseModalInfo.cancel ? "Zapisz" : "Ok"}
 						</Button>
