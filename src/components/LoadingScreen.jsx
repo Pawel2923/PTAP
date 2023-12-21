@@ -18,7 +18,7 @@ const LoadingScreen = ({ isLoading, setIsLoading }) => {
 			window.addEventListener("load", onPageLoad);
 			return () => window.removeEventListener("load", onPageLoad);
 		}
-	}, []);
+	}, [setIsLoading]);
 
 	useLayoutEffect(() => {
 		let addDotInterval;
