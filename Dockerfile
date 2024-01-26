@@ -1,10 +1,14 @@
-FROM node:lts-alpine
-ENV NODE_ENV=production
+# pull official base image
+FROM node:alpine
+
+# set working directory
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
-COPY . .
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+COPY package*.json ./
+
+RUN npm install --no-optional && npm cache clean --force
+
+COPY . ./
+
 EXPOSE 3000
-RUN chown -R node /usr/src/app
-USER node
-CMD ["npm", "start"]
+CMD ["npm", "run", "host"]
