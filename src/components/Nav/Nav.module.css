@@ -99,11 +99,11 @@
     transition: background-color 50ms ease-out, transform 50ms ease-out, -webkit-transform 50ms ease-out;
 }
 
-.nav a:hover {
+.nav li > a:hover {
     background-color: #444444;
 }
 
-.nav a:active {
+.nav li > a:active {
     background-color: #444444;
     -webkit-transform: scale3d(0.9, 0.9, 0.9);
             transform: scale3d(0.9, 0.9, 0.9);
