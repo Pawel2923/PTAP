@@ -6,6 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./src:/usr/src/app/src
+      - ./src:/home/node/app/src
+      - ./public:/home/node/app/public
+      - ./vite.config.js:/home/node/app/vite.config.js
+      - ./index.html:/home/node/app/index.html
     ports:
       - "3000:3000"
+    command: npm run host

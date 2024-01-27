@@ -2,13 +2,13 @@
 FROM node:alpine
 
 # set working directory
-WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
+WORKDIR /home/node/app
+ENV PATH /home/node/app/node_modules/.bin:$PATH
 COPY package*.json ./
 
 RUN npm install --no-optional && npm cache clean --force
 
-COPY . ./
+# COPY . ./
 
 EXPOSE 3000
-CMD ["npm", "run", "host"]
+# CMD ["npm", "run", "host"]
