@@ -41,7 +41,7 @@
   .footer ul li,
   .footer ul li:first-child,
   .footer ul li:last-child {
-    margin-left: 9rem;
-    margin-right: 9rem;
+    margin-left: 20%;
+    margin-right: 20%;
   }
 }
