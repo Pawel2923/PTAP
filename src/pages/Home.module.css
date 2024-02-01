@@ -7,10 +7,10 @@
 
 .index-banner > header {
   position: relative;
-  margin-left: 0;
+  margin: 0;
   z-index: 1;
   text-align: center;
-  padding: 1rem;
+  padding: 2rem 1rem;
 }
 
 .index-banner > header::before {
@@ -20,7 +20,7 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-color: #41414199;
+  background-color: #414141cb;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }

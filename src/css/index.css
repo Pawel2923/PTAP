@@ -131,6 +131,7 @@ button:focus:not(:-moz-focusring) {
         -ms-flex-align: center;
             align-items: center;
     width: fit-content;
+    margin: 0 auto;
 }
 
 .section figure img {
@@ -194,5 +195,6 @@ button:focus:not(:-moz-focusring) {
 @media screen and (max-width: 46.24em) {
     .section > * {
         margin-left: 1rem;
+        margin-right: 1rem;
     }
 }

@@ -12,6 +12,8 @@ const Nav = memo(() => {
   const { uid } = useAuth();
   const { width } = useContext(PageContext);
 
+  let navLogoTitle = (width > 1044) ? "PTAP" : "";
+
   let navContent = (
     <>
       <Link to="/" title="Przejdź na stronę główną">
@@ -21,7 +23,7 @@ const Nav = memo(() => {
           height="50"
           alt="logo"
         />
-        <h2>PTAP</h2>
+        <h2>{navLogoTitle}</h2>
       </Link>
       <ul>
         <li>
