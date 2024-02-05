@@ -2,7 +2,7 @@ import { useState, useEffect, useReducer } from "react";
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import ConsoleContext from "./console-context";
+import EditorContext from "./editor-context";
 
 const defaultToolbarBtnProperties = {
 	file: {
@@ -46,7 +46,7 @@ const toolbarButtonsReducer = (state, action) => {
 	return newButtons;
 };
 
-const ConsoleProvider = ({ children }) => {
+const EditorProvider = ({ children }) => {
 	const location = useLocation();
 	const defaultEditorContent = sessionStorage.getItem("editorContent")
 		? sessionStorage.getItem("editorContent")
@@ -141,14 +141,14 @@ const ConsoleProvider = ({ children }) => {
 	]);
 
 	return (
-		<ConsoleContext.Provider value={value}>
+		<EditorContext.Provider value={value}>
 			{children}
-		</ConsoleContext.Provider>
+		</EditorContext.Provider>
 	);
 };
 
-ConsoleProvider.propTypes = {
+EditorProvider.propTypes = {
 	children: PropTypes.any,
 };
 
-export default ConsoleProvider;
+export default EditorProvider;

@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import useDatabase from "/src/hooks/use-db";
-import Modal from "../../../UI/Modal";
-import { Button } from "../../../UI/Button";
-import ConsoleContext from "/src/store/console-context";
+import Modal from "../../UI/Modal";
+import { Button } from "../../UI/Button";
+import EditorContext from "/src/store/editor-context";
 import classes from "./Toolbar.module.css";
 
 const Open = ({ setShowOpen }) => {
@@ -15,7 +15,7 @@ const Open = ({ setShowOpen }) => {
 		setArticleAddress,
 		setArticleName,
 		setEditorContent,
-	} = useContext(ConsoleContext);
+	} = useContext(EditorContext);
 
 	const closeModal = () => {
 		setShowOpen(false);

@@ -30,12 +30,12 @@ const Footer = memo(() => {
             <Link to="/feedback">Zgłoś błąd na stronie</Link>
           </li>
           <li>
-            <Link to="/console">Konsola administracyjna</Link>
+            <Link to="/editor">Edytor artykułów</Link>
           </li>
         </ul>
       </div>
       <div className={classes.bottom}>
-        <p>PTAP 2018-2023 &copy; Wszelkie prawa zastrzeżone</p>
+        <p>PTAP 2024 &copy; Wszelkie prawa zastrzeżone</p>
       </div>
     </footer>
   );

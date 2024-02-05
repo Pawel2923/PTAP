@@ -5,7 +5,7 @@ import useAuth from "/src/hooks/use-auth";
 import Modal from "/src/components/UI/Modal";
 import { Button } from "/src/components/UI/Button";
 import Input from "/src/components/UI/Input";
-import ConsoleContext from "/src/store/console-context";
+import EditorContext from "/src/store/editor-context";
 import classes from "./Toolbar.module.css";
 
 const isAddress = (value) =>
@@ -29,7 +29,7 @@ const Save = ({ setShowSave }) => {
 	const { currentUser } = useAuth();
 	const { pushData, checkObject } = useDatabase();
 	const { articleContent, articleAddress, articleName } =
-		useContext(ConsoleContext);
+		useContext(EditorContext);
 	const [address, setAddress] = useState(
 		articleAddress ? articleAddress : ""
 	);

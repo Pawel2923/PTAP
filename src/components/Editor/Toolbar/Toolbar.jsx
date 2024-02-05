@@ -10,7 +10,7 @@ import {
 import Save from "./Save";
 import Open from "./Open";
 import PageContext from "/src/store/page-context";
-import ConsoleContext from "/src/store/console-context";
+import EditorContext from "/src/store/editor-context";
 import classes from "./Toolbar.module.css";
 
 const copyToClipboard = (text) => {
@@ -41,7 +41,7 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 		enableToolbarButtons,
 		disableToolbarButtons,
 		setArticleContent,
-	} = useContext(ConsoleContext);
+	} = useContext(EditorContext);
 	const [showSave, setShowSave] = useState(false);
 	const [showOpen, setShowOpen] = useState(false);
 	const [toolbarStyles, setToolbarStyles] = useState({});

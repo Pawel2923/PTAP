@@ -28,16 +28,11 @@ const Main = () => {
 						<h1>PTAP</h1>
 						<h2>Pilot Training Arma Project</h2>
 						<p>
-							PTAP jest to projekt utworzony przez BowiX&apos;a i
-							ArrowX&apos;a w grupie ARHD, którego celem było
-							zapewnienie odpowiednich warunków szkoleniowych do
-							nauki pilotażu.
-						</p>
-						<p>
-							Obecnie strona służy do zapoznania z ogólnymi
-							zagadnieniami lotnictwa w Armie 3. Na tej stronie
-							dowiesz się jak przygotować się do lotu jak i
-							znajdziesz pare bardziej zaawansowanych zagadnień.
+							Projekt mający na celu nauczenie graczy Arma 3
+							podstaw latania śmigłowcami. Na stronie zapoznasz się 
+							z podstawowymi manewrami, które pozwolą Ci na bezpieczne 
+							lądowanie i startowanie. Poradniki dotyczące sprzętu jak
+							i bardziej szczegółowe opisy są dostępne w sekcji Wiki.
 						</p>
 					</header>
 				</section>
@@ -49,7 +44,7 @@ const Main = () => {
 						są do ruchu co pozwala na opanowanie maszyny i
 						bezpieczne posadzenie jej na ziemię.
 					</p>
-					<figure>
+					<figure className={classes.figure}>
 						<img
 							src={autorot}
 							alt="Zdjęcie ukazujące przepływ powietrza podczas autorotacji"
@@ -66,13 +61,13 @@ const Main = () => {
 						video={classes.video}
 						src="https://www.youtube.com/embed/v8pn1f3ijLI"
 						className={classes.iframe}
-						header="Manewry Little Birdem - autorotacja"
+						header="Autorotacja little birdem"
 					></Video>
 					<Video
 						video={classes.video}
 						src="https://www.youtube.com/embed/videoseries?list=PLsQ6ua1LSZQwRoOCiVa-0d1eL9wk0aVGj"
 						className={classes.iframe}
-						header="MH-6/AH-6 Little Bird - lądowania"
+						header="Manewry little birdem"
 					></Video>
 				</section>
 				<section className="section">

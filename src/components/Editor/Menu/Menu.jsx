@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, forwardRef } from "react";
 import PropTypes from "prop-types";
 import Option from "./Option/Option";
-import ConsoleContext from "/src/store/console-context";
+import EditorContext from "/src/store/editor-context";
 import PageContext from "/src/store/page-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
@@ -9,7 +9,7 @@ import classes from "./Menu.module.css";
 
 const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
   const { width } = useContext(PageContext);
-  const { disableToolbarButtons } = useContext(ConsoleContext);
+  const { disableToolbarButtons } = useContext(EditorContext);
   const [expandMenu, setExpandMenu] = useState(false);
 
   useEffect(() => {
