@@ -10,6 +10,7 @@ services:
       - ./public:/home/node/app/public
       - ./vite.config.js:/home/node/app/vite.config.js
       - ./index.html:/home/node/app/index.html
+      - ./dist:/home/node/app/dist
     ports:
       - "3000:3000"
     command: npm run host

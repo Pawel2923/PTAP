@@ -6,7 +6,7 @@ WORKDIR /home/node/app
 ENV PATH /home/node/app/node_modules/.bin:$PATH
 COPY package*.json ./
 
-RUN npm install --no-optional && npm cache clean --force
+RUN npm install && npm cache clean --force
 
 # COPY . ./
 
