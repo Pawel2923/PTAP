@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import ConsoleContext from "/src/store/console-context";
+import EditorContext from "/src/store/editor-context";
 import Welcome from "./pages/Welcome";
 import New from "./pages/New";
 import All from "./pages/All";
@@ -10,7 +10,7 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Main.module.css";
 
 const Main = () => {
-    const { articleName } = useContext(ConsoleContext);
+    const { articleName } = useContext(EditorContext);
     const [mainHeader, setMainHeader] = useState("");
 
     return (

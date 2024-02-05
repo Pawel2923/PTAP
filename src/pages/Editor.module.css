@@ -1,4 +1,4 @@
-.console {
+.editor {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: -webkit-min-content 1fr;
@@ -11,17 +11,17 @@
   max-height: 100vh;
 }
 
-.console h2 {
+.editor h2 {
   margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 46.25em) {
-  .console {
+  .editor {
     -ms-grid-columns: minmax(80px, 200px) 1fr;
     grid-template-columns: minmax(80px, 200px) 1fr;
   }
 
-  .console h2 {
+  .editor h2 {
     margin-bottom: 1.4rem;
   }
 

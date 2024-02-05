@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect, useRef } from "react";
-import Menu from "../components/Console/Menu/Menu";
-import Main from "../components/Console/Main";
-import ConsoleProvider from "../store/ConsoleProvider";
+import Menu from "../components/Editor/Menu/Menu";
+import Main from "../components/Editor/Main";
+import EditorProvider from "../store/EditorProvider";
 import PageContext from "../store/page-context";
-import classes from "./Console.module.css";
+import classes from "./Editor.module.css";
 
-const Console = () => {
+const Editor = () => {
 	const menuRef = useRef(null);
 	const { width } = useContext(PageContext);
 	const [spacerStyles, setSpacerStyles] = useState({});
@@ -20,19 +20,19 @@ const Console = () => {
 
 	return (
 		<>
-			<ConsoleProvider>
+			<EditorProvider>
 				<div
 					className={`${
 						!isMenuExpanded ? classes["shrink-menu"] : ""
-					} ${classes.console}`}
+					} ${classes.editor}`}
 				>
 					{width <= 740 && <div style={spacerStyles}></div>}
 					<Menu ref={menuRef} setIsMenuExpanded={setIsMenuExpanded} />
 					<Main />
 				</div>
-			</ConsoleProvider>
+			</EditorProvider>
 		</>
 	);
 };
 
-export default Console;
+export default Editor;

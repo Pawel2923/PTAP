@@ -13,7 +13,7 @@ import Home from "./pages/Home";
 import Wiki from "./pages/Wiki";
 import Intro from "./components/Wiki/Intro";
 import Article from "./components/Wiki/Article";
-import Console from "./pages/Console";
+import Editor from "./pages/Editor";
 import Error404 from "./pages/Error404";
 import Error403 from "./pages/Error403";
 import SearchContext from "./store/search-context";
@@ -38,7 +38,7 @@ const DefaultPage = () => {
 
 	return (
 		<>
-			{!currentPage.includes("/console") && <Nav />}
+			{!currentPage.includes("/editor") && <Nav />}
 			{isShown && <Search />}
 			<Outlet />
 		</>
@@ -93,10 +93,10 @@ const App = () => {
 						))}
 				</Route>
 				<Route
-					path="console/*"
+					path="editor/*"
 					element={
 						isLoggedIn ? (
-							<Console />
+							<Editor />
 						) : (
 							<Navigate to="/zabroniony" replace={true} />
 						)

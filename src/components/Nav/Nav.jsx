@@ -38,7 +38,7 @@ const Nav = memo(() => {
         </li>
         {uid && (
           <li>
-            <NavLink to={"/console"}>
+            <NavLink to={"/editor"}>
               Konsola
             </NavLink>
           </li>

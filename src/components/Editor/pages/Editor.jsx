@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import ConsoleContext from "/src/store/console-context";
-import Toolbar from "../Editor/Toolbar/Toolbar";
-import Welcome from "../Editor/content/Welcome";
-import Code from "../Editor/content/Code";
+import EditorContext from "/src/store/editor-context";
+import Toolbar from "../Toolbar/Toolbar";
+import Welcome from "../content/Welcome";
+import Code from "../content/Code";
 import classes from "./Editor.module.css";
 
 const Editor = ({ setMainHeader }) => {
-    const { editorContent, setEditorContent } = useContext(ConsoleContext);
+    const { editorContent, setEditorContent } = useContext(EditorContext);
     const [editorStyles, setEditorStyles] = useState({});
 
     useEffect(() => {

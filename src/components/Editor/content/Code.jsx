@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState, useCallback } from "react";
 import Prism from "prismjs";
 import "/src/css/prism.css";
 import classes from "./Code.module.css";
-import ConsoleContext from "/src/store/console-context";
+import EditorContext from "/src/store/editor-context";
 
 String.prototype.lines = function () {
 	return this.split("\n");
@@ -17,7 +17,7 @@ const Code = () => {
 		setArticleContent,
 		enableToolbarButtons,
 		disableToolbarButtons,
-	} = useContext(ConsoleContext);
+	} = useContext(EditorContext);
 	const codeRef = useRef(null);
 	const [lineNumber, setLineNumber] = useState(1);
 

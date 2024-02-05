@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const ConsoleContext = createContext({
+const EditorContext = createContext({
 	editorContent: "home",
 	articleContent: "",
 	articleAddress: "",
@@ -36,4 +36,4 @@ const ConsoleContext = createContext({
 	},
 });
 
-export default ConsoleContext;
+export default EditorContext;
