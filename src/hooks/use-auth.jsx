@@ -4,6 +4,8 @@ import {
 	getAuth,
 	createUserWithEmailAndPassword,
 	updateProfile,
+	updatePassword,
+	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithPopup,
 	GoogleAuthProvider,
@@ -86,6 +88,30 @@ const useAuth = () => {
 		return response;
 	};
 
+	const updateUserPassword = (newPassword) => {
+		const auth = getAuth();
+		const user = auth.currentUser;
+
+		updatePassword(user, newPassword)
+		.then(() => {
+			return "Hasło zostało zmienione";
+		})
+		.catch((error) => {
+			throw new Error(error.code);
+		});
+	};
+
+	const sendResetEmail = async (email) => {
+		const auth = getAuth();
+		await sendPasswordResetEmail(auth, email)
+		.then(() => {
+			return "E-mail z linkiem do resetowania hasła został wysłany";
+		})
+		.catch((error) => {
+			throw new Error(error.code);
+		});
+	}
+
 	const logout = async () => {
 		signOut(auth)
 			.then(() => {
@@ -96,7 +122,7 @@ const useAuth = () => {
 			});
 	};
 
-	return { uid, currentUser, createUser, loginWithEmail, loginWithGoogle, logout };
+	return { uid, currentUser, createUser, loginWithEmail, loginWithGoogle, updateUserPassword, sendResetEmail, logout };
 };
 
 export default useAuth;

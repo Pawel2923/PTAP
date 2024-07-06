@@ -117,6 +117,9 @@ const Login = () => {
 			</label>
 			<Button type="submit">Zaloguj się</Button>
 			<p>
+				<Link to="/resetowanie-hasla">Resetuj hasło</Link>
+			</p>
+			<p>
 				Nie masz jeszcze konta?{" "}
 				<Link to="/rejestracja">Zapisz się</Link>
 			</p>
