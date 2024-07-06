@@ -70,12 +70,8 @@ const Login = () => {
 						"Serwis w tej chwili jest niedostępny. Spróbuj ponownie później",
 				};
 
-				if (error.message === "auth/user-not-found") {
-					modalInfo.message = "Nie znaleziono takiego użytkownika";
-				}
-
-				if (error.message === "auth/wrong-password") {
-					modalInfo.message = "Podano błędne hasło";
+				if (error.message === "auth/invalid-credential") {
+					modalInfo.message = "Podano błędny e-mail lub hasło";
 				}
 
 				setModalState(modalInfo);
