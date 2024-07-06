@@ -24,6 +24,7 @@ import PageContext from "./store/page-context";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Logout from "./pages/Logout";
+import ResetPassword from "./pages/ResetPassword";
 
 const DefaultPage = () => {
 	const location = useLocation();
@@ -93,7 +94,7 @@ const App = () => {
 						))}
 				</Route>
 				<Route
-					path="editor/*"
+					path="console/*"
 					element={
 						isLoggedIn ? (
 							<Editor />
@@ -103,6 +104,7 @@ const App = () => {
 					}
 				/>
 				<Route path="rejestracja" element={<Signup />} />
+				<Route path="resetowanie-hasla" element={<ResetPassword />} />
 				<Route path="logowanie" element={<Login />} />
 				<Route path="wylogowanie" element={<Logout />} />
 				<Route path="zabroniony" element={<Error403 />} />

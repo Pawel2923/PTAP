@@ -16,6 +16,10 @@
 	place-self: center;
 	width: 100%;
 	color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 
 .option:active {

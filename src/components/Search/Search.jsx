@@ -125,7 +125,7 @@ export const Search = () => {
                                     xlinkHref={`${icons}#icon-magnifying_glass`}
                                 ></use>
                             </svg>{" "}
-                            Przeszukaj wiki
+                            <span>Przeszukaj wiki</span>
                         </div>
                     )}
                     {!showPlaceholder && (
@@ -174,7 +174,7 @@ export const SearchPlaceholder = memo(() => {
                 <svg className="icon icon-magnifying_glass">
                     <use xlinkHref={`${icons}#icon-magnifying_glass`}></use>
                 </svg>{" "}
-                Przeszukaj wiki
+                <span>Przeszukaj wiki</span>
             </div>
         </button>
     );

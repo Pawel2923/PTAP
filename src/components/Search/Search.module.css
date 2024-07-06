@@ -147,6 +147,10 @@
   color: #6F6F6F;
 }
 
+.search-placeholder .placeholder > span {
+  margin-right: 2rem;
+}
+
 @media screen and (min-width: 46.25em) {
   .search {
     z-index: 3;
