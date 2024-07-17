@@ -140,6 +140,7 @@
   border-radius: 25px;
   background-color: #fff;
   cursor: text;
+  font-size: 0.9em;
 }
 
 .search-placeholder .placeholder {
