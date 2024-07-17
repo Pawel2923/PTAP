@@ -140,11 +140,16 @@
   border-radius: 25px;
   background-color: #fff;
   cursor: text;
+  font-size: 0.9em;
 }
 
 .search-placeholder .placeholder {
   position: static;
   color: #6F6F6F;
+}
+
+.search-placeholder .placeholder > span {
+  margin-right: 2rem;
 }
 
 @media screen and (min-width: 46.25em) {

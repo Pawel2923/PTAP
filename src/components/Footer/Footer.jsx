@@ -30,7 +30,7 @@ const Footer = memo(() => {
             <Link to="/feedback">Zgłoś błąd na stronie</Link>
           </li>
           <li>
-            <Link to="/editor">Edytor artykułów</Link>
+            <Link to="/console">Edytor artykułów</Link>
           </li>
         </ul>
       </div>
@@ -41,6 +41,6 @@ const Footer = memo(() => {
   );
 });
 
-Footer.displayName = "Fotter";
+Footer.displayName = "Footer";
 
 export default Footer;

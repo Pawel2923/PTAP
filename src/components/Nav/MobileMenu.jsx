@@ -45,8 +45,8 @@ const MobileMenu = memo(() => {
       type: "link",
     },
     {
-      name: uid ? "Wyloguj się" : "Zapisz się",
-      path: uid ? "/wylogowanie" : "/rejestracja",
+      name: uid ? "Wyloguj się" : "Zaloguj się",
+      path: uid ? "/wylogowanie" : "/logowanie",
       icon: uid ? "icon-signout" : "icon-signup",
       type: "link",
     },

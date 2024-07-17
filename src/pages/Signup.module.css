@@ -40,9 +40,6 @@
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
-    -ms-grid-row-align: end;
-    -ms-grid-column-align: end;
-    place-self: end;
 }
 
 @media screen and (min-width: 46.25em) {

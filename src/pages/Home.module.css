@@ -75,13 +75,13 @@
   }
 
   .index-banner > header {
-    border-radius: 10px;
+    border-radius: 25px;
     padding: 2rem 5rem;
     margin: 0 auto;
   }
 
   .index-banner > header::before {
-    border-radius: 10px;
+    border-radius: 25px;
   }
 
   .index-banner > header h1 {

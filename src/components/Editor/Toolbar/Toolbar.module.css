@@ -31,11 +31,7 @@
     display: -ms-flexbox;
     display: flex;
     gap: 0.5rem;
-    place-content: end;
-}
-
-.modal-button {
-    place-self: end;
+    align-items: center;
 }
 
 .select {

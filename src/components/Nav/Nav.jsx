@@ -19,8 +19,8 @@ const Nav = memo(() => {
       <Link to="/" title="Przejdź na stronę główną">
         <img
           src={ptapLogo}
-          width="50"
-          height="50"
+          width="80"
+          height="80"
           alt="logo"
         />
         <h2>{navLogoTitle}</h2>
@@ -38,7 +38,7 @@ const Nav = memo(() => {
         </li>
         {uid && (
           <li>
-            <NavLink to={"/editor"}>
+            <NavLink to={"/console"}>
               Konsola
             </NavLink>
           </li>
@@ -49,8 +49,8 @@ const Nav = memo(() => {
               Wyloguj się
             </NavLink>
           ) : (
-            <NavLink to="/rejestracja">
-              Zapisz się
+            <NavLink to="/logowanie">
+              Zaloguj się
             </NavLink>
           )}
         </li>
