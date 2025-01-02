@@ -31,7 +31,7 @@ const Code = () => {
 				disableToolbarButtons("edit", ["copy", "cleanCode"]);
 			}
 
-			if (text[text.length - 1] == "\n") {
+			if (text[text.length - 1] === "\n") {
 				// If the last character is a newline character
 				text += " "; // Add a placeholder space character to the final line
 			}
@@ -59,7 +59,7 @@ const Code = () => {
 	};
 
 	const textareakeyDownHandler = (ev) => {
-		if (ev.key == "Tab") {
+		if (ev.key === "Tab") {
 			let code = ev.target.value;
 			const element = ev.target;
 

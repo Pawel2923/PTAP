@@ -39,7 +39,7 @@ const DefaultPage = () => {
 
 	return (
 		<>
-			{!currentPage.includes("/editor") && <Nav />}
+			{!currentPage.includes("console") && <Nav />}
 			{isShown && <Search />}
 			<Outlet />
 		</>
@@ -53,7 +53,7 @@ const App = () => {
 	const [articles, setArticles] = useState([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
 	const checkLoggedIn = useMemo(
-		() => (uid ? true : sessionStorage.getItem("uid") ? true : false),
+		() => (uid ? true : !!sessionStorage.getItem("uid")),
 		[uid]
 	);
 

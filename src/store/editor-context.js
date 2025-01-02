@@ -24,16 +24,8 @@ const EditorContext = createContext({
 	setArticleAddress: () => {},
 	setArticleName: () => {},
 	resetArticleInfo: () => {},
-	disableToolbarButtons: (mainButton, subButtons) => {
-		const newState = true;
-		mainButton, subButtons;
-		return newState;
-	},
-	enableToolbarButtons: (mainButton, subButtons) => {
-		const newState = false;
-		mainButton, subButtons;
-		return newState;
-	},
+	disableToolbarButtons: () => {},
+	enableToolbarButtons: () => {},
 });
 
 export default EditorContext;

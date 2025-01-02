@@ -19,6 +19,12 @@ const defaultToolbarBtnProperties = {
 	},
 };
 
+/**
+ * Disable or enable toolbar main buttons and sub buttons
+ * @param state
+ * @param action
+ * @returns {*}
+ */
 const toolbarButtonsReducer = (state, action) => {
 	let newButtons = state;
 	if (action.type === "DISABLE") {

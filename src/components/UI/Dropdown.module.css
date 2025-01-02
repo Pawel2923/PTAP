@@ -7,8 +7,6 @@
 .menu, .menu-horizontal {
     position: absolute;
     background-color: #282828;
-    width: -webkit-max-content;
-    width: -moz-max-content;
     width: max-content;
     height: auto;
     border: 1px solid #3f3f3f;
@@ -102,7 +100,7 @@
 }
 
 @media screen and (min-width: 50em) {
-    .active {
+    .active>button {
         background-color: #343434 !important;
     }
 }
@@ -110,55 +108,43 @@
 @-webkit-keyframes slideFromTop {
     0% {
         opacity: 0;
-        -webkit-transform: translateY(-15%);
-                transform: translateY(-15%);
+        transform: translateY(-15%);
     }
     100% {
         opacity: 1;
-        -webkit-transition: translateY(0);
-        -o-transition: translateY(0);
-        transition: translateY(0);
+        transform: translateY(0);
     }
 }
 
 @keyframes slideFromTop {
     0% {
         opacity: 0;
-        -webkit-transform: translateY(-15%);
-                transform: translateY(-15%);
+        transform: translateY(-15%);
     }
     100% {
         opacity: 1;
-        -webkit-transition: translateY(0);
-        -o-transition: translateY(0);
-        transition: translateY(0);
+        transform: translateY(0);
     }
 }
 
 @-webkit-keyframes slideFromLeft {
     0% {
         opacity: 0;
-        -webkit-transform: translateX(-15%);
-                transform: translateX(-15%);
+        transform: translateX(-15%);
     }
     100% {
         opacity: 1;
-        -webkit-transition: translateX(0);
-        -o-transition: translateX(0);
-        transition: translateX(0);
+        transform: translateX(0);
     }
 }
 
 @keyframes slideFromLeft {
     0% {
         opacity: 0;
-        -webkit-transform: translateX(-15%);
-                transform: translateX(-15%);
+        transform: translateX(-15%);
     }
     100% {
         opacity: 1;
-        -webkit-transition: translateX(0);
-        -o-transition: translateX(0);
-        transition: translateX(0);
+        transform: translateX(0);
     }
 }

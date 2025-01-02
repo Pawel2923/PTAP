@@ -41,12 +41,13 @@ export const Dropdown = ({ title, className, children }) => {
   });
 
   return (
-    <div
-      className={`${dropdownClasses} ${className ? className : ""}`}
-      onClick={openMenu}
-      ref={dropdownRef}
-    >
-      <div>{title}</div>
+    <div className={dropdownClasses} ref={dropdownRef}>
+      <button
+          className={`${className ? className : ""}`}
+          onClick={openMenu}
+      >
+        <span>{title}</span>
+      </button>
       {isMenuShown && <div className={classes.menu}>{renderChildren}</div>}
     </div>
   );

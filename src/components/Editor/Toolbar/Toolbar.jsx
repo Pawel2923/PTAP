@@ -13,25 +13,6 @@ import PageContext from "/src/store/page-context";
 import EditorContext from "/src/store/editor-context";
 import classes from "./Toolbar.module.css";
 
-const copyToClipboard = (text) => {
-	// Check for browser support
-	if (navigator.clipboard) {
-		navigator.clipboard.writeText(text);
-		return;
-	}
-	const textArea = document.createElement("textarea");
-	textArea.value = text;
-
-	document.body.appendChild(textArea);
-
-	textArea.focus();
-	textArea.select();
-
-	document.execCommand("copy");
-
-	document.body.removeChild(textArea);
-};
-
 const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 	const { width, fullscreen, setFullscreen } = useContext(PageContext);
 	const {
@@ -80,6 +61,8 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 			setShowSave(true);
 		} else if (ev.currentTarget.id === "open") {
 			setShowOpen(true);
+			enableToolbarButtons("file", ["exit", "save"]);
+			enableToolbarButtons("edit", ["copy", "newLine", "cleanCode"]);
 		} else {
 			setEditorContent(ev.currentTarget.id);
 			enableToolbarButtons("file", ["exit", "save"]);
@@ -95,8 +78,8 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 		});
 	};
 
-	const onCopy = () => {
-		copyToClipboard(articleContent);
+	const onCopy = async () => {
+		await navigator.clipboard.writeText(articleContent);
 	};
 
 	const cleanCode = () => {
