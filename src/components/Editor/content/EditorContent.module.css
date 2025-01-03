@@ -1,0 +1,32 @@
+.code {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  min-height: 100%;
+  gap: 10px;
+  border-radius: 2px;
+  padding: 20px 10px;
+}
+
+.line-numbers {
+  height: 100%;
+  margin-right: 0.5rem;
+  text-align: right;
+}
+
+.line-numbers span {
+  counter-increment: linenumber;
+}
+
+.line-numbers span::before {
+  content: counter(linenumber);
+  display: block;
+  line-height: 20pt;
+  color: #666;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}

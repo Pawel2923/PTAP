@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import EditorContext from "/src/store/editor-context";
 import Toolbar from "../Toolbar/Toolbar";
 import Welcome from "../content/Welcome";
-import Code from "../content/Code";
+import EditorContent from "../content/EditorContent.jsx";
 import classes from "./Editor.module.css";
 
 const Editor = ({ setMainHeader }) => {
@@ -18,7 +18,7 @@ const Editor = ({ setMainHeader }) => {
     if (editorContent === "home") {
         content = <Welcome />;
     } else if (editorContent === "edit") {
-        content = <Code />;
+        content = <EditorContent />;
     } else {
         content = "Wystąpił błąd";
     }

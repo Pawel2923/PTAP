@@ -73,7 +73,6 @@ const Toolbar = ({ setEditorStyles, setEditorContent }) => {
 	const insertNewLine = () => {
 		setArticleContent((content) => {
 			content += "<br/>";
-			console.log(content);
 			return content;
 		});
 	};

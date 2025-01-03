@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import {useState, useEffect, useReducer, useCallback} from "react";
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -75,21 +75,21 @@ const EditorProvider = ({ children }) => {
 		defaultToolbarBtnProperties
 	);
 
-	const disableToolbarButtons = (mainButton, subButtons) => {
+	const disableToolbarButtons = useCallback((mainButton, subButtons) => {
 		dispatchToolbarButtons({
 			type: "DISABLE",
 			mainButton,
 			subButtons,
 		});
-	};
+	}, []);
 
-	const enableToolbarButtons = (mainButton, subButtons) => {
+	const enableToolbarButtons = useCallback((mainButton, subButtons) => {
 		dispatchToolbarButtons({
 			type: "ENABLE",
 			mainButton,
 			subButtons,
 		});
-	};
+	}, []);
 
 	const resetArticleInfo = () => {
 		setArticleContent("");
