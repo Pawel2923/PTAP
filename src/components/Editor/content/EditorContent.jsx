@@ -8,14 +8,14 @@ const EditorContent = () => {
 
     return (
         <div className={classes.code}>
-            {/* Line Numbers */}
             <div className={classes["line-numbers"]}>
                 {lineNumbers.map((item, index) => (
                     <span key={index}></span>
                 ))}
             </div>
 
-            {/* Editor and Highlighting */}
+            <div className={classes.line}></div>
+
             <div className={classes.content}>
                 <textarea
                     id="editing"

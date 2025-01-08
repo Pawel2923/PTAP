@@ -25,6 +25,11 @@
   color: #666;
 }
 
+.line {
+  width: 1px;
+  background-color: #666;
+}
+
 .content {
   position: relative;
   width: 100%;

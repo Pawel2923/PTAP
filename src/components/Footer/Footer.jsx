@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import classes from "./Footer.module.css";
 import PageContext from "../../store/page-context";
 
+const currentYear = new Date().getFullYear();
+
 const Footer = memo(() => {
   const [navHeight, setNavHeight] = useState(0);
   const { width } = useContext(PageContext);
@@ -35,7 +37,7 @@ const Footer = memo(() => {
         </ul>
       </div>
       <div className={classes.bottom}>
-        <p>PTAP 2024 &copy; Wszelkie prawa zastrzeżone</p>
+        <p>PTAP {currentYear} &copy; Wszelkie prawa zastrzeżone</p>
       </div>
     </footer>
   );
