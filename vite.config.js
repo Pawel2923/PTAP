@@ -6,14 +6,14 @@ import macrosPlugin from "vite-plugin-babel-macros";
 export default defineConfig({
   plugins: [react(), macrosPlugin()],
   build: { chunkSizeWarningLimit: 1600 },
-  server: {
-    host: "0.0.0.0",
-    hmr: {
-      clientPort: 3000,
-    },
-    port: 80,
-    watch: {
-      usePolling: true,
-    },
-  },
+  // server: {
+  //   host: "0.0.0.0",
+  //   hmr: {
+  //     clientPort: 3000,
+  //   },
+  //   port: 80,
+  //   watch: {
+  //     usePolling: true,
+  //   },
+  // },
 });
