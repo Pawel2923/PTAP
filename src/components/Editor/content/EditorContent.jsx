@@ -9,7 +9,7 @@ const EditorContent = () => {
     return (
         <div className={classes.code}>
             <div className={classes["line-numbers"]}>
-                {lineNumbers.map((item, index) => (
+                {lineNumbers.map((_, index) => (
                     <span key={index}></span>
                 ))}
             </div>

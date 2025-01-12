@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import { StringToJSX } from "../../scripts/StringToJSX";
 
 const Article = ({item}) => {
-    return (item.content && item.name) && (
+    return (item.content && item.title) && (
         <>
             <header>
-                <h2>{item.name}</h2>
+                <h2>{item.title}</h2>
             </header>
             <div className="content">
                 <StringToJSX domString={item.content} />

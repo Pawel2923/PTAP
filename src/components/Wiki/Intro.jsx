@@ -19,7 +19,7 @@ const Intro = () => {
 				.reverse()
 				.map((item, key) => (
 					<div key={key}>
-						<Link to={item.address}>{item.name}</Link>
+						<Link to={item.address}>{item.title}</Link>
 					</div>
 				))
 		);
@@ -27,7 +27,7 @@ const Intro = () => {
 		setArticles(
 			data.slice(1, length - 3).map((item, key) => (
 				<div key={key}>
-					<Link to={item.address}>{item.name}</Link>
+					<Link to={item.address}>{item.title}</Link>
 				</div>
 			))
 		);

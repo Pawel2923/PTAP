@@ -72,7 +72,7 @@ const Open = ({ setShowOpen }) => {
 					{data &&
 						data.map((article, key) => (
 							<option key={key} value={article.address}>
-								{article.name}
+								{article.title}
 							</option>
 						))}
 				</select>
