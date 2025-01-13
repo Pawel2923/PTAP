@@ -18,7 +18,6 @@ import Error404 from "./pages/Error404";
 import Error403 from "./pages/Error403";
 import SearchContext from "./store/search-context";
 import { Search } from "./components/Search/Search";
-import useDatabase from "./hooks/use-db";
 import useAuth from "./hooks/use-auth";
 import PageContext from "./store/page-context";
 import Login from "./pages/Login";
@@ -48,26 +47,11 @@ const DefaultPage = () => {
 
 const App = () => {
 	const { uid } = useAuth();
-	const { data, response } = useDatabase();
-	const [addRoutes, setAddRoutes] = useState(false);
-	const [articles, setArticles] = useState([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
 	const checkLoggedIn = useMemo(
 		() => (uid ? true : !!sessionStorage.getItem("uid")),
 		[uid]
 	);
-
-	useEffect(() => {
-		if (response.isSuccess) {
-			setAddRoutes(data.length > 0);
-		}
-	}, [data, response]);
-
-	useEffect(() => {
-		if (response.isSuccess) {
-			setArticles(data);
-		}
-	}, [data, response]);
 
 	useEffect(() => {
 		if (checkLoggedIn) {
@@ -83,15 +67,7 @@ const App = () => {
 				<Route index element={<Home />} />
 				<Route path="wiki" element={<Wiki />}>
 					<Route index element={<Intro />} />
-					{addRoutes &&
-						articles &&
-						articles.map((item, key) => (
-							<Route
-								key={key}
-								path={item.address}
-								element={<Article item={item} />}
-							/>
-						))}
+					<Route path=":articleAddress" element={<Article />} />
 				</Route>
 				<Route
 					path="console/*"

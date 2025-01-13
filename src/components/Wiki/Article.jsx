@@ -1,21 +1,33 @@
-import PropTypes from "prop-types";
 import { StringToJSX } from "../../scripts/StringToJSX";
+import {useArticle} from "../Editor/hooks/use-article.jsx";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 
-const Article = ({item}) => {
-    return (item.content && item.title) && (
+const Article = () => {
+    const {articleAddress} = useParams();
+    const {Open} = useArticle();
+    const [article, setArticle] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = Open(articleAddress, (data) => {
+            setArticle(data);
+        });
+
+        return () => unsubscribe?.();
+    }, [Open, articleAddress]);
+
+    return article ? (
         <>
             <header>
-                <h2>{item.title}</h2>
+                <h2>{article?.title}</h2>
             </header>
             <div className="content">
-                <StringToJSX domString={item.content} />
+                <StringToJSX domString={article?.content}/>
             </div>
         </>
+    ) : (
+        <p>Ładowanie...</p>
     );
-};
-
-Article.propTypes = {
-    item: PropTypes.any,
 };
 
 export default Article;
