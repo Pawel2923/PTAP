@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import EditorContext from "/src/store/editor-context";
+import {EditorContext} from "../../../store/Editor/editor-context.ts";
 import Toolbar from "../Toolbar/Toolbar";
 import Welcome from "../content/Welcome";
 import EditorContent from "../content/EditorContent.jsx";
 import classes from "./Editor.module.css";
 
 const Editor = ({ setMainHeader }) => {
-    const { editorContent, setEditorContent } = useContext(EditorContext);
+    const { page } = useContext(EditorContext);
     const [editorStyles, setEditorStyles] = useState({});
 
     useEffect(() => {
@@ -15,9 +15,9 @@ const Editor = ({ setMainHeader }) => {
     }, [setMainHeader]);
 
     let content = "";
-    if (editorContent === "home") {
+    if (page === "home") {
         content = <Welcome />;
-    } else if (editorContent === "edit") {
+    } else if (page === "edit") {
         content = <EditorContent />;
     } else {
         content = "Wystąpił błąd";
@@ -25,7 +25,7 @@ const Editor = ({ setMainHeader }) => {
 
     return (
         <div className={classes.editor} style={editorStyles}>
-            <Toolbar setEditorStyles={setEditorStyles} setEditorContent={setEditorContent} />
+            <Toolbar setEditorStyles={setEditorStyles} />
             <div className={classes["workspace-container"]}>
                 {content}
             </div>

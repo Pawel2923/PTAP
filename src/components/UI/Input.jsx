@@ -6,6 +6,8 @@ import {
 	useLayoutEffect,
 } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
+
 import classes from "./Input.module.css";
 
 const Input = forwardRef(
@@ -30,7 +32,7 @@ const Input = forwardRef(
 		ref
 	) => {
 		const [isInvalid, setIsInvalid] = useState(false);
-		const inputRef = useRef(ref);
+		const inputRef = useRef(ref ?? null);
 
 		useLayoutEffect(() => {
 			if (!isInvalid) {
@@ -56,18 +58,24 @@ const Input = forwardRef(
 
 		const changeHandler = (ev) => {
 			setIsInvalid(false);
-			onChange && onChange(ev);
+			if (onChange) {
+				onChange(ev);
+			}
 		};
 
 		const focusHandler = (ev) => {
-			onFocus && onFocus(ev);
+			if (onFocus) {
+				onFocus(ev);
+			}
 		};
 
 		const blurHandler = (ev) => {
 			if (validateInput) {
 				setIsInvalid(!validateInput(value));
 			}
-			onBlur && onBlur(ev);
+			if (onBlur) {
+				onBlur(ev);
+			}
 		};
 
 		return (
@@ -79,7 +87,7 @@ const Input = forwardRef(
 				value={value}
 				disabled={disabled}
 				required={required}
-				className={`${classes.input} ${className ? className : ""}`}
+				className={classNames(classes.input, className)}
 				style={style ? style : {}}
 				minLength={minLength ? minLength : ""}
 				onChange={changeHandler}
@@ -91,7 +99,7 @@ const Input = forwardRef(
 	}
 );
 
-Input.displayName = Input;
+Input.displayName = "Input";
 
 Input.propTypes = {
 	type: PropTypes.string,

@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import EditorContext from "/src/store/editor-context";
+import {EditorContext} from "../../store/Editor/editor-context.ts";
 import Welcome from "./pages/Welcome";
 import New from "./pages/New";
 import All from "./pages/All";
@@ -10,7 +10,7 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Main.module.css";
 
 const Main = () => {
-    const { articleName } = useContext(EditorContext);
+    const { articleTitle } = useContext(EditorContext);
     const [mainHeader, setMainHeader] = useState("");
 
     return (
@@ -18,10 +18,10 @@ const Main = () => {
             <header>
                 <h2>
                     {mainHeader}
-                    {articleName && " "}
-                    {articleName && <FontAwesomeIcon icon={solid("angle-right")} />}
-                    {articleName && " "}
-                    {articleName && articleName}
+                    {articleTitle && " "}
+                    {articleTitle && <FontAwesomeIcon icon={solid("angle-right")} />}
+                    {articleTitle && " "}
+                    {articleTitle && articleTitle}
                 </h2>
             </header>
             <section>

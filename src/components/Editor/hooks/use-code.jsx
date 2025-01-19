@@ -1,5 +1,5 @@
 import {useContext, useEffect, useCallback, useMemo, useRef} from "react";
-import EditorContext from "/src/store/editor-context";
+import {EditorContext} from "/src/store/Editor/editor-context";
 import * as Prism from "prismjs";
 
 function useCode() {

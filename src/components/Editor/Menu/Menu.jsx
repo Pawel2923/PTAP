@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, forwardRef } from "react";
 import PropTypes from "prop-types";
 import Option from "./Option/Option";
-import EditorContext from "/src/store/editor-context";
+import {EditorContext} from "/src/store/Editor/editor-context";
 import PageContext from "/src/store/page-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";

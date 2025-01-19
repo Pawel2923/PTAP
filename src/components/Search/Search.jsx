@@ -32,12 +32,7 @@ export const Search = () => {
             let isFound = false;
             Object.values(user).forEach((value) => {
                 if (!isFound) {
-                    value
-                        .toString()
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-                        ? (isFound = true)
-                        : (isFound = false);
+                    isFound = value.toString().toLowerCase().includes(searchTerm.toLowerCase());
                 }
             });
 
