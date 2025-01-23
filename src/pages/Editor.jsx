@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect, useRef } from "react";
-import Menu from "../components/Editor/Menu/Menu";
+import Menu from "../components/Editor/Components/Menu/Menu";
 import Main from "../components/Editor/Main";
 import EditorProvider from "../store/Editor/EditorProvider.jsx";
 import PageContext from "../store/page-context";

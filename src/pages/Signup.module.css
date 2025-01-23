@@ -31,14 +31,10 @@
 }
 
 .form button {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
     width: fit-content;
 }
 
 .modal-button {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
     width: fit-content;
 }
 

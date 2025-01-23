@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
-import {EditorContext} from "./editor-context.ts";
+import {EditorContext} from "./editor-context.js";
 import {useReducer, useState} from "react";
-import {Article, ToolbarButtons} from "./DefaultEditorContext.ts";
-import articleReducer, {articleActionTypes} from "./reducers/article-reducer.ts";
-import toolbarButtonsReducer, {toolbarButtonsActionTypes} from "./reducers/toolbar-buttons-reducer.ts";
+import {Article, ToolbarButtons} from "./DefaultEditorContext.js";
+import articleReducer, {articleActionTypes} from "./reducers/article-reducer.js";
+import toolbarButtonsReducer, {toolbarButtonsActionTypes} from "./reducers/toolbar-buttons-reducer.js";
 
 const defaultArticle = new Article();
 const defaultToolbarButtons = new ToolbarButtons();
 
 export default function EditorProvider({children}) {
     const [page, setPage] = useState("home");
+    const [editorStyles, setEditorStyles] = useState({});
     const [article, dispatchArticle] = useReducer(articleReducer, defaultArticle, undefined);
     const [toolbarButtons, dispatchToolbarButtons] = useReducer(toolbarButtonsReducer, defaultToolbarButtons, undefined);
 
@@ -48,10 +49,12 @@ export default function EditorProvider({children}) {
         article,
         toolbarButtons,
         setPage,
+        editorStyles,
         setArticle,
         resetArticle,
         disableToolbarButtons,
         enableToolbarButtons,
+        setEditorStyles,
     };
 
     return (

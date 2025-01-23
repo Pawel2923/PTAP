@@ -1,14 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
-import {EditorContext} from "../../../store/Editor/editor-context.ts";
-import Toolbar from "../Toolbar/Toolbar";
+import {EditorContext} from "../../../store/Editor/editor-context.js";
+import Toolbar from "../Components/Toolbar/Toolbar";
 import Welcome from "../content/Welcome";
 import EditorContent from "../content/EditorContent.jsx";
 import classes from "./Editor.module.css";
 
 const Editor = ({ setMainHeader }) => {
-    const { page } = useContext(EditorContext);
-    const [editorStyles, setEditorStyles] = useState({});
+    const { page, editorStyles } = useContext(EditorContext);
 
     useEffect(() => {
         setMainHeader("Edytor artykułów");
@@ -25,7 +24,7 @@ const Editor = ({ setMainHeader }) => {
 
     return (
         <div className={classes.editor} style={editorStyles}>
-            <Toolbar setEditorStyles={setEditorStyles} />
+            <Toolbar />
             <div className={classes["workspace-container"]}>
                 {content}
             </div>

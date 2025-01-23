@@ -1,9 +1,9 @@
 import {useContext, useState} from "react";
 import PropTypes from "prop-types";
 import useDatabase from "/src/hooks/use-db";
-import Modal from "../../UI/Modal";
-import {Button} from "../../UI/Button";
-import {EditorContext} from "/src/store/Editor/editor-context.ts";
+import Modal from "../../../UI/Modal.jsx";
+import {Button} from "../../../UI/Button.jsx";
+import {EditorContext} from "/src/store/Editor/editor-context.js";
 import classes from "./Toolbar.module.css";
 
 const Open = ({setShowOpen}) => {

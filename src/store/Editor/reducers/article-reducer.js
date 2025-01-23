@@ -5,12 +5,18 @@ export const articleActionTypes = Object.freeze({
     RESET: Symbol("reset"),
 });
 
-type ReducerAction = {
-    type: symbol,
-    payload?: Article;
-};
+/**
+ * @typedef ReducerAction
+ * @property {symbol} type
+ * @property {Article | undefined} payload
+ */
 
-export default function articleReducer(state: Article, action: ReducerAction): Article {
+/**
+ * @param {Article} state
+ * @param {ReducerAction} action
+ * @returns {Article}
+ */
+export default function articleReducer(state, action) {
     if (!action.payload) {
         return state;
     }
@@ -19,7 +25,11 @@ export default function articleReducer(state: Article, action: ReducerAction): A
     return mappedAction ? mappedAction(action.payload) : state;
 }
 
-function updateArticle(payload: Article) {
+/**
+ * @param {Article} payload
+ * @returns {Article}
+ */
+function updateArticle(payload) {
     return payload;
 }
 

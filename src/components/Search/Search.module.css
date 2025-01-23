@@ -25,8 +25,6 @@
   padding: 0.5rem 1rem;
   display: -ms-grid;
   display: grid;
-  grid-template-columns: -webkit-min-content 1fr;
-  -ms-grid-columns: -webkit-min-content 1rem 1fr;
   -ms-grid-columns: min-content 1rem 1fr;
   grid-template-columns: min-content 1fr;
   -moz-column-gap: 1rem;
