@@ -38,11 +38,11 @@ function enableToolbarButton(state, payload) {
     const {buttonName, subButtonNames} = payload;
 
     const button = state[buttonName];
-    if (!button) {
-        return state;
+
+    if (button && Array.isArray(subButtonNames)) {
+        subButtonNames.forEach(subButtonName => button.set(subButtonName, true));
     }
 
-    subButtonNames.forEach(subButtonName => button.set(subButtonName, true));
     return state;
 }
 
@@ -55,11 +55,11 @@ function disableToolbarButton(state, payload) {
     const {buttonName, subButtonNames} = payload;
 
     const button = state[buttonName];
-    if (!button) {
-        return state;
+
+    if (button && Array.isArray(subButtonNames)) {
+        subButtonNames.forEach(subButtonName => button.set(subButtonName, false));
     }
 
-    subButtonNames.forEach(subButtonName => button.set(subButtonName, false));
     return state;
 }
 

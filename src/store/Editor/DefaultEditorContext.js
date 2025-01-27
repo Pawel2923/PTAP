@@ -1,10 +1,19 @@
 /**
- * @property {Map<string, boolean> | undefined} file
- * @property {Map<string, boolean> | undefined} edit
+ * @property {Map<string, boolean>} file
+ * @property {Map<string, boolean>} edit
  */
 export class ToolbarButtons {
-    file = undefined;
-    edit = undefined;
+    file = new Map([
+        ["new", true],
+        ["open", true],
+        ["save", true],
+        ["exit", true],
+    ]);
+    edit = new Map([
+        ["newLine", true],
+        ["copy", true],
+        ["cleanCode", true],
+    ]);
 }
 
 /**

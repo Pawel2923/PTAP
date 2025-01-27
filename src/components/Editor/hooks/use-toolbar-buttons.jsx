@@ -7,12 +7,10 @@ import {EditorContext} from "/src/store/Editor/editor-context.js";
  * @param {React.Dispatch<React.SetStateAction<object>>} setToolbarStyles
  * @param {React.Dispatch<React.SetStateAction<boolean>>} setShowSave
  * @param {React.Dispatch<React.SetStateAction<boolean>>} setShowOpen
- * @returns {{fileButtonList: object[], editButtonList: object[], fullscreenClickHandler: fullscreenClickHandler}}
  */
 export default function useToolbarButtons(setToolbarStyles, setShowSave, setShowOpen) {
     const {fullscreen, setFullscreen} = useContext(PageContext);
     const {
-        toolbarButtons,
         setPage,
         article,
         disableToolbarButtons,
@@ -89,52 +87,10 @@ export default function useToolbarButtons(setToolbarStyles, setShowSave, setShow
     }, [article, disableToolbarButtons, setArticle]);
 
     return {
-        fileButtonList: [
-            {
-                id: "edit",
-                onClick: dropdownOptionClickHandler,
-                disabled: toolbarButtons.file.get("new"),
-                children: "Nowy",
-            },
-            {
-                id: "open",
-                onClick: dropdownOptionClickHandler,
-                disabled: toolbarButtons.file.get("open"),
-                children: "Otwórz",
-            },
-            {
-                id: "save",
-                onClick: dropdownOptionClickHandler,
-                disabled: toolbarButtons.file.get("save"),
-                children: "Zapisz",
-            },
-            {
-                id: "exit",
-                onClick: dropdownOptionClickHandler,
-                disabled: toolbarButtons.file.get("exit"),
-                children: "Wyjdź",
-            },
-        ],
-        editButtonList: [
-            {
-                id: "newLine",
-                onClick: insertNewLine,
-                disabled: toolbarButtons.edit.get("newLine"),
-                children: "Wstaw nową linię",
-            },
-            {
-                id: "copy",
-                onClick: onCopy,
-                disabled: toolbarButtons.edit.get("copy"),
-                children: "Skopiuj kod",
-            },
-            {
-                id: "cleanCode",
-                onClick: cleanCode,
-                disabled: toolbarButtons.edit.get("cleanCode"),
-                children: "Wyczyść zawartość",
-            },
-        ],
+        dropdownOptionClickHandler,
+        insertNewLine,
+        onCopy,
+        cleanCode,
         fullscreenClickHandler,
     };
 }

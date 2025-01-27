@@ -1,7 +1,7 @@
-import {DropdownOption} from "/src/components/UI/Dropdown.jsx";
+import {DropdownOption} from "/src/components/UI/DropdownOption.jsx";
 import PropTypes from "prop-types";
 
-export default function ToolbarButtons({buttonsList}) {
+export default function ToolbarButtons({buttonsList, setIsMenuShown}) {
     if (!buttonsList) {
         return <p>
             Wystąpił błąd
@@ -14,6 +14,7 @@ export default function ToolbarButtons({buttonsList}) {
             id={button.id}
             onClick={button.onClick}
             disabled={button.disabled}
+            setIsMenuShown={setIsMenuShown}
         >
             {button.children}
         </DropdownOption>
@@ -21,5 +22,6 @@ export default function ToolbarButtons({buttonsList}) {
 }
 
 ToolbarButtons.propTypes = {
-    buttonsList: PropTypes.arrayOf(PropTypes.shape({}))
+    buttonsList: PropTypes.arrayOf(PropTypes.shape({})),
+    setIsMenuShown: PropTypes.func,
 }

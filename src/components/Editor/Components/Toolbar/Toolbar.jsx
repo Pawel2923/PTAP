@@ -1,28 +1,87 @@
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
-import {Dropdown, DropdownNested} from "/src/components/UI/Dropdown";
+import {Dropdown} from "/src/components/UI/Dropdown";
+import {DropdownNested} from "/src/components/UI/DropdownNested.jsx";
 import Save from "./Save.jsx";
 import Open from "./Open.jsx";
 import PageContext from "/src/store/page-context";
 import classes from "./Toolbar.module.css";
 import ToolbarButtons from "./ToolbarComponents/ToolbarButtons.jsx";
 import useToolbarButtons from "../../hooks/use-toolbar-buttons.jsx";
+import {EditorContext} from "/src/store/Editor/editor-context.js";
 
 const Toolbar = () => {
+    const {toolbarButtons} = useContext(EditorContext);
     const {width, fullscreen} = useContext(PageContext);
     const [showSave, setShowSave] = useState(false);
     const [showOpen, setShowOpen] = useState(false);
     const [toolbarStyles, setToolbarStyles] = useState({});
 
     const {
-        fileButtonList,
-        editButtonList,
+        dropdownOptionClickHandler,
+        insertNewLine,
+        onCopy,
+        cleanCode,
         fullscreenClickHandler
     } = useToolbarButtons(setToolbarStyles, setShowSave, setShowOpen);
 
-    console.log(`fileButtonList: ${fileButtonList}`);
-    console.log(`editButtonList: ${editButtonList}`);
+    const [fileButtonList, setFileButtonList] = useState([]);
+    const [editButtonList, setEditButtonList] = useState([]);
+
+    useEffect(() => {
+        if (toolbarButtons.file) {
+            setFileButtonList([
+                {
+                    id: "edit",
+                    onClick: dropdownOptionClickHandler,
+                    disabled: !toolbarButtons.file.get("new"),
+                    children: "Nowy",
+                },
+                {
+                    id: "open",
+                    onClick: dropdownOptionClickHandler,
+                    disabled: !toolbarButtons.file.get("open"),
+                    children: "Otwórz",
+                },
+                {
+                    id: "save",
+                    onClick: dropdownOptionClickHandler,
+                    disabled: !toolbarButtons.file.get("save"),
+                    children: "Zapisz",
+                },
+                {
+                    id: "exit",
+                    onClick: dropdownOptionClickHandler,
+                    disabled: !toolbarButtons.file.get("exit"),
+                    children: "Wyjdź",
+                },
+            ]);
+        }
+
+        if (toolbarButtons.edit) {
+            setEditButtonList([
+                {
+                    id: "newLine",
+                    onClick: insertNewLine,
+                    disabled: !toolbarButtons.edit.get("newLine"),
+                    children: "Wstaw nową linię",
+                },
+                {
+                    id: "copy",
+                    onClick: onCopy,
+                    disabled: !toolbarButtons.edit.get("copy"),
+                    children: "Skopiuj kod",
+                },
+                {
+                    id: "cleanCode",
+                    onClick: cleanCode,
+                    disabled: !toolbarButtons.edit.get("cleanCode"),
+                    children: "Wyczyść zawartość",
+                },
+            ]);
+        }
+    }, [toolbarButtons, cleanCode, dropdownOptionClickHandler, insertNewLine, onCopy]);
 
     return (
         <>
@@ -32,10 +91,10 @@ const Toolbar = () => {
                 {width > 800 ? (
                     <>
                         <Dropdown title="Plik" className={classes.option}>
-                            <ToolbarButtons buttonsList={fileButtonList} setToolbarStyles={setToolbarStyles}/>
+                            <ToolbarButtons buttonsList={fileButtonList} />
                         </Dropdown>
                         <Dropdown title="Edytuj" className={classes.option}>
-                            <ToolbarButtons buttonsList={editButtonList} setToolbarStyles={setToolbarStyles}/>
+                            <ToolbarButtons buttonsList={editButtonList} />
                         </Dropdown>
                     </>
                 ) : (
@@ -57,7 +116,7 @@ const Toolbar = () => {
                                 </>
                             }
                         >
-                            <ToolbarButtons buttonsList={fileButtonList} setToolbarStyles={setToolbarStyles}/>
+                            <ToolbarButtons buttonsList={fileButtonList} />
                         </DropdownNested>
                         <DropdownNested
                             title={
@@ -69,7 +128,7 @@ const Toolbar = () => {
                                 </>
                             }
                         >
-                            <ToolbarButtons buttonsList={editButtonList} setToolbarStyles={setToolbarStyles}/>
+                            <ToolbarButtons buttonsList={editButtonList} />
                         </DropdownNested>
                     </Dropdown>
                 )}
