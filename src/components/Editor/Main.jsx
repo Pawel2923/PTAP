@@ -10,7 +10,7 @@ import {solid} from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Main.module.css";
 
 const Main = () => {
-    const {articleTitle} = useContext(EditorContext);
+    const {article} = useContext(EditorContext);
     const [mainHeader, setMainHeader] = useState("");
 
     return (
@@ -18,10 +18,10 @@ const Main = () => {
             <header>
                 <h2>
                     {mainHeader}
-                    {articleTitle && " "}
-                    {articleTitle && <FontAwesomeIcon icon={solid("angle-right")}/>}
-                    {articleTitle && " "}
-                    {articleTitle && articleTitle}
+                    {article.title && " "}
+                    {article.title && <FontAwesomeIcon icon={solid("angle-right")}/>}
+                    {article.title && " "}
+                    {article.title && article.title}
                 </h2>
             </header>
             <section>

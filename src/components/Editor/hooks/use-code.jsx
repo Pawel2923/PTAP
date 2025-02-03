@@ -1,4 +1,4 @@
-import {useContext, useEffect, useCallback, useMemo, useRef} from "react";
+import {useContext, useEffect, useCallback, useRef} from "react";
 import {EditorContext} from "/src/store/Editor/editor-context";
 import * as Prism from "prismjs";
 
@@ -7,23 +7,14 @@ function useCode() {
     const highlightingElement = useRef(null);
 
     const {
-        articleContent,
+        article,
         setArticleContent,
         enableToolbarButtons,
         disableToolbarButtons,
     } = useContext(EditorContext);
 
-    const lineNumbers = useMemo(
-        () => Array.from({ length: articleContent.split("\n").length }, (_, key) => key),
-        [articleContent]
-    );
-
     const updateText = useCallback((inputText) => {
         if (inputText === undefined || inputText === null) {
-            if (import.meta.env.DEV) {
-                throw new Error("Text is missing.");
-            }
-            console.error("Text is missing.");
             return;
         }
 
@@ -53,12 +44,13 @@ function useCode() {
             Prism.languages.html,
             "html"
         );
+
         setArticleContent(parsedText);
     }, [disableToolbarButtons, enableToolbarButtons, setArticleContent]);
 
     useEffect(() => {
-        updateText(articleContent);
-    }, [articleContent, updateText]);
+        updateText(article.content);
+    }, [article.content, updateText]);
 
     const textareaHandler = useCallback((ev) => {
         updateText(ev.currentTarget.value);
@@ -100,8 +92,7 @@ function useCode() {
     }, [updateText]);
 
     return {
-        articleContent,
-        lineNumbers,
+        article,
         highlightingContentElement,
         highlightingElement,
         textareaHandler,

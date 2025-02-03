@@ -1,28 +1,34 @@
-import "../../../css/prism.css";
+import "/src/css/prism.css";
 import "./Code.css";
 import classes from "./EditorContent.module.css";
 import useCode from "../hooks/use-code.jsx";
+import LineNumbers from "./LineNumbers.jsx";
+import {useEffect, useState} from "react";
 
 const EditorContent = () => {
-    const {textareaHandler, syncScroll, checkTab, lineNumbers, articleContent, highlightingContentElement, highlightingElement} = useCode();
+    const [articleLength, setArticleLength] = useState(0);
+
+    const {textareaHandler, syncScroll, checkTab, article, highlightingContentElement, highlightingElement} = useCode();
+
+    useEffect(() => {
+        const articleLinesCount = article.content?.split("\n").length;
+
+        if (articleLength !== articleLinesCount) {
+            setArticleLength(articleLinesCount);
+        }
+    }, [article.content, articleLength]);
 
     return (
         <div className={classes.code}>
-            <div className={classes["line-numbers"]}>
-                {lineNumbers.map((_, index) => (
-                    <span key={index}></span>
-                ))}
-            </div>
-
+            <LineNumbers articleLength={articleLength} />
             <div className={classes.line}></div>
-
             <div className={classes.content}>
                 <textarea
                     id="editing"
                     onInput={textareaHandler}
                     onScroll={syncScroll}
                     onKeyDown={checkTab}
-                    value={articleContent}
+                    value={article?.content}
                     spellCheck={false}
                     aria-label="Code Editor"
                 ></textarea>

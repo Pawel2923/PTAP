@@ -28,12 +28,12 @@ const defaultResponseModalInfo = {
 const Save = ({ setShowSave }) => {
 	const { currentUser } = useAuth();
 	const { pushData, checkObject } = useDatabase();
-	const { articleContent, articleAddress, articleTitle } = useContext(EditorContext);
+	const { article } = useContext(EditorContext);
 
 	const [address, setAddress] = useState(
-		articleAddress ? articleAddress : ""
+		article.address ? article.address : ""
 	);
-	const [name, setName] = useState(articleTitle ? articleTitle : "");
+	const [name, setName] = useState(article.title ? article.title : "");
 	const [responseModalInfo, setResponseModalInfo] = useState(
 		defaultResponseModalInfo
 	);
@@ -48,7 +48,7 @@ const Save = ({ setShowSave }) => {
 			let articleInfo = defaultArticleInfo;
 			articleInfo.address = address;
 			articleInfo.name = name;
-			articleInfo.content = articleContent;
+			articleInfo.content = article.content;
 			if (currentUser.displayName) {
 				articleInfo.author = currentUser.displayName;
 			} else {

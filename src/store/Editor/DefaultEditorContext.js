@@ -33,6 +33,9 @@ export class Article {
  * @property {ToolbarButtons | undefined} toolbarButtons
  * @property {object | undefined} editorStyles
  * @property {((page: string) => void) | undefined} setPage
+ * @property {((newArticle: Article) => void) | undefined} setArticle
+ * @property {((text: string) => void) | undefined} setArticleContent
+ * @property {(() => void) | undefined} resetArticle
  * @property {((buttonName: string, subButtonNames: string[]) => void) | undefined} disableToolbarButtons
  * @property {((buttonName: string, subButtonNames: string[]) => void) | undefined} enableToolbarButtons
  * @property {React.Dispatch<React.SetStateAction<object>> | undefined} setEditorStyles
@@ -44,6 +47,7 @@ export class DefaultEditorContext {
     editorStyles = undefined;
     setPage = undefined;
     setArticle = undefined;
+    setArticleContent = undefined;
     resetArticle = undefined;
     disableToolbarButtons = undefined;
     enableToolbarButtons = undefined;
