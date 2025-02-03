@@ -18,10 +18,12 @@ const Main = () => {
             <header>
                 <h2>
                     {mainHeader}
-                    {article.title && " "}
-                    {article.title && <FontAwesomeIcon icon={solid("angle-right")}/>}
-                    {article.title && " "}
-                    {article.title && article.title}
+                    {article?.title && article.title.trim().length > 0 ? <>
+                        <span> </span>
+                        <FontAwesomeIcon icon={solid("angle-right")}/>
+                        <span> </span>
+                        {article.title}
+                    </> : ""}
                 </h2>
             </header>
             <section>

@@ -52,7 +52,7 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
         {expandMenu && <span> Menu</span>}
       </Option>
       <Option
-        to="home"
+        to="/console"
         className={optionClasses}
         title="Główna"
         onClick={optionClickHandler}
@@ -61,7 +61,7 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
         {expandMenu && <span> Główna</span>}
       </Option>
       <Option
-        to="editor"
+        to="/console/editor"
         className={optionClasses}
         title="Edytor"
         onClick={optionClickHandler}
