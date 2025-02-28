@@ -8,15 +8,32 @@ export const useArticle = () => {
      * @param {Object} data
      */
     /**
+     * Listen to all articles in database
+     * @type {function(onValueCallback): function(): void}
+     */
+    const GetAll = useCallback((callback) => {
+        console.log("Called GetAll");
+        const articlesRef = ref(realtimeDbInstance, "/articles/");
+
+        const unsubscribe = onValue(articlesRef, snapshot => {
+            const data = snapshot.val();
+
+            callback(data);
+        });
+
+        return () => off(articlesRef, "value", unsubscribe);
+    }, []);
+
+    /**
      * Listen to article changes in database
      * @type {function(string, onValueCallback): function(): void}
      */
     const Open = useCallback((articleAddress, callback) => {
+        console.log("Called Open");
         const articleRef = ref(realtimeDbInstance, `/articles/${articleAddress}`)
 
         const unsubscribe = onValue(articleRef, snapshot => {
             const data = snapshot.val();
-            data.address = articleAddress;
 
             callback(data);
         });
@@ -33,6 +50,7 @@ export const useArticle = () => {
      * @param {string[]} article.keywords article keywords used for search
      */
     const Save = async (article) => {
+        console.log("Called Save");
         await set(ref(realtimeDbInstance, `/articles/${article.address}`), {
             authors: article.authors,
             title: article.title,
@@ -42,6 +60,7 @@ export const useArticle = () => {
     };
 
     return {
+        GetAll,
         Open,
         Save,
     };

@@ -1,18 +1,19 @@
 import {useContext, useState} from "react";
 import PropTypes from "prop-types";
-import useDatabase from "/src/hooks/use-db";
 import Modal from "../../../UI/Modal.jsx";
 import {Button} from "../../../UI/Button.jsx";
 import {EditorContext} from "/src/store/Editor/editor-context.js";
 import classes from "./Toolbar.module.css";
+import {useArticle} from "../../hooks/use-article.jsx";
 
-const Open = ({setShowOpen}) => {
-    const {data, response} = useDatabase();
-    const [targetAddress, setTargetAddress] = useState(null);
+const Open = ({setShowOpen, articles}) => {
+    const [targetAddress, setTargetAddress] = useState("");
+
+    const {Open} = useArticle();
     const {
         page,
         setPage,
-        setArticle,
+        setArticle
     } = useContext(EditorContext);
 
     const closeModal = () => {
@@ -22,15 +23,13 @@ const Open = ({setShowOpen}) => {
     const openArticle = (ev) => {
         ev.preventDefault();
 
-        if (response.isSuccess) {
-            data.forEach((article) => {
-                if (article.address === targetAddress) {
-                    setArticle(article);
-                }
-            });
-        } else {
-            console.error("Can't fetch article data from the database.");
+        if (!targetAddress) {
+            return;
         }
+
+        Open(targetAddress, (article) => {
+            setArticle(article);
+        });
 
         closeModal();
         if (page !== "edit") {
@@ -65,9 +64,9 @@ const Open = ({setShowOpen}) => {
                     >
                         Wybierz artykuł
                     </option>
-                    {data &&
-                        data.map((article, key) => (
-                            <option key={key} value={article.address}>
+                    {articles &&
+                        Object.entries(articles).map(([id, article]) => (
+                            <option key={id} value={id}>
                                 {article.title}
                             </option>
                         ))}
@@ -85,6 +84,7 @@ const Open = ({setShowOpen}) => {
 
 Open.propTypes = {
     setShowOpen: PropTypes.func,
+    articles: PropTypes.object,
 };
 
 export default Open;

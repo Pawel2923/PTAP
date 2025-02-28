@@ -56,40 +56,43 @@ const Save = ({ setShowSave }) => {
 			}
 
 			if (checkObject(articleInfo)) {
-				try {
-					let pushResponse = await pushData(
-						articleInfo,
-						articleExists
-					);
-					if (!checkObject(pushResponse)) {
-						throw new Error("Wystąpił niespodziewany błąd.");
-					}
+				let pushResponse = await pushData(
+					articleInfo,
+					articleExists
+				);
+				if (!checkObject(pushResponse)) {
+					const errorMessage = "Wystąpił niespodziewany błąd";
+					console.error(errorMessage);
+					changeResponseModalInfo({
+						show: true,
+						title: "Błąd",
+						message: errorMessage,
+					});
+					return;
+				}
 
-					if (pushResponse.found) {
+				if (pushResponse.found) {
+					changeResponseModalInfo({
+						show: true,
+						cancel: true,
+						title: "Potwierdź nadpisanie",
+						message:
+							"Artykuł pod tym adresem już istnieje. Czy na pewno chcesz zapisać zmiany?",
+					});
+				} else {
+					if (!pushResponse.isSuccess) {
+						console.error(pushResponse.message);
 						changeResponseModalInfo({
 							show: true,
-							cancel: true,
-							title: "Potwierdź nadpisanie",
-							message:
-								"Artykuł pod tym adresem już istnieje. Czy na pewno chcesz zapisać zmiany?",
-						});
-					} else {
-						if (!pushResponse.isSuccess) {
-							throw new Error(pushResponse.message);
-						}
-
-						changeResponseModalInfo({
-							show: true,
-							title: "Zapisano zmiany",
+							title: "Wystąpił błąd",
 							message: pushResponse.message,
 						});
 					}
-				} catch (error) {
-					console.error(error.message);
+
 					changeResponseModalInfo({
 						show: true,
-						title: "Wystąpił błąd",
-						message: error.message,
+						title: "Zapisano zmiany",
+						message: pushResponse.message,
 					});
 				}
 			}
@@ -182,7 +185,7 @@ const Save = ({ setShowSave }) => {
 					<div className={classes["modal-buttons"]}>
 						<Button
 							className={classes["modal-button"]}
-							onClick={confirmSave.bind(this, responseModalInfo.cancel ? true : false)}
+							onClick={confirmSave.bind(this, !!responseModalInfo.cancel)}
 						>
 							{responseModalInfo.cancel ? "Zapisz" : "Ok"}
 						</Button>

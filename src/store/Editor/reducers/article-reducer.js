@@ -18,10 +18,6 @@ export const articleActionTypes = Object.freeze({
  * @returns {Article}
  */
 export default function articleReducer(state, action) {
-    if (!action.payload) {
-        return state;
-    }
-
     if (action.type === articleActionTypes.UPDATE_TEXT) {
         return updateArticleContent(state, action.payload);
     }
@@ -48,7 +44,9 @@ function updateArticleContent(state, payload) {
 }
 
 function resetArticle() {
-    return new Article;
+    const newArticle = new Article();
+
+    return newArticle;
 }
 
 const actionMap = new Map([

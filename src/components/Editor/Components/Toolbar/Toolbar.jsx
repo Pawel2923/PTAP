@@ -10,13 +10,16 @@ import classes from "./Toolbar.module.css";
 import ToolbarButtons from "./ToolbarComponents/ToolbarButtons.jsx";
 import useToolbarButtons from "../../hooks/use-toolbar-buttons.jsx";
 import {EditorContext} from "/src/store/Editor/editor-context.js";
+import {useArticle} from "../../hooks/use-article.jsx";
 
 const Toolbar = () => {
+    const {GetAll} = useArticle();
     const {toolbarButtons} = useContext(EditorContext);
     const {width, fullscreen} = useContext(PageContext);
     const [showSave, setShowSave] = useState(false);
     const [showOpen, setShowOpen] = useState(false);
     const [toolbarStyles, setToolbarStyles] = useState({});
+    const [articles, setArticles] = useState(null);
 
     const {
         dropdownOptionClickHandler,
@@ -28,6 +31,12 @@ const Toolbar = () => {
 
     const [fileButtonList, setFileButtonList] = useState([]);
     const [editButtonList, setEditButtonList] = useState([]);
+
+    useEffect(() => {
+        GetAll((data) => {
+            setArticles(data);
+        });
+    }, [GetAll]);
 
     useEffect(() => {
         if (toolbarButtons.file) {
@@ -85,7 +94,7 @@ const Toolbar = () => {
 
     return (
         <>
-            {showOpen && <Open setShowOpen={setShowOpen}/>}
+            {showOpen && <Open setShowOpen={setShowOpen} articles={articles} />}
             {showSave && <Save setShowSave={setShowSave}/>}
             <nav className={classes.toolbar} style={toolbarStyles}>
                 {width > 800 ? (
