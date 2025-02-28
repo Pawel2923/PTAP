@@ -44,9 +44,7 @@ function updateArticleContent(state, payload) {
 }
 
 function resetArticle() {
-    const newArticle = new Article();
-
-    return newArticle;
+    return new Article();
 }
 
 const actionMap = new Map([
