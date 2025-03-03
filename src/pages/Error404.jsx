@@ -1,6 +1,6 @@
 import Footer from "../components/Footer/Footer";
-import BackArrow from "../components/UI/BackArrow";
-import { ButtonLink } from "../components/UI/Button";
+import BackArrow from "../components/UI/BackArrow/BackArrow.jsx";
+import { ButtonLink } from "../components/UI/Button/Button.jsx";
 
 const Error404 = () => {
   return (

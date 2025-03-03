@@ -1,0 +1,151 @@
+.dropdown {
+  position: relative;
+  z-index: 10;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.menu,
+.menu-horizontal {
+  position: absolute;
+  background-color: #282828;
+  width: max-content;
+  height: auto;
+  border: 1px solid #3f3f3f;
+  border-radius: 15px;
+}
+
+.menu {
+  top: 100%;
+  left: 0;
+  -webkit-animation: slideFromTop 0.3s ease-out forwards;
+  animation: slideFromTop 0.3s ease-out forwards;
+}
+
+.menu-horizontal {
+  top: 0;
+  left: 100%;
+  -webkit-animation: slideFromLeft 0.3s ease-out forwards;
+  animation: slideFromLeft 0.3s ease-out forwards;
+}
+
+.active > div > svg {
+  background-color: #343434;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1.25rem;
+  -webkit-transition: background-color 50ms ease-out;
+  -o-transition: background-color 50ms ease-out;
+  transition: background-color 50ms ease-out;
+}
+
+.option:first-child {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.option:last-child {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.option:hover {
+  background-color: #343434;
+  cursor: pointer;
+}
+
+.option:active {
+  background-color: #444444;
+}
+
+.option:disabled {
+  color: #888888;
+}
+
+.option:disabled:hover {
+  background-color: transparent;
+  cursor: default;
+}
+
+.option-horizontral:active {
+  background-color: #343434;
+}
+
+.option:disabled:active {
+  background-color: transparent;
+}
+
+.option-horizontral > div:first-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.option-disabled {
+  color: #888888;
+}
+
+.option-disabled:hover,
+.option-disabled:active {
+  background-color: transparent;
+  cursor: default;
+}
+
+@media screen and (min-width: 50em) {
+  .active > button {
+    background-color: #343434 !important;
+  }
+}
+
+@-webkit-keyframes slideFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-15%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-15%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-15%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-15%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -1,5 +1,5 @@
-import {initializeApp} from "firebase/app";
-import {getDatabase} from "firebase/database";
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 
 // ptap-articles
 // const firebaseConfig = {
@@ -19,7 +19,7 @@ const firebaseConfig = {
   projectId: "ptap-dev-bdfe8",
   storageBucket: "ptap-dev-bdfe8.firebasestorage.app",
   messagingSenderId: "272128148376",
-  appId: "1:272128148376:web:b27e11a0d27a37c259e1ed"
+  appId: "1:272128148376:web:b27e11a0d27a37c259e1ed",
 };
 
 export const app = initializeApp(firebaseConfig);

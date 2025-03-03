@@ -30,7 +30,7 @@ Video.propTypes = {
   height: PropTypes.string,
   src: PropTypes.string,
   title: PropTypes.string,
-  allow: PropTypes.bool
+  allow: PropTypes.bool,
 };
 
 export default Video;

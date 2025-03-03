@@ -1,45 +1,45 @@
 .container h2 {
-    font-size: 1.1em;
-    margin-top: 1rem;
-    font-weight: normal;
+  font-size: 1.1em;
+  margin-top: 1rem;
+  font-weight: normal;
 }
 
 .form {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .form label {
-    width: 70%;
+  width: 70%;
 }
 
 .form label p {
-    margin-bottom: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 .form input {
-    width: 100%;
+  width: 100%;
 }
 
 .form label:last-of-type input {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .form button {
-    width: fit-content;
+  width: fit-content;
 }
 
 .modal-button {
-    width: fit-content;
+  width: fit-content;
 }
 
 @media screen and (min-width: 46.25em) {
-    .form label {
-        max-width: 40%;
-    }
+  .form label {
+    max-width: 40%;
+  }
 }

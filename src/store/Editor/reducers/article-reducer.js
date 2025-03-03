@@ -1,9 +1,9 @@
-import {Article} from "../DefaultEditorContext.js";
+import { Article } from "../DefaultEditorContext.js";
 
 export const articleActionTypes = Object.freeze({
-    UPDATE: Symbol("update"),
-    UPDATE_TEXT: Symbol("updateText"),
-    RESET: Symbol("reset"),
+  UPDATE: Symbol("update"),
+  UPDATE_TEXT: Symbol("updateText"),
+  RESET: Symbol("reset"),
 });
 
 /**
@@ -18,12 +18,12 @@ export const articleActionTypes = Object.freeze({
  * @returns {Article}
  */
 export default function articleReducer(state, action) {
-    if (action.type === articleActionTypes.UPDATE_TEXT) {
-        return updateArticleContent(state, action.payload);
-    }
+  if (action.type === articleActionTypes.UPDATE_TEXT) {
+    return updateArticleContent(state, action.payload);
+  }
 
-    const mappedAction = actionMap.get(action.type);
-    return mappedAction ? mappedAction(action.payload) : state;
+  const mappedAction = actionMap.get(action.type);
+  return mappedAction ? mappedAction(action.payload) : state;
 }
 
 /**
@@ -31,7 +31,7 @@ export default function articleReducer(state, action) {
  * @returns {Article}
  */
 function updateArticle(payload) {
-    return payload;
+  return payload;
 }
 
 /**
@@ -40,14 +40,14 @@ function updateArticle(payload) {
  * @returns {Article}
  */
 function updateArticleContent(state, payload) {
-    return {...state, content: payload};
+  return { ...state, content: payload };
 }
 
 function resetArticle() {
-    return new Article();
+  return new Article();
 }
 
 const actionMap = new Map([
-    [articleActionTypes.UPDATE, updateArticle],
-    [articleActionTypes.RESET, resetArticle],
+  [articleActionTypes.UPDATE, updateArticle],
+  [articleActionTypes.RESET, resetArticle],
 ]);

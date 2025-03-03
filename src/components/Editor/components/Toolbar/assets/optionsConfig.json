@@ -1,0 +1,40 @@
+[
+  {
+    "title": "Plik",
+    "subOptions": {
+      "new-article": {
+        "title": "Nowy",
+        "disabled": false
+      },
+      "open-article": {
+        "title": "Otwórz",
+        "disabled": false
+      },
+      "save-article": {
+        "title": "Zapisz",
+        "disabled": true
+      },
+      "exit": {
+        "title": "Wyjdź",
+        "disabled": true
+      }
+    }
+  },
+  {
+    "title": "Edytuj",
+    "subOptions": {
+      "insert-new-line": {
+        "title": "Wstaw nową linię",
+        "disabled": true
+      },
+      "copy-article-content": {
+        "title": "Skopiuj kod",
+        "disabled": true
+      },
+      "clean-article-content": {
+        "title": "Wyczyść zawartość",
+        "disabled": true
+      }
+    }
+  }
+]
