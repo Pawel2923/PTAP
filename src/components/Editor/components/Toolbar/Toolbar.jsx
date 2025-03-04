@@ -45,6 +45,7 @@ export default function Toolbar() {
       });
 
       updateClickHandler("Plik", "exit", () => {
+        resetArticle();
         navigate("/console/editor/");
       });
 
