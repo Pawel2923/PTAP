@@ -1,6 +1,6 @@
 import { ToolbarOptions, ToolbarOptionsNested } from "./ToolbarOptions";
 import classes from "./Toolbar.module.css";
-import useToolbarOptions from "../../hooks/useToolbarOptions.jsx";
+import useToolbarOptions from "../../hooks/use-toolbar-options.jsx";
 import { useContext, useEffect, useState } from "react";
 import { EditorContext } from "../../../../store/Editor/editor-context.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

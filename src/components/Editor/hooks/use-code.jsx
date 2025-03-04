@@ -1,7 +1,7 @@
 import { useContext, useEffect, useCallback, useRef } from "react";
 import { EditorContext } from "/src/store/Editor/editor-context";
 import * as Prism from "prismjs";
-import useToolbarOptions from "./useToolbarOptions.jsx";
+import useToolbarOptions from "./use-toolbar-options.jsx";
 
 function useCode() {
   const { enableButton, disableButton } = useToolbarOptions();

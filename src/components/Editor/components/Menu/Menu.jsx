@@ -5,7 +5,7 @@ import PageContext from "/src/store/page-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Menu.module.css";
-import useToolbarOptions from "../../hooks/useToolbarOptions.jsx";
+import useToolbarOptions from "../../hooks/use-toolbar-options.jsx";
 
 const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
   const { disableButton } = useToolbarOptions();

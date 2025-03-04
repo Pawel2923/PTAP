@@ -6,7 +6,7 @@ import articleReducer, {
   articleActionTypes,
 } from "./reducers/article-reducer.js";
 import { useLocation } from "react-router-dom";
-import useToolbarOptions from "../../components/Editor/hooks/useToolbarOptions.jsx";
+import useToolbarOptions from "../../components/Editor/hooks/use-toolbar-options.jsx";
 
 const defaultArticle = new Article();
 
