@@ -74,7 +74,7 @@ const Login = () => {
         }
 
         setModalState(modalInfo);
-        console.log(error);
+        console.error(error);
       });
   };
 

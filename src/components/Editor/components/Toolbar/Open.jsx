@@ -5,12 +5,14 @@ import { Button } from "../../../UI/Button/Button.jsx";
 import { EditorContext } from "/src/store/Editor/editor-context.js";
 import classes from "./Toolbar.module.css";
 import { useArticle } from "../../hooks/use-article.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Open = ({ setShowOpen, articles }) => {
+  const navigate = useNavigate();
   const [targetAddress, setTargetAddress] = useState("");
 
   const { Open } = useArticle();
-  const { page, setPage, setArticle } = useContext(EditorContext);
+  const { setArticle } = useContext(EditorContext);
 
   const closeModal = () => {
     setShowOpen(false);
@@ -28,9 +30,7 @@ const Open = ({ setShowOpen, articles }) => {
     });
 
     closeModal();
-    if (page !== "edit") {
-      setPage("edit");
-    }
+    navigate("/console/editor/edit");
   };
 
   const selectChangeHandler = (ev) => {

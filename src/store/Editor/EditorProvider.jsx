@@ -13,7 +13,6 @@ const defaultArticle = new Article();
 export default function EditorProvider({ children }) {
   const { enableButton, disableButton } = useToolbarOptions();
   const location = useLocation();
-  const [page, setPage] = useState("home");
   const [editorStyles, setEditorStyles] = useState({});
   const [article, dispatchArticle] = useReducer(
     articleReducer,
@@ -58,21 +57,18 @@ export default function EditorProvider({ children }) {
   }, [disableButton]);
 
   useEffect(() => {
-    if (location.pathname.includes("/editor") && page === "edit") {
+    if (location.pathname.includes("/editor/edit")) {
       enableEditButtons();
     } else {
       disableEditButtons();
-      setPage("home");
     }
-  }, [page, location.pathname, enableEditButtons, disableEditButtons]);
+  }, [location.pathname, enableEditButtons, disableEditButtons]);
 
   /**
    * @type {DefaultEditorContext}
    */
   const ctxValue = {
-    page,
     article,
-    setPage,
     editorStyles,
     setArticle,
     setArticleContent,

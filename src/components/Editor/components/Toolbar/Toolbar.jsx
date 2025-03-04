@@ -9,11 +9,13 @@ import PageContext from "../../../../store/page-context.js";
 import Open from "./Open.jsx";
 import Save from "./Save.jsx";
 import { useArticle } from "../../hooks/use-article.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Toolbar() {
+  const navigate = useNavigate();
   const { width, fullscreen, setFullscreen } = useContext(PageContext);
   const { options, updateClickHandler } = useToolbarOptions();
-  const { setPage, article, setArticle, resetArticle, setEditorStyles } =
+  const { article, setArticle, resetArticle, setEditorStyles } =
     useContext(EditorContext);
   const [showSave, setShowSave] = useState(false);
   const [showOpen, setShowOpen] = useState(false);
@@ -29,40 +31,40 @@ export default function Toolbar() {
   }, [GetAll]);
 
   useEffect(() => {
-    updateClickHandler("Plik", "new-article", () => {
-      resetArticle();
-      setPage("edit");
-    });
+      updateClickHandler("Plik", "new-article", () => {
+        resetArticle();
+        navigate("/console/editor/edit");
+      });
 
-    updateClickHandler("Plik", "open-article", () => {
-      setShowOpen(true);
-    });
+      updateClickHandler("Plik", "open-article", () => {
+        setShowOpen(true);
+      });
 
-    updateClickHandler("Plik", "save-article", () => {
-      setShowSave(true);
-    });
+      updateClickHandler("Plik", "save-article", () => {
+        setShowSave(true);
+      });
 
-    updateClickHandler("Plik", "exit", () => {
-      setPage("home");
-    });
+      updateClickHandler("Plik", "exit", () => {
+        navigate("/console/editor/");
+      });
 
-    updateClickHandler("Edytuj", "insert-new-line", () => {
-      const newArticle = article;
-      newArticle.content += "<br/>";
+      updateClickHandler("Edytuj", "insert-new-line", () => {
+        const newArticle = article;
+        newArticle.content += "<br/>";
 
-      setArticle(newArticle);
-    });
+        setArticle(newArticle);
+      });
 
-    updateClickHandler("Edytuj", "copy-article-content", async () => {
-      await navigator.clipboard.writeText(article.content);
-    });
+      updateClickHandler("Edytuj", "copy-article-content", async () => {
+        await navigator.clipboard.writeText(article.content);
+      });
 
-    updateClickHandler("Edytuj", "clean-article-content", () => {
-      const cleanedArticle = article;
-      cleanedArticle.content = "";
-      setArticle(cleanedArticle);
-    });
-  }, [article, resetArticle, setArticle, setPage, updateClickHandler]);
+      updateClickHandler("Edytuj", "clean-article-content", () => {
+        const cleanedArticle = article;
+        cleanedArticle.content = "";
+        setArticle(cleanedArticle);
+      });
+  }, [article, navigate, resetArticle, setArticle, updateClickHandler]);
 
   function fullscreenClickHandler() {
     if (!fullscreen) {

@@ -8,6 +8,8 @@ import Editor from "./pages/Editor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import classes from "./Main.module.css";
+import EditorWelcome from "./content/Welcome";
+import EditorContent from "./content/EditorContent.jsx";
 
 const Main = () => {
   const { article } = useContext(EditorContext);
@@ -38,10 +40,11 @@ const Main = () => {
           />
           <Route path="/new" element={<New setMainHeader={setMainHeader} />} />
           <Route path="/all" element={<All setMainHeader={setMainHeader} />} />
-          <Route
-            path="/editor"
-            element={<Editor setMainHeader={setMainHeader} />}
-          />
+          <Route path="/editor" element={<Editor setMainHeader={setMainHeader} />}>
+            <Route index path="/editor/" element={<EditorWelcome /> } />
+            <Route path="edit" element={<EditorContent />} />
+            <Route path="*" element={"Wystąpił błąd"} />
+          </Route>
           <Route path="*" element={<Welcome setMainHeader={setMainHeader} />} />
         </Routes>
       </section>
