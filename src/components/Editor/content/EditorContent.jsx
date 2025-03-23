@@ -1,38 +1,60 @@
-import "../../../css/prism.css";
+import "/src/css/prism.css";
 import "./Code.css";
 import classes from "./EditorContent.module.css";
 import useCode from "../hooks/use-code.jsx";
+import LineNumbers from "./LineNumbers.jsx";
+import { useEffect, useState } from "react";
 
 const EditorContent = () => {
-    const {textareaHandler, syncScroll, checkTab, lineNumbers, articleContent, highlightingContentElement, highlightingElement} = useCode();
+  const [articleLength, setArticleLength] = useState(0);
 
-    return (
-        <div className={classes.code}>
-            <div className={classes["line-numbers"]}>
-                {lineNumbers.map((item, index) => (
-                    <span key={index}></span>
-                ))}
-            </div>
+  const {
+    textareaHandler,
+    syncScroll,
+    checkTab,
+    article,
+    highlightingContentElement,
+    highlightingElement,
+  } = useCode();
 
-            <div className={classes.line}></div>
+  useEffect(() => {
+    const articleLinesCount = article.content?.split("\n").length;
 
-            <div className={classes.content}>
-                <textarea
-                    id="editing"
-                    onInput={textareaHandler}
-                    onScroll={syncScroll}
-                    onKeyDown={checkTab}
-                    value={articleContent}
-                    spellCheck={false}
-                    aria-label="Code Editor"
-                ></textarea>
+    if (articleLength !== articleLinesCount) {
+      setArticleLength(articleLinesCount);
+    }
+  }, [article.content, articleLength]);
 
-                <pre id="highlighting" aria-hidden="true" role="presentation" ref={highlightingElement}>
-                    <code className="language-html" id="highlighting-content" ref={highlightingContentElement}></code>
-                </pre>
-            </div>
-        </div>
-    );
+  return (
+    <div className={classes.code}>
+      <LineNumbers articleLength={articleLength} />
+      <div className={classes.line}></div>
+      <div className={classes.content}>
+        <textarea
+          id="editing"
+          onInput={textareaHandler}
+          onScroll={syncScroll}
+          onKeyDown={checkTab}
+          value={article?.content}
+          spellCheck={false}
+          aria-label="Code Editor"
+        ></textarea>
+
+        <pre
+          id="highlighting"
+          aria-hidden="true"
+          role="presentation"
+          ref={highlightingElement}
+        >
+          <code
+            className="language-html"
+            id="highlighting-content"
+            ref={highlightingContentElement}
+          ></code>
+        </pre>
+      </div>
+    </div>
+  );
 };
 
 export default EditorContent;

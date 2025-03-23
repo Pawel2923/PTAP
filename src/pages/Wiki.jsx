@@ -1,23 +1,23 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Footer from "../components/Footer/Footer"
-import BackArrow from "../components/UI/BackArrow";
+import Footer from "../components/Footer/Footer";
+import BackArrow from "../components/UI/BackArrow/BackArrow.jsx";
 
 const Wiki = () => {
-    const location = useLocation();
+  const location = useLocation();
 
-    const locationCheck = /\/wiki\/.*/i.test(location.pathname);
+  const locationCheck = /\/wiki\/.*/i.test(location.pathname);
 
-    return (
-        <>
-            {locationCheck ? <BackArrow /> : ""}
-            <main>
-                <section className="section">
-                    <Outlet />
-                </section>
-            </main>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      {locationCheck ? <BackArrow /> : ""}
+      <main>
+        <section className="section">
+          <Outlet />
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 };
 
 export default Wiki;

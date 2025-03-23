@@ -12,46 +12,31 @@ const Nav = memo(() => {
   const { uid } = useAuth();
   const { width } = useContext(PageContext);
 
-  let navLogoTitle = (width > 1044) ? "PTAP" : "";
+  let navLogoTitle = width > 1044 ? "PTAP" : "";
 
   let navContent = (
     <>
       <Link to="/" title="Przejdź na stronę główną">
-        <img
-          src={ptapLogo}
-          width="80"
-          height="80"
-          alt="logo"
-        />
+        <img src={ptapLogo} width="80" height="80" alt="logo" />
         <h2>{navLogoTitle}</h2>
       </Link>
       <ul>
         <li>
-          <NavLink to="/">
-            Strona główna
-          </NavLink>
+          <NavLink to="/">Strona główna</NavLink>
         </li>
         <li>
-          <NavLink to="/wiki">
-            Wiki
-          </NavLink>
+          <NavLink to="/wiki">Wiki</NavLink>
         </li>
         {uid && (
           <li>
-            <NavLink to={"/console"}>
-              Konsola
-            </NavLink>
+            <NavLink to={"/console"}>Konsola</NavLink>
           </li>
         )}
         <li>
           {uid ? (
-            <NavLink to="/wylogowanie">
-              Wyloguj się
-            </NavLink>
+            <NavLink to="/wylogowanie">Wyloguj się</NavLink>
           ) : (
-            <NavLink to="/logowanie">
-              Zaloguj się
-            </NavLink>
+            <NavLink to="/logowanie">Zaloguj się</NavLink>
           )}
         </li>
         <li>
