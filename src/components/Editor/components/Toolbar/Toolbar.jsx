@@ -30,6 +30,7 @@ export default function Toolbar() {
     });
   }, [GetAll]);
 
+  //todo: dodanie ikon tam gdzie można
   useEffect(() => {
       updateClickHandler("Plik", "new-article", () => {
         resetArticle();
@@ -49,6 +50,7 @@ export default function Toolbar() {
         navigate("/console/editor/");
       });
 
+      //todo: Dodanie wstawiania paragrafów i innych elementów
       updateClickHandler("Edytuj", "insert-new-line", () => {
         const newArticle = article;
         newArticle.content += "<br/>";

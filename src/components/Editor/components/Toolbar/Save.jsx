@@ -144,6 +144,7 @@ const Save = ({ setShowSave }) => {
             onReset={closeSaveModal}
             className={classes.form}
           >
+            {/*todo: Adres do artykułu do usunięcia*/}
             <Input
               type="text"
               id="address"
