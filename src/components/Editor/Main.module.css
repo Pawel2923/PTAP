@@ -1,123 +1,123 @@
 .main {
-	width: 100%;
-	height: 100vh;
-	padding: 0.4rem 1rem;
-	overflow-x: hidden;
-	position: relative;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  padding: 0.4rem 1rem;
+  overflow-x: hidden;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .main header {
-	overflow: unset;
+  overflow: unset;
 }
 
 .main section {
-	height: 100%;
+  height: 100%;
 }
 
 .welcome {
-	display: -ms-grid;
-	display: grid;
-	-ms-grid-columns: 1fr;
-	grid-template-columns: 1fr;
-	-ms-grid-rows: auto;
-	grid-template-rows: auto;
-	gap: 1rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+  gap: 1rem;
 }
 
 .welcome > *:nth-child(1) {
-	-ms-grid-row: 1;
-	-ms-grid-column: 1;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
 }
 
 .card {
-	border-radius: 25px;
-	width: 100%;
-	position: relative;
-	z-index: 1;
-	padding: 1rem;
-	color: #ffffff;
+  border-radius: 25px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+  color: #ffffff;
 }
 
 .card::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1;
-	background-color: #363636cb;
-	border-radius: 25px;
-	-webkit-backdrop-filter: blur(20px);
-	backdrop-filter: blur(20px);
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #363636cb;
+  border-radius: 25px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 @media screen and (min-width: 46.25em) {
-	.main {
-		padding: 1.4rem 1rem;
-	}
+  .main {
+    padding: 1.4rem 1rem;
+  }
 
-	.welcome {
-		-ms-grid-columns: 1fr 1fr 1fr;
-		grid-template-columns: 1fr 1fr 1fr;
-		height: calc(100% - 3rem);
-	}
+  .welcome {
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: calc(100% - 3rem);
+  }
 
-	.card {
-		height: 281px;
-		padding: 2rem;
-	}
+  .card {
+    height: 281px;
+    padding: 2rem;
+  }
 }
 
 .main::-webkit-scrollbar {
-    background-color: #444;
-    width: 0.8rem;
+  background-color: #444;
+  width: 0.8rem;
 }
 
 .main::-webkit-scrollbar-thumb {
-    background-color: #555555;
+  background-color: #555555;
 }
 
 .main::-webkit-scrollbar-thumb:hover {
-    background-color: #5d5d5d;
+  background-color: #5d5d5d;
 }
 
 .main::-webkit-scrollbar-thumb:active {
-    background-color: #666666;
+  background-color: #666666;
 }
 
 .main::-webkit-scrollbar-button:vertical:end,
 .main::-webkit-scrollbar-button:vertical:start {
-    background-color: #4a4a4a;
-    background-repeat: no-repeat;
-    background-position: center;
+  background-color: #4a4a4a;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .main::-webkit-scrollbar-button:vertical:start:decrement {
-    background-image: url("/src/icons/caret-up-solid.svg");
+  background-image: url("/src/icons/caret-up-solid.svg");
 }
 
 .main::-webkit-scrollbar-button:vertical:end:increment {
-    background-image: url("/src/icons/caret-down-solid.svg");
+  background-image: url("/src/icons/caret-down-solid.svg");
 }
 
 .main::-webkit-scrollbar-button:vertical:start:increment,
 .main::-webkit-scrollbar-button:vertical:end:decrement {
-    display: none;
+  display: none;
 }
 
 .main::-webkit-scrollbar-button:vertical:start:hover,
 .main::-webkit-scrollbar-button:vertical:end:hover {
-    background-color: #5d5d5d;
+  background-color: #5d5d5d;
 }
 
 .main::-webkit-scrollbar-button:vertical:start:active,
 .main::-webkit-scrollbar-button:vertical:end:active {
-    background-color: #666;
+  background-color: #666;
 }

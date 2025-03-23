@@ -42,7 +42,6 @@
 
 .iframe {
   width: 100%;
-  width: -webkit-fill-available;
   height: auto;
   border: 0;
   aspect-ratio: 16/9;

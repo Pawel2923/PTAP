@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Footer from "../components/Footer/Footer";
-import Input from "../components/UI/Input";
+import Input from "../components/UI/Input/Input.jsx";
 import classes from "./Signup.module.css";
-import { Button, ButtonLink } from "../components/UI/Button";
+import { Button, ButtonLink } from "../components/UI/Button/Button.jsx";
 import useAuth from "../hooks/use-auth";
-import Modal from "../components/UI/Modal";
+import Modal from "../components/UI/Modal/Modal.jsx";
 
 const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i;
 const isEmail = (value) =>
@@ -92,7 +92,7 @@ const ResetPassword = () => {
                 required
               />
             </label>
-            <Button type="submit" >Wyślij link</Button>
+            <Button type="submit">Wyślij link</Button>
           </form>
         </section>
       </main>
