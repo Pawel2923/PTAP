@@ -51,7 +51,11 @@ export default function EditorProvider({ children }) {
     ["exit", "save-article"].forEach((button) => {
       disableButton("plik", button);
     });
-    ["copy-article-content", "insert-new-line", "clean-article-content"].forEach((button) => {
+    [
+      "copy-article-content",
+      "insert-new-line",
+      "clean-article-content",
+    ].forEach((button) => {
       disableButton("edytuj", button);
     });
   }, [disableButton]);

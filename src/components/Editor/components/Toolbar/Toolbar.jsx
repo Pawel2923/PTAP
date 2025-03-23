@@ -32,41 +32,41 @@ export default function Toolbar() {
 
   //todo: dodanie ikon tam gdzie można
   useEffect(() => {
-      updateClickHandler("Plik", "new-article", () => {
-        resetArticle();
-        navigate("/console/editor/edit");
-      });
+    updateClickHandler("Plik", "new-article", () => {
+      resetArticle();
+      navigate("/console/editor/edit");
+    });
 
-      updateClickHandler("Plik", "open-article", () => {
-        setShowOpen(true);
-      });
+    updateClickHandler("Plik", "open-article", () => {
+      setShowOpen(true);
+    });
 
-      updateClickHandler("Plik", "save-article", () => {
-        setShowSave(true);
-      });
+    updateClickHandler("Plik", "save-article", () => {
+      setShowSave(true);
+    });
 
-      updateClickHandler("Plik", "exit", () => {
-        resetArticle();
-        navigate("/console/editor/");
-      });
+    updateClickHandler("Plik", "exit", () => {
+      resetArticle();
+      navigate("/console/editor/");
+    });
 
-      //todo: Dodanie wstawiania paragrafów i innych elementów
-      updateClickHandler("Edytuj", "insert-new-line", () => {
-        const newArticle = article;
-        newArticle.content += "<br/>";
+    //todo: Dodanie wstawiania paragrafów i innych elementów
+    updateClickHandler("Edytuj", "insert-new-line", () => {
+      const newArticle = article;
+      newArticle.content += "<br/>";
 
-        setArticle(newArticle);
-      });
+      setArticle(newArticle);
+    });
 
-      updateClickHandler("Edytuj", "copy-article-content", async () => {
-        await navigator.clipboard.writeText(article.content);
-      });
+    updateClickHandler("Edytuj", "copy-article-content", async () => {
+      await navigator.clipboard.writeText(article.content);
+    });
 
-      updateClickHandler("Edytuj", "clean-article-content", () => {
-        const cleanedArticle = article;
-        cleanedArticle.content = "";
-        setArticle(cleanedArticle);
-      });
+    updateClickHandler("Edytuj", "clean-article-content", () => {
+      const cleanedArticle = article;
+      cleanedArticle.content = "";
+      setArticle(cleanedArticle);
+    });
   }, [article, navigate, resetArticle, setArticle, updateClickHandler]);
 
   function fullscreenClickHandler() {

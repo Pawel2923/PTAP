@@ -40,8 +40,11 @@ const Main = () => {
           />
           <Route path="/new" element={<New setMainHeader={setMainHeader} />} />
           <Route path="/all" element={<All setMainHeader={setMainHeader} />} />
-          <Route path="/editor" element={<Editor setMainHeader={setMainHeader} />}>
-            <Route index path="/editor/" element={<EditorWelcome /> } />
+          <Route
+            path="/editor"
+            element={<Editor setMainHeader={setMainHeader} />}
+          >
+            <Route index path="/editor/" element={<EditorWelcome />} />
             <Route path="edit" element={<EditorContent />} />
             <Route path="*" element={"Wystąpił błąd"} />
           </Route>

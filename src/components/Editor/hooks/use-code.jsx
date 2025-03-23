@@ -8,10 +8,7 @@ function useCode() {
   const highlightingContentElement = useRef(null);
   const highlightingElement = useRef(null);
 
-  const {
-    article,
-    setArticleContent,
-  } = useContext(EditorContext);
+  const { article, setArticleContent } = useContext(EditorContext);
 
   const updateText = useCallback(
     (inputText) => {

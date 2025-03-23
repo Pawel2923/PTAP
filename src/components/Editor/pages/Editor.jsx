@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { EditorContext } from "../../../store/Editor/editor-context.js";
-import Toolbar from "../Components/Toolbar/Toolbar";
+import Toolbar from "../components/Toolbar/Toolbar.jsx";
 import classes from "./Editor.module.css";
 import { Outlet } from "react-router-dom";
 

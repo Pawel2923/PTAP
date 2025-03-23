@@ -1,8 +1,8 @@
 import { useState, useContext, useEffect, useRef } from "react";
-import Menu from "../components/Editor/Components/Menu/Menu";
-import Main from "../components/Editor/Main";
+import Menu from "../components/Editor/components/Menu/Menu.jsx";
+import Main from "../components/Editor/Main.jsx";
 import EditorProvider from "../store/Editor/EditorProvider.jsx";
-import PageContext from "../store/page-context";
+import PageContext from "../store/page-context.js";
 import classes from "./Editor.module.css";
 
 const Editor = () => {
