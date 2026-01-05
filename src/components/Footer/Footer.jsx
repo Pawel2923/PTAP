@@ -35,6 +35,14 @@ const Footer = memo(() => {
             <Link to="/console">Edytor artykułów</Link>
           </li>
         </ul>
+        <ul>
+          <li>
+            <Link to="/polityka-prywatnosci">Polityka prywatności</Link>
+          </li>
+          <li>
+            <Link to="/regulamin">Regulamin serwisu</Link>
+          </li>
+        </ul>
       </div>
       <div className={classes.bottom}>
         <p>PTAP {currentYear} &copy; Wszelkie prawa zastrzeżone</p>
