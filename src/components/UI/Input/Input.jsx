@@ -28,6 +28,8 @@ const Input = forwardRef(
       onChange,
       validateInput,
       setIsFormInvalid,
+      autoComplete,
+      checked,
     },
     ref
   ) => {
@@ -83,6 +85,7 @@ const Input = forwardRef(
         id={id}
         placeholder={placeholder}
         value={value}
+        checked={checked}
         disabled={disabled}
         required={required}
         className={classNames(classes.input, className)}
@@ -92,6 +95,7 @@ const Input = forwardRef(
         onFocus={focusHandler}
         onBlur={blurHandler}
         onInput={onInput ? onInput : () => {}}
+        autoComplete={autoComplete}
       />
     );
   }
@@ -115,6 +119,8 @@ Input.propTypes = {
   onChange: PropTypes.func,
   validateInput: PropTypes.func,
   setIsFormInvalid: PropTypes.func,
+  autoComplete: PropTypes.string,
+  checked: PropTypes.bool,
 };
 
 export default Input;

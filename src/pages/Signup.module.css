@@ -14,19 +14,35 @@
   flex-direction: column;
 }
 
-.form label {
+.form > * {
+  margin-bottom: 1rem;
+}
+
+.form-field {
   width: 70%;
 }
 
-.form label p {
-  margin-bottom: 0.3rem;
+.checkbox-field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-field input {
+  width: 1rem !important;
+  height: 1rem !important;
+  margin-bottom: 0 !important;
 }
 
 .form input {
   width: 100%;
 }
 
-.form label:last-of-type input {
+.form-field:last-of-type input {
   margin-bottom: 1rem;
 }
 
@@ -39,7 +55,7 @@
 }
 
 @media screen and (min-width: 46.25em) {
-  .form label {
+  .form-field {
     max-width: 40%;
   }
 }

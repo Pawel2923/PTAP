@@ -84,42 +84,46 @@ const Login = () => {
 
   const loginForm = (
     <form onSubmit={submitHandler} className={classes.form}>
-      <label>
-        <p>
+      <div className={classes["form-field"]}>
+        <label htmlFor="email">
           E-mail <span className={classes.asterisk}>*</span>
-        </p>
+        </label>
         <Input
           type="email"
           id="email"
+          name="email"
           value={email}
           minLength={3}
           onInput={emailInputHandler}
           validateInput={isEmail}
           setIsFormInvalid={setIsFormInvalid}
+          autoComplete="email"
           required
         />
-      </label>
-      <label>
-        <p>
+      </div>
+      <div className={classes["form-field"]}>
+        <label htmlFor="password">
           Hasło <span className={classes.asterisk}>*</span>
-        </p>
+        </label>
         <Input
           type="password"
           id="password"
+          name="password"
           value={password}
           minLength={3}
           onInput={passwordInputHandler}
           validateInput={isEmpty}
           setIsFormInvalid={setIsFormInvalid}
+          autoComplete="current-password"
           required
         />
-      </label>
+      </div>
       <Button type="submit">Zaloguj się</Button>
       <p>
         <Link to="/resetowanie-hasla">Resetuj hasło</Link>
       </p>
       <p>
-        Nie masz jeszcze konta? <Link to="/rejestracja">Zapisz się</Link>
+        Nie masz jeszcze konta? <Link to="/rejestracja">Zarejestruj się</Link>
       </p>
     </form>
   );
