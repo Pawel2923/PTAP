@@ -5,7 +5,7 @@ import Input from "../components/UI/Input/Input.jsx";
 import Modal from "../components/UI/Modal/Modal.jsx";
 import { Button, ButtonLink } from "../components/UI/Button/Button.jsx";
 import useAuth from "../hooks/use-auth";
-import classes from "./Signup.module.css";
+import classes from "./forms.module.css";
 
 const defaultModalState = {
   show: false,

@@ -24,3 +24,15 @@
 .input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
 }
+
+textarea.input {
+  max-width: 80vw;
+  min-width: 6rem;
+  min-height: 4rem;
+}
+
+@media screen and (min-width: 46.25em) {
+  textarea.input {
+    max-width: 60vw;
+  }
+}

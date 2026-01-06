@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input/Input.jsx";
-import classes from "./Signup.module.css";
+import classes from "./forms.module.css";
 import { Button, ButtonLink } from "../components/UI/Button/Button.jsx";
 import useAuth from "../hooks/use-auth";
 import Modal from "../components/UI/Modal/Modal.jsx";

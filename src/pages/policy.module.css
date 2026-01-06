@@ -1,5 +1,5 @@
 .main {
-    margin: 2rem 0;
+    margin: 2rem 1rem;
 }
 
 .main section,
@@ -10,6 +10,10 @@
 .main h1,
 .main h2 {
     margin-bottom: 0.5rem;
+}
+
+.main p {
+    text-align: left;
 }
 
 @media screen and (min-width: 46.25em) {

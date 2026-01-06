@@ -30,6 +30,9 @@ const Input = forwardRef(
       setIsFormInvalid,
       autoComplete,
       checked,
+      asTextarea,
+      rows,
+      cols,
     },
     ref
   ) => {
@@ -78,25 +81,31 @@ const Input = forwardRef(
       }
     };
 
-    return (
-      <input
-        type={type ? type : "text"}
-        ref={inputRef}
-        id={id}
-        placeholder={placeholder}
-        value={value}
-        checked={checked}
-        disabled={disabled}
-        required={required}
-        className={classNames(classes.input, className)}
-        style={style ? style : {}}
-        minLength={minLength ? minLength : ""}
-        onChange={changeHandler}
-        onFocus={focusHandler}
-        onBlur={blurHandler}
-        onInput={onInput ? onInput : () => {}}
-        autoComplete={autoComplete}
-      />
+    const properties = {
+      type: asTextarea ? undefined : type ?? "text",
+      ref: inputRef,
+      id,
+      placeholder,
+      value,
+      checked,
+      disabled,
+      required,
+      className: classNames(classes.input, className),
+      style: style ? style : {},
+      minLength: minLength ? minLength : "",
+      onChange: changeHandler,
+      onFocus: focusHandler,
+      onBlur: blurHandler,
+      onInput: onInput ? onInput : () => {},
+      autoComplete,
+      rows,
+      cols,
+    };
+
+    return asTextarea ? (
+      <textarea {...properties} />
+    ) : (
+      <input {...properties} />
     );
   }
 );
@@ -121,6 +130,9 @@ Input.propTypes = {
   setIsFormInvalid: PropTypes.func,
   autoComplete: PropTypes.string,
   checked: PropTypes.bool,
+  asTextarea: PropTypes.bool,
+  rows: PropTypes.number,
+  cols: PropTypes.number,
 };
 
 export default Input;
