@@ -78,6 +78,7 @@ const Feedback = () => {
       title: "Dziękujemy za zgłoszenie",
       message:
         "Twoje zgłoszenie zostało przesłane. Postaramy się jak najszybciej rozwiązać problem.",
+      redirect: "/",
     });
 
     resetForm();
