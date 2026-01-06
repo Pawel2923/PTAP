@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Input from "../components/UI/Input/Input.jsx";
@@ -18,6 +18,7 @@ const isEmpty = (value) => value.trim() !== "" && value.trim().length >= 3;
 const isEmail = (value) =>
   emailRegex.test(value.toLowerCase()) &&
   value.toLowerCase().trim().length >= 3;
+const areTermsAccepted = (value) => value === true;
 
 const Signup = () => {
   const { createUser } = useAuth();
@@ -25,19 +26,9 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [terms, setTerms] = useState(false);
   const [modalState, setModalState] = useState(defaultModalState);
-  const [passwordsMatch, setPasswordsMatch] = useState(false);
   const [isFormInvalid, setIsFormInvalid] = useState(true);
-
-  useEffect(() => {
-    if (password === confirmPassword) {
-      setPasswordsMatch(true);
-      return;
-    }
-
-    setPasswordsMatch(false);
-  }, [password, confirmPassword]);
 
   const nameInputHandler = (ev) => {
     setName(ev.target.value);
@@ -51,31 +42,20 @@ const Signup = () => {
     setPassword(ev.target.value);
   };
 
-  const confirmPasswordInputHandler = (ev) => {
-    setConfirmPassword(ev.target.value);
+  const termsInputHandler = (ev) => {
+    setTerms(ev.target.checked);
   };
 
   const resetForm = () => {
     setName("");
     setEmail("");
     setPassword("");
-    setConfirmPassword("");
+    setTerms(false);
     setIsFormInvalid(false);
-    setPasswordsMatch(true);
   };
 
   const submitHandler = (ev) => {
     ev.preventDefault();
-
-    if (!passwordsMatch) {
-      setModalState({
-        show: true,
-        title: "Hasła się nie zgadzają",
-        message:
-          "Hasła powinny być takie same w obu polach i powinny mieć co najmniej 6 znaków.",
-      });
-      return;
-    }
 
     if (isFormInvalid) {
       setModalState({
@@ -87,7 +67,13 @@ const Signup = () => {
     }
 
     resetForm();
-    createUser(email, password, name)
+
+    let username = name;
+    if (username.trim().length < 3) {
+      username = email.substring(0, email.indexOf("@"));
+    }
+
+    createUser(email, password, username)
       .then(() => {
         setModalState({
           show: true,
@@ -131,67 +117,88 @@ const Signup = () => {
           <h1>Zarejestruj się</h1>
           <h2>Wypełnij formularz rejestracyjny</h2>
           <form onSubmit={submitHandler} className={classes.form}>
-            <label>
-              <p>
-                Nazwa <span className={classes.asterisk}>*</span>
-              </p>
+            <div className={classes["form-field"]}>
+              <label htmlFor="name">Nazwa użytkownika</label>
               <Input
                 type="text"
                 id="name"
+                name="name"
                 value={name}
                 minLength={3}
                 onInput={nameInputHandler}
-                validateInput={isEmpty}
                 setIsFormInvalid={setIsFormInvalid}
-                required
+                autoComplete="username"
               />
-            </label>
-            <label>
-              <p>
+            </div>
+            <div className={classes["form-field"]}>
+              <label htmlFor="email">
                 E-mail <span className={classes.asterisk}>*</span>
-              </p>
+              </label>
               <Input
                 type="email"
                 id="email"
+                name="email"
                 value={email}
                 minLength={3}
                 onInput={emailInputHandler}
                 validateInput={isEmail}
                 setIsFormInvalid={setIsFormInvalid}
+                autoComplete="email"
                 required
               />
-            </label>
-            <label>
-              <p>
+            </div>
+            <div className={classes["form-field"]}>
+              <label htmlFor="password">
                 Hasło <span className={classes.asterisk}>*</span>
-              </p>
+              </label>
               <Input
                 type="password"
                 id="password"
+                name="password"
                 value={password}
                 minLength={6}
                 onInput={passwordInputHandler}
                 validateInput={isEmpty}
                 setIsFormInvalid={setIsFormInvalid}
+                autoComplete="new-password"
                 required
               />
-            </label>
-            <label>
-              <p>
-                Powtórz Hasło <span className={classes.asterisk}>*</span>
-              </p>
+            </div>
+            <div
+              className={`${classes["form-field"]} ${classes["checkbox-field"]}`}
+            >
               <Input
-                type="password"
-                id="confirmPassword"
-                value={confirmPassword}
-                minLength={6}
-                onInput={confirmPasswordInputHandler}
-                validateInput={isEmpty}
-                setIsFormInvalid={setIsFormInvalid}
+                type="checkbox"
+                id="terms"
+                name="terms"
+                checked={terms}
+                onChange={termsInputHandler}
+                validateInput={areTermsAccepted}
                 required
               />
-            </label>
-            <Button type="submit">Zapisz się</Button>
+              <label htmlFor="terms">
+                Akceptuję{" "}
+                <Link
+                  to="/regulamin"
+                  title="Otwórz regulamin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  regulamin
+                </Link>{" "}
+                i{" "}
+                <Link
+                  to="/polityka-prywatnosci"
+                  title="Otwórz politykę prywatności"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  politykę prywatności
+                </Link>{" "}
+                <span className={classes.asterisk}>*</span>
+              </label>
+            </div>
+            <Button type="submit">Zarejestruj się</Button>
             <p>
               Masz już konto? <Link to="/logowanie">Zaloguj się</Link>
             </p>

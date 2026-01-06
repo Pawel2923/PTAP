@@ -32,16 +32,12 @@
   padding: 0.5rem 0;
 }
 
+.top {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .bottom {
   margin-top: 2rem;
   text-align: center;
-}
-
-@media screen and (min-width: 46.25em) {
-  .footer ul li,
-  .footer ul li:first-child,
-  .footer ul li:last-child {
-    margin-left: 20%;
-    margin-right: 20%;
-  }
 }

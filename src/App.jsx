@@ -24,6 +24,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Logout from "./pages/Logout";
 import ResetPassword from "./pages/ResetPassword";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 const DefaultPage = () => {
   const location = useLocation();
@@ -84,6 +86,8 @@ const App = () => {
         <Route path="logowanie" element={<Login />} />
         <Route path="wylogowanie" element={<Logout />} />
         <Route path="zabroniony" element={<Error403 />} />
+        <Route path="polityka-prywatnosci" element={<PrivacyPolicy />} />
+        <Route path="regulamin" element={<Terms />} />
         <Route path="*" element={<Error404 />} />
       </Route>
     )
