@@ -26,6 +26,7 @@ import Logout from "./pages/Logout";
 import ResetPassword from "./pages/ResetPassword";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
+import Feedback from "./pages/Feedback";
 
 const DefaultPage = () => {
   const location = useLocation();
@@ -88,6 +89,7 @@ const App = () => {
         <Route path="zabroniony" element={<Error403 />} />
         <Route path="polityka-prywatnosci" element={<PrivacyPolicy />} />
         <Route path="regulamin" element={<Terms />} />
+        <Route path="zglos-blad" element={<Feedback />} />
         <Route path="*" element={<Error404 />} />
       </Route>
     )
