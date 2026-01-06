@@ -38,7 +38,7 @@ const Feedback = () => {
     setIsFormInvalid(false);
   };
 
-  const submitHandler = (ev) => {
+  const submitHandler = async (ev) => {
     ev.preventDefault();
 
     if (isFormInvalid) {
@@ -50,7 +50,29 @@ const Feedback = () => {
       return;
     }
 
-    console.log("Feedback submitted:", { email, message });
+    const response = await fetch("/.netlify/functions/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, message }),
+    });
+
+    console.log(response);
+
+    if (!response.ok) {
+      setModalState({
+        show: true,
+        title: "Wystąpił błąd",
+        message:
+          "Niestety nie udało się wysłać zgłoszenia. Spróbuj ponownie później.",
+      });
+
+      console.error(
+        `Error submitting feedback: [${response?.status ?? 500}] ${response?.statusText ?? "No response body"}`
+      );
+
+      return;
+    }
+
     setModalState({
       show: true,
       title: "Dziękujemy za zgłoszenie",
