@@ -194,7 +194,8 @@ const Signup = () => {
                   rel="noopener noreferrer"
                 >
                   politykę prywatności
-                </Link>
+                </Link>{" "}
+                <span className={classes.asterisk}>*</span>
               </label>
             </div>
             <Button type="submit">Zarejestruj się</Button>
