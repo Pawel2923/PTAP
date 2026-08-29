@@ -70,7 +70,6 @@ a {
   -o-transition: color 50ms ease-out;
   transition: color 50ms ease-out;
   -webkit-tap-highlight-color: transparent !important;
-  outline: none !important;
 }
 
 a:active {
@@ -103,21 +102,14 @@ button {
   -webkit-appearance: none;
 }
 
-button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-button:focus:not(:focus-visible) {
-  outline: none;
-}
-button:focus:not(:-moz-focusring) {
-  outline: none;
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #43acf7;
+  outline-offset: 2px;
 }
 
 .section {
   margin: 2rem 0;
-  overflow: hidden;
 }
 
 .section figure {
