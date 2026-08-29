@@ -15,13 +15,12 @@ const Main = () => {
       <main>
         <section className={`section ${classes["index-banner"]}`}>
           <header>
-            {width <= 740 ? (
-              <img src={ptapLogo} alt="Logo" width="100" height="100" />
-            ) : (
-              ""
-            )}
+              {width <= 740 ? (
+                <img src={ptapLogo} alt="Logo" width="100" height="100" />
+              ) : (
+                ""
+              )}
             <h1>PTAP</h1>
-            <h2>Pilot Training Arma Project</h2>
             <p>
               Projekt mający na celu nauczenie graczy Arma 3 podstaw latania
               śmigłowcami. Na stronie zapoznasz się z podstawowymi manewrami,
