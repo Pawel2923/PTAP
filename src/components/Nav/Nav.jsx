@@ -49,7 +49,9 @@ const Nav = memo(() => {
   return (
     <>
       {width > 875 ? (
-        <nav className={classes.nav}>{navContent}</nav>
+        <nav className={classes.nav} aria-label="Główna nawigacja">
+          {navContent}
+        </nav>
       ) : (
         <MobileMenu />
       )}

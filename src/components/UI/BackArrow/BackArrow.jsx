@@ -19,8 +19,9 @@ const BackArrow = (props) => {
           props.className ? `${classes.back} ${props.className}` : classes.back
         }
         onClick={props.onClick}
+        aria-label={props.text || "Wróć"}
       >
-        <svg className="icon icon-arrow_left">
+        <svg className="icon icon-arrow_left" aria-hidden="true">
           <use xlinkHref={`${icons}#icon-arrow_left`}></use>
         </svg>
         {width > 740 && enableText ? (
@@ -38,8 +39,9 @@ const BackArrow = (props) => {
       className={
         props.className ? `${classes.back} ${props.className}` : classes.back
       }
+      aria-label={props.text || "Wróć"}
     >
-      <svg className="icon icon-arrow_left">
+      <svg className="icon icon-arrow_left" aria-hidden="true">
         <use xlinkHref={`${icons}#icon-arrow_left`}></use>
       </svg>
       {width > 740 && enableText ? (

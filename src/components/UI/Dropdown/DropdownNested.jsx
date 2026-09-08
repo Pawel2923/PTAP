@@ -40,6 +40,8 @@ export const DropdownNested = ({
       onTouchEnd={dropdownTouchEndHandler}
       onMouseOver={showDropdown}
       onMouseOut={hideDropdown}
+      onFocus={showDropdown}
+      onBlur={hideDropdown}
     >
       <div>{title}</div>
       {isDropdownShown && (

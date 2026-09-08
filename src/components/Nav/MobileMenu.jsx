@@ -61,7 +61,7 @@ const MobileMenu = memo(() => {
   };
 
   const nav = (
-    <nav className={classes.menu}>
+    <nav className={classes.menu} aria-label="Menu mobilne">
       <ul>
         {menuList.map((option) => {
           const isActive =
@@ -79,6 +79,7 @@ const MobileMenu = memo(() => {
                 >
                   <svg
                     className={`icon ${classes.icon} ${isActive ? `${option.icon}_solid` : option.icon}`}
+                    aria-hidden="true"
                   >
                     <use
                       xlinkHref={`${icons}#${isActive ? `${option.icon}_solid` : option.icon}`}
@@ -94,6 +95,7 @@ const MobileMenu = memo(() => {
                 >
                   <svg
                     className={`icon ${classes.icon} ${isActive ? `${option.icon}_solid` : option.icon}`}
+                    aria-hidden="true"
                   >
                     <use
                       xlinkHref={`${icons}#${isActive ? `${option.icon}_solid` : option.icon}`}

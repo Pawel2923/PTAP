@@ -10,6 +10,7 @@ const Option = ({ className, onClick, to, replace, title, children }) => {
       className={`${className ? className : ""} ${classes.option}`}
       onClick={onClick}
       title={title ? title : ""}
+      aria-label={title ? title : undefined}
     >
       {children}
     </NavLink>
@@ -19,6 +20,7 @@ const Option = ({ className, onClick, to, replace, title, children }) => {
       className={`${className ? className : ""} ${classes.option}`}
       onClick={onClick}
       title={title ? title : ""}
+      aria-label={title ? title : undefined}
     >
       {children}
     </button>

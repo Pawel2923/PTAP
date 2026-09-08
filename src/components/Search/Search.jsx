@@ -59,9 +59,20 @@ export const Search = () => {
     searchInput.current.focus();
   }, []);
 
-  const placeholderClickHandler = () => {
-    searchInput.current.focus();
-  };
+  useEffect(() => {
+    const handleKeyDown = (ev) => {
+      if (ev.key === "Escape" || ev.keyCode === 27) {
+        setSearchTerm("");
+        setIsShown(false);
+        setCurrentPage(location.pathname);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [location.pathname, setCurrentPage, setIsShown]);
 
   const searchInputHandler = (ev) => {
     setSearchTerm(ev.target.value);
@@ -87,16 +98,8 @@ export const Search = () => {
     setIsShown(false);
   };
 
-  const keyDownHandler = (ev) => {
-    if (ev.keyCode === 27) {
-      setSearchTerm("");
-      setIsShown(false);
-      setCurrentPage(location.pathname);
-    }
-  };
-
   const search = (
-    <nav className={classes.search} onKeyDown={keyDownHandler}>
+    <nav className={classes.search} aria-label="Wyszukiwarka">
       <div className={classes["search-container"]}>
         <BackArrow
           className={classes.back}
@@ -110,23 +113,28 @@ export const Search = () => {
             ref={searchInput}
             className={inputClasses.input}
             id="search"
+            aria-label="Przeszukaj wiki"
             value={searchTerm}
             onInput={searchInputHandler}
           />
           {showPlaceholder && (
-            <div
+            <label
+              htmlFor="search"
               className={classes.placeholder}
-              onClick={placeholderClickHandler}
             >
-              <svg className="icon icon-magnifying_glass">
+              <svg className="icon icon-magnifying_glass" aria-hidden="true">
                 <use xlinkHref={`${icons}#icon-magnifying_glass`}></use>
               </svg>{" "}
               <span>Przeszukaj wiki</span>
-            </div>
+            </label>
           )}
           {!showPlaceholder && (
-            <button type="reset" className={classes.reset}>
-              <svg className="icon icon-circle_xmark">
+            <button
+              type="reset"
+              className={classes.reset}
+              aria-label="Wyczyść wyszukiwanie"
+            >
+              <svg className="icon icon-circle_xmark" aria-hidden="true">
                 <use xlinkHref={`${icons}#icon-circle_xmark`}></use>
               </svg>
             </button>
@@ -161,9 +169,10 @@ export const SearchPlaceholder = memo(() => {
       type="button"
       onClick={clickHandler}
       className={classes["search-placeholder"]}
+      aria-label="Przeszukaj wiki"
     >
       <div className={classes.placeholder}>
-        <svg className="icon icon-magnifying_glass">
+        <svg className="icon icon-magnifying_glass" aria-hidden="true">
           <use xlinkHref={`${icons}#icon-magnifying_glass`}></use>
         </svg>{" "}
         <span>Przeszukaj wiki</span>

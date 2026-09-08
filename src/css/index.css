@@ -59,6 +59,7 @@ main p {
   margin-bottom: 2rem;
   font-size: 1.1em;
   line-height: 1.5;
+  text-align: left;
   max-width: 650px;
 }
 

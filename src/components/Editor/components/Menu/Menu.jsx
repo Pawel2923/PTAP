@@ -47,6 +47,7 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
     <nav
       className={`${classes.menu} ${!expandMenu ? classes["shrink-menu"] : ""}`}
       ref={menuRef}
+      aria-label="Menu konsoli"
     >
       <Option
         className={`${optionClasses}`}

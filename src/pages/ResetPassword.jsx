@@ -77,7 +77,7 @@ const ResetPassword = () => {
           <h1>Zresetuj hasło</h1>
           <h2>Podaj adres e-mail</h2>
           <form onSubmit={submitHandler} className={classes.form}>
-            <label>
+            <label htmlFor="email">
               <p>
                 E-mail <span className={classes.asterisk}>*</span>
               </p>
