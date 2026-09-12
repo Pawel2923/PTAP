@@ -135,7 +135,7 @@ const Login = () => {
 
   return (
     <>
-      <main className={classes.container}>
+      <main className={classes.container} id="main-content" tabIndex="-1">
         <section className="section">
           <h1>{header}</h1>
           <h2>{formHeader}</h2>

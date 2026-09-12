@@ -5,7 +5,7 @@ import { ButtonLink } from "../components/UI/Button/Button.jsx";
 const Error403 = () => {
   return (
     <>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <BackArrow to={"/"} text="Wróć na stronę główną" />
         <section className="section">
           <header>

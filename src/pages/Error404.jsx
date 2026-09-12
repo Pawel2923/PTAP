@@ -5,7 +5,7 @@ import { ButtonLink } from "../components/UI/Button/Button.jsx";
 const Error404 = () => {
   return (
     <>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <BackArrow />
         <section className="section">
           <header>

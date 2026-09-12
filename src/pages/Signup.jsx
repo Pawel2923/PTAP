@@ -112,7 +112,7 @@ const Signup = () => {
 
   return (
     <>
-      <main className={classes.container}>
+      <main className={classes.container} id="main-content" tabIndex="-1">
         <section className="section">
           <h1>Zarejestruj się</h1>
           <h2>Wypełnij formularz rejestracyjny</h2>

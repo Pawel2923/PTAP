@@ -27,6 +27,7 @@ import ResetPassword from "./pages/ResetPassword";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import Feedback from "./pages/Feedback";
+import SkipLink from "./components/UI/SkipLink/SkipLink";
 
 const DefaultPage = () => {
   const location = useLocation();
@@ -41,6 +42,7 @@ const DefaultPage = () => {
 
   return (
     <>
+      <SkipLink />
       {!currentPage.includes("console") && <Nav />}
       {isShown && <Search />}
       <Outlet />

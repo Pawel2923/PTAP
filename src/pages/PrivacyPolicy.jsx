@@ -2,7 +2,7 @@ import classes from "./policy.module.css";
 
 const PrivacyPolicy = () => {
   return (
-    <main className={classes.main}>
+    <main className={classes.main} id="main-content" tabIndex="-1">
       <header>
         <h1>Polityka prywatności</h1>
         <p>

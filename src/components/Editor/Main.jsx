@@ -16,7 +16,7 @@ const Main = () => {
   const [mainHeader, setMainHeader] = useState("");
 
   return (
-    <main className={classes.main}>
+    <main className={classes.main} id="main-content" tabIndex="-1">
       <header>
         <h2>
           {mainHeader}

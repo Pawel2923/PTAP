@@ -90,7 +90,7 @@ const Feedback = () => {
 
   return (
     <>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <section className="section" style={{ overflow: "inherit" }}>
           <h1>Zgłoś błąd na stronie</h1>
           <h2>Opisz dokładnie problem, aby pomóc nam go naprawić</h2>

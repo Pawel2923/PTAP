@@ -12,7 +12,7 @@ const Main = () => {
 
   return (
     <>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <section className={`section ${classes["index-banner"]}`}>
           <header>
             {width <= 740 ? (

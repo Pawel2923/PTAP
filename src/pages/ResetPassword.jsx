@@ -72,7 +72,7 @@ const ResetPassword = () => {
 
   return (
     <>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <section className="section">
           <h1>Zresetuj hasło</h1>
           <h2>Podaj adres e-mail</h2>

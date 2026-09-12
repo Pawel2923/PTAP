@@ -26,7 +26,7 @@ const Footer = memo(() => {
       <div className={classes.top}>
         <ul>
           <li>
-            <Link to="/sign-up">Zapisz się do projektu</Link>
+            <Link to="/rejestracja">Zapisz się do projektu</Link>
           </li>
           <li>
             <Link to="/zglos-blad">Zgłoś błąd na stronie</Link>

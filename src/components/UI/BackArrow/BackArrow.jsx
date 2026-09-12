@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import PageContext from "../../../store/page-context";
@@ -15,6 +15,7 @@ const BackArrow = ({
   onClick,
   ...rest
 }) => {
+  const navigate = useNavigate();
   const { width } = useContext(PageContext);
 
   const showText = Boolean(width > 740 && enableText);
@@ -23,6 +24,19 @@ const BackArrow = ({
   const buttonClasses = className
     ? `${classes.back} ${className}`
     : classes.back;
+
+  const content = (
+    <>
+      <svg
+        className="icon icon-arrow_left"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <use xlinkHref={`${icons}#icon-arrow_left`}></use>
+      </svg>
+      {showText && <span>{labelText}</span>}
+    </>
+  );
 
   if (notLink) {
     return (
@@ -33,35 +47,44 @@ const BackArrow = ({
         aria-label={labelText}
         {...rest}
       >
-        <svg
-          className="icon icon-arrow_left"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <use xlinkHref={`${icons}#icon-arrow_left`}></use>
-        </svg>
-        {showText && <span>{labelText}</span>}
+        {content}
       </button>
     );
   }
 
+  if (typeof to === "string" && to !== "-1") {
+    return (
+      <Link
+        to={to}
+        className={buttonClasses}
+        onClick={onClick}
+        aria-label={labelText}
+        {...rest}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  const handleBack = (event) => {
+    if (onClick) {
+      onClick(event);
+    }
+    if (!event?.defaultPrevented) {
+      navigate(-1);
+    }
+  };
+
   return (
-    <Link
-      to={to ?? -1}
+    <button
+      type="button"
       className={buttonClasses}
-      onClick={onClick}
+      onClick={handleBack}
       aria-label={labelText}
       {...rest}
     >
-      <svg
-        className="icon icon-arrow_left"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <use xlinkHref={`${icons}#icon-arrow_left`}></use>
-      </svg>
-      {showText && <span>{labelText}</span>}
-    </Link>
+      {content}
+    </button>
   );
 };
 

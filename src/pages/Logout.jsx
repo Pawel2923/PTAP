@@ -15,7 +15,7 @@ const Logout = () => {
 
   return (
     <>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <section className="section">
           <header>
             <h2>Błąd 404</h2>
