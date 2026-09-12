@@ -61,6 +61,7 @@ PTAP/
 │   │   │   ├── Dropdown/         # Accessible dropdown and nested dropdown menus
 │   │   │   ├── Input/            # Form inputs with validation and a11y labels
 │   │   │   ├── Modal/            # Modal component backed by HTML5 <dialog>
+│   │   │   ├── SkipLink/         # Accessible skip to content navigation link
 │   │   │   └── Video.jsx         # Video embed player wrapper
 │   │   ├── Wiki/                 # Wiki article display components (Article, Intro)
 │   │   └── LoadingScreen.jsx     # Global / contextual loading state spinner
@@ -72,7 +73,8 @@ PTAP/
 │   │   └── firebase.js           # Firebase app & Realtime Database initialization
 │   ├── hooks/
 │   │   ├── use-auth.jsx          # Firebase Auth hook (login, register, reset, google)
-│   │   └── use-db.jsx            # Firebase Realtime Database hook (read/write articles)
+│   │   ├── use-db.jsx            # Firebase Realtime Database hook (read/write articles)
+│   │   └── use-scroll-lock.jsx   # Scroll locking utility for modals/drawers
 │   ├── icons/                    # SVG symbol definitions and sprites
 │   ├── img/                      # Application image assets (banners, logos, webp)
 │   ├── pages/                    # Top-level route views
@@ -203,8 +205,8 @@ docker run -p 80:80 ptap-web
 ### 1. Accessibility (a11y)
 
 - **High Priority**: The codebase strictly uses `eslint-plugin-jsx-a11y` with `--max-warnings 0` and targets WCAG 2.1 / 2.2 Level AA compliance.
-- Detailed audit findings and remediation plans reside in `docs/audits/accessibility.md`.
-- Agent-specific accessibility constraints and mandatory rules reside in `.agents/rules/a11y.md`.
+- Complete audit findings, remediations, and verification results reside in `docs/audits/accessibility.md`.
+- Ongoing developer constraints and mandatory accessibility checks reside in `.agents/rules/a11y.md`.
 - All interactive elements must have accessible names, proper roles, and keyboard navigation support (avoid keyboard traps).
 - Modals must use the HTML5 `<dialog>` element (see `src/components/UI/Modal/Modal.jsx`).
 - Form controls must have associated `<label>` elements or `aria-label`/`aria-labelledby`.
