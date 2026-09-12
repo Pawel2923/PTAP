@@ -159,6 +159,7 @@
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-align: center;
 }
 
 .categoryDesc {
@@ -258,7 +259,7 @@
 .buttonPrimary {
   background-color: #115ab2;
   color: #fff;
-  border-color: #43acf7;
+  border-color: #115ab2;
 }
 
 .buttonPrimary:hover {
