@@ -51,13 +51,13 @@ const Main = () => {
           <h2>Materiały wideo</h2>
           <Video
             video={classes.video}
-            src="https://www.youtube.com/embed/v8pn1f3ijLI"
+            src="https://www.youtube-nocookie.com/embed/v8pn1f3ijLI"
             className={classes.iframe}
             header="Autorotacja little birdem"
           ></Video>
           <Video
             video={classes.video}
-            src="https://www.youtube.com/embed/videoseries?list=PLsQ6ua1LSZQwRoOCiVa-0d1eL9wk0aVGj"
+            src="https://www.youtube-nocookie.com/embed/videoseries?list=PLsQ6ua1LSZQwRoOCiVa-0d1eL9wk0aVGj"
             className={classes.iframe}
             header="Manewry little birdem"
           ></Video>

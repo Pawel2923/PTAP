@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 
 import classes from "./Footer.module.css";
 import PageContext from "../../store/page-context";
+import useCookieConsent from "../../hooks/use-cookie-consent";
 
 const currentYear = new Date().getFullYear();
 
 const Footer = memo(() => {
   const [navHeight, setNavHeight] = useState(0);
   const { width } = useContext(PageContext);
+  const { openPreferences } = useCookieConsent();
 
   useEffect(() => {
     if (document.querySelector("nav") && width <= 875) {
@@ -41,6 +43,15 @@ const Footer = memo(() => {
           </li>
           <li>
             <Link to="/regulamin">Regulamin serwisu</Link>
+          </li>
+          <li>
+            <button
+              type="button"
+              className={classes.footerButton}
+              onClick={openPreferences}
+            >
+              Ustawienia cookies
+            </button>
           </li>
         </ul>
       </div>
