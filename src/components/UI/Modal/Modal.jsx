@@ -3,7 +3,16 @@ import PropTypes from "prop-types";
 import classes from "./Modal.module.css";
 import icons from "../../../icons/symbol-defs.svg";
 
-const Modal = ({ title, setShowModal, children }) => {
+const Modal = ({
+  title,
+  setShowModal,
+  role,
+  ariaLabel,
+  ariaDescribedBy,
+  className,
+  children,
+  ...rest
+}) => {
   const dialogRef = useRef(null);
   const titleId = useId();
   const hasTitle = Boolean(title && title.trim());
@@ -67,10 +76,13 @@ const Modal = ({ title, setShowModal, children }) => {
   return (
     <dialog
       ref={dialogRef}
-      className={classes.modal}
+      className={className ? `${classes.modal} ${className}` : classes.modal}
+      role={role}
       aria-labelledby={hasTitle ? titleId : undefined}
-      aria-label={!hasTitle ? "Okno dialogowe" : undefined}
+      aria-label={!hasTitle ? ariaLabel || "Okno dialogowe" : ariaLabel}
+      aria-describedby={ariaDescribedBy}
       onCancel={handleCancel}
+      {...rest}
     >
       {hasTitle && <h2 id={titleId}>{title}</h2>}
       {children}
@@ -80,7 +92,11 @@ const Modal = ({ title, setShowModal, children }) => {
         onClick={closeClickHandler}
         aria-label="Zamknij okno"
       >
-        <svg className="icon icon-circle_xmark" aria-hidden="true">
+        <svg
+          className="icon icon-circle_xmark"
+          aria-hidden="true"
+          focusable="false"
+        >
           <use xlinkHref={`${icons}#icon-circle_xmark`}></use>
         </svg>
       </button>
@@ -91,6 +107,10 @@ const Modal = ({ title, setShowModal, children }) => {
 Modal.propTypes = {
   title: PropTypes.string,
   setShowModal: PropTypes.func.isRequired,
+  role: PropTypes.string,
+  ariaLabel: PropTypes.string,
+  ariaDescribedBy: PropTypes.string,
+  className: PropTypes.string,
   children: PropTypes.node,
 };
 

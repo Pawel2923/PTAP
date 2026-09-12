@@ -6,55 +6,67 @@ import PageContext from "../../../store/page-context";
 import classes from "./BackArrow.module.css";
 import icons from "../../../icons/symbol-defs.svg";
 
-const BackArrow = (props) => {
+const BackArrow = ({
+  to,
+  text = "Wróć",
+  enableText = true,
+  notLink = false,
+  className,
+  onClick,
+  ...rest
+}) => {
   const { width } = useContext(PageContext);
 
-  let enableText = props.enableText ? props.enableText : true;
+  const showText = Boolean(width > 740 && enableText);
+  const labelText = text || "Wróć";
 
-  if (props.notLink) {
+  const buttonClasses = className
+    ? `${classes.back} ${className}`
+    : classes.back;
+
+  if (notLink) {
     return (
       <button
         type="button"
-        className={
-          props.className ? `${classes.back} ${props.className}` : classes.back
-        }
-        onClick={props.onClick}
-        aria-label={props.text || "Wróć"}
+        className={buttonClasses}
+        onClick={onClick}
+        aria-label={labelText}
+        {...rest}
       >
-        <svg className="icon icon-arrow_left" aria-hidden="true">
+        <svg
+          className="icon icon-arrow_left"
+          aria-hidden="true"
+          focusable="false"
+        >
           <use xlinkHref={`${icons}#icon-arrow_left`}></use>
         </svg>
-        {width > 740 && enableText ? (
-          <span>{props.text ? props.text : "Wróć"}</span>
-        ) : (
-          ""
-        )}
+        {showText && <span>{labelText}</span>}
       </button>
     );
   }
 
   return (
     <Link
-      to={props.to ? props.to : -1}
-      className={
-        props.className ? `${classes.back} ${props.className}` : classes.back
-      }
-      aria-label={props.text || "Wróć"}
+      to={to ?? -1}
+      className={buttonClasses}
+      onClick={onClick}
+      aria-label={labelText}
+      {...rest}
     >
-      <svg className="icon icon-arrow_left" aria-hidden="true">
+      <svg
+        className="icon icon-arrow_left"
+        aria-hidden="true"
+        focusable="false"
+      >
         <use xlinkHref={`${icons}#icon-arrow_left`}></use>
       </svg>
-      {width > 740 && enableText ? (
-        <span>{props.text ? props.text : "Wróć"}</span>
-      ) : (
-        ""
-      )}
+      {showText && <span>{labelText}</span>}
     </Link>
   );
 };
 
 BackArrow.propTypes = {
-  to: PropTypes.string,
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   text: PropTypes.string,
   enableText: PropTypes.bool,
   notLink: PropTypes.bool,

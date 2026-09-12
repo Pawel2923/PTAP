@@ -4,24 +4,37 @@ import classNames from "classnames";
 
 import classes from "./Button.module.css";
 
+
 export const ButtonLink = ({
   to,
   className,
-  highlighted,
+  highlighted = true,
+  disabled = false,
   onClick,
   children,
+  ...rest
 }) => {
-  if (highlighted == null) {
-    highlighted = true;
-  }
+  const handleClick = (ev) => {
+    if (disabled) {
+      ev.preventDefault();
+      return;
+    }
+    if (onClick) {
+      onClick(ev);
+    }
+  };
 
   return (
     <Link
       to={to}
-      className={`${classes["button-link"]} ${className ? className : ""} ${
-        highlighted ? classes.highlight : ""
-      }`}
-      onClick={onClick ? onClick : () => {}}
+      className={classNames(classes["button-link"], className, {
+        [classes.highlight]: highlighted,
+        [classes.disabled]: disabled,
+      })}
+      onClick={handleClick}
+      aria-disabled={disabled ? "true" : undefined}
+      tabIndex={disabled ? -1 : undefined}
+      {...rest}
     >
       {children}
     </Link>
@@ -32,8 +45,9 @@ ButtonLink.propTypes = {
   to: PropTypes.string.isRequired,
   className: PropTypes.string,
   highlighted: PropTypes.bool,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  children: PropTypes.any,
+  children: PropTypes.node,
 };
 
 export const Button = ({
@@ -41,8 +55,10 @@ export const Button = ({
   className,
   highlighted = true,
   type = "button",
+  disabled = false,
   onClick,
   children,
+  ...rest
 }) => {
   const navigate = useNavigate();
 
@@ -52,12 +68,16 @@ export const Button = ({
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (ev) => {
+    if (disabled) {
+      ev.preventDefault();
+      return;
+    }
     if (to) {
       handleNavigation();
     }
     if (onClick) {
-      onClick();
+      onClick(ev);
     }
   };
 
@@ -65,9 +85,12 @@ export const Button = ({
     <button
       type={type}
       onClick={handleClick}
+      disabled={disabled}
+      aria-disabled={disabled ? "true" : undefined}
       className={classNames(classes.button, className, {
         [classes.highlight]: highlighted,
       })}
+      {...rest}
     >
       {children}
     </button>
@@ -79,6 +102,7 @@ Button.propTypes = {
   className: PropTypes.string,
   highlighted: PropTypes.bool,
   type: PropTypes.string,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  children: PropTypes.any,
+  children: PropTypes.node,
 };

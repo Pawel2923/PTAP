@@ -32,7 +32,8 @@
   border-color: #3b9add;
 }
 
-.input:disabled {
+.input:disabled,
+.input[aria-disabled="true"] {
   cursor: not-allowed;
   opacity: 0.6;
 }

@@ -59,6 +59,14 @@
 }
 
 .close {
+  background: transparent;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
   position: absolute;
   right: 0;
   top: 0;
@@ -74,6 +82,19 @@
 .close:hover {
   color: #ddd;
   cursor: pointer;
+}
+
+.close:focus-visible {
+  outline: 2px solid #43acf7;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .close {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+  }
 }
 
 @media screen and (min-width: 46.25em) {

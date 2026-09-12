@@ -129,6 +129,7 @@ const Input = forwardRef(
       autoComplete,
       "aria-invalid": ariaInvalid,
       "aria-required": ariaRequired,
+      "aria-disabled": disabled ? "true" : undefined,
     };
 
     if (style !== undefined) properties.style = style;
@@ -176,6 +177,11 @@ Input.propTypes = {
   errorMessage: PropTypes.string,
   "aria-invalid": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   "aria-required": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  "aria-disabled": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  "aria-label": PropTypes.string,
+  "aria-labelledby": PropTypes.string,
+  "aria-describedby": PropTypes.string,
+  "aria-errormessage": PropTypes.string,
 };
 
 export default Input;
