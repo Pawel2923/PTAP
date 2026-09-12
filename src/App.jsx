@@ -28,6 +28,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import Feedback from "./pages/Feedback";
 import SkipLink from "./components/UI/SkipLink/SkipLink";
+import CookieConsent from "./components/CookieConsent/CookieConsent";
 
 const routeTitles = {
   "/": "PTAP - Pilot Training Arma Project",
@@ -72,6 +73,7 @@ const DefaultPage = () => {
       {!currentPage.includes("console") && <Nav />}
       {isShown && <Search />}
       <Outlet />
+      <CookieConsent />
     </>
   );
 };
