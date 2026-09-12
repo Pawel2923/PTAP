@@ -1,38 +1,14 @@
 .index-banner {
+  position: relative;
   background-image: url("../img/index-banner.webp");
   background-position: center;
   background-size: cover;
   margin: 0 !important;
 }
 
-.index-banner > header {
-  position: relative;
-  margin: 0;
-  z-index: 1;
-  padding: 2rem 1rem;
-}
-
-.index-banner > header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: #414141cb;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
 .index-banner * {
   margin-left: 0;
   margin-right: 0;
-}
-
-.index-banner img {
-  height: 100px;
-  width: 100px;
-  aspect-ratio: 1 / 1;
 }
 
 .index-banner p {
@@ -65,7 +41,34 @@
   margin-bottom: 0.3rem;
 }
 
-@media screen and (min-width: 46.25em) {
+@media screen and (max-width: 54.6875em) {
+  .index-banner {
+    margin-top: -60px !important;
+    padding-top: 60px;
+    overflow: hidden;
+  }
+
+  .index-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: #414141cb;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .index-banner > header {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 1.5rem 1rem 2rem;
+  }
+}
+
+@media screen and (min-width: 54.6875em) {
   .index-banner {
     min-height: 70vh;
     display: flex;
@@ -73,12 +76,23 @@
   }
 
   .index-banner > header {
+    position: relative;
+    z-index: 1;
     border-radius: 25px;
     padding: 2rem 5rem;
     margin: 0 auto;
   }
 
   .index-banner > header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #414141cb;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 25px;
   }
 

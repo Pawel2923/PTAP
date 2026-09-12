@@ -6,7 +6,6 @@ import classes from "./MobileMenu.module.css";
 import SearchContext from "../../store/search-context";
 import PageContext from "../../store/page-context";
 import icons from "../../icons/symbol-defs.svg";
-import useAuth from "../../hooks/use-auth";
 
 const verifyLink = (currentLocation, linkAddress) => {
   let highlightCondition = currentLocation === linkAddress;
@@ -21,7 +20,6 @@ const verifyLink = (currentLocation, linkAddress) => {
 };
 
 const MobileMenu = memo(() => {
-  const { uid } = useAuth();
   const {
     isShown: isSearchShown,
     setIsShown: setIsSearchShown,
@@ -40,12 +38,6 @@ const MobileMenu = memo(() => {
       name: "Wiki",
       path: "/wiki",
       icon: "icon-globe",
-      type: "link",
-    },
-    {
-      name: uid ? "Wyloguj się" : "Zaloguj się",
-      path: uid ? "/wylogowanie" : "/logowanie",
-      icon: uid ? "icon-signout" : "icon-signup",
       type: "link",
     },
     {
