@@ -1,21 +1,64 @@
 .input {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1rem;
   border: 2px solid gray;
   outline: none;
   border-radius: 25px;
   padding: 0.5rem;
   width: 100%;
+  background-color: #ffffff;
+  color: #333333;
+  transition:
+    border-color 0.15s ease-in-out,
+    outline-color 0.15s ease-in-out;
 }
 
-.invalid {
-  border-color: #de5452;
+.input::placeholder {
+  color: #6f6f6f;
+  opacity: 1;
 }
 
 .input:focus {
   border-color: #3b9add;
+  outline: none;
+}
+
+.input:focus-visible {
+  border-color: #3b9add;
+  outline: 2px solid #3b9add;
+  outline-offset: 2px;
 }
 
 .input:focus-within {
   border-color: #3b9add;
+}
+
+.input:disabled,
+.input[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.input[type="checkbox"],
+.input[type="radio"] {
+  width: auto;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.input.invalid {
+  border-color: #de5452;
+}
+
+.input.invalid:focus {
+  border-color: #de5452;
+}
+
+.input.invalid:focus-visible {
+  border-color: #de5452;
+  outline-color: #de5452;
 }
 
 .input[type="search"]::-webkit-search-decoration,
@@ -35,4 +78,20 @@ textarea.input {
   textarea.input {
     max-width: 60vw;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input {
+    transition: none;
+  }
+}
+
+.errorText {
+  display: block;
+  margin-top: 0.35rem;
+  margin-left: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ff8080;
+  width: 100%;
 }

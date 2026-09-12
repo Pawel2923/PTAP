@@ -93,7 +93,11 @@ export default function Toolbar() {
     <>
       {showOpen && <Open setShowOpen={setShowOpen} articles={articles} />}
       {showSave && <Save setShowSave={setShowSave} />}
-      <nav className={classes.toolbar} style={toolbarStyles}>
+      <nav
+        className={classes.toolbar}
+        style={toolbarStyles}
+        aria-label="Pasek narzędzi edytora"
+      >
         {width > 800 ? (
           <ToolbarOptions options={options} />
         ) : (
@@ -103,6 +107,7 @@ export default function Toolbar() {
           type="button"
           className={`${classes["toolbar-fullscreen"]} ${classes.option}`}
           title={!fullscreen ? "Pełny ekran" : "Zamknij pełny ekran"}
+          aria-label={!fullscreen ? "Pełny ekran" : "Zamknij pełny ekran"}
           onClick={fullscreenClickHandler}
         >
           <FontAwesomeIcon

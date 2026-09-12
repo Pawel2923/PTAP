@@ -1,22 +1,34 @@
+import { useId } from "react";
 import PropTypes from "prop-types";
 
-const Video = (props) => {
+const Video = ({
+  video,
+  header,
+  className,
+  width = "560",
+  height = "315",
+  src = "",
+  title,
+  allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+  ...rest
+}) => {
+  const headerId = useId();
+  const iframeTitle = title || header || "Odtwarzacz wideo";
+
   return (
-    <div className={props.video}>
-      <p>{props.header ? props.header : ""}</p>
+    <div className={video}>
+      {header && <p id={headerId}>{header}</p>}
       <iframe
-        className={`${props.className ? props.className : ""}`}
-        width={props.width ? props.width : "560"}
-        height={props.height ? props.height : "315"}
-        src={props.src ? props.src : ""}
-        title={props.title ? props.title : "YouTube video player"}
+        className={className ? className : ""}
+        width={width}
+        height={height}
+        src={src}
+        title={iframeTitle}
+        aria-labelledby={header && !title ? headerId : undefined}
         loading="lazy"
-        allow={
-          props.allow
-            ? props.allow
-            : "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        }
+        allow={allow}
         allowFullScreen
+        {...rest}
       ></iframe>
     </div>
   );
@@ -26,11 +38,11 @@ Video.propTypes = {
   video: PropTypes.string.isRequired,
   header: PropTypes.string,
   className: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   src: PropTypes.string,
   title: PropTypes.string,
-  allow: PropTypes.bool,
+  allow: PropTypes.string,
 };
 
 export default Video;

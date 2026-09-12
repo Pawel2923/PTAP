@@ -2,9 +2,8 @@
 .button-link {
   background: transparent;
   padding: 0.5rem 1rem;
-  border: 1px solid #115ab2;
+  border: 1px solid #43acf7;
   border-radius: 25px;
-  outline: none;
   -webkit-transition:
     background-color 50ms ease-out,
     -webkit-transform 50ms ease-out;
@@ -42,9 +41,12 @@
   transform: scale3d(0.9, 0.9, 0.9);
 }
 
-.button:focus-visible {
+.button:focus-visible,
+.button-link:focus-visible {
   background: #2972ca;
   border-color: #2972ca;
+  outline: 2px solid #43acf7;
+  outline-offset: 2px;
 }
 
 .button-link {
@@ -53,11 +55,32 @@
   color: #fff;
 }
 
+.button:disabled,
+.button[aria-disabled="true"],
+.button-link:disabled,
+.button-link[aria-disabled="true"],
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 @media screen and (min-width: 46.25em) {
-  .button:hover,
-  .button-link:hover {
+  .button:hover:not(:disabled):not([aria-disabled="true"]),
+  .button-link:hover:not(:disabled):not([aria-disabled="true"]) {
     background: #2972ca;
     cursor: pointer;
     border-color: #2972ca;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button-link {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+    -webkit-transform: none;
+    transform: none;
   }
 }

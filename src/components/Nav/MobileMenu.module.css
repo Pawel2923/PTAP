@@ -2,8 +2,17 @@
   position: fixed;
   bottom: 0;
   left: 0;
+  right: 0;
   width: 100%;
   z-index: 3;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+  contain: layout paint;
+  touch-action: none;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .menu::before {
@@ -16,6 +25,9 @@
   background-color: #414141cb;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 .menu ul {
@@ -32,7 +44,7 @@
 }
 
 .menu a,
-.menu div {
+.menu button {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -49,6 +61,10 @@
   justify-content: center;
   font-size: 0.8em;
   color: #cdcdcd;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0;
   -webkit-transition: -webkit-transform 50ms ease-out;
   transition: -webkit-transform 50ms ease-out;
   -o-transition: transform 50ms ease-out;
@@ -56,11 +72,10 @@
   transition:
     transform 50ms ease-out,
     -webkit-transform 50ms ease-out;
-  padding: 0.5rem 0;
 }
 
 .menu a:active,
-.menu div:active {
+.menu button:active {
   -webkit-transform: scale3d(0.9, 0.9, 0.9);
   transform: scale3d(0.9, 0.9, 0.9);
 }

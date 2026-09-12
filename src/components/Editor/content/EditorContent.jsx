@@ -15,6 +15,8 @@ const EditorContent = () => {
     article,
     highlightingContentElement,
     highlightingElement,
+    tabCaptureAnnouncement,
+    handleBlur,
   } = useCode();
 
   useEffect(() => {
@@ -30,14 +32,27 @@ const EditorContent = () => {
       <LineNumbers articleLength={articleLength} />
       <div className={classes.line}></div>
       <div className={classes.content}>
+        <p id="editor-tab-hint" className="sr-only">
+          Naciśnij klawisz Escape, aby wyjść z edytora za pomocą klawisza Tab.
+        </p>
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="sr-only"
+        >
+          {tabCaptureAnnouncement}
+        </div>
         <textarea
           id="editing"
           onInput={textareaHandler}
           onScroll={syncScroll}
           onKeyDown={checkTab}
+          onBlur={handleBlur}
           value={article?.content}
           spellCheck={false}
-          aria-label="Code Editor"
+          aria-label="Edytor kodu artykułu"
+          aria-describedby="editor-tab-hint"
         ></textarea>
 
         <pre

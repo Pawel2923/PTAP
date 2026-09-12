@@ -23,6 +23,19 @@
   width: 100%;
 }
 
+.label {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.form .label:first-of-type {
+  margin-top: 0.5rem;
+}
+
 .form input:not(:first-child) {
   margin-top: 0.5rem;
 }
@@ -65,7 +78,6 @@
   backdrop-filter: blur(20px);
   padding: 0.3rem 1rem;
   border-radius: 25px;
-  outline: none;
   cursor: pointer;
   color: #fff;
   transition:
@@ -87,6 +99,8 @@
 
 .option:focus-visible {
   background-color: #343434;
+  outline: 2px solid #43acf7;
+  outline-offset: 2px;
 }
 
 .highlight {

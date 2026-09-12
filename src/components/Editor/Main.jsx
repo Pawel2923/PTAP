@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { EditorContext } from "../../store/Editor/editor-context.js";
 import Welcome from "./pages/Welcome";
@@ -15,22 +15,30 @@ const Main = () => {
   const { article } = useContext(EditorContext);
   const [mainHeader, setMainHeader] = useState("");
 
+  useEffect(() => {
+    if (article?.title && article.title.trim().length > 0) {
+      document.title = `${article.title} | Edytor | PTAP`;
+    } else if (mainHeader) {
+      document.title = `${mainHeader} | Edytor | PTAP`;
+    }
+  }, [article?.title, mainHeader]);
+
   return (
-    <main className={classes.main}>
+    <main className={classes.main} id="main-content" tabIndex="-1">
       <header>
-        <h2>
+        <h1>
           {mainHeader}
           {article?.title && article.title.trim().length > 0 ? (
             <>
               <span> </span>
-              <FontAwesomeIcon icon={solid("angle-right")} />
+              <FontAwesomeIcon icon={solid("angle-right")} aria-hidden="true" />
               <span> </span>
               {article.title}
             </>
           ) : (
             ""
           )}
-        </h2>
+        </h1>
       </header>
       <section>
         <Routes>

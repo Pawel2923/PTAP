@@ -1,58 +1,95 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import PageContext from "../../../store/page-context";
 import classes from "./BackArrow.module.css";
 import icons from "../../../icons/symbol-defs.svg";
 
-const BackArrow = (props) => {
+const BackArrow = ({
+  to,
+  text = "Wróć",
+  enableText = true,
+  notLink = false,
+  className,
+  onClick,
+  ...rest
+}) => {
+  const navigate = useNavigate();
   const { width } = useContext(PageContext);
 
-  let enableText = props.enableText ? props.enableText : true;
+  const showText = Boolean(width > 740 && enableText);
+  const labelText = text || "Wróć";
 
-  if (props.notLink) {
+  const buttonClasses = className
+    ? `${classes.back} ${className}`
+    : classes.back;
+
+  const content = (
+    <>
+      <svg
+        className="icon icon-arrow_left"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <use xlinkHref={`${icons}#icon-arrow_left`}></use>
+      </svg>
+      {showText && <span>{labelText}</span>}
+    </>
+  );
+
+  if (notLink) {
     return (
       <button
         type="button"
-        className={
-          props.className ? `${classes.back} ${props.className}` : classes.back
-        }
-        onClick={props.onClick}
+        className={buttonClasses}
+        onClick={onClick}
+        aria-label={labelText}
+        {...rest}
       >
-        <svg className="icon icon-arrow_left">
-          <use xlinkHref={`${icons}#icon-arrow_left`}></use>
-        </svg>
-        {width > 740 && enableText ? (
-          <span>{props.text ? props.text : "Wróć"}</span>
-        ) : (
-          ""
-        )}
+        {content}
       </button>
     );
   }
 
+  if (typeof to === "string" && to !== "-1") {
+    return (
+      <Link
+        to={to}
+        className={buttonClasses}
+        onClick={onClick}
+        aria-label={labelText}
+        {...rest}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  const handleBack = (event) => {
+    if (onClick) {
+      onClick(event);
+    }
+    if (!event?.defaultPrevented) {
+      navigate(-1);
+    }
+  };
+
   return (
-    <Link
-      to={props.to ? props.to : -1}
-      className={
-        props.className ? `${classes.back} ${props.className}` : classes.back
-      }
+    <button
+      type="button"
+      className={buttonClasses}
+      onClick={handleBack}
+      aria-label={labelText}
+      {...rest}
     >
-      <svg className="icon icon-arrow_left">
-        <use xlinkHref={`${icons}#icon-arrow_left`}></use>
-      </svg>
-      {width > 740 && enableText ? (
-        <span>{props.text ? props.text : "Wróć"}</span>
-      ) : (
-        ""
-      )}
-    </Link>
+      {content}
+    </button>
   );
 };
 
 BackArrow.propTypes = {
-  to: PropTypes.string,
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   text: PropTypes.string,
   enableText: PropTypes.bool,
   notLink: PropTypes.bool,

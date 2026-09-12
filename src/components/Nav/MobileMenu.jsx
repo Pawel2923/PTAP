@@ -22,8 +22,12 @@ const verifyLink = (currentLocation, linkAddress) => {
 
 const MobileMenu = memo(() => {
   const { uid } = useAuth();
-  const { setIsShown } = useContext(SearchContext);
-  const { currentPage, setCurrentPage } = useContext(PageContext);
+  const {
+    isShown: isSearchShown,
+    setIsShown: setIsSearchShown,
+    openSearch,
+  } = useContext(SearchContext);
+  const { currentPage } = useContext(PageContext);
 
   const menuList = [
     {
@@ -31,12 +35,6 @@ const MobileMenu = memo(() => {
       path: "/",
       icon: "icon-house",
       type: "link",
-    },
-    {
-      name: "Szukaj",
-      path: "/szukaj",
-      icon: "icon-magnifying_glass",
-      type: "button",
     },
     {
       name: "Wiki",
@@ -50,65 +48,75 @@ const MobileMenu = memo(() => {
       icon: uid ? "icon-signout" : "icon-signup",
       type: "link",
     },
+    {
+      name: "Szukaj",
+      path: "/szukaj",
+      icon: "icon-magnifying_glass",
+      type: "button",
+    },
   ];
 
   const linkClickHandler = () => {
-    setIsShown(false);
+    setIsSearchShown(false);
   };
 
   const buttonClickHandler = () => {
-    setIsShown(true);
-    setCurrentPage("/szukaj");
+    if (openSearch) {
+      openSearch();
+    } else {
+      setIsSearchShown(true);
+    }
   };
 
   const nav = (
-    <nav className={classes.menu}>
+    <nav className={classes.menu} aria-label="Menu mobilne">
       <ul>
-        {menuList.map((option) => (
-          <li key={option.name}>
-            {option.type === "link" ? (
-              <NavLink
-                to={option.path}
-                className={
-                  verifyLink(currentPage, option.path) ? classes.highlight : ""
-                }
-                onClick={() => {
-                  linkClickHandler();
-                }}
-              >
-                {verifyLink(currentPage, option.path) ? (
-                  <svg className={`icon ${classes.icon} ${option.icon}_solid`}>
-                    <use xlinkHref={`${icons}#${option.icon}_solid`}></use>
+        {menuList.map((option) => {
+          const isActive =
+            option.type === "button"
+              ? isSearchShown
+              : verifyLink(currentPage, option.path) && !isSearchShown;
+
+          return (
+            <li key={option.name}>
+              {option.type === "link" ? (
+                <NavLink
+                  to={option.path}
+                  className={isActive ? classes.highlight : ""}
+                  onClick={linkClickHandler}
+                >
+                  <svg
+                    className={`icon ${classes.icon} ${isActive ? `${option.icon}_solid` : option.icon}`}
+                    aria-hidden="true"
+                  >
+                    <use
+                      xlinkHref={`${icons}#${isActive ? `${option.icon}_solid` : option.icon}`}
+                    ></use>
                   </svg>
-                ) : (
-                  <svg className={`icon ${classes.icon} ${option.icon}`}>
-                    <use xlinkHref={`${icons}#${option.icon}`}></use>
+                  {option.name}
+                </NavLink>
+              ) : (
+                <button
+                  type="button"
+                  onClick={buttonClickHandler}
+                  className={isActive ? classes.highlight : ""}
+                  aria-haspopup="dialog"
+                  aria-expanded={Boolean(isSearchShown)}
+                >
+                  <svg
+                    className={`icon ${classes.icon} ${isActive ? `${option.icon}_solid` : option.icon}`}
+                    aria-hidden="true"
+                  >
+                    <use
+                      xlinkHref={`${icons}#${isActive ? `${option.icon}_solid` : option.icon}`}
+                    ></use>
                   </svg>
-                )}
-                {option.name}
-              </NavLink>
-            ) : (
-              <div
-                onClick={buttonClickHandler}
-                to={option.path}
-                className={
-                  verifyLink(currentPage, option.path) ? classes.highlight : ""
-                }
-              >
-                {verifyLink(currentPage, option.path) ? (
-                  <svg className={`icon ${classes.icon} ${option.icon}_solid`}>
-                    <use xlinkHref={`${icons}#${option.icon}_solid`}></use>
-                  </svg>
-                ) : (
-                  <svg className={`icon ${classes.icon} ${option.icon}`}>
-                    <use xlinkHref={`${icons}#${option.icon}`}></use>
-                  </svg>
-                )}
-                {option.name}
-              </div>
-            )}
-          </li>
-        ))}
+                  {option.name}
+                </button>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

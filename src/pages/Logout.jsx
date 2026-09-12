@@ -15,13 +15,13 @@ const Logout = () => {
 
   return (
     <>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <section className="section">
           <header>
-            <h2>Błąd 404</h2>
+            <h1>Wylogowywanie</h1>
           </header>
           <div>
-            <p>Nie znaleziono strony.</p>
+            <p role="status">Trwa wylogowywanie z serwisu...</p>
           </div>
         </section>
       </main>
