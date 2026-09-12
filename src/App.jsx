@@ -29,6 +29,19 @@ import Terms from "./pages/Terms";
 import Feedback from "./pages/Feedback";
 import SkipLink from "./components/UI/SkipLink/SkipLink";
 
+const routeTitles = {
+  "/": "PTAP - Pilot Training Arma Project",
+  "/wiki": "Wiki | PTAP",
+  "/rejestracja": "Rejestracja | PTAP",
+  "/resetowanie-hasla": "Resetowanie hasła | PTAP",
+  "/logowanie": "Logowanie | PTAP",
+  "/wylogowanie": "Wylogowywanie | PTAP",
+  "/zabroniony": "Brak dostępu (403) | PTAP",
+  "/polityka-prywatnosci": "Polityka prywatności | PTAP",
+  "/regulamin": "Regulamin serwisu | PTAP",
+  "/zglos-blad": "Zgłoś błąd | PTAP",
+};
+
 const DefaultPage = () => {
   const location = useLocation();
   const { currentPage, setCurrentPage } = useContext(PageContext);
@@ -39,6 +52,19 @@ const DefaultPage = () => {
       setCurrentPage(location.pathname);
     }
   }, [location, currentPage, isShown, setCurrentPage]);
+
+  useEffect(() => {
+    const pathname = location.pathname;
+    if (routeTitles[pathname]) {
+      document.title = routeTitles[pathname];
+    } else if (pathname.startsWith("/console")) {
+      document.title = "Edytor artykułów | PTAP";
+    } else if (pathname.startsWith("/wiki/")) {
+      document.title = "Artykuł | Wiki | PTAP";
+    } else {
+      document.title = "Nie znaleziono strony (404) | PTAP";
+    }
+  }, [location.pathname]);
 
   return (
     <>

@@ -1,11 +1,24 @@
-.content li {
-  padding: 1rem 0;
-}
-
 .content h4 {
   margin-top: 1rem;
 }
 
 .content h4:first-child {
   margin-top: 0;
+}
+
+.articleList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.content .articleList li,
+.articleList li,
+.articleItem {
+  padding: 0.25rem 0;
+}
+
+.articleItem a {
+  display: inline-block;
+  padding: 0.1rem 0;
 }

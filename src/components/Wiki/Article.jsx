@@ -16,10 +16,16 @@ const Article = () => {
     return () => unsubscribe?.();
   }, [Open, articleAddress]);
 
+  useEffect(() => {
+    if (article?.title) {
+      document.title = `${article.title} | Wiki | PTAP`;
+    }
+  }, [article?.title]);
+
   return article ? (
     <>
       <header>
-        <h2>{article?.title}</h2>
+        <h1>{article?.title}</h1>
       </header>
       <div className="content">
         <StringToJSX domString={article?.content} />

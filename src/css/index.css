@@ -45,11 +45,13 @@ main header {
   overflow: hidden;
 }
 
+main h1:first-child,
 main h2:first-child,
 main h3:first-child {
   margin-top: 0;
 }
 
+main h1,
 main h2,
 main h3 {
   margin: 0.5rem 0;

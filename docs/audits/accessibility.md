@@ -3,7 +3,7 @@
 **Project:** PTAP (Pilot Training Arma Project)  
 **Audit Date:** 2026-09-12  
 **Reference Standards:** WCAG 2.1 / WCAG 2.2 (Levels A and AA)  
-**Implementation Status:** Phase 1 Completed (Critical Navigation & Keyboard Fixes)
+**Implementation Status:** Phase 2 Completed (Semantic Structure & Document Context)
 
 ---
 
@@ -259,12 +259,12 @@ Remediation can be structured into 4 sequential phases ordered by priority:
    - [x] Fix history back navigation in `BackArrow.jsx` using `navigate(-1)`.
    - [x] Fix the footer link target (`/sign-up` -> `/rejestracja`).
 
-2. **Phase 2: Semantic Structure & Document Context (P2)**
+2. **Phase 2: Semantic Structure & Document Context (P2)** - ✅ **Completed**
 
-   - Audit and standardize `<h1>` headings across all views (`Wiki`, `Article`, `Editor`, error pages).
-   - Implement dynamic `document.title` updates on route navigation.
-   - Convert `Intro.jsx` article directory to semantic `<ul>`/`<li>` lists.
-   - Replace the fake 404 message in `Logout.jsx` with a valid loading/logout status indicator.
+   - [x] Audit and standardize `<h1>` headings across all views (`Wiki`, `Article`, `Editor`, error pages, Home).
+   - [x] Implement dynamic `document.title` updates on route navigation.
+   - [x] Convert `Intro.jsx` article directory to semantic `<ul>`/`<li>` lists.
+   - [x] Replace the fake 404 message in `Logout.jsx` with a valid loading/logout status indicator.
 
 3. **Phase 3: Form Accessibility & Instructions (P3)**
 

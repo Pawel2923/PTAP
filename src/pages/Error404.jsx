@@ -9,7 +9,7 @@ const Error404 = () => {
         <BackArrow />
         <section className="section">
           <header>
-            <h2>Błąd 404</h2>
+            <h1>Błąd 404</h1>
           </header>
           <div>
             <p>Nie znaleziono strony.</p>

@@ -48,6 +48,7 @@ const Main = () => {
           </figure>
         </section>
         <section className="section">
+          <h2>Materiały wideo</h2>
           <Video
             video={classes.video}
             src="https://www.youtube.com/embed/v8pn1f3ijLI"

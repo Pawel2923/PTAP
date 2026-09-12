@@ -9,7 +9,7 @@ const Error403 = () => {
         <BackArrow to={"/"} text="Wróć na stronę główną" />
         <section className="section">
           <header>
-            <h2>Błąd 403</h2>
+            <h1>Błąd 403</h1>
           </header>
           <div>
             <p>Nie masz dostępu do tej strony.</p>
