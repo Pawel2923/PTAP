@@ -13,13 +13,9 @@
   overflow: hidden;
   position: sticky;
   top: 0;
-  -webkit-transition: -webkit-transform 0.2s ease-out;
-  transition: -webkit-transform 0.2s ease-out;
-  -o-transition: transform 0.2s ease-out;
-  transition: transform 0.2s ease-out;
-  transition:
-    transform 0.2s ease-out,
-    -webkit-transform 0.2s ease-out;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
   z-index: 2;
 }
 

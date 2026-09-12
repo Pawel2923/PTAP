@@ -1,22 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 
 import PageContext from "./page-context";
 
 const WidthProvider = ({ children }) => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
-  const [currentPage, setCurrentPage] = useState(document.location.pathname);
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+  const [height, setHeight] = useState(
+    typeof window !== "undefined" ? window.innerHeight : 0
+  );
+  const [currentPage, setCurrentPage] = useState(
+    typeof document !== "undefined" ? document.location.pathname : "/"
+  );
   const [fullscreen, setFullscreen] = useState(false);
-
-  const value = {
-    width,
-    height,
-    currentPage,
-    setCurrentPage,
-    fullscreen,
-    setFullscreen,
-  };
 
   useEffect(() => {
     const openFullscreen = () => {
@@ -55,9 +52,25 @@ const WidthProvider = ({ children }) => {
   }, [fullscreen]);
 
   useEffect(() => {
+    let prevWidth = window.innerWidth;
+    let prevHeight = window.innerHeight;
+
     const handleWindowResize = () => {
-      setWidth(window.innerWidth);
-      setHeight(window.innerHeight);
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+
+      // On mobile browsers, vertical scrolling dynamically collapses/expands the address bar,
+      // changing innerHeight by 1px on every frame and triggering resize events.
+      // Only update dimensions if width changed (orientation/viewport resize) or a major height change occurred.
+      if (newWidth !== prevWidth) {
+        prevWidth = newWidth;
+        prevHeight = newHeight;
+        setWidth(newWidth);
+        setHeight(newHeight);
+      } else if (Math.abs(newHeight - prevHeight) > 150) {
+        prevHeight = newHeight;
+        setHeight(newHeight);
+      }
     };
     window.addEventListener("resize", handleWindowResize);
 
@@ -65,6 +78,18 @@ const WidthProvider = ({ children }) => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
+
+  const value = useMemo(
+    () => ({
+      width,
+      height,
+      currentPage,
+      setCurrentPage,
+      fullscreen,
+      setFullscreen,
+    }),
+    [width, height, currentPage, fullscreen]
+  );
 
   return <PageContext.Provider value={value}>{children}</PageContext.Provider>;
 };

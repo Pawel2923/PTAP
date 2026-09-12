@@ -43,6 +43,7 @@
 .input[type="checkbox"],
 .input[type="radio"] {
   width: auto;
+  padding: 0;
   cursor: pointer;
   border-radius: 4px;
 }
