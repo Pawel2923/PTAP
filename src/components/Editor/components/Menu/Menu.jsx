@@ -47,13 +47,15 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
     <nav
       className={`${classes.menu} ${!expandMenu ? classes["shrink-menu"] : ""}`}
       ref={menuRef}
+      aria-label="Menu konsoli"
     >
       <Option
         className={`${optionClasses}`}
         title={barsTitle}
         onClick={barsClickHandler}
+        aria-expanded={expandMenu}
       >
-        <FontAwesomeIcon icon={solid("bars")} />
+        <FontAwesomeIcon icon={solid("bars")} aria-hidden="true" />
         {expandMenu && <span> Menu</span>}
       </Option>
       <Option

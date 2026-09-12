@@ -5,11 +5,11 @@ import { ButtonLink } from "../components/UI/Button/Button.jsx";
 const Error403 = () => {
   return (
     <>
-      <main>
+      <main id="main-content" tabIndex="-1">
         <BackArrow to={"/"} text="Wróć na stronę główną" />
         <section className="section">
           <header>
-            <h2>Błąd 403</h2>
+            <h1>Błąd 403</h1>
           </header>
           <div>
             <p>Nie masz dostępu do tej strony.</p>

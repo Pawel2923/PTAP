@@ -1,4 +1,4 @@
-import { useContext, useEffect, useCallback, useRef } from "react";
+import { useContext, useEffect, useCallback, useRef, useState } from "react";
 import { EditorContext } from "/src/store/Editor/editor-context";
 import * as Prism from "prismjs";
 import useToolbarOptions from "./use-toolbar-options.jsx";
@@ -9,6 +9,8 @@ function useCode() {
   const highlightingElement = useRef(null);
 
   const { article, setArticleContent } = useContext(EditorContext);
+  const [captureTab, setCaptureTab] = useState(true);
+  const [tabCaptureAnnouncement, setTabCaptureAnnouncement] = useState("");
 
   const updateText = useCallback(
     (inputText) => {
@@ -83,9 +85,23 @@ function useCode() {
 
   const checkTab = useCallback(
     (ev) => {
+      if (ev.key === "Escape") {
+        ev.preventDefault();
+        setCaptureTab((prev) => {
+          const next = !prev;
+          setTabCaptureAnnouncement(
+            next
+              ? "Przechwytywanie klawisza Tab włączone. Naciśnij Escape, aby wyłączyć."
+              : "Przechwytywanie klawisza Tab wyłączone. Naciśnij Tab, aby opuścić pole edytora."
+          );
+          return next;
+        });
+        return;
+      }
+
       const code = ev.target.value;
 
-      if (ev.key === "Tab") {
+      if (ev.key === "Tab" && captureTab) {
         ev.preventDefault();
 
         const beforeTab = code.slice(0, ev.target.selectionStart);
@@ -103,8 +119,13 @@ function useCode() {
         updateText(updatedCode);
       }
     },
-    [updateText]
+    [captureTab, updateText]
   );
+
+  const handleBlur = useCallback(() => {
+    setCaptureTab(true);
+    setTabCaptureAnnouncement("");
+  }, []);
 
   return {
     article,
@@ -113,6 +134,9 @@ function useCode() {
     textareaHandler,
     syncScroll,
     checkTab,
+    captureTab,
+    tabCaptureAnnouncement,
+    handleBlur,
   };
 }
 

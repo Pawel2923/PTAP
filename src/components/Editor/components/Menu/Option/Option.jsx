@@ -2,7 +2,15 @@ import { NavLink } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import classes from "./Option.module.css";
 
-const Option = ({ className, onClick, to, replace, title, children }) => {
+const Option = ({
+  className,
+  onClick,
+  to,
+  replace,
+  title,
+  children,
+  ...rest
+}) => {
   return to ? (
     <NavLink
       to={to}
@@ -10,6 +18,8 @@ const Option = ({ className, onClick, to, replace, title, children }) => {
       className={`${className ? className : ""} ${classes.option}`}
       onClick={onClick}
       title={title ? title : ""}
+      aria-label={title ? title : undefined}
+      {...rest}
     >
       {children}
     </NavLink>
@@ -19,6 +29,8 @@ const Option = ({ className, onClick, to, replace, title, children }) => {
       className={`${className ? className : ""} ${classes.option}`}
       onClick={onClick}
       title={title ? title : ""}
+      aria-label={title ? title : undefined}
+      {...rest}
     >
       {children}
     </button>

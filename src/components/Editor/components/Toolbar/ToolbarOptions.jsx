@@ -32,7 +32,7 @@ export function ToolbarOptionsNested({ options }) {
           title={
             <>
               {option.title}
-              <FontAwesomeIcon icon={solid("arrow-right")} />
+              <FontAwesomeIcon icon={solid("arrow-right")} aria-hidden="true" />
             </>
           }
           className={classes.option}

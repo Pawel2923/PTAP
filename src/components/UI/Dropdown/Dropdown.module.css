@@ -36,9 +36,34 @@
   display: block;
   width: 100%;
   padding: 0.5rem 1.25rem;
+  background: transparent;
+  border: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
   -webkit-transition: background-color 50ms ease-out;
   -o-transition: background-color 50ms ease-out;
   transition: background-color 50ms ease-out;
+}
+
+.nested-container {
+  position: relative;
+  width: 100%;
+}
+
+.nested-trigger {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+
+.option:focus-visible,
+.nested-trigger:focus-visible {
+  background-color: #343434;
+  outline: 2px solid #43acf7;
+  outline-offset: -2px;
 }
 
 .option:first-child {
@@ -147,5 +172,19 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu,
+  .menu-horizontal {
+    -webkit-animation: none;
+    animation: none;
+  }
+
+  .option {
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
   }
 }

@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import useDatabase from "../../hooks/use-db";
 import classes from "./Article.module.css";
 
 const Intro = () => {
   const { data, response } = useDatabase();
-  const [latest, setLatest] = useState("");
-  const [articles, setArticles] = useState("");
 
-  useEffect(() => {
-    if (!response.isSuccess || !data) {
-      return;
+  const latestArticles = useMemo(() => {
+    if (!response.isSuccess || !data || !data.length) {
+      return [];
     }
+    const length = data.length;
+    return data.slice(Math.max(0, length - 3), length).reverse();
+  }, [data, response]);
 
-    let length = data.length;
-    setLatest(
-      data
-        .slice(length - 3, length)
-        .reverse()
-        .map((item, key) => (
-          <div key={key}>
-            <Link to={item.address}>{item.title}</Link>
-          </div>
-        ))
-    );
-
-    setArticles(
-      data.slice(1, length - 3).map((item, key) => (
-        <div key={key}>
-          <Link to={item.address}>{item.title}</Link>
-        </div>
-      ))
-    );
+  const allArticles = useMemo(() => {
+    if (!response.isSuccess || !data || !data.length) {
+      return [];
+    }
+    const length = data.length;
+    return data.slice(1, Math.max(1, length - 3));
   }, [data, response]);
 
   return (
     <React.Fragment>
       <header>
-        <h2>Wiki</h2>
+        <h1>Wiki</h1>
       </header>
       <div className={classes.content}>
-        <h3>Zobacz najnowsze artykuły</h3>
-        {latest}
-        <h3>Lista wszystkich artykułów</h3>
-        {articles}
+        <h2>Zobacz najnowsze artykuły</h2>
+        <ul className={classes.articleList}>
+          {latestArticles.map((item, key) => (
+            <li key={item.address || key} className={classes.articleItem}>
+              <Link to={item.address}>{item.title}</Link>
+            </li>
+          ))}
+        </ul>
+        <h2>Lista wszystkich artykułów</h2>
+        <ul className={classes.articleList}>
+          {allArticles.map((item, key) => (
+            <li key={item.address || key} className={classes.articleItem}>
+              <Link to={item.address}>{item.title}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </React.Fragment>
   );

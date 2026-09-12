@@ -145,24 +145,34 @@ const Save = ({ setShowSave }) => {
             className={classes.form}
           >
             {/*todo: Adres do artykułu do usunięcia*/}
+            <label htmlFor="address" className={classes.label}>
+              Adres do artykułu
+            </label>
             <Input
               type="text"
               id="address"
+              name="address"
               placeholder="Adres do artykułu"
               value={address}
               minLength={7}
               onChange={addressChangeHandler}
               validateInput={isAddress}
+              errorMessage="Adres musi zawierać co najmniej 7 znaków"
               required={true}
             />
+            <label htmlFor="name" className={classes.label}>
+              Nazwa artykułu
+            </label>
             <Input
               type="text"
               id="name"
+              name="name"
               placeholder="Nazwa artykułu"
               value={name}
               minLength={3}
               onChange={nameChangeHandler}
               validateInput={lengthCheck}
+              errorMessage="Nazwa artykułu musi zawierać co najmniej 3 znaki"
               required={true}
             />
             <div className={classes["modal-buttons"]}>

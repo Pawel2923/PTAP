@@ -4,8 +4,8 @@ const Welcome = () => {
   return (
     <div className={classes.welcome}>
       <div>
-        <h3>Witaj! Zacznij edytować artykuły wybierając jedną z opcji</h3>
-        <h4>Edytuj</h4>
+        <h2>Witaj! Zacznij edytować artykuły wybierając jedną z opcji</h2>
+        <h3>Edytuj</h3>
         <button type="button" className={classes.option}>
           Nowy...
         </button>
@@ -14,7 +14,7 @@ const Welcome = () => {
         </button>
       </div>
       <div className={classes.recent}>
-        <h4>Najnowsze</h4>
+        <h3>Najnowsze</h3>
         <ul>
           <li>
             <button type="button" className={classes.option}>

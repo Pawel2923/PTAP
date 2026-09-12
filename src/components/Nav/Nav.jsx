@@ -17,7 +17,12 @@ const Nav = memo(() => {
   let navContent = (
     <>
       <Link to="/" title="Przejdź na stronę główną">
-        <img src={ptapLogo} width="80" height="80" alt="logo" />
+        <img
+          src={ptapLogo}
+          width="80"
+          height="80"
+          alt="PTAP - Pilot Training Arma Project"
+        />
         <h2>{navLogoTitle}</h2>
       </Link>
       <ul>
@@ -49,7 +54,9 @@ const Nav = memo(() => {
   return (
     <>
       {width > 875 ? (
-        <nav className={classes.nav}>{navContent}</nav>
+        <nav className={classes.nav} aria-label="Główna nawigacja">
+          {navContent}
+        </nav>
       ) : (
         <MobileMenu />
       )}

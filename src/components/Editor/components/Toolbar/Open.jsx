@@ -45,19 +45,18 @@ const Open = ({ setShowOpen, articles }) => {
         onReset={closeModal}
         className={classes.form}
       >
+        <label htmlFor="open-article-select" className={classes.label}>
+          Wybierz artykuł
+        </label>
         <select
+          id="open-article-select"
           className={classes.select}
           name="address"
           onChange={selectChangeHandler}
           required={true}
           defaultValue=""
         >
-          <option
-            value=""
-            aria-selected={true}
-            aria-disabled={true}
-            disabled={true}
-          >
+          <option value="" disabled={true}>
             Wybierz artykuł
           </option>
           {articles &&

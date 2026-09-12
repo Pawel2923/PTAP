@@ -112,7 +112,7 @@ const Signup = () => {
 
   return (
     <>
-      <main className={classes.container}>
+      <main className={classes.container} id="main-content" tabIndex="-1">
         <section className="section">
           <h1>Zarejestruj się</h1>
           <h2>Wypełnij formularz rejestracyjny</h2>
@@ -128,11 +128,15 @@ const Signup = () => {
                 onInput={nameInputHandler}
                 setIsFormInvalid={setIsFormInvalid}
                 autoComplete="username"
+                errorMessage="Nazwa użytkownika musi zawierać co najmniej 3 znaki"
               />
             </div>
             <div className={classes["form-field"]}>
               <label htmlFor="email">
-                E-mail <span className={classes.asterisk}>*</span>
+                E-mail{" "}
+                <span className={classes.asterisk} aria-hidden="true">
+                  *
+                </span>
               </label>
               <Input
                 type="email"
@@ -144,12 +148,16 @@ const Signup = () => {
                 validateInput={isEmail}
                 setIsFormInvalid={setIsFormInvalid}
                 autoComplete="email"
+                errorMessage="Wprowadź poprawny adres e-mail"
                 required
               />
             </div>
             <div className={classes["form-field"]}>
               <label htmlFor="password">
-                Hasło <span className={classes.asterisk}>*</span>
+                Hasło{" "}
+                <span className={classes.asterisk} aria-hidden="true">
+                  *
+                </span>
               </label>
               <Input
                 type="password"
@@ -161,6 +169,7 @@ const Signup = () => {
                 validateInput={isEmpty}
                 setIsFormInvalid={setIsFormInvalid}
                 autoComplete="new-password"
+                errorMessage="Hasło musi zawierać co najmniej 6 znaków"
                 required
               />
             </div>
@@ -174,6 +183,7 @@ const Signup = () => {
                 checked={terms}
                 onChange={termsInputHandler}
                 validateInput={areTermsAccepted}
+                errorMessage="Musisz zaakceptować regulamin i politykę prywatności"
                 required
               />
               <label htmlFor="terms">
@@ -185,6 +195,7 @@ const Signup = () => {
                   rel="noopener noreferrer"
                 >
                   regulamin
+                  <span className="sr-only"> (otwiera się w nowej karcie)</span>
                 </Link>{" "}
                 i{" "}
                 <Link
@@ -194,8 +205,11 @@ const Signup = () => {
                   rel="noopener noreferrer"
                 >
                   politykę prywatności
+                  <span className="sr-only"> (otwiera się w nowej karcie)</span>
                 </Link>{" "}
-                <span className={classes.asterisk}>*</span>
+                <span className={classes.asterisk} aria-hidden="true">
+                  *
+                </span>
               </label>
             </div>
             <Button type="submit">Zarejestruj się</Button>

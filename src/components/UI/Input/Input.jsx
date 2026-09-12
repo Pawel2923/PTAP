@@ -3,7 +3,7 @@ import {
   useEffect,
   useRef,
   forwardRef,
-  useLayoutEffect,
+  useImperativeHandle,
 } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -13,15 +13,18 @@ import classes from "./Input.module.css";
 const Input = forwardRef(
   (
     {
-      type,
+      type = "text",
       placeholder,
       value,
+      checked,
       disabled,
       required,
       className,
       style,
       id,
+      name,
       minLength,
+      maxLength,
       onInput,
       onFocus,
       onBlur,
@@ -29,84 +32,137 @@ const Input = forwardRef(
       validateInput,
       setIsFormInvalid,
       autoComplete,
-      checked,
-      asTextarea,
+      asTextarea = false,
       rows,
       cols,
+      errorMessage = "Poprawnie wypełnij to pole",
+      "aria-invalid": ariaInvalidProp,
+      "aria-required": ariaRequiredProp,
+      ...rest
     },
     ref
   ) => {
     const [isInvalid, setIsInvalid] = useState(false);
-    const inputRef = useRef(ref ?? null);
+    const inputRef = useRef(null);
 
-    useLayoutEffect(() => {
-      if (!isInvalid) {
-        inputRef.current.classList.remove(classes.invalid);
-        return;
-      }
-
-      inputRef.current.classList.add(classes.invalid);
-    }, [isInvalid]);
+    useImperativeHandle(ref, () => inputRef.current);
 
     useEffect(() => {
+      if (!inputRef.current) return;
+
       if (isInvalid) {
-        inputRef.current.setCustomValidity("Poprawnie wypełnij to pole");
+        inputRef.current.setCustomValidity(errorMessage);
+        if (setIsFormInvalid) {
+          setIsFormInvalid(true);
+        }
         return;
       }
       inputRef.current.setCustomValidity("");
       if (setIsFormInvalid) {
         setIsFormInvalid(false);
       }
-    }, [isInvalid, setIsFormInvalid]);
+    }, [isInvalid, setIsFormInvalid, errorMessage]);
 
     const changeHandler = (ev) => {
-      setIsInvalid(false);
+      if (isInvalid) {
+        setIsInvalid(false);
+      }
       if (onChange) {
         onChange(ev);
       }
     };
 
-    const focusHandler = (ev) => {
-      if (onFocus) {
-        onFocus(ev);
+    const inputHandler = (ev) => {
+      if (isInvalid) {
+        setIsInvalid(false);
+      }
+      if (onInput) {
+        onInput(ev);
       }
     };
 
     const blurHandler = (ev) => {
       if (validateInput) {
-        setIsInvalid(!validateInput(value));
+        const isCheckbox = type === "checkbox" || ev.target.type === "checkbox";
+        const val = isCheckbox
+          ? (checked ?? ev.target.checked)
+          : (value ?? ev.target.value);
+        setIsInvalid(!validateInput(val));
       }
       if (onBlur) {
         onBlur(ev);
       }
     };
 
+    const ariaInvalid =
+      ariaInvalidProp !== undefined
+        ? ariaInvalidProp
+        : isInvalid
+          ? "true"
+          : undefined;
+
+    const ariaRequired =
+      ariaRequiredProp !== undefined
+        ? ariaRequiredProp
+        : required
+          ? "true"
+          : undefined;
+
+    const errorId = id ? `${id}-error` : undefined;
+    const combinedDescribedBy =
+      [rest["aria-describedby"], isInvalid && errorId ? errorId : undefined]
+        .filter(Boolean)
+        .join(" ") || undefined;
+
     const properties = {
-      type: asTextarea ? undefined : type ?? "text",
+      ...rest,
       ref: inputRef,
       id,
+      name,
       placeholder,
-      value,
-      checked,
       disabled,
       required,
-      className: classNames(classes.input, className),
-      style: style ? style : {},
-      minLength: minLength ? minLength : "",
+      className: classNames(
+        classes.input,
+        { [classes.invalid]: isInvalid },
+        className
+      ),
       onChange: changeHandler,
-      onFocus: focusHandler,
+      onFocus,
       onBlur: blurHandler,
-      onInput: onInput ? onInput : () => {},
+      onInput: inputHandler,
       autoComplete,
-      rows,
-      cols,
+      "aria-invalid": ariaInvalid,
+      "aria-required": ariaRequired,
+      "aria-disabled": disabled ? "true" : undefined,
+      "aria-describedby": combinedDescribedBy,
+      "aria-errormessage": isInvalid && errorId ? errorId : undefined,
     };
 
-    return asTextarea ? (
-      <textarea {...properties} />
+    if (style !== undefined) properties.style = style;
+    if (value !== undefined) properties.value = value;
+    if (checked !== undefined) properties.checked = checked;
+    if (minLength !== undefined) properties.minLength = minLength;
+    if (maxLength !== undefined) properties.maxLength = maxLength;
+
+    const inputElement = asTextarea ? (
+      <textarea {...properties} rows={rows} cols={cols} />
     ) : (
-      <input {...properties} />
+      <input {...properties} type={type} />
     );
+
+    if (isInvalid && errorId) {
+      return (
+        <>
+          {inputElement}
+          <span id={errorId} className={classes.errorText} role="alert">
+            {errorMessage}
+          </span>
+        </>
+      );
+    }
+
+    return inputElement;
   }
 );
 
@@ -115,13 +171,15 @@ Input.displayName = "Input";
 Input.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   required: PropTypes.bool,
   className: PropTypes.string,
-  style: PropTypes.any,
+  style: PropTypes.object,
   id: PropTypes.string,
+  name: PropTypes.string,
   minLength: PropTypes.number,
+  maxLength: PropTypes.number,
   onInput: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
@@ -131,8 +189,16 @@ Input.propTypes = {
   autoComplete: PropTypes.string,
   checked: PropTypes.bool,
   asTextarea: PropTypes.bool,
-  rows: PropTypes.number,
-  cols: PropTypes.number,
+  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  cols: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  errorMessage: PropTypes.string,
+  "aria-invalid": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  "aria-required": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  "aria-disabled": PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  "aria-label": PropTypes.string,
+  "aria-labelledby": PropTypes.string,
+  "aria-describedby": PropTypes.string,
+  "aria-errormessage": PropTypes.string,
 };
 
 export default Input;

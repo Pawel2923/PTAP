@@ -29,28 +29,63 @@
   flex-direction: column;
 }
 
+.form-field.checkbox-field,
 .checkbox-field {
+  width: 100%;
+  max-width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 0.5rem;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  flex-wrap: wrap;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  gap: 0.65rem;
 }
 
 .checkbox-field input {
-  width: 1rem !important;
-  height: 1rem !important;
-  margin-bottom: 0 !important;
+  order: 1;
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  margin: 0.15rem 0 0 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: #3b9add;
+}
+
+.checkbox-field label {
+  order: 2;
+  flex: 1;
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #cdcdcd;
+}
+
+.checkbox-field label a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.checkbox-field span[role="alert"] {
+  order: 3;
+  width: 100%;
+  margin-top: 0.25rem;
+  margin-left: 1.85rem;
+}
+
+.asterisk {
+  color: #de5452;
+  margin-left: 0.2rem;
 }
 
 .form input {
   width: 100%;
-}
-
-.form-field:last-of-type input {
-  margin-bottom: 1rem;
 }
 
 .form button {
@@ -64,5 +99,10 @@
 @media screen and (min-width: 46.25em) {
   .form-field {
     max-width: 40%;
+  }
+
+  .form-field.checkbox-field,
+  .checkbox-field {
+    max-width: 65%;
   }
 }

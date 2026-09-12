@@ -14,7 +14,8 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
-  -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+  -webkit-text-size-adjust: 100%; /* allow webkit to resize text */
+  text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(
     0,
     0,
@@ -45,21 +46,23 @@ main header {
   overflow: hidden;
 }
 
+main h1:first-child,
 main h2:first-child,
 main h3:first-child {
   margin-top: 0;
 }
 
+main h1,
 main h2,
 main h3 {
-  margin: 1.5rem 0;
+  margin: 0.5rem 0;
 }
 
 main p {
-  margin: 0.5rem 0;
+  margin-bottom: 2rem;
   font-size: 1.1em;
   line-height: 1.5;
-  text-align: justify;
+  text-align: left;
   max-width: 650px;
 }
 
@@ -70,7 +73,6 @@ a {
   -o-transition: color 50ms ease-out;
   transition: color 50ms ease-out;
   -webkit-tap-highlight-color: transparent !important;
-  outline: none !important;
 }
 
 a:active {
@@ -103,21 +105,14 @@ button {
   -webkit-appearance: none;
 }
 
-button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-button:focus:not(:focus-visible) {
-  outline: none;
-}
-button:focus:not(:-moz-focusring) {
-  outline: none;
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #43acf7;
+  outline-offset: 2px;
 }
 
 .section {
   margin: 2rem 0;
-  overflow: hidden;
 }
 
 .section figure {
@@ -197,4 +192,20 @@ button:focus:not(:-moz-focusring) {
     margin-left: 1rem;
     margin-right: 1rem;
   }
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

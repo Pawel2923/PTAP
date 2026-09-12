@@ -11,7 +11,7 @@ const Footer = memo(() => {
   const { width } = useContext(PageContext);
 
   useEffect(() => {
-    if (document.querySelector("nav") && width <= 740) {
+    if (document.querySelector("nav") && width <= 875) {
       setNavHeight(document.querySelector("nav").clientHeight);
     } else {
       setNavHeight(0);
@@ -26,7 +26,7 @@ const Footer = memo(() => {
       <div className={classes.top}>
         <ul>
           <li>
-            <Link to="/sign-up">Zapisz się do projektu</Link>
+            <Link to="/rejestracja">Zapisz się do projektu</Link>
           </li>
           <li>
             <Link to="/zglos-blad">Zgłoś błąd na stronie</Link>
