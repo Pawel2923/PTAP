@@ -108,6 +108,12 @@ const Input = forwardRef(
           ? "true"
           : undefined;
 
+    const errorId = id ? `${id}-error` : undefined;
+    const combinedDescribedBy =
+      [rest["aria-describedby"], isInvalid && errorId ? errorId : undefined]
+        .filter(Boolean)
+        .join(" ") || undefined;
+
     const properties = {
       ...rest,
       ref: inputRef,
@@ -129,6 +135,8 @@ const Input = forwardRef(
       "aria-invalid": ariaInvalid,
       "aria-required": ariaRequired,
       "aria-disabled": disabled ? "true" : undefined,
+      "aria-describedby": combinedDescribedBy,
+      "aria-errormessage": isInvalid && errorId ? errorId : undefined,
     };
 
     if (style !== undefined) properties.style = style;
@@ -137,14 +145,24 @@ const Input = forwardRef(
     if (minLength !== undefined) properties.minLength = minLength;
     if (maxLength !== undefined) properties.maxLength = maxLength;
 
-    if (asTextarea) {
-      if (rows !== undefined) properties.rows = rows;
-      if (cols !== undefined) properties.cols = cols;
-      return <textarea {...properties} />;
+    const inputElement = asTextarea ? (
+      <textarea {...properties} rows={rows} cols={cols} />
+    ) : (
+      <input {...properties} type={type} />
+    );
+
+    if (isInvalid && errorId) {
+      return (
+        <>
+          {inputElement}
+          <span id={errorId} className={classes.errorText} role="alert">
+            {errorMessage}
+          </span>
+        </>
+      );
     }
 
-    properties.type = type;
-    return <input {...properties} />;
+    return inputElement;
   }
 );
 

@@ -77,21 +77,27 @@ const ResetPassword = () => {
           <h1>Zresetuj hasło</h1>
           <h2>Podaj adres e-mail</h2>
           <form onSubmit={submitHandler} className={classes.form}>
-            <label htmlFor="email">
-              <p>
-                E-mail <span className={classes.asterisk}>*</span>
-              </p>
+            <div className={classes["form-field"]}>
+              <label htmlFor="email">
+                E-mail{" "}
+                <span className={classes.asterisk} aria-hidden="true">
+                  *
+                </span>
+              </label>
               <Input
                 type="email"
                 id="email"
+                name="email"
                 minLength={3}
                 value={email}
                 onInput={emailInputHandler}
                 validateInput={isEmail}
                 setIsFormInvalid={setIsFormInvalid}
+                autoComplete="email"
+                errorMessage="Wprowadź poprawny adres e-mail"
                 required
               />
-            </label>
+            </div>
             <Button type="submit">Wyślij link</Button>
           </form>
         </section>

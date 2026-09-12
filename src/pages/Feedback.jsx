@@ -97,7 +97,10 @@ const Feedback = () => {
           <form onSubmit={submitHandler} className={classes.form}>
             <div className={classes["form-field"]}>
               <label htmlFor="email">
-                E-mail <span className={classes.asterisk}>*</span>
+                E-mail{" "}
+                <span className={classes.asterisk} aria-hidden="true">
+                  *
+                </span>
               </label>
               <Input
                 type="email"
@@ -108,12 +111,16 @@ const Feedback = () => {
                 validateInput={isEmail}
                 setIsFormInvalid={setIsFormInvalid}
                 autoComplete="email"
+                errorMessage="Wprowadź poprawny adres e-mail"
                 required
               />
             </div>
             <div className={classes["form-field"]}>
               <label htmlFor="message">
-                Opis <span className={classes.asterisk}>*</span>
+                Opis{" "}
+                <span className={classes.asterisk} aria-hidden="true">
+                  *
+                </span>
               </label>
               <Input
                 id="message"
@@ -125,6 +132,7 @@ const Feedback = () => {
                 onChange={messageInputHandler}
                 validateInput={isEmpty}
                 setIsFormInvalid={setIsFormInvalid}
+                errorMessage="Opis musi zawierać co najmniej 3 znaki"
                 required
               />
             </div>

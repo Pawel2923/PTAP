@@ -86,7 +86,10 @@ const Login = () => {
     <form onSubmit={submitHandler} className={classes.form}>
       <div className={classes["form-field"]}>
         <label htmlFor="email">
-          E-mail <span className={classes.asterisk}>*</span>
+          E-mail{" "}
+          <span className={classes.asterisk} aria-hidden="true">
+            *
+          </span>
         </label>
         <Input
           type="email"
@@ -98,12 +101,16 @@ const Login = () => {
           validateInput={isEmail}
           setIsFormInvalid={setIsFormInvalid}
           autoComplete="email"
+          errorMessage="Wprowadź poprawny adres e-mail"
           required
         />
       </div>
       <div className={classes["form-field"]}>
         <label htmlFor="password">
-          Hasło <span className={classes.asterisk}>*</span>
+          Hasło{" "}
+          <span className={classes.asterisk} aria-hidden="true">
+            *
+          </span>
         </label>
         <Input
           type="password"
@@ -115,6 +122,7 @@ const Login = () => {
           validateInput={isEmpty}
           setIsFormInvalid={setIsFormInvalid}
           autoComplete="current-password"
+          errorMessage="Hasło musi zawierać co najmniej 3 znaki"
           required
         />
       </div>

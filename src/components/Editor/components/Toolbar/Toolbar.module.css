@@ -23,6 +23,19 @@
   width: 100%;
 }
 
+.label {
+  display: block;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.form .label:first-of-type {
+  margin-top: 0.5rem;
+}
+
 .form input:not(:first-child) {
   margin-top: 0.5rem;
 }

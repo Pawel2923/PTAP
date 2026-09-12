@@ -3,7 +3,7 @@
 **Project:** PTAP (Pilot Training Arma Project)  
 **Audit Date:** 2026-09-12  
 **Reference Standards:** WCAG 2.1 / WCAG 2.2 (Levels A and AA)  
-**Implementation Status:** Phase 2 Completed (Semantic Structure & Document Context)
+**Implementation Status:** Phase 3 Completed (Form Accessibility & Instructions)
 
 ---
 
@@ -266,12 +266,12 @@ Remediation can be structured into 4 sequential phases ordered by priority:
    - [x] Convert `Intro.jsx` article directory to semantic `<ul>`/`<li>` lists.
    - [x] Replace the fake 404 message in `Logout.jsx` with a valid loading/logout status indicator.
 
-3. **Phase 3: Form Accessibility & Instructions (P3)**
+3. **Phase 3: Form Accessibility & Instructions (P3)** - ✅ **Completed**
 
-   - Add explicit `<label>` elements to editor dialog inputs in `Save.jsx` and `Open.jsx`.
-   - Introduce accessible inline error messages connected via `aria-describedby`.
-   - Refactor `ResetPassword.jsx` to correct invalid `<label>` nesting.
-   - Mark required field asterisks with `aria-hidden="true"` and describe `target="_blank"` links.
+   - [x] Add explicit `<label>` elements to editor dialog inputs in `Save.jsx` and `Open.jsx`.
+   - [x] Introduce accessible inline error messages connected via `aria-describedby` and `aria-errormessage`.
+   - [x] Refactor `ResetPassword.jsx` to correct invalid `<label>` nesting and add `autoComplete="email"`.
+   - [x] Mark required field asterisks with `aria-hidden="true"` and describe `target="_blank"` links.
 
 4. **Phase 4: Visuals, Contrast & Focus Enhancements (P4)**
    - Increase border contrast for secondary buttons in `Button.module.css`.
