@@ -1,25 +1,15 @@
-import { useContext } from "react";
 import Footer from "../components/Footer/Footer";
 import Video from "../components/UI/Video";
 import { ButtonLink } from "../components/UI/Button/Button.jsx";
-import PageContext from "../store/page-context";
-import ptapLogo from "../img/logo.webp";
 import autorot from "../img/autorotacja.webp";
 import classes from "./Home.module.css";
 
 const Main = () => {
-  const { width } = useContext(PageContext);
-
   return (
     <>
       <main id="main-content" tabIndex="-1">
         <section className={`section ${classes["index-banner"]}`}>
           <header>
-            {width <= 740 ? (
-              <img src={ptapLogo} alt="Logo" width="100" height="100" />
-            ) : (
-              ""
-            )}
             <h1>PTAP</h1>
             <p>
               Projekt mający na celu nauczenie graczy Arma 3 podstaw latania

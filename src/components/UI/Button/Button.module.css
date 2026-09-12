@@ -4,33 +4,42 @@
   padding: 0.5rem 1rem;
   border: 1px solid #43acf7;
   border-radius: 25px;
+  text-align: center;
   -webkit-transition:
     background-color 50ms ease-out,
+    border-color 50ms ease-out,
     -webkit-transform 50ms ease-out;
   transition:
     background-color 50ms ease-out,
+    border-color 50ms ease-out,
     -webkit-transform 50ms ease-out;
   -o-transition:
     transform 50ms ease-out,
-    background-color 50ms ease-out;
+    background-color 50ms ease-out,
+    border-color 50ms ease-out;
   -webkit-transition:
     background-color 50ms ease-out,
-    -webkit-transform 50ms ease-out;
-  transition:
-    transform 50ms ease-out,
-    background-color 50ms ease-out;
-  transition:
-    transform 50ms ease-out,
-    background-color 50ms ease-out,
+    border-color 50ms ease-out,
     -webkit-transform 50ms ease-out;
   transition:
     transform 50ms ease-out,
     background-color 50ms ease-out,
+    border-color 50ms ease-out;
+  transition:
+    transform 50ms ease-out,
+    background-color 50ms ease-out,
+    border-color 50ms ease-out,
+    -webkit-transform 50ms ease-out;
+  transition:
+    transform 50ms ease-out,
+    background-color 50ms ease-out,
+    border-color 50ms ease-out,
     -webkit-transform 50ms ease-out;
 }
 
 .highlight {
   background: #115ab2;
+  border-color: #115ab2;
 }
 
 .button:active,

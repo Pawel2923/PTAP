@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCookieBite } from "@fortawesome/free-solid-svg-icons";
 import useCookieConsent from "../../hooks/use-cookie-consent";
 import CookiePreferencesModal from "./CookiePreferencesModal";
+import { Button } from "../UI/Button/Button";
 import classes from "./CookieConsent.module.css";
 
 const CookieConsent = () => {
@@ -46,27 +47,13 @@ const CookieConsent = () => {
               </p>
             </div>
             <div className={classes.actions}>
-              <button
-                type="button"
-                className={`${classes.button} ${classes.buttonPrimary}`}
-                onClick={acceptAll}
-              >
-                Zaakceptuj wszystkie
-              </button>
-              <button
-                type="button"
-                className={`${classes.button} ${classes.buttonSecondary}`}
-                onClick={rejectOptional}
-              >
+              <Button onClick={acceptAll}>Zaakceptuj wszystkie</Button>
+              <Button highlighted={false} onClick={rejectOptional}>
                 Odrzuć opcjonalne
-              </button>
-              <button
-                type="button"
-                className={`${classes.button} ${classes.buttonOutline}`}
-                onClick={openPreferences}
-              >
+              </Button>
+              <Button highlighted={false} onClick={openPreferences}>
                 Dostosuj
-              </button>
+              </Button>
             </div>
           </div>
         </aside>

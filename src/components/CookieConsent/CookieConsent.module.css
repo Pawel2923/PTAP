@@ -91,64 +91,6 @@
   gap: 0.75rem;
 }
 
-.button {
-  padding: 0.6rem 1.25rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 25px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-  transition:
-    background-color 50ms ease-out,
-    transform 50ms ease-out,
-    border-color 50ms ease-out,
-    color 50ms ease-out;
-}
-
-.buttonPrimary {
-  background-color: #115ab2;
-  color: #ffffff;
-  border-color: #43acf7;
-}
-
-.buttonPrimary:hover {
-  background-color: #2972ca;
-  border-color: #2972ca;
-}
-
-.buttonSecondary {
-  background-color: transparent;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.buttonSecondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: #ffffff;
-}
-
-.buttonOutline {
-  background-color: transparent;
-  color: #43acf7;
-  border-color: #43acf7;
-}
-
-.buttonOutline:hover {
-  background-color: rgba(67, 172, 247, 0.15);
-  color: #ffffff;
-}
-
-.button:focus-visible {
-  outline: 2px solid #43acf7;
-  outline-offset: 2px;
-}
-
-.button:active {
-  transform: scale3d(0.97, 0.97, 0.97);
-}
-
 @media screen and (min-width: 55em) {
   .container {
     flex-direction: row;
@@ -170,19 +112,10 @@
     flex-direction: column;
     align-items: stretch;
   }
-
-  .button {
-    width: 100%;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .banner {
     animation: none;
-  }
-
-  .button {
-    transition: none;
-    transform: none;
   }
 }

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import { SearchPlaceholder } from "../Search/Search";
 import MobileMenu from "./MobileMenu";
+import MobileTop from "./MobileTop";
 import PageContext from "../../store/page-context";
 import ptapLogo from "../../img/logo.webp";
 import useAuth from "../../hooks/use-auth";
@@ -58,7 +59,10 @@ const Nav = memo(() => {
           {navContent}
         </nav>
       ) : (
-        <MobileMenu />
+        <>
+          <MobileTop />
+          <MobileMenu />
+        </>
       )}
     </>
   );
