@@ -42,7 +42,16 @@ const CookiePreferencesModal = () => {
 
     const handleClick = (event) => {
       if (event.target === dialog) {
-        closePreferences();
+        const rect = dialog.getBoundingClientRect();
+        const isInDialog =
+          rect.top <= event.clientY &&
+          event.clientY <= rect.bottom &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.right;
+
+        if (!isInDialog) {
+          closePreferences();
+        }
       }
     };
 
