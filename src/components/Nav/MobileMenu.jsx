@@ -22,7 +22,11 @@ const verifyLink = (currentLocation, linkAddress) => {
 
 const MobileMenu = memo(() => {
   const { uid } = useAuth();
-  const { isShown: isSearchShown, setIsShown: setIsSearchShown } = useContext(SearchContext);
+  const {
+    isShown: isSearchShown,
+    setIsShown: setIsSearchShown,
+    openSearch,
+  } = useContext(SearchContext);
   const { currentPage } = useContext(PageContext);
 
   const menuList = [
@@ -31,12 +35,6 @@ const MobileMenu = memo(() => {
       path: "/",
       icon: "icon-house",
       type: "link",
-    },
-    {
-      name: "Szukaj",
-      path: "/szukaj",
-      icon: "icon-magnifying_glass",
-      type: "button",
     },
     {
       name: "Wiki",
@@ -50,6 +48,12 @@ const MobileMenu = memo(() => {
       icon: uid ? "icon-signout" : "icon-signup",
       type: "link",
     },
+    {
+      name: "Szukaj",
+      path: "/szukaj",
+      icon: "icon-magnifying_glass",
+      type: "button",
+    },
   ];
 
   const linkClickHandler = () => {
@@ -57,7 +61,11 @@ const MobileMenu = memo(() => {
   };
 
   const buttonClickHandler = () => {
-    setIsSearchShown(true);
+    if (openSearch) {
+      openSearch();
+    } else {
+      setIsSearchShown(true);
+    }
   };
 
   const nav = (
@@ -92,6 +100,8 @@ const MobileMenu = memo(() => {
                   type="button"
                   onClick={buttonClickHandler}
                   className={isActive ? classes.highlight : ""}
+                  aria-haspopup="dialog"
+                  aria-expanded={Boolean(isSearchShown)}
                 >
                   <svg
                     className={`icon ${classes.icon} ${isActive ? `${option.icon}_solid` : option.icon}`}
