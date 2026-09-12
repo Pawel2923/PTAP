@@ -83,8 +83,7 @@ const Input = forwardRef(
 
     const blurHandler = (ev) => {
       if (validateInput) {
-        const isCheckbox =
-          type === "checkbox" || ev.target.type === "checkbox";
+        const isCheckbox = type === "checkbox" || ev.target.type === "checkbox";
         const val = isCheckbox
           ? (checked ?? ev.target.checked)
           : (value ?? ev.target.value);
@@ -99,15 +98,15 @@ const Input = forwardRef(
       ariaInvalidProp !== undefined
         ? ariaInvalidProp
         : isInvalid
-        ? "true"
-        : undefined;
+          ? "true"
+          : undefined;
 
     const ariaRequired =
       ariaRequiredProp !== undefined
         ? ariaRequiredProp
         : required
-        ? "true"
-        : undefined;
+          ? "true"
+          : undefined;
 
     const properties = {
       ...rest,

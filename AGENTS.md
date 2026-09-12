@@ -12,20 +12,20 @@
 
 ## Tech Stack & Architecture
 
-| Layer | Technology | Key Details |
-| :--- | :--- | :--- |
-| **Frontend Core** | React 19 (`^19.0.0`), React DOM 19 | Functional components with hooks |
-| **Build & Bundler** | Vite 6 (`^6.2.0`) | Configured with HMR (port 3000), polling, babel macros |
-| **Routing** | React Router DOM v7 (`^7.1.1`) | `createBrowserRouter`, `createRoutesFromElements`, `<Outlet />` |
-| **State Management** | React Context API + Reducers | `PageContext`, `SearchContext`, and `EditorContext` |
-| **Backend & BaaS** | Google Firebase v11 (`^11.1.0`) | Firebase Authentication & Firebase Realtime Database (`/articles`) |
-| **Serverless Functions**| Netlify Functions (Node.js 22) | `nodemailer` SMTP for contact & bug reports |
-| **Styling** | CSS Modules + Global CSS + SASS | Component-scoped CSS modules (`*.module.css`), `src/css/index.css` |
-| **Icons & Media** | FontAwesome v6 + SVG Sprites | `@fortawesome/react-fontawesome`, `svgxuse`, WebP assets |
-| **Code Highlighting** | PrismJS (`^1.29.0`) | Used in the article editor code view |
-| **Linting & Formatting**| ESLint 8 + Prettier 3 | Strict rules including `eslint-plugin-jsx-a11y` (`--max-warnings 0`) |
-| **Containerization** | Docker (Node 22 Alpine + Apache HTTPD) | Multi-stage build serving static output via Apache |
-| **CI/CD** | GitHub Actions + Netlify | `.github/workflows/dev_node.js.yml` runs build on `dev` branch |
+| Layer                    | Technology                             | Key Details                                                          |
+| :----------------------- | :------------------------------------- | :------------------------------------------------------------------- |
+| **Frontend Core**        | React 19 (`^19.0.0`), React DOM 19     | Functional components with hooks                                     |
+| **Build & Bundler**      | Vite 6 (`^6.2.0`)                      | Configured with HMR (port 3000), polling, babel macros               |
+| **Routing**              | React Router DOM v7 (`^7.1.1`)         | `createBrowserRouter`, `createRoutesFromElements`, `<Outlet />`      |
+| **State Management**     | React Context API + Reducers           | `PageContext`, `SearchContext`, and `EditorContext`                  |
+| **Backend & BaaS**       | Google Firebase v11 (`^11.1.0`)        | Firebase Authentication & Firebase Realtime Database (`/articles`)   |
+| **Serverless Functions** | Netlify Functions (Node.js 22)         | `nodemailer` SMTP for contact & bug reports                          |
+| **Styling**              | CSS Modules + Global CSS + SASS        | Component-scoped CSS modules (`*.module.css`), `src/css/index.css`   |
+| **Icons & Media**        | FontAwesome v6 + SVG Sprites           | `@fortawesome/react-fontawesome`, `svgxuse`, WebP assets             |
+| **Code Highlighting**    | PrismJS (`^1.29.0`)                    | Used in the article editor code view                                 |
+| **Linting & Formatting** | ESLint 8 + Prettier 3                  | Strict rules including `eslint-plugin-jsx-a11y` (`--max-warnings 0`) |
+| **Containerization**     | Docker (Node 22 Alpine + Apache HTTPD) | Multi-stage build serving static output via Apache                   |
+| **CI/CD**                | GitHub Actions + Netlify               | `.github/workflows/dev_node.js.yml` runs build on `dev` branch       |
 
 ---
 
@@ -141,6 +141,7 @@ docker run -p 80:80 ptap-web
 ## Architecture & Subsystems
 
 ### 1. Routing & Route Protection (`src/App.jsx`)
+
 - Built using **React Router DOM v7** data routers (`createBrowserRouter`, `createRoutesFromElements`).
 - Root path renders `<DefaultPage />`, which renders `<Nav />` (hidden on `/console/*` routes), the global `<Search />` modal, and `<Outlet />`.
 - Polish route conventions:
@@ -154,6 +155,7 @@ docker run -p 80:80 ptap-web
   - `/zabroniony` (403), `*` (404) -> Error pages.
 
 ### 2. Authentication & Authorization (`src/hooks/use-auth.jsx`)
+
 - Uses Firebase Authentication via `getAuth(app)`.
 - Supports:
   - Email/Password login (`signInWithEmailAndPassword`)
@@ -164,12 +166,14 @@ docker run -p 80:80 ptap-web
 - Session persistence uses Firebase's `onAuthStateChanged` combined with `sessionStorage.setItem("uid", ...)` for fast synchronous auth checks.
 
 ### 3. Realtime Database & Article Management (`src/hooks/use-db.jsx`)
+
 - Connects to Firebase Realtime Database at path `/articles`.
 - `fetchData()` listens for updates with `onValue` and converts Firebase map structures to an array with an added `address` key.
 - `pushData(newData, articleExists)` handles both inserting new articles and updating existing articles (concatenating author names if edited by multiple contributors).
 - Static fallback/seed data resides in `src/data/ArticleList.json`.
 
 ### 4. Article Editor (`src/components/Editor`)
+
 - Specialized authenticated workspace for creating and updating training materials.
 - State managed through `EditorContext` (`src/store/Editor/`), handling article headers, content, format options, and mode switches.
 - Features:
@@ -178,6 +182,7 @@ docker run -p 80:80 ptap-web
   - Real-time preview translating HTML markup into safe React trees using `src/scripts/StringToJSX.jsx` (based on browser `DOMParser`).
 
 ### 5. Serverless Contact Function (`netlify/functions/contact.js`)
+
 - Endpoint: `/.netlify/functions/contact`
 - Accepts `POST` requests with JSON payload: `{ email, message }`.
 - Sends email via `nodemailer` using Gmail SMTP (`smtp.gmail.com:465`).
@@ -191,6 +196,7 @@ docker run -p 80:80 ptap-web
 ## Coding Standards & Conventions
 
 ### 1. Accessibility (a11y)
+
 - **High Priority**: The codebase strictly uses `eslint-plugin-jsx-a11y` with `--max-warnings 0`.
 - All interactive elements must have accessible names, proper roles, and keyboard navigation support.
 - Modals must use the HTML5 `<dialog>` element (see `src/components/UI/Modal/Modal.jsx`).
@@ -198,6 +204,7 @@ docker run -p 80:80 ptap-web
 - SVG icons and decorations must use `aria-hidden="true"` when paired with text, or include accessible labels when acting as standalone buttons.
 
 ### 2. Component Structure & Styling
+
 - Functional components exclusively; utilize standard hooks (`useState`, `useEffect`, `useContext`, `useCallback`, `useMemo`).
 - **CSS Modules**: Every component requiring dedicated styles must use a co-located `[Component].module.css` file.
   - Import as `import classes from "./Component.module.css";` or `import styles from "...";`.
@@ -205,12 +212,15 @@ docker run -p 80:80 ptap-web
 - Global styles and variables (color palette, spacing, typography) reside in `src/css/index.css`.
 
 ### 3. Language & Naming
+
 - **Code & Identifiers**: English for all variable names, component names, function names, file names, git commits, and code comments.
 - **User Interface & Copy**: Polish (`pl-PL`) for all user-facing strings, page headings, button labels, validation messages, and route slugs.
 - **Git Commits**: Conventional Commits standard (e.g., `feat:`, `fix:`, `fix(a11y):`, `refactor(ui):`, `chore:`).
 
 ### 4. Verification Checklist for Agents
+
 Before finishing any task:
+
 1. Run `npm run lint` — must exit with code `0` and `0` warnings.
 2. Run `npm run build` — must build without syntax errors, missing imports, or bundling failures.
 3. Ensure no secrets or API keys with write permissions are accidentally hardcoded or committed to git.

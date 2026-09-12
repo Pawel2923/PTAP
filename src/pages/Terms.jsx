@@ -14,8 +14,8 @@ const Terms = () => {
         <h2>1. Postanowienia ogólne</h2>
         <ol>
           <li>
-            Regulamin określa zasady korzystania z serwisu{" "}
-            <strong>PTAP</strong>.
+            Regulamin określa zasady korzystania z serwisu <strong>PTAP</strong>
+            .
           </li>
           <li>
             Serwis ma charakter informacyjno-użytkowy i jest udostępniany

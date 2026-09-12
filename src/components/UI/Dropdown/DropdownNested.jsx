@@ -80,8 +80,7 @@ export const DropdownNested = ({
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
       if (items.length === 0) return;
-      const prevIndex =
-        currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
+      const prevIndex = currentIndex <= 0 ? items.length - 1 : currentIndex - 1;
       items[prevIndex]?.focus();
     } else if (event.key === "ArrowLeft" || event.key === "Escape") {
       event.preventDefault();

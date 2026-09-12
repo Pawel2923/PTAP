@@ -13,9 +13,12 @@ const PrivacyPolicy = () => {
       <section>
         <h2>1. Informacje ogólne</h2>
         <p>
-          Administratorem danych osobowych jest{" "}
-          <strong>Zespół PTAP</strong>, kontakt e-mail:{" "}
-          <strong><a href="mailto:kontakt.ptap@gmail.com">kontakt.ptap@gmail.com</a></strong>.
+          Administratorem danych osobowych jest <strong>Zespół PTAP</strong>,
+          kontakt e-mail:{" "}
+          <strong>
+            <a href="mailto:kontakt.ptap@gmail.com">kontakt.ptap@gmail.com</a>
+          </strong>
+          .
         </p>
         <p>
           Administrator przetwarza dane osobowe zgodnie z obowiązującymi

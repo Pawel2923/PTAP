@@ -1,23 +1,23 @@
 .main {
-    margin: 2rem 1rem;
+  margin: 2rem 1rem;
 }
 
 .main section,
 .main header {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .main h1,
 .main h2 {
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .main p {
-    text-align: left;
+  text-align: left;
 }
 
 @media screen and (min-width: 46.25em) {
-    .main {
-        margin: 4rem 20%;
-    }
+  .main {
+    margin: 4rem 20%;
+  }
 }
