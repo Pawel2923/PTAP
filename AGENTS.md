@@ -33,9 +33,14 @@
 
 ```plaintext
 PTAP/
+├── .agents/                      # Agent configuration & modular rules
+│   └── rules/                    # Scoped agent rule definitions (e.g. a11y.md)
 ├── .github/
 │   └── workflows/
 │       └── dev_node.js.yml       # GitHub Actions CI workflow (Node 22)
+├── docs/                         # Project documentation and reference material
+│   ├── audits/                   # Audit reports (e.g. accessibility.md)
+│   └── references/               # Technical specs, flight SOPs, domain knowledge
 ├── netlify/
 │   └── functions/
 │       └── contact.js            # Netlify Serverless function (Nodemailer Gmail SMTP)
@@ -197,8 +202,10 @@ docker run -p 80:80 ptap-web
 
 ### 1. Accessibility (a11y)
 
-- **High Priority**: The codebase strictly uses `eslint-plugin-jsx-a11y` with `--max-warnings 0`.
-- All interactive elements must have accessible names, proper roles, and keyboard navigation support.
+- **High Priority**: The codebase strictly uses `eslint-plugin-jsx-a11y` with `--max-warnings 0` and targets WCAG 2.1 / 2.2 Level AA compliance.
+- Detailed audit findings and remediation plans reside in `docs/audits/accessibility.md`.
+- Agent-specific accessibility constraints and mandatory rules reside in `.agents/rules/a11y.md`.
+- All interactive elements must have accessible names, proper roles, and keyboard navigation support (avoid keyboard traps).
 - Modals must use the HTML5 `<dialog>` element (see `src/components/UI/Modal/Modal.jsx`).
 - Form controls must have associated `<label>` elements or `aria-label`/`aria-labelledby`.
 - SVG icons and decorations must use `aria-hidden="true"` when paired with text, or include accessible labels when acting as standalone buttons.
