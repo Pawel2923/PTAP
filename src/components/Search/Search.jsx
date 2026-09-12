@@ -16,6 +16,7 @@ import articleList from "../../data/ArticleList.json";
 import SearchContext from "../../store/search-context";
 import PageContext from "../../store/page-context";
 import icons from "../../icons/symbol-defs.svg";
+import useScrollLock from "../../hooks/use-scroll-lock";
 import classes from "./Search.module.css";
 import inputClasses from "../UI/Input/Input.module.css";
 
@@ -47,6 +48,7 @@ const getPolishArticlesWord = (count) => {
 };
 
 export const Search = () => {
+  useScrollLock();
   const location = useLocation();
   const dialogRef = useRef(null);
   const searchInput = useRef(null);

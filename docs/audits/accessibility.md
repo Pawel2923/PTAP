@@ -3,7 +3,7 @@
 **Project:** PTAP (Pilot Training Arma Project)  
 **Audit Date:** 2026-09-12  
 **Reference Standards:** WCAG 2.1 / WCAG 2.2 (Levels A and AA)  
-**Implementation Status:** Phase 3 Completed (Form Accessibility & Instructions)
+**Implementation Status:** All Phases Completed (WCAG 2.1 / 2.2 AA Remediated)
 
 ---
 
@@ -273,10 +273,17 @@ Remediation can be structured into 4 sequential phases ordered by priority:
    - [x] Refactor `ResetPassword.jsx` to correct invalid `<label>` nesting and add `autoComplete="email"`.
    - [x] Mark required field asterisks with `aria-hidden="true"` and describe `target="_blank"` links.
 
-4. **Phase 4: Visuals, Contrast & Focus Enhancements (P4)**
-   - Increase border contrast for secondary buttons in `Button.module.css`.
-   - Remove `-webkit-text-size-adjust: none;` from `index.css`.
-   - Provide a prominent `:focus-visible` outline for toolbar options in `Toolbar.module.css`.
-   - Add explicit background and text color to `Input.module.css`.
-   - Add bottom clearance to legal pages on mobile devices.
-   - Implement visible active link styling in desktop navigation (`Nav.module.css`).
+4. **Phase 4: Visuals, Contrast & Focus Enhancements (P4)** - ✅ **Completed**
+
+   - [x] Increase border contrast for secondary buttons in `Button.module.css` (lightened to `#43acf7` for 5.6:1 contrast).
+   - [x] Remove `-webkit-text-size-adjust: none;` from `index.css` (set to `100%` for accessibility zoom).
+   - [x] Provide a prominent `:focus-visible` outline for toolbar options in `Toolbar.module.css`.
+   - [x] Add explicit background (`#ffffff`) and text color (`#333333`) to `Input.module.css`.
+   - [x] Add bottom clearance to legal pages on mobile devices by rendering `<Footer />`.
+   - [x] Implement visible active link styling in desktop navigation (`Nav.module.css`).
+
+5. **Component ARIA & Non-Text Improvements** - ✅ **Completed**
+   - [x] Set descriptive logo alternative text in `Nav.jsx` (`alt="PTAP - Pilot Training Arma Project"`).
+   - [x] Add `aria-expanded` to console menu toggle button in `Menu.jsx`.
+   - [x] Polish language accessible name for code editor (`aria-label="Edytor kodu artykułu"`).
+   - [x] Mark decorative icons and line number spans with `aria-hidden="true"`.

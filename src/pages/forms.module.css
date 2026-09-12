@@ -50,10 +50,6 @@
   width: 100%;
 }
 
-.form-field:last-of-type input {
-  margin-bottom: 1rem;
-}
-
 .form button {
   width: fit-content;
 }

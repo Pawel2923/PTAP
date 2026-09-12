@@ -24,6 +24,8 @@
   height: fit-content;
   border-radius: 25px;
   color: #fff;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 
 .modal::backdrop {

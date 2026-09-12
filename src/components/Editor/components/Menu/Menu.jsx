@@ -53,8 +53,9 @@ const Menu = forwardRef(({ setIsMenuExpanded }, menuRef) => {
         className={`${optionClasses}`}
         title={barsTitle}
         onClick={barsClickHandler}
+        aria-expanded={expandMenu}
       >
-        <FontAwesomeIcon icon={solid("bars")} />
+        <FontAwesomeIcon icon={solid("bars")} aria-hidden="true" />
         {expandMenu && <span> Menu</span>}
       </Option>
       <Option

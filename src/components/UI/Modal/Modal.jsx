@@ -1,5 +1,6 @@
 import { useEffect, useRef, useId } from "react";
 import PropTypes from "prop-types";
+import useScrollLock from "../../../hooks/use-scroll-lock";
 import classes from "./Modal.module.css";
 import icons from "../../../icons/symbol-defs.svg";
 
@@ -13,6 +14,7 @@ const Modal = ({
   children,
   ...rest
 }) => {
+  useScrollLock();
   const dialogRef = useRef(null);
   const titleId = useId();
   const hasTitle = Boolean(title && title.trim());

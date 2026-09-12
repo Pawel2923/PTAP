@@ -5,7 +5,7 @@ export default function LineNumbers({ articleLength }) {
   const lineNumbers = Array.from({ length: articleLength }, (_, key) => key);
 
   return (
-    <div className={classes["line-numbers"]}>
+    <div className={classes["line-numbers"]} aria-hidden="true">
       {lineNumbers.length === 0 ? (
         <span></span>
       ) : (

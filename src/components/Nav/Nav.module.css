@@ -104,6 +104,17 @@
   background-color: #444444;
 }
 
+.nav li > a:global(.active) {
+  background-color: rgba(67, 172, 247, 0.2);
+  color: #43acf7;
+  font-weight: 600;
+}
+
+.nav li > a:global(.active):hover {
+  background-color: rgba(67, 172, 247, 0.3);
+  color: #fff;
+}
+
 .nav li > a:active {
   background-color: #444444;
   -webkit-transform: scale3d(0.9, 0.9, 0.9);
